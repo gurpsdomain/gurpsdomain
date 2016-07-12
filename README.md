@@ -1,4 +1,4 @@
-# GURPS Domain
+# GURPS Domain [![Build Status](https://travis-ci.org/pebeling/gurpsdomain.svg?branch=master)](https://travis-ci.org/pebeling/gurpsdomain)
 This repository contains a Java project used to model [GURPS][gurps]. It is in no way associated with SJGames.
 
 ## Getting Started
