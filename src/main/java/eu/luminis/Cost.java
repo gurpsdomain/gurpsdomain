@@ -1,7 +1,5 @@
 package eu.luminis;
 
-import java.util.List;
-
 public class Cost {
     enum CostType {
         PER_LEVEL,

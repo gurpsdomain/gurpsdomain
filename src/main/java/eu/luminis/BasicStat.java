@@ -1,6 +1,6 @@
 package eu.luminis;
 
-enum BasicStats {
+enum BasicStat {
     DX ("Dexterity", new Cost(Cost.CostType.PER_LEVEL, new Integer[]{20})),
     ST ("Strength", new Cost(Cost.CostType.PER_LEVEL, new Integer[]{10})),
     HT ("Health", new Cost(Cost.CostType.PER_LEVEL, new Integer[]{10})),
@@ -9,7 +9,7 @@ enum BasicStats {
     public String name;
     public Cost cost;
 
-    BasicStats(String name, Cost cost) {
+    BasicStat(String name, Cost cost) {
         this.name = name;
         this.cost = cost;
     }

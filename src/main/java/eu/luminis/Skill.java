@@ -1,20 +1,24 @@
 package eu.luminis;
 
 public class Skill {
+	String name;
+	String description;
 
-    // prerequisite skills
+	BasicStat controllingAttribute;
 
-    // prerequisite advantages, disallowed disadvantages
+	// defaults
 
-    // difficulty
+	// prerequisite or disallowed traits
 
-    // book ref
+	// difficulty
 
-    // name
+	// book ref
 
-    // description
+	// specialization
 
-    // base stat
+	// specialization mandatory
 
+	// type
 
+	// Tech level
 }
