@@ -1,4 +1,4 @@
-package eu.luminis;
+package org.gurpsdomain;
 
 enum BasicStat {
     DX ("Dexterity", new Cost(Cost.CostType.PER_LEVEL, new Integer[]{20})),

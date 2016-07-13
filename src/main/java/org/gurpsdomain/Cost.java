@@ -1,4 +1,4 @@
-package eu.luminis;
+package org.gurpsdomain;
 
 public class Cost {
     enum CostType {
