@@ -1,0 +1,4 @@
+library: SnakeYaml
+usecases:
+  - Parsing Yaml
+  - Dumping Yaml
