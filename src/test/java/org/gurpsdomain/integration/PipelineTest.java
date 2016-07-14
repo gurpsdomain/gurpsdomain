@@ -5,6 +5,9 @@ import com.google.gson.reflect.TypeToken;
 import org.gurpsdomain.Pipeline;
 import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.adapters.output.SheetOutput;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +17,7 @@ import java.util.Map;
 
 import static org.gurpsdomain.adapters.input.YamlSheetInput.fromYaml;
 import static org.gurpsdomain.adapters.output.JsonSheetOutput.toJson;
-import static org.gurpsdomain.integration.JsonAsserter.in;
+import static org.gurpsdomain.integration.MapOfMapAsserter.hasPath;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -39,7 +42,7 @@ public class PipelineTest {
 
         Pipeline.flow(input).into(output);
 
-        in(outputAsMap(writer)).path("points.earned").shouldEqual(250.0);
+        assertThat(outputAsMap(writer), hasPath("points.earned", is(250.0)));
     }
 
     private Map<String, Object> outputAsMap(Writer writer) {
@@ -50,35 +53,46 @@ public class PipelineTest {
     }
 }
 
-class JsonAsserter {
-    public static JsonAsserter in (Map<String, Object> data) {
-        return new JsonAsserter(data);
+class MapOfMapAsserter<T> extends TypeSafeMatcher<Map<String, Object>> {
+    public static <T> MapOfMapAsserter hasPath(String path, Matcher<T> matcher) {
+        return new MapOfMapAsserter(path, matcher);
     }
 
-    private final Map<String, Object> data;
+    private final String propertyPath;
+    private final Matcher<T> matcher;
 
-    private JsonAsserter(Map<String, Object> data) {
-        this.data = data;
+    public MapOfMapAsserter(String propertyPath, Matcher<T> matcher) {
+        this.propertyPath = propertyPath;
+        this.matcher = matcher;
     }
 
-    public Assertion path(String propertyPath) {
+    @Override
+    protected boolean matchesSafely(Map<String, Object> start) {
         String[] properties = propertyPath.split("\\.");
-        Object current = data;
+        Object current = start;
         for (int index = 0; index < properties.length; index++) {
             String property = properties[index];
-            current = ((Map<String, Object>) current).get(property);
+            if (current instanceof Map) {
+                Map<String, Object> aMap = (Map<String, Object>) current;
+                if (aMap.containsKey(property)) {
+                    current = aMap.get(property);
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         }
-        return new Assertion(current);
-    }
-}
 
-class Assertion {
-    private Object target;
-    public Assertion(Object target) {
-        this.target = target;
+        return matcher.matches(current);
     }
 
-    public void shouldEqual(double value) {
-        assertThat(target, is(value));
+    @Override
+    public void describeTo(Description description) {
+        description.appendText("to have path ");
+        description.appendValue(propertyPath);
+        description.appendText(" ");
+        matcher.describeTo(description);
+
     }
 }
