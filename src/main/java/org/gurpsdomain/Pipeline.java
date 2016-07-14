@@ -1,6 +1,8 @@
 package org.gurpsdomain;
 
 import com.google.gson.Gson;
+import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.adapters.output.SheetOutput;
 import org.gurpsdomain.domain.Sheet;
 import org.yaml.snakeyaml.Yaml;
 
@@ -9,20 +11,17 @@ import java.io.Writer;
 import java.util.Map;
 
 public class Pipeline {
-    public static Pipeline flow(Reader reader) {
-        return new Pipeline(reader);
+    public static Pipeline flow(SheetInput input) {
+        return new Pipeline(input);
     }
 
     private final Sheet sheet;
 
-    private Pipeline(Reader reader) {
-        Yaml yaml = new Yaml();
-        Map<String, Object> data = (Map<String, Object>)yaml.load(reader);
-        this.sheet = new Sheet((Integer) data.get("basepoints"));
+    private Pipeline(SheetInput input) {
+        this.sheet = input.produce();
     }
 
-    public void into(Writer writer) {
-        Gson gson = new Gson();
-        gson.toJson(sheet, writer);
+    public void into(SheetOutput writer) {
+        writer.export(sheet);
     }
 }
