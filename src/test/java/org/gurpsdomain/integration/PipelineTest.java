@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static org.gurpsdomain.adapters.input.YamlSheetInput.fromYaml;
 import static org.gurpsdomain.adapters.output.JsonSheetOutput.toJson;
+import static org.gurpsdomain.integration.JsonAsserter.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,7 +32,39 @@ public class PipelineTest {
         Type stringObjectMap = new TypeToken<Map<String, Object>>(){}.getType();
         Map<String, Object> data = gson.fromJson(result, stringObjectMap);
 
-        assertThat(((Map<String, Object>)data.get("points")).get("earned"), is(250.0));
+        in(data).path("points.earned").shouldEqual(250.0);
     }
 }
 
+class JsonAsserter {
+    public static JsonAsserter in (Map<String, Object> data) {
+        return new JsonAsserter(data);
+    }
+
+    private final Map<String, Object> data;
+
+    private JsonAsserter(Map<String, Object> data) {
+        this.data = data;
+    }
+
+    public Assertion path(String propertyPath) {
+        String[] properties = propertyPath.split("\\.");
+        Object current = data;
+        for (int index = 0; index < properties.length; index++) {
+            String property = properties[index];
+            current = ((Map<String, Object>) current).get(property);
+        }
+        return new Assertion(current);
+    }
+}
+
+class Assertion {
+    private Object target;
+    public Assertion(Object target) {
+        this.target = target;
+    }
+
+    public void shouldEqual(double value) {
+        assertThat(target, is(value));
+    }
+}
