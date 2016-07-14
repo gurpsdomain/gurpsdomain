@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static org.gurpsdomain.adapters.input.YamlSheetInput.fromYaml;
 import static org.gurpsdomain.adapters.output.JsonSheetOutput.toJson;
-import static org.gurpsdomain.integration.MapOfMapAsserter.hasPath;
+import static org.gurpsdomain.integration.MapOfMapMatcher.hasPath;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -53,15 +53,15 @@ public class PipelineTest {
     }
 }
 
-class MapOfMapAsserter<T> extends TypeSafeMatcher<Map<String, Object>> {
-    public static <T> MapOfMapAsserter hasPath(String path, Matcher<T> matcher) {
-        return new MapOfMapAsserter(path, matcher);
+class MapOfMapMatcher<T> extends TypeSafeMatcher<Map<String, Object>> {
+    public static <T> MapOfMapMatcher hasPath(String path, Matcher<T> matcher) {
+        return new MapOfMapMatcher(path, matcher);
     }
 
     private final String propertyPath;
     private final Matcher<T> matcher;
 
-    public MapOfMapAsserter(String propertyPath, Matcher<T> matcher) {
+    public MapOfMapMatcher(String propertyPath, Matcher<T> matcher) {
         this.propertyPath = propertyPath;
         this.matcher = matcher;
     }
