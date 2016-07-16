@@ -6,4 +6,8 @@ public class Points {
     public Points(int total) {
         this.total = total;
     }
+
+    public void award(int amount) {
+        this.total += amount;
+    }
 }

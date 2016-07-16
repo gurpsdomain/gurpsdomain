@@ -6,4 +6,8 @@ public class Sheet {
     public Sheet(int earned) {
         this.points = new Points(earned);
     }
+
+    public void award(int amount) {
+        points.award(amount);
+    }
 }

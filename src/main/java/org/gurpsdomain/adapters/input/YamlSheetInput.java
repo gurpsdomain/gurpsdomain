@@ -4,6 +4,7 @@ import org.gurpsdomain.domain.Sheet;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
+import java.util.List;
 import java.util.Map;
 
 public class YamlSheetInput implements SheetInput {
@@ -24,6 +25,10 @@ public class YamlSheetInput implements SheetInput {
             Yaml yaml = new Yaml();
             Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
             this.sheet = new Sheet((Integer) data.get("basepoints"));
+            List<Integer> rewards = (List<Integer>) data.get("rewards");
+            for (Integer reward: rewards) {
+                sheet.award(reward);
+            }
         }
         return sheet;
     }

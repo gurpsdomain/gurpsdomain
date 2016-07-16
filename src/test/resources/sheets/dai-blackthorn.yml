@@ -1,3 +1,7 @@
 ---
 basepoints: 250
+
+rewards:
+  - 3
+  - 5
 ...
