@@ -39,7 +39,7 @@ public class PipelineTest {
 
         Pipeline.flow(input).into(output);
 
-        assertThat(outputAsMap(writer), hasPath("points.earned", is(250.0)));
+        assertThat(outputAsMap(writer), hasPath("points.total", is(250.0)));
     }
 
     private Map<String, Object> outputAsMap(Writer writer) {

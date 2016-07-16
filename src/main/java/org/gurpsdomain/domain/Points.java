@@ -1,9 +1,9 @@
 package org.gurpsdomain.domain;
 
 public class Points {
-    private int earned;
+    private int total;
 
-    public Points(int earned) {
-        this.earned = earned;
+    public Points(int total) {
+        this.total = total;
     }
 }
