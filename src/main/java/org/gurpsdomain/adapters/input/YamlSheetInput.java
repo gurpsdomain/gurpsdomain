@@ -1,6 +1,6 @@
 package org.gurpsdomain.adapters.input;
 
-import org.gurpsdomain.domain.Sheet;
+import org.gurpsdomain.adapters.output.domain.Sheet;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;

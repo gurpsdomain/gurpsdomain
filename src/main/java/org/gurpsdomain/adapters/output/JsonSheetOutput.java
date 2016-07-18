@@ -1,7 +1,7 @@
 package org.gurpsdomain.adapters.output;
 
 import com.google.gson.Gson;
-import org.gurpsdomain.domain.Sheet;
+import org.gurpsdomain.adapters.output.domain.Sheet;
 
 import java.io.Writer;
 
