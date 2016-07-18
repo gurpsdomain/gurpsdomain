@@ -1,11 +1,14 @@
 package org.gurpsdomain.adapters.input;
 
 import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.domain.SheetBuilder;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
 import java.util.List;
 import java.util.Map;
+
+import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
@@ -13,7 +16,7 @@ public class YamlSheetInput implements SheetInput {
     }
 
     private Reader reader;
-    private Sheet sheet;
+    private SheetBuilder sheetBuilder;
 
     private YamlSheetInput(Reader reader) {
         this.reader = reader;
@@ -21,15 +24,15 @@ public class YamlSheetInput implements SheetInput {
 
     @Override
     public Sheet produce() {
-        if (sheet == null) {
+        if (sheetBuilder == null) {
             Yaml yaml = new Yaml();
             Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
-            this.sheet = new Sheet((Integer) data.get("basepoints"));
+            this.sheetBuilder = builder((Integer) data.get("basepoints"));
             List<Integer> rewards = (List<Integer>) data.get("rewards");
             for (Integer reward: rewards) {
-                sheet.award(reward);
+                sheetBuilder.award(reward);
             }
         }
-        return sheet;
+        return sheetBuilder.build();
     }
 }
