@@ -2,7 +2,7 @@ package org.gurpsdomain;
 
 import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.adapters.output.SheetOutput;
-import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.domain.Sheet;
 
 public class Pipeline {
     public static Pipeline flow(SheetInput input) {
@@ -16,6 +16,6 @@ public class Pipeline {
     }
 
     public void into(SheetOutput writer) {
-        writer.export(sheet);
+        writer.export(sheet.output());
     }
 }

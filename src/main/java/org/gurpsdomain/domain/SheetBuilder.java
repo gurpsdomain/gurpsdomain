@@ -1,6 +1,6 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.domain.Sheet;
 
 public class SheetBuilder {
     public static SheetBuilder builder(int earned) {
