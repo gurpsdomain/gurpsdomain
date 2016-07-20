@@ -12,7 +12,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import static org.gurpsdomain.adapters.input.YamlSheetInput.fromYaml;
+import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.fromYaml;
 import static org.gurpsdomain.adapters.output.json.JsonSheetOutput.toJson;
 import static org.gurpsdomain.matchers.MapOfMapMatcher.hasPath;
 import static org.hamcrest.Matchers.is;
