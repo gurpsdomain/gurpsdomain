@@ -15,7 +15,8 @@ public class Pipeline {
         this.sheet = input.produce();
     }
 
-    public void into(SheetOutput writer) {
-        writer.export(sheet.output());
+    public void into(SheetOutput output) {
+        org.gurpsdomain.adapters.output.domain.Sheet outputSheet = sheet.output();
+        output.export(outputSheet);
     }
 }
