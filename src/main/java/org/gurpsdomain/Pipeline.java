@@ -1,7 +1,9 @@
 package org.gurpsdomain;
 
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.SheetOutput;
+import org.gurpsdomain.adapters.output.converter.DefaultConverter;
 import org.gurpsdomain.domain.Sheet;
 
 public class Pipeline {
@@ -9,6 +11,7 @@ public class Pipeline {
         return new Pipeline(input);
     }
 
+    private final SheetConverter converter = new DefaultConverter();
     private final Sheet sheet;
 
     private Pipeline(SheetInput input) {
@@ -16,7 +19,6 @@ public class Pipeline {
     }
 
     public void into(SheetOutput output) {
-        org.gurpsdomain.adapters.output.domain.Sheet outputSheet = sheet.output();
-        output.export(outputSheet);
+        output.export(converter.convert(sheet));
     }
 }
