@@ -12,7 +12,7 @@ public class ReflectionReaderTest {
     private static final int ANY_INT_VALUE = 37;
 
     @Test
-    public void shouldReadProperties() throws NoSuchFieldException, IllegalAccessException {
+    public void shouldReadPropertyOneLevelDeep() throws NoSuchFieldException, IllegalAccessException {
         SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
 
         Integer value = read("value").from(singleValue);
