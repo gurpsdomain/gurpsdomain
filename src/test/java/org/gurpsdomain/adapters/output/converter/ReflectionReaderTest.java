@@ -39,3 +39,11 @@ class ReflectionReader {
         return (T) field.get(object);
     }
 }
+
+class SingleValue {
+    public int value;
+
+    public SingleValue(int value) {
+        this.value = value;
+    }
+}

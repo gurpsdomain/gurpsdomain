@@ -56,11 +56,3 @@ class ConstructorArgument<T> {
         this.type = type;
     }
 }
-
-class SingleValue {
-    public int value;
-
-    public SingleValue(int value) {
-        this.value = value;
-    }
-}
