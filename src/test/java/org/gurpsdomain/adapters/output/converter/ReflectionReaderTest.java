@@ -19,33 +19,46 @@ public class ReflectionReaderTest {
 
         assertThat(value, is(ANY_INT_VALUE));
     }
+
+    @Test
+    public void shouldReadPropertyTwoLevelsDeep() {
+        NestedValue nestedValue = new NestedValue(new SingleValue(ANY_INT_VALUE));
+
+        Integer value = read("singleValue", "value").from(nestedValue);
+
+        assertThat(value, is(ANY_INT_VALUE));
+    }
 }
 
 class ReflectionReader {
-    public static ReflectionReader read(String property) {
-        return new ReflectionReader(property);
+    public static ReflectionReader read(String... properties) {
+        return new ReflectionReader(properties);
     }
 
-    private String property;
+    private String[] properties;
 
-    private ReflectionReader(String property) {
-        this.property = property;
+    private ReflectionReader(String... properties) {
+        this.properties = properties;
     }
 
 
     public <T> T from(Object object) {
-        return safeFrom(object);
+        Object current = object;
+        for (String property: properties) {
+            current = safeReadFrom(property, current);
+        }
+        return (T) current;
     }
 
-    private <T> T safeFrom(Object object) {
+    private <T> T safeReadFrom(String property, Object object) {
         try {
-            return unsafeFrom(object);
+            return unsafeReadFrom(property, object);
         } catch (IllegalAccessException|NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private <T> T unsafeFrom(Object object) throws NoSuchFieldException, IllegalAccessException {
+    private <T> T unsafeReadFrom(String property, Object object) throws NoSuchFieldException, IllegalAccessException {
         Class<?> objectClass = object.getClass();
         Field field = objectClass.getDeclaredField(property);
         return (T) field.get(object);
@@ -57,5 +70,13 @@ class SingleValue {
 
     public SingleValue(int value) {
         this.value = value;
+    }
+}
+
+class NestedValue {
+    public SingleValue singleValue;
+
+    public NestedValue(SingleValue singleValue) {
+        this.singleValue = singleValue;
     }
 }
