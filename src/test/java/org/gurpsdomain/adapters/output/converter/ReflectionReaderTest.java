@@ -12,7 +12,7 @@ public class ReflectionReaderTest {
     private static final int ANY_INT_VALUE = 37;
 
     @Test
-    public void shouldReadPropertyOneLevelDeep() throws NoSuchFieldException, IllegalAccessException {
+    public void shouldReadPropertyOneLevelDeep() {
         SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
 
         Integer value = read("value").from(singleValue);
@@ -33,7 +33,19 @@ class ReflectionReader {
     }
 
 
-    public <T> T from(Object object) throws NoSuchFieldException, IllegalAccessException {
+    public <T> T from(Object object) {
+        return safeFrom(object);
+    }
+
+    private <T> T safeFrom(Object object) {
+        try {
+            return unsafeFrom(object);
+        } catch (IllegalAccessException|NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private <T> T unsafeFrom(Object object) throws NoSuchFieldException, IllegalAccessException {
         Class<?> objectClass = object.getClass();
         Field field = objectClass.getDeclaredField(property);
         return (T) field.get(object);
