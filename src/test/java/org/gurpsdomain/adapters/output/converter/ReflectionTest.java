@@ -39,9 +39,8 @@ class ReflectionConstructor<T> {
     }
 
     public T build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        ConstructorArgument<?> constructorArgument = constructorArguments.get(0);
-        Class<?>[] constructorArgumentClasses = new Class<?>[]{ constructorArgument.type };
-        Object[] constructorArgumentValues = new Object[]{ constructorArgument.value };
+        Class<?>[] constructorArgumentClasses = constructorArguments.stream().map(ca -> ca.type).toArray(Class<?>[]::new);
+        Object[] constructorArgumentValues = constructorArguments.stream().map(ca -> ca.value).toArray();
         Constructor<T> constructor = aClass.getConstructor(constructorArgumentClasses);
         T object = (T) constructor.newInstance(constructorArgumentValues);
         return object;
