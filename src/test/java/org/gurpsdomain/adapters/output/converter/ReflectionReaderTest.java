@@ -61,12 +61,13 @@ class ReflectionReader {
     private <T> T unsafeReadFrom(String property, Object object) throws NoSuchFieldException, IllegalAccessException {
         Class<?> objectClass = object.getClass();
         Field field = objectClass.getDeclaredField(property);
+        field.setAccessible(true);
         return (T) field.get(object);
     }
 }
 
 class SingleValue {
-    public int value;
+    private int value;
 
     public SingleValue(int value) {
         this.value = value;
@@ -74,7 +75,7 @@ class SingleValue {
 }
 
 class NestedValue {
-    public SingleValue singleValue;
+    private SingleValue singleValue;
 
     public NestedValue(SingleValue singleValue) {
         this.singleValue = singleValue;
