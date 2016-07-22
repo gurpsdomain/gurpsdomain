@@ -1,10 +1,6 @@
 package org.gurpsdomain.adapters.output.converter;
 
 import org.junit.Test;
-import org.omg.CORBA.Any;
-import org.omg.CORBA.Object;
-
-import javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -44,8 +40,10 @@ class ReflectionConstructor<T> {
 
     public T build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         ConstructorArgument<?> constructorArgument = constructorArguments.get(0);
-        Constructor<T> constructor = aClass.getConstructor(constructorArgument.type);
-        T object = (T) constructor.newInstance(constructorArgument.value);
+        Class<?>[] constructorArgumentClasses = new Class<?>[]{ constructorArgument.type };
+        Object[] constructorArgumentValues = new Object[]{ constructorArgument.value };
+        Constructor<T> constructor = aClass.getConstructor(constructorArgumentClasses);
+        T object = (T) constructor.newInstance(constructorArgumentValues);
         return object;
     }
 }
