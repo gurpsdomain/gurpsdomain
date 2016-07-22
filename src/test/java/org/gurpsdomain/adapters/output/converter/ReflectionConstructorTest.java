@@ -11,7 +11,7 @@ import static org.gurpsdomain.adapters.output.converter.ReflectionConstructor.co
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ReflectionTest {
+public class ReflectionConstructorTest {
     public static final int ANY_INT_VALUE = 37;
     @Test
     public void shouldCreateObjectsFromConstructorAndLiterals() throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
