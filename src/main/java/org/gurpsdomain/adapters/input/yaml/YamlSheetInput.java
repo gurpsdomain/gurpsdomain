@@ -33,6 +33,14 @@ public class YamlSheetInput implements SheetInput {
             for (Integer reward: rewards) {
                 sheetBuilder.award(reward);
             }
+            List<Object> advantages = (List<Object>) data.get("advantages");
+            for (Object advantage: advantages) {
+                Map<String, Object> advantageData = (Map<String, Object>) advantage;
+              String name = (String) advantageData.get("name");
+                if (name.equals("Enhanced Dexterity")){
+                    sheetBuilder.addAdvantage(20);
+                }
+            }
         }
         return sheetBuilder.build();
     }

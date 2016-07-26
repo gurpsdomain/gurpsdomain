@@ -17,6 +17,8 @@ public class SheetBuilder {
         sheet.award(amount);
     }
 
+    public  void addAdvantage(int amount) { sheet.addAdvantage(amount);}
+
     public Sheet build() {
         return sheet;
     }
