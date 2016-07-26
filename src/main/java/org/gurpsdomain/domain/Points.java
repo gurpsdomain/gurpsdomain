@@ -2,6 +2,7 @@ package org.gurpsdomain.domain;
 
 public class Points {
     private int total;
+    private int advantages = 20;
 
     public Points(int total) {
         this.total = total;
@@ -12,6 +13,6 @@ public class Points {
     }
 
     public org.gurpsdomain.adapters.output.domain.Points output() {
-        return new org.gurpsdomain.adapters.output.domain.Points(total);
+        return new org.gurpsdomain.adapters.output.domain.Points(total, advantages);
     }
 }

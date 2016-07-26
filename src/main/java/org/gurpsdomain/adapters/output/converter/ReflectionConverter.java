@@ -9,6 +9,6 @@ import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
 public class ReflectionConverter implements SheetConverter {
     @Override
     public Sheet convert(org.gurpsdomain.domain.Sheet sheet) {
-        return new Sheet(new Points(read("points", "total").from(sheet)));
+        return new Sheet(new Points(read("points", "total").from(sheet), read("points", "advantages").from(sheet)));
     }
 }
