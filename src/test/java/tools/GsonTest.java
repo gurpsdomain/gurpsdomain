@@ -1,4 +1,4 @@
-package org.gurpsdomain;
+package tools;
 
 import com.google.gson.Gson;
 import org.junit.Test;

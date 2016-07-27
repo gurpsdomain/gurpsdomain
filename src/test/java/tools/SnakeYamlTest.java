@@ -1,4 +1,4 @@
-package org.gurpsdomain;
+package tools;
 
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
