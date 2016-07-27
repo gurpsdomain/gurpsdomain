@@ -1,12 +1,14 @@
-package org.gurpsdomain.integration;
+package org.gurpsdomain.features.steps;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.gurpsdomain.Pipeline;
 import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.adapters.output.SheetOutput;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -18,31 +20,31 @@ import static org.gurpsdomain.matchers.MapOfMapMatcher.hasPath;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class PipelineTest {
+public class ConvertSheetSteps {
+    public static final String SHEETS_LOCATION = "src/test/resources/sheets/";
     private Reader reader;
     private Writer writer;
 
-    @Before
-    public void createReader() throws FileNotFoundException {
-        reader = new FileReader(new File("src/test/resources/sheets/dai-blackthorn.yml"));
+    @Given("^a sheet file (.+\\.yml)$")
+    public void a_sheet_file(String file) throws Throwable {
+        reader = new FileReader(new File(SHEETS_LOCATION + file));
     }
 
-    @Before
-    public void createWriter() {
-        writer = new StringWriter();
-    }
-
-    @Test
-    public void shouldProduceCorrectJson() throws FileNotFoundException {
+    @When("^I convert it to json$")
+    public void i_convert_it_to_yaml() throws Throwable {
         SheetInput input = fromYaml(reader);
+        writer = new StringWriter();
         SheetOutput output = toJson(writer);
-
         Pipeline.flow(input).into(output);
+    }
 
+
+
+    @Then("^I expect a point total of (\\d+)$")
+    public void i_expect_a_point_total_of(double pointTotal) throws Throwable {
         Map<String, Object> data = outputAsMap(writer);
 
-        assertThat(data, hasPath("points.total", is(258.0)));
-        assertThat(data, hasPath("points.advantages", is(20.0)));
+        assertThat(data, hasPath("points.total", is(pointTotal)));
     }
 
     private Map<String, Object> outputAsMap(Writer writer) {
@@ -52,4 +54,3 @@ public class PipelineTest {
         return gson.fromJson(result, stringObjectMap);
     }
 }
-
