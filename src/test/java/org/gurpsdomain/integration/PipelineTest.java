@@ -30,8 +30,14 @@ public class PipelineTest {
     public static Collection<Object[]> data() {
 
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{"dai-blackthorn", new File("src/test/resources/sheets/dai-blackthorn.yml"), new File("src/test/resources/json/dai-blackthorn.json") });
+        data.add(dataFor("dai-blackthorn"));
         return data;
+    }
+
+    private static Object[] dataFor(String name) {
+        return new Object[]{
+            name, new File("src/test/resources/sheets/" + name + ".yml"), new File("src/test/resources/json/" + name + ".json")
+        };
     }
 
     private final File input;
