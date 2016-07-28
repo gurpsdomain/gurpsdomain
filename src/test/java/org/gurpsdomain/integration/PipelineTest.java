@@ -26,6 +26,8 @@ import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 @RunWith(Parameterized.class)
 public class PipelineTest {
+    private static final String RESOURCES = "src/test/resources/";
+
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> data() {
 
@@ -36,7 +38,7 @@ public class PipelineTest {
 
     private static Object[] dataFor(String name) {
         return new Object[]{
-            name, new File("src/test/resources/sheets/" + name + ".yml"), new File("src/test/resources/json/" + name + ".json")
+            name, new File(RESOURCES + "sheets/" + name + ".yml"), new File(RESOURCES + "json/" + name + ".json")
         };
     }
 
