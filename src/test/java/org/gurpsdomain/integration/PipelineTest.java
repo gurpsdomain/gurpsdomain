@@ -12,6 +12,8 @@ import org.junit.runners.Parameterized;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -26,7 +28,7 @@ import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 @RunWith(Parameterized.class)
 public class PipelineTest {
-    private static final String RESOURCES = "src/test/resources/";
+    private static final File RESOURCES = Paths.get("src", "test", "resources").toFile();
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> data() {
@@ -38,7 +40,7 @@ public class PipelineTest {
 
     private static Object[] dataFor(String name) {
         return new Object[]{
-            name, new File(RESOURCES + "sheets/" + name + ".yml"), new File(RESOURCES + "json/" + name + ".json")
+            name, new File(RESOURCES, "sheets/" + name + ".yml"), new File(RESOURCES,  "json/" + name + ".json")
         };
     }
 
