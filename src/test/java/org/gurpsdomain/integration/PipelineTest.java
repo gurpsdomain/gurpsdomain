@@ -11,16 +11,19 @@ import org.junit.Test;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.fromYaml;
 import static org.gurpsdomain.adapters.output.json.JsonSheetOutput.toJson;
 import static org.gurpsdomain.matchers.MapOfMapMatcher.hasPath;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 public class PipelineTest {
     private Reader reader;
     private Writer writer;
+    private String expectedJson;
 
     @Before
     public void createReader() throws FileNotFoundException {
@@ -32,24 +35,21 @@ public class PipelineTest {
         writer = new StringWriter();
     }
 
+    @Before
+    public void readExpectedJson() throws FileNotFoundException {
+        BufferedReader jsonReader = new BufferedReader(new FileReader(new File("src/test/resources/json/dai-blackthorn.json")));
+        expectedJson = jsonReader.lines().collect(Collectors.joining());
+    }
+
     @Test
     public void shouldProduceCorrectJson() throws FileNotFoundException {
         SheetInput input = fromYaml(reader);
         SheetOutput output = toJson(writer);
 
         Pipeline.flow(input).into(output);
-
-        Map<String, Object> data = outputAsMap(writer);
-
-        assertThat(data, hasPath("points.total", is(258.0)));
-        assertThat(data, hasPath("points.advantages", is(20.0)));
-    }
-
-    private Map<String, Object> outputAsMap(Writer writer) {
-        String result = writer.toString();
-        Gson gson = new Gson();
-        Type stringObjectMap = new TypeToken<Map<String, Object>>(){}.getType();
-        return gson.fromJson(result, stringObjectMap);
+        
+        String json = writer.toString();
+        assertThat(json, sameJSONAs(expectedJson));
     }
 }
 
