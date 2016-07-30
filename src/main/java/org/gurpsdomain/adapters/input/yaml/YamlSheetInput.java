@@ -33,7 +33,8 @@ public class YamlSheetInput implements SheetInput {
         if (sheetBuilder == null) {
             Yaml yaml = new Yaml();
             Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
-            this.sheetBuilder = builder((Integer) data.get("basepoints"));
+            sheetBuilder = builder();
+            sheetBuilder.award((Integer) data.get("basepoints"));
             List<Integer> rewards = (List<Integer>) data.get("rewards");
             for (Integer reward: rewards) {
                 sheetBuilder.award(reward);

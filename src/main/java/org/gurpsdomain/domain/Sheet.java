@@ -3,8 +3,8 @@ package org.gurpsdomain.domain;
 public class Sheet {
     private final Points points;
 
-    public Sheet(int earned) {
-        this.points = new Points(earned);
+    public Sheet() {
+        this.points = new Points(0);
     }
 
     public void award(int amount) {

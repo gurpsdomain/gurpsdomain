@@ -1,14 +1,14 @@
 package org.gurpsdomain.domain;
 
 public class SheetBuilder {
-    public static SheetBuilder builder(int earned) {
-        return new SheetBuilder(earned);
+    public static SheetBuilder builder() {
+        return new SheetBuilder();
     }
 
     private Sheet sheet;
 
-    private SheetBuilder(int earned) {
-        this.sheet = new Sheet(earned);
+    private SheetBuilder() {
+        this.sheet = new Sheet();
     }
 
     public void award(int amount) {
