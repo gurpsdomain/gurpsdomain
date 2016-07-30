@@ -1,4 +1,4 @@
-package org.gurpsdomain.domain.repositories;
+package org.gurpsdomain.repositories;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.AdvantageRepository;

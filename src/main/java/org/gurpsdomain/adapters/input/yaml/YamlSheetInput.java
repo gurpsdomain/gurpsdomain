@@ -5,7 +5,7 @@ import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.AdvantageRepository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
-import org.gurpsdomain.domain.repositories.InMemoryAdvantageRepository;
+import org.gurpsdomain.repositories.InMemoryAdvantageRepository;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
