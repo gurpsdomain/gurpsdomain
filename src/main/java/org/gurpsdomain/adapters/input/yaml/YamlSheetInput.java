@@ -1,6 +1,7 @@
 package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.yaml.snakeyaml.Yaml;
@@ -33,12 +34,13 @@ public class YamlSheetInput implements SheetInput {
             for (Integer reward: rewards) {
                 sheetBuilder.award(reward);
             }
-            List<Object> advantages = (List<Object>) data.get("advantages");
-            for (Object advantage: advantages) {
-                Map<String, Object> advantageData = (Map<String, Object>) advantage;
+            List<Object> inputAdvantages = (List<Object>) data.get("advantages");
+            for (Object inputAdvantage: inputAdvantages) {
+                Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
                 String name = (String) advantageData.get("name");
-                if (name.equals("Enhanced Dexterity")){
-                    sheetBuilder.addAdvantage(20);
+                Advantage advantage = new Advantage(name);
+                if (advantage.name.equals("Enhanced Dexterity")){
+                    sheetBuilder.addAdvantage(advantage.cost);
                 }
             }
         }
