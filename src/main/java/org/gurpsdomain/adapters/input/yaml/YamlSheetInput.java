@@ -2,8 +2,10 @@ package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.domain.Advantage;
+import org.gurpsdomain.domain.AdvantageRepository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
+import org.gurpsdomain.domain.repositories.InMemoryAdvantageRepository;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
@@ -17,6 +19,7 @@ public class YamlSheetInput implements SheetInput {
         return new YamlSheetInput(reader);
     }
 
+    private AdvantageRepository repository = new InMemoryAdvantageRepository();
     private Reader reader;
     private SheetBuilder sheetBuilder;
 
@@ -37,9 +40,9 @@ public class YamlSheetInput implements SheetInput {
             List<Object> inputAdvantages = (List<Object>) data.get("advantages");
             for (Object inputAdvantage: inputAdvantages) {
                 Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
-                String name = (String) advantageData.get("name");
-                Advantage advantage = new Advantage(name);
-                if (advantage.name.equals("Enhanced Dexterity")){
+                String advantageName = (String) advantageData.get("name");
+                if (repository.exists(advantageName)){
+                    Advantage advantage = repository.getByName(advantageName);
                     sheetBuilder.addAdvantage(advantage);
                 }
             }
