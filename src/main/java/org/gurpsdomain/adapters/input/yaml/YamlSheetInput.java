@@ -40,7 +40,7 @@ public class YamlSheetInput implements SheetInput {
                 String name = (String) advantageData.get("name");
                 Advantage advantage = new Advantage(name);
                 if (advantage.name.equals("Enhanced Dexterity")){
-                    sheetBuilder.addAdvantage(advantage.cost);
+                    sheetBuilder.addAdvantage(advantage);
                 }
             }
         }

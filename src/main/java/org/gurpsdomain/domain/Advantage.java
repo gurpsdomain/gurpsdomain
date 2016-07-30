@@ -8,4 +8,8 @@ public class Advantage {
         this.name = name;
         this.cost = 20;
     }
+
+    public void payCost(Points points) {
+        points.addAdvantage(cost);
+    }
 }

@@ -1,7 +1,5 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.domain.Sheet;
-
 public class SheetBuilder {
     public static SheetBuilder builder(int earned) {
         return new SheetBuilder(earned);
@@ -17,7 +15,7 @@ public class SheetBuilder {
         sheet.award(amount);
     }
 
-    public  void addAdvantage(int amount) { sheet.addAdvantage(amount);}
+    public  void addAdvantage(Advantage advantage) { sheet.addAdvantage(advantage);}
 
     public Sheet build() {
         return sheet;

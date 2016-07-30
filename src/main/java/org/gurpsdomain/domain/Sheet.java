@@ -10,9 +10,8 @@ public class Sheet {
     public void award(int amount) {
         points.award(amount);
     }
-    public void addAdvantage(int amount) {
-        //TODO derive point
-        points.addAdvantage(amount);
+    public void addAdvantage(Advantage advantage) {
+        advantage.payCost(points);
     }
 
 }
