@@ -16,14 +16,15 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        return new YamlSheetInput(reader);
+        return new YamlSheetInput(new InMemoryAdvantageRepository(), reader);
     }
 
-    private AdvantageRepository repository = new InMemoryAdvantageRepository();
+    private AdvantageRepository repository;
     private Reader reader;
     private SheetBuilder sheetBuilder;
 
-    private YamlSheetInput(Reader reader) {
+    private YamlSheetInput(AdvantageRepository repository, Reader reader) {
+        this.repository = repository;
         this.reader = reader;
     }
 
