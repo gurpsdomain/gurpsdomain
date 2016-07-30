@@ -9,6 +9,8 @@ import org.gurpsdomain.repositories.InMemoryAdvantageRepository;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +24,18 @@ public class YamlSheetInput implements SheetInput {
     private AdvantageRepository repository;
     private Reader reader;
     private SheetBuilder sheetBuilder;
+    private Collection<YamlBuildStep> buildSteps = new ArrayList<YamlBuildStep>();
 
     private YamlSheetInput(AdvantageRepository repository, Reader reader) {
         this.repository = repository;
         this.reader = reader;
+        populateBuildSteps();
+    }
+
+    private void populateBuildSteps() {
+        buildSteps.add(new SetBasePointsStep());
+        buildSteps.add(new AwardRewardsStep());
+        buildSteps.add(new AddAdvantagesStep(repository));
     }
 
     @Override
@@ -34,21 +44,54 @@ public class YamlSheetInput implements SheetInput {
             Yaml yaml = new Yaml();
             Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
             sheetBuilder = builder();
-            sheetBuilder.award((Integer) data.get("basepoints"));
-            List<Integer> rewards = (List<Integer>) data.get("rewards");
-            for (Integer reward: rewards) {
-                sheetBuilder.award(reward);
-            }
-            List<Object> inputAdvantages = (List<Object>) data.get("advantages");
-            for (Object inputAdvantage: inputAdvantages) {
-                Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
-                String advantageName = (String) advantageData.get("name");
-                if (repository.exists(advantageName)){
-                    Advantage advantage = repository.getByName(advantageName);
-                    sheetBuilder.addAdvantage(advantage);
-                }
+            for (YamlBuildStep buildStep: buildSteps) {
+                buildStep.build(data, sheetBuilder);
             }
         }
         return sheetBuilder.build();
+    }
+}
+
+interface YamlBuildStep {
+    void build(Map<String, Object> data, SheetBuilder sheetBuilder);
+}
+
+class SetBasePointsStep implements YamlBuildStep {
+
+    @Override
+    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+        sheetBuilder.award((Integer) data.get("basepoints"));
+    }
+}
+
+class AwardRewardsStep implements YamlBuildStep {
+
+    @Override
+    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+        List<Integer> rewards = (List<Integer>) data.get("rewards");
+        for (Integer reward: rewards) {
+            sheetBuilder.award(reward);
+        }
+    }
+}
+
+class AddAdvantagesStep implements YamlBuildStep {
+    private AdvantageRepository repository;
+
+    public AddAdvantagesStep(AdvantageRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+        List<Object> inputAdvantages = (List<Object>) data.get("advantages");
+        for (Object inputAdvantage: inputAdvantages) {
+            Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
+            String advantageName = (String) advantageData.get("name");
+            if (repository.exists(advantageName)){
+                Advantage advantage = repository.getByName(advantageName);
+                sheetBuilder.addAdvantage(advantage);
+            }
+        }
     }
 }
