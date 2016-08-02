@@ -10,8 +10,8 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
     private Map<String, Advantage> advantages = new HashMap<String, Advantage>();
 
     {
-        advantages.put("Enhanced Dexterity", new Advantage("Enhanced Dexterity", 20));
-        advantages.put("Enhanced Strength", new Advantage("Enhanced Strength", 10));
+        advantages.put("Absolute Direction", new Advantage("Absolute Direction", 5));
+        advantages.put("Flexibility", new Advantage("Flexibility", 5));
     }
 
     @Override
