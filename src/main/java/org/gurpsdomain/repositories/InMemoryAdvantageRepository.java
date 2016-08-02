@@ -10,8 +10,8 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
     private Map<String, Advantage> advantages = new HashMap<String, Advantage>();
 
     {
-        advantages.put("Absolute Direction", new Advantage("Absolute Direction", 5, "B34"));
-        advantages.put("Flexibility", new Advantage("Flexibility", 5, "B56"));
+        register("Absolute Direction", new Advantage("Absolute Direction", 5, "B34"));
+        register("Flexibility", new Advantage("Flexibility", 5, "B56"));
     }
 
     @Override
@@ -22,5 +22,9 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
     @Override
     public Advantage getByName(String advantageName) {
         return advantages.get(advantageName);
+    }
+
+    public void register(String advantageName, Advantage advantage) {
+        advantages.put(advantageName, advantage);
     }
 }
