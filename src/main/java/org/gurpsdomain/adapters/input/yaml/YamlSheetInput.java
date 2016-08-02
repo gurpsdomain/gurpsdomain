@@ -18,7 +18,7 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        return new YamlSheetInput(new InMemoryAdvantageRepository(), reader);
+        return new YamlSheetInput(InMemoryAdvantageRepository.loadedWith("src/main/resources/data/basic-set.yml"), reader);
     }
 
     private AdvantageRepository repository;
