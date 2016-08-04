@@ -52,6 +52,9 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
 
     @Override
     public Advantage getByName(String advantageName) {
+        if (!advantages.containsKey(advantageName)) {
+            throw new AdvantageNotFoundException(advantageName);
+        }
         return advantages.get(advantageName);
     }
 
