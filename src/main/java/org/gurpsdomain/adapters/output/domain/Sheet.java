@@ -7,8 +7,8 @@ public class Sheet {
     private final Points points;
     private final List<Advantage> advantages = new ArrayList<Advantage>();
 
-    public Sheet(Points points) {
+    public Sheet(Points points, List<Advantage> advantages) {
         this.points = points;
-        advantages.add(new org.gurpsdomain.adapters.output.domain.Advantage("Absolute Direction", 5));
+        this.advantages.addAll(advantages);
     }
 }
