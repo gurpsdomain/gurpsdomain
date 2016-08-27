@@ -16,8 +16,10 @@ public class ReflectionConverter implements SheetConverter {
         Points points = new Points(read("points", "total").from(sheet), read("points", "advantages").from(sheet));
         List<Advantage> advantages = new ArrayList<Advantage>();
         List<org.gurpsdomain.domain.Advantage> originalAdvantages = read("advantages").from(sheet);
+        ReflectionReader readName = read("name");
+        ReflectionReader readCost = read("cost");
         for (org.gurpsdomain.domain.Advantage originalAdvantage : originalAdvantages) {
-            advantages.add(new org.gurpsdomain.adapters.output.domain.Advantage("Absolute Direction", 5));
+            advantages.add(new Advantage(readName.from(originalAdvantage), readCost.from(originalAdvantage)));
         }
         return new Sheet(points, advantages);
     }
