@@ -3,5 +3,7 @@
     "total": 258,
     "advantages": 5
   },
-  "advantages": []
+  "advantages": [
+    { "name": "Absolute Direction", "points": 5 }
+  ]
 }
