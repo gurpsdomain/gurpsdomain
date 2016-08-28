@@ -28,17 +28,13 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(e);
         }
+        AdvantageBuilder builder = new AdvantageBuilder();
         Yaml yaml = new Yaml();
         Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
         List<Map<String, Object>> advantages = (List<Map<String, Object>>) data.get("advantages");
         for (Map<String, Object> advantageData: advantages) {
             String advantageName = (String) advantageData.get("name");
-            Advantage advantage = new Advantage(
-                    advantageName,
-                    (int) advantageData.get("basePoints"),
-                    (String) advantageData.get("reference")
-            );
-
+            Advantage advantage = builder.buildFrom(advantageData);
             repository.register(advantageName, advantage);
         }
     }
@@ -60,5 +56,17 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
 
     public void register(String advantageName, Advantage advantage) {
         advantages.put(advantageName, advantage);
+    }
+}
+
+class AdvantageBuilder {
+    public Advantage buildFrom(Map<String, Object> advantageData) {
+        String advantageName = (String) advantageData.get("name");
+        Advantage advantage = new Advantage(
+            advantageName,
+            (int) advantageData.get("basePoints"),
+            (String) advantageData.get("reference")
+        );
+        return advantage;
     }
 }
