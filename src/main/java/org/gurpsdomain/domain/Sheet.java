@@ -1,11 +1,14 @@
 package org.gurpsdomain.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Sheet {
     private final Points points;
     private final List<Advantage> advantages = new ArrayList<Advantage>();
+    private final Map<String, String> metaData = new HashMap<String, String>();
 
     public Sheet() {
         this.points = new Points(0);
@@ -19,4 +22,7 @@ public class Sheet {
         advantages.add(advantage);
     }
 
+    public void setMetaDataProperty(String key, String value) {
+        this.metaData.put(key, value);
+    }
 }
