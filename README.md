@@ -1,5 +1,5 @@
 # GURPS Domain [![Build Status](https://travis-ci.org/gurpsdomain/gurpsdomain.svg?branch=master)](https://travis-ci.org/gurpsdomain/gurpsdomain)
-This repository contains a Java project used to model [GURPS][gurps]. It is in no way associated with SJGames.
+This repository contains a Java project used to model [GURPS][gurps]. It is in no way associated with SJGames. The organisation can be found [here][organisation].
 
 ## Getting Started
 This project depends on [Maven][maven]. It can be build by running the following command
@@ -10,3 +10,4 @@ mvn package
 
 [gurps]: http://www.sjgames.com/gurps/
 [maven]: https://maven.apache.org/
+[organisation]: https://github.com/gurpsdomain
