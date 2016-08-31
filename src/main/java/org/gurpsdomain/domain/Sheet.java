@@ -8,7 +8,7 @@ import java.util.Map;
 public class Sheet {
     private final Points points;
     private final List<Advantage> advantages = new ArrayList<Advantage>();
-    private final Map<String, String> metaData = new HashMap<String, String>();
+    private final Map<String, Object> metaData = new HashMap<String, Object>();
 
     public Sheet() {
         this.points = new Points(0);
@@ -23,6 +23,13 @@ public class Sheet {
     }
 
     public void setMetaDataProperty(String[] keys, String value) {
-        this.metaData.put(keys[0], value);
+        Map<String, Object> current = metaData;
+        for (int index = 0; index < keys.length - 1; index++) {
+            if (!current.containsKey(keys[index])) {
+                current.put(keys[index], new HashMap<String, Object>());
+            }
+            current = (Map<String, Object>) current.get(keys[index]);
+        }
+        current.put(keys[keys.length - 1], value);
     }
 }
