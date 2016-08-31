@@ -1,6 +1,8 @@
 {
   "metaData": {
-      "name": "Dai Blackthorn"
+      "identity": {
+        "name": "Dai Blackthorn"
+      }
   },
   "points": {
     "total": 258,

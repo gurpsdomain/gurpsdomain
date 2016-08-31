@@ -61,7 +61,7 @@ class SetNameStep implements YamlBuildStep {
 
     @Override
     public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        sheetBuilder.addMetaData("name", (String) data.get("name"));
+        sheetBuilder.addMetaData("identity", "name", (String) data.get("name"));
     }
 }
 
