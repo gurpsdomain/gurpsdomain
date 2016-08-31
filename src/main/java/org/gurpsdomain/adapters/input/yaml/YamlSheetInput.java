@@ -34,6 +34,7 @@ public class YamlSheetInput implements SheetInput {
 
     private void populateBuildSteps() {
         buildSteps.add(new SetNameStep());
+        buildSteps.add(new SetTitleStep());
         buildSteps.add(new SetBasePointsStep());
         buildSteps.add(new AwardRewardsStep());
         buildSteps.add(new AddAdvantagesStep(repository));
@@ -62,6 +63,14 @@ class SetNameStep implements YamlBuildStep {
     @Override
     public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
         sheetBuilder.addMetaData("identity", "name", (String) data.get("name"));
+    }
+}
+
+class SetTitleStep implements YamlBuildStep {
+
+    @Override
+    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+        sheetBuilder.addMetaData("identity", "title", (String) data.getOrDefault("title", ""));
     }
 }
 
