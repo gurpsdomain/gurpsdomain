@@ -17,7 +17,9 @@ public class SheetBuilder {
 
     public  void addAdvantage(Advantage advantage) { sheet.addAdvantage(advantage);}
 
-    public  void addMetaData(String key, String value) { sheet.setMetaDataProperty(key, value);}
+    public  void addMetaData(String... keys) {
+        sheet.setMetaDataProperty(keys[0], keys[1]);
+    }
 
     public Sheet build() {
         return sheet;
