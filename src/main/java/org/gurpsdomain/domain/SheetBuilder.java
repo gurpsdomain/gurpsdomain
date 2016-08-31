@@ -22,7 +22,7 @@ public class SheetBuilder {
     public  void addMetaData(String... keys) {
         String value = keys[keys.length - 1];
         keys = slice(keys, 0, keys.length - 1);
-        sheet.setMetaDataProperty(keys[0], value);
+        sheet.setMetaDataProperty(keys, value);
     }
 
     public Sheet build() {

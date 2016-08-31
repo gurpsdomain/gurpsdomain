@@ -22,7 +22,7 @@ public class Sheet {
         advantages.add(advantage);
     }
 
-    public void setMetaDataProperty(String key, String value) {
-        this.metaData.put(key, value);
+    public void setMetaDataProperty(String[] keys, String value) {
+        this.metaData.put(keys[0], value);
     }
 }
