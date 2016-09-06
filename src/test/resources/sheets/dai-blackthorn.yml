@@ -1,4 +1,8 @@
 ---
+player: Daan van Berkel
+campaign: Paul's Total Party Kill
+created on: Oct 13, 2015
+
 name: Dai Blackthorn
 title: Sergeant
 religion: K-theorist
@@ -7,6 +11,14 @@ race: Human
 gender: Male
 age: 35
 birthday: February 12
+height: 5' 9''
+weight: 154 lb
+size: '+0'
+TL: 4
+hair: Brown, wavy, long
+eyes: Green
+skin: Pale
+hand: Right
 
 basepoints: 250
 

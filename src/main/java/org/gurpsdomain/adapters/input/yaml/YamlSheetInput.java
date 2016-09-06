@@ -33,6 +33,9 @@ public class YamlSheetInput implements SheetInput {
     }
 
     private void populateBuildSteps() {
+		buildSteps.add(new SetPlayerStep());
+		buildSteps.add(new SetCampaignStep());
+		buildSteps.add(new SetCreatedOnStep());
         buildSteps.add(new SetNameStep());
         buildSteps.add(new SetTitleStep());
 		buildSteps.add(new SetReligionStep());
@@ -40,6 +43,14 @@ public class YamlSheetInput implements SheetInput {
 		buildSteps.add(new SetGenderStep());
 		buildSteps.add(new SetAgeStep());
 		buildSteps.add(new SetBirthdayStep());
+		buildSteps.add(new SetHeightStep());
+		buildSteps.add(new SetWeightStep());
+		buildSteps.add(new SetSizeStep());
+		buildSteps.add(new SetTechLevelStep());
+		buildSteps.add(new SetHairStep());
+		buildSteps.add(new SetEyesStep());
+		buildSteps.add(new SetSkinStep());
+		buildSteps.add(new SetHandStep());
         buildSteps.add(new SetBasePointsStep());
         buildSteps.add(new AwardRewardsStep());
         buildSteps.add(new AddAdvantagesStep(repository));
@@ -118,6 +129,95 @@ class SetBirthdayStep implements YamlBuildStep {
 		sheetBuilder.addMetaData("description", "birthday", (String) data.getOrDefault("birthday", ""));
 	}
 }
+	
+class SetHeightStep implements YamlBuildStep {
+
+		@Override
+		public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+			sheetBuilder.addMetaData("description", "height", (String) data.getOrDefault("height", ""));
+		}
+}
+
+class SetWeightStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "weight", (String) data.getOrDefault("weight", ""));
+	}
+}
+
+class SetSizeStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "size", data.getOrDefault("size", "").toString());
+	}
+}
+
+class SetTechLevelStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "TL", data.getOrDefault("TL", "").toString());
+	}
+}
+
+class SetHairStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "hair", (String) data.getOrDefault("hair", ""));
+	}
+}
+
+class SetEyesStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "eyes", (String) data.getOrDefault("eyes", ""));
+	}
+}
+
+class SetSkinStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "skin", (String) data.getOrDefault("skin", ""));
+	}
+}
+
+class SetHandStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("description", "hand", (String) data.getOrDefault("hand", ""));
+	}
+}
+
+class SetPlayerStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("player information", "player", (String) data.getOrDefault("player", ""));
+	}
+}
+
+class SetCampaignStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("player information", "campaign", (String) data.getOrDefault("campaign", ""));
+	}
+}
+
+class SetCreatedOnStep implements YamlBuildStep {
+	
+	@Override
+	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
+		sheetBuilder.addMetaData("player information", "created on", (String) data.getOrDefault("created on", ""));
+	}
+}
+
 
 class SetBasePointsStep implements YamlBuildStep {
 
