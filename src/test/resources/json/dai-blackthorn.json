@@ -7,7 +7,9 @@
       },
       "description": {
         "race": "Human",
-        "gender": "Male"
+        "gender": "Male",
+        "age": "35",
+        "birthday": "February 12"
       }
   },
   "points": {
