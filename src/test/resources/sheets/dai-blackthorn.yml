@@ -3,6 +3,9 @@ name: Dai Blackthorn
 title: Sergeant
 religion: K-theorist
 
+race: Human
+gender: Male
+
 basepoints: 250
 
 rewards:

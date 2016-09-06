@@ -4,6 +4,10 @@
         "name": "Dai Blackthorn",
         "title": "Sergeant",
         "religion": "K-theorist"
+      },
+      "description": {
+        "race": "Human",
+        "gender": "Male"
       }
   },
   "points": {
