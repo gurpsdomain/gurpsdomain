@@ -65,7 +65,8 @@ class AdvantageBuilder {
         Advantage advantage = new Advantage(
             advantageName,
             (int) advantageData.get("basePoints"),
-            (String) advantageData.get("reference")
+            (String) advantageData.get("reference"),
+            (List) advantageData.get("modifiers")
         );
         return advantage;
     }

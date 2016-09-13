@@ -17,7 +17,7 @@
     "advantages": 10
   },
   "advantages": [
-    { "name": "Absolute Direction", "points": 5 },
+    { "name": "Absolute Direction", "points": 5, "modifiers": [{"name": "Chronolocation"}] },
     { "name": "Flexibility", "points": 5 }
   ]
 }

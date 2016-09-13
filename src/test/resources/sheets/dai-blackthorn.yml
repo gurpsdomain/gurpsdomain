@@ -16,5 +16,7 @@ rewards:
 
 advantages:
   - name: Absolute Direction
+    modifiers:
+    - {name: Chronolocation}
   - name: Flexibility
 ...
