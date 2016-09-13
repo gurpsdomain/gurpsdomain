@@ -1,18 +1,16 @@
 package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
-import org.gurpsdomain.domain.Advantage;
+import org.gurpsdomain.adapters.input.yaml.step.*;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
-import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import static org.gurpsdomain.domain.SheetBuilder.builder;
@@ -71,192 +69,4 @@ public class YamlSheetInput implements SheetInput {
     }
 }
 
-interface YamlBuildStep {
-    void build(Map<String, Object> data, SheetBuilder sheetBuilder);
-}
 
-class SetNameStep implements YamlBuildStep {
-
-    @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        sheetBuilder.addMetaData("identity", "name", (String) data.get("name"));
-    }
-}
-
-class SetTitleStep implements YamlBuildStep {
-
-    @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        sheetBuilder.addMetaData("identity", "title", (String) data.getOrDefault("title", ""));
-    }
-}
-
-class SetReligionStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("identity", "religion", (String) data.getOrDefault("religion", ""));
-	}
-}
-
-class SetRaceStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "race", (String) data.getOrDefault("race", ""));
-	}
-}
-
-class SetGenderStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "gender", (String) data.getOrDefault("gender", ""));
-	}
-}
-
-class SetAgeStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "age", data.getOrDefault("age", "").toString());
-	}
-}
-
-class SetBirthdayStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "birthday", (String) data.getOrDefault("birthday", ""));
-	}
-}
-	
-class SetHeightStep implements YamlBuildStep {
-
-		@Override
-		public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-			sheetBuilder.addMetaData("description", "height", (String) data.getOrDefault("height", ""));
-		}
-}
-
-class SetWeightStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "weight", (String) data.getOrDefault("weight", ""));
-	}
-}
-
-class SetSizeStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "size", data.getOrDefault("size", "").toString());
-	}
-}
-
-class SetTechLevelStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "TL", data.getOrDefault("TL", "").toString());
-	}
-}
-
-class SetHairStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "hair", (String) data.getOrDefault("hair", ""));
-	}
-}
-
-class SetEyesStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "eyes", (String) data.getOrDefault("eyes", ""));
-	}
-}
-
-class SetSkinStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "skin", (String) data.getOrDefault("skin", ""));
-	}
-}
-
-class SetHandStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "hand", (String) data.getOrDefault("hand", ""));
-	}
-}
-
-class SetPlayerStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "player", (String) data.getOrDefault("player", ""));
-	}
-}
-
-class SetCampaignStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "campaign", (String) data.getOrDefault("campaign", ""));
-	}
-}
-
-class SetCreatedOnStep implements YamlBuildStep {
-	
-	@Override
-	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "created on", (String) data.getOrDefault("created on", ""));
-	}
-}
-
-
-class SetBasePointsStep implements YamlBuildStep {
-
-    @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        sheetBuilder.award((Integer) data.get("basepoints"));
-    }
-}
-
-class AwardRewardsStep implements YamlBuildStep {
-
-    @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        List<Integer> rewards = (List<Integer>) data.get("rewards");
-        for (Integer reward: rewards) {
-            sheetBuilder.award(reward);
-        }
-    }
-}
-
-class AddAdvantagesStep implements YamlBuildStep {
-    private AdvantageDescriptionRepository repository;
-
-    public AddAdvantagesStep(AdvantageDescriptionRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        List<Object> inputAdvantages = (List<Object>) data.get("advantages");
-        for (Object inputAdvantage: inputAdvantages) {
-            Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
-            String advantageName = (String) advantageData.get("name");
-            if (repository.exists(advantageName)){
-                AdvantageDescription advantageDescription = repository.getByName(advantageName);
-				Advantage advantage = advantageDescription.createAdvantage();
-                sheetBuilder.addAdvantage(advantage);
-            }
-        }
-    }
-}
