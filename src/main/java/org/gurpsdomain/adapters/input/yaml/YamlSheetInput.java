@@ -1,8 +1,6 @@
 package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
-import org.gurpsdomain.domain.*;
-import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.adapters.input.yaml.step.*;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Sheet;
