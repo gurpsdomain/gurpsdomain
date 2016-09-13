@@ -32,24 +32,9 @@ public class YamlSheetInput implements SheetInput {
     }
 
     private void populateBuildSteps() {
-		buildSteps.add(new SetPlayerStep());
-		buildSteps.add(new SetCampaignStep());
-		buildSteps.add(new SetCreatedOnStep());
-        buildSteps.add(new SetNameStep());
-        buildSteps.add(new SetTitleStep());
-		buildSteps.add(new SetReligionStep());
-		buildSteps.add(new SetRaceStep());
-		buildSteps.add(new SetGenderStep());
-		buildSteps.add(new SetAgeStep());
-		buildSteps.add(new SetBirthdayStep());
-		buildSteps.add(new SetHeightStep());
-		buildSteps.add(new SetWeightStep());
-		buildSteps.add(new SetSizeStep());
-		buildSteps.add(new SetTechLevelStep());
-		buildSteps.add(new SetHairStep());
-		buildSteps.add(new SetEyesStep());
-		buildSteps.add(new SetSkinStep());
-		buildSteps.add(new SetHandStep());
+        buildSteps.add(new IdentityStep());
+        buildSteps.add(new PlayerInformationStep());
+        buildSteps.add(new DescriptionStep());
         buildSteps.add(new SetBasePointsStep());
         buildSteps.add(new AwardRewardsStep());
         buildSteps.add(new AddAdvantagesStep(repository));
