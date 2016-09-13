@@ -2,10 +2,11 @@ package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.domain.Advantage;
-import org.gurpsdomain.domain.AdvantageRepository;
+import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
-import org.gurpsdomain.repositories.InMemoryAdvantageRepository;
+import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
@@ -18,15 +19,15 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        return new YamlSheetInput(InMemoryAdvantageRepository.loadedWith("src/main/resources/data/basic-set.yml"), reader);
+        return new YamlSheetInput(InMemoryAdvantageDescriptionRepository.loadedWith("src/main/resources/data/basic-set.yml"), reader);
     }
 
-    private AdvantageRepository repository;
+    private AdvantageDescriptionRepository repository;
     private Reader reader;
     private SheetBuilder sheetBuilder;
     private Collection<YamlBuildStep> buildSteps = new ArrayList<YamlBuildStep>();
 
-    private YamlSheetInput(AdvantageRepository repository, Reader reader) {
+    private YamlSheetInput(AdvantageDescriptionRepository repository, Reader reader) {
         this.repository = repository;
         this.reader = reader;
         populateBuildSteps();
@@ -239,9 +240,9 @@ class AwardRewardsStep implements YamlBuildStep {
 }
 
 class AddAdvantagesStep implements YamlBuildStep {
-    private AdvantageRepository repository;
+    private AdvantageDescriptionRepository repository;
 
-    public AddAdvantagesStep(AdvantageRepository repository) {
+    public AddAdvantagesStep(AdvantageDescriptionRepository repository) {
         this.repository = repository;
     }
 
@@ -252,7 +253,8 @@ class AddAdvantagesStep implements YamlBuildStep {
             Map<String, Object> advantageData = (Map<String, Object>) inputAdvantage;
             String advantageName = (String) advantageData.get("name");
             if (repository.exists(advantageName)){
-                Advantage advantage = repository.getByName(advantageName);
+                AdvantageDescription advantageDescription = repository.getByName(advantageName);
+				Advantage advantage = advantageDescription.createAdvantage();
                 sheetBuilder.addAdvantage(advantage);
             }
         }
