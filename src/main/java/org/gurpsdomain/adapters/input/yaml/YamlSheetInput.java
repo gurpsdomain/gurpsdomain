@@ -11,7 +11,6 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import static org.gurpsdomain.domain.SheetBuilder.builder;
