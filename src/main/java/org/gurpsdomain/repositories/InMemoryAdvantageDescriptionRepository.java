@@ -1,7 +1,7 @@
 package org.gurpsdomain.repositories;
 
-import org.gurpsdomain.domain.Advantage;
-import org.gurpsdomain.domain.AdvantageRepository;
+import org.gurpsdomain.domain.AdvantageDescriptionRepository;
+import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -12,16 +12,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryAdvantageRepository implements AdvantageRepository {
-    public static InMemoryAdvantageRepository loadedWith(String... locations) {
-        InMemoryAdvantageRepository repository = new InMemoryAdvantageRepository();
+public class InMemoryAdvantageDescriptionRepository implements AdvantageDescriptionRepository {
+    public static InMemoryAdvantageDescriptionRepository loadedWith(String... locations) {
+        InMemoryAdvantageDescriptionRepository repository = new InMemoryAdvantageDescriptionRepository();
         for (String location: locations) {
             loadWith(repository, location);
         }
         return repository;
     }
 
-    private static void loadWith(InMemoryAdvantageRepository repository, String location) {
+    private static void loadWith(InMemoryAdvantageDescriptionRepository repository, String location) {
         Reader reader;
         try {
             reader = new FileReader(new File(location));
@@ -34,12 +34,12 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
         List<Map<String, Object>> advantages = (List<Map<String, Object>>) data.get("advantages");
         for (Map<String, Object> advantageData: advantages) {
             String advantageName = (String) advantageData.get("name");
-            Advantage advantage = builder.buildFrom(advantageData);
-            repository.register(advantageName, advantage);
+            AdvantageDescription advantageDescription = builder.buildFrom(advantageData);
+            repository.register(advantageName, advantageDescription);
         }
     }
 
-    private Map<String, Advantage> advantages = new HashMap<String, Advantage>();
+    private Map<String, AdvantageDescription> advantages = new HashMap<String, AdvantageDescription>();
 
     @Override
     public boolean exists(String advantageName) {
@@ -47,22 +47,22 @@ public class InMemoryAdvantageRepository implements AdvantageRepository {
     }
 
     @Override
-    public Advantage getByName(String advantageName) {
+    public AdvantageDescription getByName(String advantageName) {
         if (!advantages.containsKey(advantageName)) {
             throw new AdvantageNotFoundException(advantageName);
         }
         return advantages.get(advantageName);
     }
 
-    public void register(String advantageName, Advantage advantage) {
-        advantages.put(advantageName, advantage);
+    public void register(String advantageName, AdvantageDescription advantageDescription) {
+        advantages.put(advantageName, advantageDescription);
     }
 }
 
 class AdvantageBuilder {
-    public Advantage buildFrom(Map<String, Object> advantageData) {
+    public AdvantageDescription buildFrom(Map<String, Object> advantageData) {
         String advantageName = (String) advantageData.get("name");
-        Advantage advantage = new Advantage(
+        AdvantageDescription advantage = new AdvantageDescription(
             advantageName,
             (int) advantageData.get("basePoints"),
             (String) advantageData.get("reference"),
