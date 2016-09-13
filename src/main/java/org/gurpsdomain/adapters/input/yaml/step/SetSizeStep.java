@@ -8,6 +8,6 @@ public class SetSizeStep implements YamlBuildStep {
 
 	@Override
 	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "size", data.getOrDefault("size", "").toString());
+		sheetBuilder.addMetaData("description", "size", (String) data.getOrDefault("size", ""));
 	}
 }
