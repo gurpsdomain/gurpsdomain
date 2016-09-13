@@ -1,6 +1,7 @@
 package org.gurpsdomain.repositories;
 
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
+import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.yaml.snakeyaml.Yaml;
 
@@ -65,9 +66,14 @@ class AdvantageBuilder {
         AdvantageDescription advantage = new AdvantageDescription(
             advantageName,
             (int) advantageData.get("basePoints"),
-            (String) advantageData.get("reference"),
-            (List) advantageData.get("modifiers")
+            (String) advantageData.get("reference")
+
         );
+        if(advantageData.get("modifiers") != null) {
+            for(Object modifier : ((List) advantageData.get("modifiers"))){
+                advantage.modifiers.add(new Modifier(((Map<String, String>) modifier).get("name")));
+            }
+        }
         return advantage;
     }
 }

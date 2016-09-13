@@ -1,5 +1,6 @@
 package org.gurpsdomain.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Advantage implements PageReference {
@@ -7,6 +8,10 @@ public class Advantage implements PageReference {
     public String pageReference;
     public int cost;
     public List<Modifier> modifiers;
+
+    public Advantage(String name, int cost, String pageReference) {
+        this(name, cost, pageReference, new ArrayList<Modifier>());
+    }
 
     public Advantage(String name, int cost, String pageReference, List<Modifier> modifiers) {
         this.name = name;

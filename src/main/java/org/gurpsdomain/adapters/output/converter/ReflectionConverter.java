@@ -2,6 +2,7 @@ package org.gurpsdomain.adapters.output.converter;
 
 import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.domain.Advantage;
+import org.gurpsdomain.adapters.output.domain.Modifier;
 import org.gurpsdomain.adapters.output.domain.Points;
 import org.gurpsdomain.adapters.output.domain.Sheet;
 
@@ -22,10 +23,16 @@ public class ReflectionConverter implements SheetConverter {
         List<Advantage> advantages = new ArrayList<Advantage>();
         List<org.gurpsdomain.domain.Advantage> originalAdvantages = read("advantages").from(sheet);
         ReflectionReader readName = read("name");
-
         ReflectionReader readCost = read("cost");
+        ReflectionReader readModifiers = read("modifiers");
         for (org.gurpsdomain.domain.Advantage originalAdvantage : originalAdvantages) {
-            advantages.add(new Advantage(readName.from(originalAdvantage), readCost.from(originalAdvantage)));
+            Advantage sheetAdvantage = new Advantage(readName.from(originalAdvantage), readCost.from(originalAdvantage));
+
+            for(org.gurpsdomain.domain.Modifier modifier : (List<org.gurpsdomain.domain.Modifier>) readModifiers.from(originalAdvantage)) {
+                Modifier sheetModifier = new Modifier(modifier.getName());
+                sheetAdvantage.addModifier(sheetModifier);
+            }
+            advantages.add(sheetAdvantage);
         }
         return new Sheet(metaData, points, advantages);
     }

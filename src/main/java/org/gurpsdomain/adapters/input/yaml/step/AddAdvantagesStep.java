@@ -2,6 +2,7 @@ package org.gurpsdomain.adapters.input.yaml.step;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
+import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 
@@ -23,7 +24,16 @@ public class AddAdvantagesStep implements YamlBuildStep {
             String advantageName = (String) advantageData.get("name");
             if (repository.exists(advantageName)){
                 AdvantageDescription advantageDescription = repository.getByName(advantageName);
-				Advantage advantage = advantageDescription.createAdvantage();
+                Advantage advantage = advantageDescription.createAdvantage();
+                if(((Map<String, Object>) inputAdvantage).get("modifiers") != null) {
+                    for(Object inputModifier: (List <Object>) ((Map<String, Object>) inputAdvantage).get("modifiers")) {
+                        for(Modifier modifier: advantageDescription.modifiers) {
+                            if(((Map<String, String>) inputModifier).get("name").equals(modifier.getName())) {
+                                advantage.modifiers.add(modifier);
+                            }
+                        }
+                    }
+                }
                 sheetBuilder.addAdvantage(advantage);
             }
         }

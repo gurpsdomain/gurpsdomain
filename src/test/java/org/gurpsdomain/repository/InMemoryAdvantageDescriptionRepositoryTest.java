@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class InMemoryAdvantageDescriptionRepositoryTest {
     private static final String NOT_REGISTERED_ADVANTAGE_NAME = "Not Registered Advantage Name";
     private static final String REGISTERED_ADVANTAGE_NAME = "Registered Advantage Name";
-    private static final AdvantageDescription ANY_ADVANTAGE = new AdvantageDescription("test", 10, "B128");
+    private static final AdvantageDescription ANY_ADVANTAGE = new AdvantageDescription("test", 10, "B128", Arrays.asList(new Modifier[]{new Modifier("Modifier 1")}));
 
     @Test
     public void shouldNotKnowAnAdvantageBeforeItIsRegistered() {

@@ -1,6 +1,8 @@
 package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.domain.*;
+import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.adapters.input.yaml.step.*;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Sheet;
@@ -11,6 +13,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import static org.gurpsdomain.domain.SheetBuilder.builder;
@@ -68,5 +71,3 @@ public class YamlSheetInput implements SheetInput {
         return sheetBuilder.build();
     }
 }
-
-

@@ -4,6 +4,7 @@ import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.PageReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdvantageDescription implements PageReference {
@@ -13,18 +14,18 @@ public class AdvantageDescription implements PageReference {
     public List <Modifier> modifiers;
 
     public AdvantageDescription(String name, int cost, String pageReference) {
-        this(name, cost, pageReference, null);
+        this(name, cost, pageReference, new ArrayList<Modifier>());
     }
 
     public AdvantageDescription(String name, int cost, String pageReference, List<Modifier> modifiers) {
         this.name = name;
         this.cost = cost;
         this.pageReference = pageReference;
-        this.modifiers = null;
+        this.modifiers = modifiers != null ? modifiers : new ArrayList<Modifier>();
     }
 
     public Advantage createAdvantage() {
-        return new Advantage(name, cost, pageReference, modifiers);
+        return new Advantage(name, cost, pageReference);
     }
 
     @Override
