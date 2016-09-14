@@ -8,6 +8,8 @@ public class SetTechLevelStep implements YamlBuildStep {
 
 	@Override
 	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "TL", (String) data.getOrDefault("TL", ""));
+		Integer techLevel = (Integer) data.get("TL");
+		String representation = techLevel != null ? techLevel.toString() : "";
+		sheetBuilder.addMetaData("description", "TL", representation);
 	}
 }

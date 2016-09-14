@@ -8,6 +8,8 @@ public class SetAgeStep implements YamlBuildStep {
 
 	@Override
 	public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "age", (String) data.getOrDefault("age", ""));
+		Integer age = (Integer) data.get("age");
+		String representation = age != null ? age.toString(): "";
+		sheetBuilder.addMetaData("description", "age", representation);
 	}
 }
