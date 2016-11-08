@@ -17,16 +17,17 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        return new YamlSheetInput(InMemoryAdvantageDescriptionRepository.loadedWith("src/main/resources/data/basic-set.yml"), reader);
+        InMemoryAdvantageDescriptionRepository repository = InMemoryAdvantageDescriptionRepository.loadedWith("src/main/resources/data/basic-set.yml");
+        YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
+        yamlSheetInput.addBuildStep(new AddAdvantagesStep(repository));
+        return yamlSheetInput;
     }
 
-    private AdvantageDescriptionRepository repository;
     private Reader reader;
     private SheetBuilder sheetBuilder;
     private Collection<YamlBuildStep> buildSteps = new ArrayList<YamlBuildStep>();
 
-    private YamlSheetInput(AdvantageDescriptionRepository repository, Reader reader) {
-        this.repository = repository;
+    private YamlSheetInput(Reader reader) {
         this.reader = reader;
         populateBuildSteps();
     }
@@ -37,7 +38,10 @@ public class YamlSheetInput implements SheetInput {
         buildSteps.add(new DescriptionStep());
         buildSteps.add(new SetBasePointsStep());
         buildSteps.add(new AwardRewardsStep());
-        buildSteps.add(new AddAdvantagesStep(repository));
+    }
+
+    private void addBuildStep(YamlBuildStep buildStep) {
+        buildSteps.add(buildStep);
     }
 
     @Override
