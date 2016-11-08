@@ -20,8 +20,10 @@ public class Advantage implements PageReference {
         this.modifiers = modifiers;
     }
 
+    private int getCost(){return cost;}
+
     public void payCost(Points points) {
-        points.addAdvantage(cost);
+        points.addAdvantage(getCost());
     }
 
     @Override
