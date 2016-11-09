@@ -1,14 +1,14 @@
 package org.gurpsdomain.adapters.input.yaml.step;
 
 import org.gurpsdomain.domain.Advantage;
-import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.domain.description.ModifierDescription;
+import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddAdvantagesStep implements YamlBuildStep {
     private AdvantageDescriptionRepository repository;
@@ -25,13 +25,10 @@ public class AddAdvantagesStep implements YamlBuildStep {
             if (repository.exists(advantageName)){
                 AdvantageDescription advantageDescription = repository.getByName(advantageName);
 
-                Advantage advantage = advantageDescription.createAdvantage();
-                for(Map<String, String> inputModifier: ((List <Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST)))) {
-                    String modifierName = inputModifier.get("name");
-                    if (advantageDescription.hasModifier(modifierName)) {
-                        advantage.modifiers.add(advantageDescription.createModifier(modifierName));
-                    }
-                }
+                List<Map<String, String>> modifiers = (List <Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
+                List<String> modifierNames = modifiers.stream().map(m -> m.get("name")).collect(Collectors.toList());
+
+                Advantage advantage = advantageDescription.createAdvantage(modifierNames);
                 sheetBuilder.addAdvantage(advantage);
             }
         }

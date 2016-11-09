@@ -34,8 +34,14 @@ public class AdvantageDescription implements PageReference {
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
     }
 
-    public Advantage createAdvantage() {
-        return new Advantage(name, basePoints, reference);
+    public Advantage createAdvantage(List<String> modifierNames) {
+        Advantage advantage = new Advantage(name, basePoints, reference);
+        for(String modifierName: modifierNames) {
+            if (hasModifier(modifierName)) {
+                advantage.modifiers.add(createModifier(modifierName));
+            }
+        }
+        return advantage;
     }
 
     @Override
@@ -47,11 +53,11 @@ public class AdvantageDescription implements PageReference {
         repository.register(name, this);
     }
 
-    public boolean hasModifier(String modifierName) {
+    private boolean hasModifier(String modifierName) {
         return modifiers.stream().anyMatch(m -> m.getName().equals(modifierName));
     }
 
-    public Modifier createModifier(String modifierName) {
+    private Modifier createModifier(String modifierName) {
         return modifiers.stream().filter(m -> m.getName().equals(modifierName)).findAny().get().createModifier();
     }
 }
