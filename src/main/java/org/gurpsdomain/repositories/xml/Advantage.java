@@ -30,7 +30,7 @@ public class Advantage {
         return basePoints;
     }
 
-    public String getReference() {
+    public String getPageReference() {
         return reference;
     }
 

@@ -77,7 +77,7 @@ class AdvantageBuilderFromXmlAdvantage {
         AdvantageDescription advantage = new AdvantageDescription(
                 advantageName,
                 advantageData.getBasePoints(),
-                advantageData.getReference()
+                advantageData.getPageReference()
 
         );
         if(advantageData.getModifiers() != null) {
