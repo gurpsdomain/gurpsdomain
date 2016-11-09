@@ -13,13 +13,9 @@ import java.util.List;
 
 @XmlRootElement(name = "advantage_list")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Advantages implements Iterable<AdvantageDescription> {
+public class AdvantageDescriptions implements Iterable<AdvantageDescription> {
     @XmlElement(name="advantage")
     private List<AdvantageDescription> advantages = new ArrayList<AdvantageDescription>();
-
-    public Advantages() {
-
-    }
 
     @Override
     public Iterator<AdvantageDescription> iterator() {

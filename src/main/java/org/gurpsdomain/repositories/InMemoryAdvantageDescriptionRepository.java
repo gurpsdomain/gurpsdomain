@@ -2,7 +2,7 @@ package org.gurpsdomain.repositories;
 
 import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.repositories.xml.Advantages;
+import org.gurpsdomain.repositories.xml.AdvantageDescriptions;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -31,16 +31,16 @@ public class InMemoryAdvantageDescriptionRepository implements AdvantageDescript
             throw new IllegalArgumentException(e);
         }
 
-        Advantages advantages;
+        AdvantageDescriptions advantageDescriptions;
         try {
-            JAXBContext context = JAXBContext.newInstance(Advantages.class);
+            JAXBContext context = JAXBContext.newInstance(AdvantageDescriptions.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            advantages = (Advantages) unmarshaller.unmarshal(inputStream);
+            advantageDescriptions = (AdvantageDescriptions) unmarshaller.unmarshal(inputStream);
         } catch (JAXBException e) {
             throw new IllegalArgumentException(e);
         }
 
-        for (AdvantageDescription advantageDescription: advantages) {
+        for (AdvantageDescription advantageDescription: advantageDescriptions) {
             advantageDescription.registerIn(repository);
         }
 
