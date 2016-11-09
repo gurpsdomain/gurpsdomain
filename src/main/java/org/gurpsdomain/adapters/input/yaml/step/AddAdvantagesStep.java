@@ -2,10 +2,9 @@ package org.gurpsdomain.adapters.input.yaml.step;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
-import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.repositories.xml.ModifierDescription;
+import org.gurpsdomain.domain.description.ModifierDescription;
 
 import java.util.Collections;
 import java.util.List;

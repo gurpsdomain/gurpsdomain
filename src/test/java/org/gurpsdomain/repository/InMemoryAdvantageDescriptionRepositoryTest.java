@@ -1,11 +1,9 @@
 package org.gurpsdomain.repository;
 
-import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.repositories.AdvantageNotFoundException;
 import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
-import org.gurpsdomain.repositories.xml.ModifierDescription;
+import org.gurpsdomain.domain.description.ModifierDescription;
 import org.junit.Test;
 
 import java.util.Arrays;

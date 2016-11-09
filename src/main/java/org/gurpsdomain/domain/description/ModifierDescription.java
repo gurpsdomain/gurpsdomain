@@ -1,4 +1,4 @@
-package org.gurpsdomain.repositories.xml;
+package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.Modifier;
 

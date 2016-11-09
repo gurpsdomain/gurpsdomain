@@ -1,11 +1,8 @@
 package org.gurpsdomain.repositories;
 
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
-import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.repositories.xml.Advantage;
 import org.gurpsdomain.repositories.xml.Advantages;
-import org.gurpsdomain.repositories.xml.ModifierDescription;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -43,49 +40,29 @@ public class InMemoryAdvantageDescriptionRepository implements AdvantageDescript
             throw new IllegalArgumentException(e);
         }
 
-        AdvantageBuilderFromXmlAdvantage builder = new AdvantageBuilderFromXmlAdvantage();
-        for (Advantage advantage: advantages) {
-            String advantageName = advantage.getName();
-            AdvantageDescription advantageDescription = builder.buildFrom(advantage);
+        for (AdvantageDescription advantageDescription: advantages) {
+            String advantageName = advantageDescription.name;
             repository.register(advantageName, advantageDescription);
         }
 
     }
 
-    private Map<String, AdvantageDescription> advantages = new HashMap<String, AdvantageDescription>();
+    private Map<String, AdvantageDescription> advantageDescriptions = new HashMap<String, AdvantageDescription>();
 
     @Override
     public boolean exists(String advantageName) {
-        return advantages.containsKey(advantageName);
+        return advantageDescriptions.containsKey(advantageName);
     }
 
     @Override
     public AdvantageDescription getByName(String advantageName) {
-        if (!advantages.containsKey(advantageName)) {
+        if (!advantageDescriptions.containsKey(advantageName)) {
             throw new AdvantageNotFoundException(advantageName);
         }
-        return advantages.get(advantageName);
+        return advantageDescriptions.get(advantageName);
     }
 
     public void register(String advantageName, AdvantageDescription advantageDescription) {
-        advantages.put(advantageName, advantageDescription);
-    }
-}
-
-class AdvantageBuilderFromXmlAdvantage {
-    public AdvantageDescription buildFrom(Advantage advantageData) {
-        String advantageName = advantageData.getName();
-        AdvantageDescription advantage = new AdvantageDescription(
-                advantageName,
-                advantageData.getBasePoints(),
-                advantageData.getPageReference()
-
-        );
-        if(advantageData.getModifiers() != null) {
-            for(ModifierDescription modifier : advantageData.getModifiers()){
-                advantage.modifiers.add(modifier);
-            }
-        }
-        return advantage;
+        advantageDescriptions.put(advantageName, advantageDescription);
     }
 }

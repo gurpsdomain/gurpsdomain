@@ -1,6 +1,8 @@
 package org.gurpsdomain.repositories.xml;
 
 
+import org.gurpsdomain.domain.description.AdvantageDescription;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,16 +13,16 @@ import java.util.List;
 
 @XmlRootElement(name = "advantage_list")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Advantages implements Iterable<Advantage> {
+public class Advantages implements Iterable<AdvantageDescription> {
     @XmlElement(name="advantage")
-    private List<Advantage> advantages = new ArrayList<Advantage>();
+    private List<AdvantageDescription> advantages = new ArrayList<AdvantageDescription>();
 
     public Advantages() {
 
     }
 
     @Override
-    public Iterator<Advantage> iterator() {
+    public Iterator<AdvantageDescription> iterator() {
         return advantages.iterator();
     }
 }
