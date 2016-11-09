@@ -5,6 +5,7 @@ import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.repositories.xml.ModifierDescription;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +28,9 @@ public class AddAdvantagesStep implements YamlBuildStep {
                 AdvantageDescription advantageDescription = repository.getByName(advantageName);
                 Advantage advantage = advantageDescription.createAdvantage();
                 for(Object inputModifier: (List <Object>) ((Map<String, Object>) inputAdvantage).getOrDefault("modifiers", Collections.EMPTY_LIST)) {
-                    for(Modifier modifier: advantageDescription.modifiers) {
-                        if(((Map<String, String>) inputModifier).get("name").equals(modifier.getName())) {
-                            advantage.modifiers.add(modifier);
+                    for(ModifierDescription modifierDescription: advantageDescription.modifiers) {
+                        if(((Map<String, String>) inputModifier).get("name").equals(modifierDescription.getName())) {
+                            advantage.modifiers.add(modifierDescription.createModifier());
                         }
                     }
                 }

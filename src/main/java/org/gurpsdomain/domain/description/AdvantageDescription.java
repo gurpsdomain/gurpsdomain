@@ -3,6 +3,7 @@ package org.gurpsdomain.domain.description;
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.PageReference;
+import org.gurpsdomain.repositories.xml.ModifierDescription;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,17 +13,17 @@ public class AdvantageDescription implements PageReference {
     public int basePoints;
     public Integer pointsPerLevel;
     public String reference;
-    public List <Modifier> modifiers;
+    public List <ModifierDescription> modifiers;
 
     public AdvantageDescription(String name, int basePoints, String pageReference) {
-        this(name, basePoints, pageReference, new ArrayList<Modifier>());
+        this(name, basePoints, pageReference, new ArrayList<ModifierDescription>());
     }
 
-    public AdvantageDescription(String name, int basePoints, String pageReference, List<Modifier> modifiers) {
+    public AdvantageDescription(String name, int basePoints, String pageReference, List<ModifierDescription> modifiers) {
         this.name = name;
         this.basePoints = basePoints;
         this.reference = pageReference;
-        this.modifiers = modifiers != null ? modifiers : new ArrayList<Modifier>();
+        this.modifiers = modifiers != null ? modifiers : new ArrayList<ModifierDescription>();
     }
 
     public Advantage createAdvantage() {

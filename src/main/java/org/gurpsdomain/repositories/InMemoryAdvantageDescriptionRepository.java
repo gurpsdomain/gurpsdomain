@@ -5,6 +5,7 @@ import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.repositories.xml.Advantage;
 import org.gurpsdomain.repositories.xml.Advantages;
+import org.gurpsdomain.repositories.xml.ModifierDescription;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -81,8 +82,8 @@ class AdvantageBuilderFromXmlAdvantage {
 
         );
         if(advantageData.getModifiers() != null) {
-            for(org.gurpsdomain.repositories.xml.Modifier modifier : advantageData.getModifiers()){
-                advantage.modifiers.add(new Modifier(modifier.getName()));
+            for(ModifierDescription modifier : advantageData.getModifiers()){
+                advantage.modifiers.add(modifier);
             }
         }
         return advantage;

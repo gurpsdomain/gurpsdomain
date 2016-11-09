@@ -16,7 +16,7 @@ public class Advantage {
     private Integer pointsPerLevel;
     private String reference;
     @XmlElement(name = "modifier", required=false)
-    private List<Modifier> modifiers;
+    private List<ModifierDescription> modifiers;
 
     public Advantage() {
         /* Needed for Jaxb */
@@ -34,7 +34,7 @@ public class Advantage {
         return reference;
     }
 
-    public List<Modifier> getModifiers() {
+    public List<ModifierDescription> getModifiers() {
         return modifiers;
     }
 }
