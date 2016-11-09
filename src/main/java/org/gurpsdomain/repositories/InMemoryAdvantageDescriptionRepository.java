@@ -3,17 +3,53 @@ package org.gurpsdomain.repositories;
 import org.gurpsdomain.domain.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.repositories.xml.Advantage;
+import org.gurpsdomain.repositories.xml.Advantages;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class InMemoryAdvantageDescriptionRepository implements AdvantageDescriptionRepository {
+    public static InMemoryAdvantageDescriptionRepository loadedWithXML(String... locations) {
+        InMemoryAdvantageDescriptionRepository repository = new InMemoryAdvantageDescriptionRepository();
+        for (String location: locations) {
+            loadWithXML(repository, location);
+        }
+        return repository;
+    }
+
+    private static void loadWithXML(InMemoryAdvantageDescriptionRepository repository, String location) {
+        InputStream inputStream;
+        try {
+            inputStream = new FileInputStream(new File(location));
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        Advantages advantages;
+        try {
+            JAXBContext context = JAXBContext.newInstance(Advantages.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            advantages = (Advantages) unmarshaller.unmarshal(inputStream);
+        } catch (JAXBException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        AdvantageBuilderFromXmlAdvantage builder = new AdvantageBuilderFromXmlAdvantage();
+        for (Advantage advantage: advantages) {
+            String advantageName = advantage.getName();
+            AdvantageDescription advantageDescription = builder.buildFrom(advantage);
+            repository.register(advantageName, advantageDescription);
+        }
+
+    }
+
     public static InMemoryAdvantageDescriptionRepository loadedWithYaml(String... locations) {
         InMemoryAdvantageDescriptionRepository repository = new InMemoryAdvantageDescriptionRepository();
         for (String location: locations) {
@@ -72,6 +108,24 @@ class AdvantageBuilder {
         if(advantageData.get("modifiers") != null) {
             for(Object modifier : ((List) advantageData.get("modifiers"))){
                 advantage.modifiers.add(new Modifier(((Map<String, String>) modifier).get("name")));
+            }
+        }
+        return advantage;
+    }
+}
+
+class AdvantageBuilderFromXmlAdvantage {
+    public AdvantageDescription buildFrom(Advantage advantageData) {
+        String advantageName = (String) advantageData.getName();
+        AdvantageDescription advantage = new AdvantageDescription(
+                advantageName,
+                (int) advantageData.getBasePoints(),
+                (String) advantageData.getReference()
+
+        );
+        if(advantageData.getModifiers() != null) {
+            for(org.gurpsdomain.repositories.xml.Modifier modifier : advantageData.getModifiers()){
+                advantage.modifiers.add(new Modifier(modifier.getName()));
             }
         }
         return advantage;
