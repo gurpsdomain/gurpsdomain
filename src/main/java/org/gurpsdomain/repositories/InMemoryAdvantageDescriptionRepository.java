@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 public class InMemoryAdvantageDescriptionRepository implements AdvantageDescriptionRepository {
-    public static InMemoryAdvantageDescriptionRepository loadedWith(String... locations) {
+    public static InMemoryAdvantageDescriptionRepository loadedWithYaml(String... locations) {
         InMemoryAdvantageDescriptionRepository repository = new InMemoryAdvantageDescriptionRepository();
         for (String location: locations) {
-            loadWith(repository, location);
+            loadWithYaml(repository, location);
         }
         return repository;
     }
 
-    private static void loadWith(InMemoryAdvantageDescriptionRepository repository, String location) {
+    private static void loadWithYaml(InMemoryAdvantageDescriptionRepository repository, String location) {
         Reader reader;
         try {
             reader = new FileReader(new File(location));
