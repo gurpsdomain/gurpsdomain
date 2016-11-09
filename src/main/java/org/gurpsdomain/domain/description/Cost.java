@@ -9,7 +9,7 @@ public class Cost {
     private CostType type;
 
     @XmlValue
-    private 5int value;
+    private int value;
 }
 
 enum CostType {
