@@ -41,8 +41,7 @@ public class InMemoryAdvantageDescriptionRepository implements AdvantageDescript
         }
 
         for (AdvantageDescription advantageDescription: advantages) {
-            String advantageName = advantageDescription.name;
-            repository.register(advantageName, advantageDescription);
+            advantageDescription.registerIn(repository);
         }
 
     }
