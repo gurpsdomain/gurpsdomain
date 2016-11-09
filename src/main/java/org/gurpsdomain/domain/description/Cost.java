@@ -6,10 +6,10 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Cost {
     @XmlAttribute(name = "type")
-    CostType type;
+    private CostType type;
 
     @XmlValue
-    int value;
+    private 5int value;
 }
 
 enum CostType {
