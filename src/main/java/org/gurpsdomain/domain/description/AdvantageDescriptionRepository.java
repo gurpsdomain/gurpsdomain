@@ -1,6 +1,4 @@
-package org.gurpsdomain.domain;
-
-import org.gurpsdomain.domain.description.AdvantageDescription;
+package org.gurpsdomain.domain.description;
 
 public interface AdvantageDescriptionRepository {
     boolean exists(String advantageName);

@@ -1,6 +1,6 @@
 package org.gurpsdomain.repositories;
 
-import org.gurpsdomain.domain.AdvantageDescriptionRepository;
+import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.repositories.xml.Advantages;
 
