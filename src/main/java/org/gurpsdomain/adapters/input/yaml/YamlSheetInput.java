@@ -32,11 +32,11 @@ public class YamlSheetInput implements SheetInput {
     }
 
     private void populateBuildSteps() {
-        buildSteps.add(new IdentityStep());
-        buildSteps.add(new PlayerInformationStep());
-        buildSteps.add(new DescriptionStep());
-        buildSteps.add(new SetBasePointsStep());
-        buildSteps.add(new AwardRewardsStep());
+        addBuildStep(new IdentityStep());
+        addBuildStep(new PlayerInformationStep());
+        addBuildStep(new DescriptionStep());
+        addBuildStep(new SetBasePointsStep());
+        addBuildStep(new AwardRewardsStep());
     }
 
     private void addBuildStep(YamlBuildStep buildStep) {
