@@ -11,4 +11,13 @@ public class Cost {
     @XmlValue
     private int value;
 
+    public Cost() {
+        /* needed by JAXB */
+    }
+
+    public Cost(int value, CostType type) {
+        this.value = value;
+        this.type = type;
+    }
 }
+

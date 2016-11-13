@@ -19,8 +19,9 @@ public class ModifierDescription {
         /* needed by JAXB */
     }
 
-    public ModifierDescription(String name) {
+    public ModifierDescription(String name, Cost cost) {
         this.name = name;
+        this.cost = cost;
     }
 
     public boolean matchesName(String wantedName) {
@@ -28,6 +29,6 @@ public class ModifierDescription {
     }
 
     public Modifier createModifier() {
-        return new Modifier(name);
+        return new Modifier(name, cost);
     }
 }
