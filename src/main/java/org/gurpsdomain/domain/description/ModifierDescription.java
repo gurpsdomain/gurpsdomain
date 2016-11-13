@@ -23,8 +23,8 @@ public class ModifierDescription {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public boolean matchesName(String wantedName) {
+        return this.name.equals(wantedName);
     }
 
     public Modifier createModifier() {

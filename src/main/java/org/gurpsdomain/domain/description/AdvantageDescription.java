@@ -55,10 +55,10 @@ public class AdvantageDescription implements PageReference {
     }
 
     private boolean hasModifier(String modifierName) {
-        return modifiers.stream().anyMatch(m -> m.getName().equals(modifierName));
+        return modifiers.stream().anyMatch(m -> m.matchesName(modifierName));
     }
 
     private Modifier createModifier(String modifierName) {
-        return modifiers.stream().filter(m -> m.getName().equals(modifierName)).findAny().get().createModifier();
+        return modifiers.stream().filter(m -> m.matchesName(modifierName)).findAny().get().createModifier();
     }
 }
