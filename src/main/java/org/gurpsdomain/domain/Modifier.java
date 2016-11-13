@@ -10,14 +10,4 @@ public class Modifier {
         this.name = name;
         this.cost = cost;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Cost getCost() { return cost; }
 }

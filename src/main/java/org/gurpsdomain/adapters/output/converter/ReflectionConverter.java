@@ -29,7 +29,7 @@ public class ReflectionConverter implements SheetConverter {
             Advantage sheetAdvantage = new Advantage(readName.from(originalAdvantage), readCost.from(originalAdvantage));
 
             for(org.gurpsdomain.domain.Modifier modifier : (List<org.gurpsdomain.domain.Modifier>) readModifiers.from(originalAdvantage)) {
-                Modifier sheetModifier = new Modifier(modifier.getName(), modifier.getCost());
+                Modifier sheetModifier = new Modifier(readName.from(modifier), readCost.from(modifier));
                 sheetAdvantage.addModifier(sheetModifier);
             }
             advantages.add(sheetAdvantage);
