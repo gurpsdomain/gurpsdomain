@@ -10,8 +10,5 @@ public class Cost {
 
     @XmlValue
     private int value;
-}
 
-enum CostType {
-    percentage, points;
 }
