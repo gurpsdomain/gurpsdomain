@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Advantage implements PageReference {
-    public String name;
-    public String pageReference;
+    private String name;
+    private String pageReference;
     private int unmodifiedCost;
-    public int cost;
-    public List<Modifier> modifiers;
+    private int cost;
+    private List<Modifier> modifiers;
 
     public Advantage(String name, int cost, String pageReference) {
         this(name, cost, pageReference, new ArrayList<Modifier>());

@@ -35,12 +35,13 @@ public class AdvantageDescription implements PageReference {
     }
 
     public Advantage createAdvantage(List<String> modifierNames) {
-        Advantage advantage = new Advantage(name, basePoints, reference);
+        List<Modifier> modifiers = new ArrayList<Modifier>();
         for(String modifierName: modifierNames) {
             if (hasModifier(modifierName)) {
-                advantage.modifiers.add(createModifier(modifierName));
+                modifiers.add(createModifier(modifierName));
             }
         }
+        Advantage advantage = new Advantage(name, basePoints, reference, modifiers);
         return advantage;
     }
 
