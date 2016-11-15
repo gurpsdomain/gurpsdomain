@@ -1,5 +1,7 @@
 package org.gurpsdomain.adapters.output;
 
+import org.gurpsdomain.adapters.output.domain.SheetSheet;
+
 public interface SheetConverter {
-    org.gurpsdomain.adapters.output.domain.Sheet convert(org.gurpsdomain.domain.Sheet sheet);
+    SheetSheet convert(org.gurpsdomain.domain.Sheet sheet);
 }

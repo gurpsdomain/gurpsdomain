@@ -1,9 +1,8 @@
 package org.gurpsdomain.integration;
 
-import org.gurpsdomain.adapters.input.SheetInput;
 import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.converter.ReflectionConverter;
-import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.adapters.output.domain.SheetSheet;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class ReflectionConverterTest {
 
     @Test
     public void shouldCreateACorrectOutputSheet() {
-        Sheet outputSheet = converter.convert(sheet);
+        SheetSheet outputSheet = converter.convert(sheet);
 
         assertNotNull(outputSheet);
     }

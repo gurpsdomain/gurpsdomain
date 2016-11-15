@@ -1,10 +1,10 @@
 package org.gurpsdomain.adapters.output.domain;
 
-public class Modifier {
+public class SheetModifier {
     private String name;
 //    private Cost cost;
 
-    public Modifier(String name, Cost cost) {
+    public SheetModifier(String name, SheetCost sheetCost) {
         this.name = name;
         //this.cost = cost;
     }

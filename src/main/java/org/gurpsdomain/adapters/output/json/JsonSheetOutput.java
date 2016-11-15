@@ -2,7 +2,7 @@ package org.gurpsdomain.adapters.output.json;
 
 import com.google.gson.Gson;
 import org.gurpsdomain.adapters.output.SheetOutput;
-import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.adapters.output.domain.SheetSheet;
 
 import java.io.Writer;
 
@@ -17,7 +17,7 @@ public class JsonSheetOutput implements SheetOutput {
     }
 
     @Override
-    public void export(Sheet sheet) {
+    public void export(SheetSheet sheet) {
         Gson gson = new Gson();
         gson.toJson(sheet, writer);
 

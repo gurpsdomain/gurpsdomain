@@ -1,7 +1,7 @@
 package org.gurpsdomain.adapters.output;
 
-import org.gurpsdomain.adapters.output.domain.Sheet;
+import org.gurpsdomain.adapters.output.domain.SheetSheet;
 
 public interface SheetOutput {
-    void export(Sheet sheet);
+    void export(SheetSheet sheet);
 }
