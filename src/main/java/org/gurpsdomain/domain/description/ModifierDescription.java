@@ -13,13 +13,13 @@ public class ModifierDescription {
     @XmlElement(name = "name")
     private String name;
     @XmlElement(name = "cost", required=false)
-    private Cost cost;
+    private CostDescription cost;
 
     public ModifierDescription(){
         /* needed by JAXB */
     }
 
-    public ModifierDescription(String name, Cost cost) {
+    public ModifierDescription(String name, CostDescription cost) {
         this.name = name;
         this.cost = cost;
     }
@@ -29,6 +29,6 @@ public class ModifierDescription {
     }
 
     public Modifier createModifier() {
-        return new Modifier(name, cost);
+        return new Modifier(name, cost.createCost());
     }
 }

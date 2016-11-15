@@ -1,23 +1,29 @@
 package org.gurpsdomain.domain.description;
 
+import org.gurpsdomain.domain.Cost;
+
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement
+@XmlRootElement(name="cost")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Cost {
+public class CostDescription {
     @XmlAttribute(name = "type")
     private CostType type;
 
     @XmlValue
     private int value;
 
-    public Cost() {
+    public CostDescription() {
         /* needed by JAXB */
     }
 
-    public Cost(int value, CostType type) {
+    public CostDescription(int value, CostType type) {
         this.value = value;
         this.type = type;
+    }
+
+    public Cost createCost() {
+        return new Cost(value, type);
     }
 }
 

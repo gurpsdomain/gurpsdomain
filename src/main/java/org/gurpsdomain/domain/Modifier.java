@@ -1,6 +1,6 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.domain.description.Cost;
+import org.gurpsdomain.domain.Cost;
 
 public class Modifier {
     private String name;
