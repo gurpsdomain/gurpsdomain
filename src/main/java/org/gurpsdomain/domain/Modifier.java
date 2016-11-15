@@ -10,4 +10,8 @@ public class Modifier {
         this.name = name;
         this.cost = cost;
     }
+
+    public Cost getCost() {
+        return cost;
+    }
 }

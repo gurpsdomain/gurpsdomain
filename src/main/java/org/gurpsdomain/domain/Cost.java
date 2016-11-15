@@ -10,4 +10,8 @@ public class Cost {
         this.type = type;
         this.value = value;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

@@ -1,5 +1,6 @@
 package org.gurpsdomain.domain;
 
+import org.gurpsdomain.domain.description.CostType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -21,6 +22,8 @@ public class AdvantageCostTest {
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<Object[]>();
         data.add(new Object[]{"no modifiers", Arrays.asList(new Modifier[]{}), 100});
+        data.add(new Object[]{"single modifier (10 points)", Arrays.asList(new Modifier("bla10", new Cost(10, CostType.points)) ), 110});
+        data.add(new Object[]{"single modifier (-5 points)", Arrays.asList(new Modifier("blamin5", new Cost(-5, CostType.points)) ), 95});
         return data;
     }
 
