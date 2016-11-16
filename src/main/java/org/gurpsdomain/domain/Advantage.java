@@ -10,6 +10,7 @@ public class Advantage implements PageReference {
     private String pageReference;
     private int baseCost;
     private List<Modifier> modifiers;
+    private int cost;
 
     public Advantage(String name, int cost, String pageReference) {
         this(name, cost, pageReference, new ArrayList<Modifier>());
@@ -30,7 +31,6 @@ public class Advantage implements PageReference {
         int pointTotal = baseCost;
         int NEGATIVE_PERCENTAGE_CAP = -80;
         int percentageTotal = 0;
-        int cost;
 
         for (Modifier modifier : modifiers) {
             switch (modifier.getCost().getCostType()) {
