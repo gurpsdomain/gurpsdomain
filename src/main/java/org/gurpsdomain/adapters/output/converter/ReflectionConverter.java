@@ -25,11 +25,12 @@ public class ReflectionConverter implements SheetConverter {
         List<Advantage> originalAdvantages = read("advantages").from(sheet);
         ReflectionReader readName = read("name");
         ReflectionReader readCost = read("cost");
+        ReflectionReader readPageReference = read("pageReference");
         ReflectionReader readModifiers = read("modifiers");
         ReflectionReader readValue = read("value");
         ReflectionReader readType = read("type");
         for (Advantage originalAdvantage : originalAdvantages) {
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), readCost.from(originalAdvantage));
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), readCost.from(originalAdvantage),readPageReference.from(originalAdvantage));
 
             for(Modifier modifier : (List<Modifier>) readModifiers.from(originalAdvantage)) {
                 Cost cost = readCost.from(modifier);
