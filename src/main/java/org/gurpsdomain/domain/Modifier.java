@@ -1,6 +1,7 @@
 package org.gurpsdomain.domain;
 
 import org.gurpsdomain.domain.Cost;
+import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
 public class Modifier {
     private String name;
@@ -13,5 +14,9 @@ public class Modifier {
 
     public Cost getCost() {
         return cost;
+    }
+
+    public void accumulateCost(AdvantageCostAccumulator accumulator) {
+        cost.accumulateCost(accumulator);
     }
 }

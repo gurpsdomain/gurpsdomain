@@ -1,5 +1,6 @@
 package org.gurpsdomain.domain;
 
+import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 import org.gurpsdomain.domain.description.CostType;
 
 public class Cost {
@@ -17,5 +18,9 @@ public class Cost {
 
     public CostType getCostType() {
         return type;
+    }
+
+    public void accumulateCost(AdvantageCostAccumulator accumulator) {
+        type.accumulateCost(accumulator, value);
     }
 }
