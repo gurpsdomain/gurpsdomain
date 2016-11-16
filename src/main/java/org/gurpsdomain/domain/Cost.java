@@ -14,4 +14,8 @@ public class Cost {
     public int getValue() {
         return value;
     }
+
+    public CostType getCostType() {
+        return type;
+    }
 }
