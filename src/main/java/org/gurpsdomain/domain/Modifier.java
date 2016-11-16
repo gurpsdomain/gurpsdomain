@@ -1,6 +1,5 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.domain.Cost;
 import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
 public class Modifier {

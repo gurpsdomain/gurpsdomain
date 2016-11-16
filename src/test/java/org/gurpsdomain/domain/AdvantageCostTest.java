@@ -1,6 +1,5 @@
 package org.gurpsdomain.domain;
 
-import javafx.scene.effect.Reflection;
 import org.gurpsdomain.adapters.output.converter.ReflectionReader;
 import org.gurpsdomain.domain.description.CostType;
 import org.junit.Test;
