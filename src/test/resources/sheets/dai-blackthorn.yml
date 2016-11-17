@@ -29,6 +29,6 @@ rewards:
 advantages:
   - name: Absolute Direction
     modifiers:
-    - {name: 3D Spatial Sense}
+    - name: 3D Spatial Sense
   - name: Flexibility
 ...

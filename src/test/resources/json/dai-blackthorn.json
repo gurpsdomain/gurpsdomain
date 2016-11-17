@@ -30,7 +30,7 @@
     "advantages": 15
   },
   "advantages": [
-    { "name": "Absolute Direction", "points": 10, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense"}] },
+    { "name": "Absolute Direction", "points": 10, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
     { "name": "Flexibility", "points": 5, "pageReference": "B56", "modifiers": [] }
   ]
 }

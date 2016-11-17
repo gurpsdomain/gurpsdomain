@@ -5,12 +5,12 @@ import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 public class Modifier {
     private final String name;
     private final Cost cost;
-    private final String reference;
+    private final String pageReference;
 
-    public Modifier(String name, Cost cost, String reference) {
+    public Modifier(String name, Cost cost, String pageReference) {
         this.name = name;
         this.cost = cost;
-        this.reference = reference;
+        this.pageReference = pageReference;
     }
 
     public Cost getCost() {
