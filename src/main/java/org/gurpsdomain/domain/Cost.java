@@ -12,14 +12,6 @@ public class Cost {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public CostType getCostType() {
-        return type;
-    }
-
     public void accumulateCost(AdvantageCostAccumulator accumulator) {
         type.accumulateCost(accumulator, value);
     }
