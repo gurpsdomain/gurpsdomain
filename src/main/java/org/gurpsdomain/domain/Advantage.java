@@ -10,7 +10,6 @@ public class Advantage implements PageReference {
     private String pageReference;
     private int baseCost;
     private List<Modifier> modifiers;
-    private Integer cost;
 
     public Advantage(String name, int cost, String pageReference) {
         this(name, cost, pageReference, new ArrayList<Modifier>());
@@ -24,14 +23,11 @@ public class Advantage implements PageReference {
     }
 
     private int cost() {
-        if (cost == null) {
-            AdvantageCostAccumulator accumulator = new AdvantageCostAccumulator(baseCost);
-            for (Modifier modifier : modifiers) {
-                modifier.accumulateCost(accumulator);
-            }
-            cost = accumulator.cost();
+        AdvantageCostAccumulator accumulator = new AdvantageCostAccumulator(baseCost);
+        for (Modifier modifier : modifiers) {
+            modifier.accumulateCost(accumulator);
         }
-        return cost;
+        return accumulator.cost();
     }
 
 

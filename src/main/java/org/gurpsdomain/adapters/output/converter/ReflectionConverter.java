@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.gurpsdomain.adapters.output.converter.ReflectionCaller.call;
 import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
 
 public class ReflectionConverter implements SheetConverter {
@@ -24,6 +25,7 @@ public class ReflectionConverter implements SheetConverter {
         List<SheetAdvantage> sheetAdvantages = new ArrayList<SheetAdvantage>();
         List<Advantage> originalAdvantages = read("advantages").from(sheet);
         ReflectionReader readName = read("name");
+        ReflectionCaller callCost = call("cost");
         ReflectionReader readCost = read("cost");
         ReflectionReader readPageReference = read("pageReference");
         ReflectionReader readModifiers = read("modifiers");
@@ -31,7 +33,7 @@ public class ReflectionConverter implements SheetConverter {
         ReflectionReader readType = read("type");
         ReflectionReader readReference = read("reference");
         for (Advantage originalAdvantage : originalAdvantages) {
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), readCost.from(originalAdvantage),readPageReference.from(originalAdvantage));
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage),readPageReference.from(originalAdvantage));
 
             for(Modifier modifier : (List<Modifier>) readModifiers.from(originalAdvantage)) {
                 Cost cost = readCost.from(modifier);
