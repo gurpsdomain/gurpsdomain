@@ -2,7 +2,6 @@ package org.gurpsdomain.features.steps;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

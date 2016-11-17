@@ -20,8 +20,7 @@ public class AdvantageCostAccumulator {
         int actualPercentage = Math.max(percentage, -80);
         int delta = points * actualPercentage;
         int correction = (percentage > 0) && (delta % 100 != 0) ? 1: 0;
-        int cost = points + delta/100 + correction;
 
-        return cost;
+        return points + delta/100 + correction;
     }
 }
