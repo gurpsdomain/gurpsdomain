@@ -2,7 +2,6 @@ package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
-import org.gurpsdomain.domain.PageReference;
 import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +12,7 @@ import java.util.*;
 
 @XmlRootElement(name="advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AdvantageDescription implements PageReference {
+public class AdvantageDescription {
     private String name;
     @XmlElement(name="base_points")
     private int basePoints;
@@ -43,11 +42,6 @@ public class AdvantageDescription implements PageReference {
         }
         Advantage advantage = new Advantage(name, basePoints, reference, modifiers);
         return advantage;
-    }
-
-    @Override
-    public String getPageReference() {
-        return reference;
     }
 
     public void registerIn(InMemoryAdvantageDescriptionRepository repository) {

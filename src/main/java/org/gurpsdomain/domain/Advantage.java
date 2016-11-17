@@ -5,7 +5,7 @@ import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Advantage implements PageReference {
+public class Advantage {
     private String name;
     private String pageReference;
     private int baseCost;
@@ -35,8 +35,4 @@ public class Advantage implements PageReference {
         points.addAdvantage(cost());
     }
 
-    @Override
-    public String getPageReference() {
-        return pageReference;
-    }
 }
