@@ -8,7 +8,6 @@ import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Sheet;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +17,12 @@ import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
 public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
-        Map<String, String> metaData = new HashMap<String, String>();
+        Map<String, String> metaData;
         metaData = read("metaData").from(sheet);
         String note = read("note").from(sheet);
 
         SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet));
-        List<SheetAdvantage> sheetAdvantages = new ArrayList<SheetAdvantage>();
+        List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
         List<Advantage> originalAdvantages = read("advantages").from(sheet);
         ReflectionReader readName = read("name");
         ReflectionCaller callCost = call("cost");
@@ -33,9 +32,9 @@ public class ReflectionConverter implements SheetConverter {
         ReflectionReader readValue = read("value");
         ReflectionReader readType = read("type");
         for (Advantage originalAdvantage : originalAdvantages) {
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage),readPageReference.from(originalAdvantage));
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage), readPageReference.from(originalAdvantage));
 
-            for(Modifier modifier : (List<Modifier>) readModifiers.from(originalAdvantage)) {
+            for (Modifier modifier : (List<Modifier>) readModifiers.from(originalAdvantage)) {
                 Cost cost = readCost.from(modifier);
                 SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
                 SheetModifier sheetModifier = new SheetModifier(readName.from(modifier), sheetCost, readPageReference.from(modifier));
