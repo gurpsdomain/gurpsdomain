@@ -37,7 +37,12 @@ public class ConvertSheetSteps {
         Pipeline.flow(input).into(output);
     }
 
+    @Then("^I expect a handedness that is \"([^\"]*)\"$")
+    public void i_expect_a_handedness_that_is(String handedness) throws Throwable {
+        Map<String, Object> data = outputAsMap(writer);
 
+        assertThat(data, hasPath("metaData.description.hand", is(handedness)));
+    }
 
     @Then("^I expect a point total of (\\d+)$")
     public void i_expect_a_point_total_of(double pointTotal) throws Throwable {
@@ -45,6 +50,7 @@ public class ConvertSheetSteps {
 
         assertThat(data, hasPath("points.total", is(pointTotal)));
     }
+
 
     private Map<String, Object> outputAsMap(Writer writer) {
         String result = writer.toString();
