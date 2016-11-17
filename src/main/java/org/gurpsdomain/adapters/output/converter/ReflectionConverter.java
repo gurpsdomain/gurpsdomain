@@ -20,6 +20,7 @@ public class ReflectionConverter implements SheetConverter {
     public SheetSheet convert(Sheet sheet) {
         Map<String, String> metaData = new HashMap<String, String>();
         metaData = read("metaData").from(sheet);
+        String note = read("note").from(sheet);
 
         SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet));
         List<SheetAdvantage> sheetAdvantages = new ArrayList<SheetAdvantage>();
@@ -42,6 +43,6 @@ public class ReflectionConverter implements SheetConverter {
             }
             sheetAdvantages.add(sheetAdvantage);
         }
-        return new SheetSheet(metaData, sheetPoints, sheetAdvantages);
+        return new SheetSheet(metaData, sheetPoints, sheetAdvantages, note);
     }
 }

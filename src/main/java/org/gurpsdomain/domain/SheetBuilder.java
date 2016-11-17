@@ -17,6 +17,10 @@ public class SheetBuilder {
         sheet.award(amount);
     }
 
+    public void setNote(String note) {
+        sheet.setNote(note);
+    }
+
     public  void addAdvantage(Advantage advantage) {
         sheet.addAdvantage(advantage);
     }

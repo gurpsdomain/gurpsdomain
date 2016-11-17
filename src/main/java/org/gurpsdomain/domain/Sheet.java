@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Sheet {
     private final Points points;
+    private String note;
     private final List<Advantage> advantages = new ArrayList<Advantage>();
     private final Map<String, Object> metaData = new HashMap<String, Object>();
 
@@ -17,6 +18,11 @@ public class Sheet {
     public void award(int amount) {
         points.award(amount);
     }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
         advantages.add(advantage);
