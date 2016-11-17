@@ -14,6 +14,7 @@ public class ModifierDescription {
     private String name;
     @XmlElement(name = "cost", required=false)
     private CostDescription cost;
+    private String reference;
 
     public ModifierDescription(){
         /* needed by JAXB */
@@ -29,6 +30,6 @@ public class ModifierDescription {
     }
 
     public Modifier createModifier() {
-        return new Modifier(name, cost.createCost());
+        return new Modifier(name, cost.createCost(), reference);
     }
 }

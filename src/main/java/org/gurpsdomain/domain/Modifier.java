@@ -3,12 +3,14 @@ package org.gurpsdomain.domain;
 import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
 public class Modifier {
-    private String name;
-    private Cost cost;
+    private final String name;
+    private final Cost cost;
+    private final String reference;
 
-    public Modifier(String name, Cost cost) {
+    public Modifier(String name, Cost cost, String reference) {
         this.name = name;
         this.cost = cost;
+        this.reference = reference;
     }
 
     public Cost getCost() {

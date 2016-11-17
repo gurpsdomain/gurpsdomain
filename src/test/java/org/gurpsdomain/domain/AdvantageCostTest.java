@@ -71,12 +71,12 @@ class AdvantageCostTestCase {
     }
 
     public AdvantageCostTestCase withPointModifier(int value) {
-        this.modifiers.add(new Modifier(String.format("%d point modifier", value), new Cost(value, CostType.points)));
+        this.modifiers.add(new Modifier(String.format("%d point modifier", value), new Cost(value, CostType.points), ANY_PAGE_REFERENCE));
         return this;
     }
 
     public AdvantageCostTestCase withPercentageModifier(int value) {
-        this.modifiers.add(new Modifier(String.format("%d percent modifier", value), new Cost(value, CostType.percentage)));
+        this.modifiers.add(new Modifier(String.format("%d percent modifier", value), new Cost(value, CostType.percentage), ANY_PAGE_REFERENCE));
         return this;
     }
 
