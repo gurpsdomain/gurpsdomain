@@ -1,6 +1,6 @@
 package org.gurpsdomain.repositories;
 
-import org.gurpsdomain.domain.Registerable;
+import org.gurpsdomain.domain.description.Registerable;
 import org.gurpsdomain.domain.Repository;
 
 import javax.xml.bind.JAXBContext;

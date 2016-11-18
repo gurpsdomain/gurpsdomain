@@ -2,7 +2,6 @@ package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
-import org.gurpsdomain.domain.Registerable;
 import org.gurpsdomain.domain.Repository;
 
 import javax.xml.bind.annotation.XmlAccessType;
