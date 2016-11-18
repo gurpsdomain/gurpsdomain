@@ -4,13 +4,14 @@ import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Registerable;
 import org.gurpsdomain.domain.Repository;
-import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @XmlRootElement(name="advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
