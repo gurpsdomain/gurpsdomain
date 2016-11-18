@@ -1,6 +1,6 @@
 package org.gurpsdomain.repositories;
 
-import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
+import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.repositories.xml.AdvantageDescriptions;
 
@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryAdvantageDescriptionRepository implements AdvantageDescriptionRepository {
+public class InMemoryAdvantageDescriptionRepository implements Repository<AdvantageDescription> {
     public static InMemoryAdvantageDescriptionRepository loadedWith(String... locations) {
         InMemoryAdvantageDescriptionRepository repository = new InMemoryAdvantageDescriptionRepository();
         for (String location: locations) {

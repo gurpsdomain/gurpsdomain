@@ -1,9 +1,9 @@
 package org.gurpsdomain.adapters.input.yaml.step;
 
 import org.gurpsdomain.domain.Advantage;
+import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.domain.description.AdvantageDescriptionRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AddAdvantagesStep implements YamlBuildStep {
-    private AdvantageDescriptionRepository repository;
+    private Repository<AdvantageDescription> repository;
 
-    public AddAdvantagesStep(AdvantageDescriptionRepository repository) {
+    public AddAdvantagesStep(Repository<AdvantageDescription> repository) {
         this.repository = repository;
     }
 
