@@ -2,6 +2,8 @@ package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
+import org.gurpsdomain.domain.Registerable;
+import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.repositories.InMemoryAdvantageDescriptionRepository;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,7 +14,7 @@ import java.util.*;
 
 @XmlRootElement(name="advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AdvantageDescription {
+public class AdvantageDescription implements Registerable<AdvantageDescription> {
     private String name;
     @XmlElement(name="base_points")
     private int basePoints;
@@ -44,7 +46,7 @@ public class AdvantageDescription {
         return advantage;
     }
 
-    public void registerIn(InMemoryAdvantageDescriptionRepository repository) {
+    public void registerIn(Repository<AdvantageDescription> repository) {
         repository.register(name, this);
     }
 
