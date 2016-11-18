@@ -1,6 +1,8 @@
 package org.gurpsdomain.domain.description;
 
-public interface AdvantageDescriptionRepository {
+import org.gurpsdomain.domain.Repository;
+
+public interface AdvantageDescriptionRepository extends Repository<AdvantageDescription> {
     boolean exists(String advantageName);
     AdvantageDescription getByName(String advantageName);
 }
