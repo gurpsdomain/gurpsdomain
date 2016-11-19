@@ -10,8 +10,10 @@ public class AwardRewardsStep implements YamlBuildStep {
     @Override
     public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
         List<Integer> rewards = (List<Integer>) data.get("rewards");
-        for (Integer reward: rewards) {
-            sheetBuilder.award(reward);
+        if (!(rewards == null)) {
+            for (Integer reward : rewards) {
+                sheetBuilder.award(reward);
+            }
         }
     }
 }

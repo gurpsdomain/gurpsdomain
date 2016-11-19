@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.gurpsdomain.Pipeline;
 import org.gurpsdomain.adapters.input.SheetInput;
@@ -21,6 +22,7 @@ import static org.junit.Assert.assertThat;
 
 public class ConvertSheetSteps {
     public static final String SHEETS_LOCATION = "src/test/resources/sheets/";
+    public static final String INITIAL_SHEET = "initial.yml";
     private Reader reader;
     private Writer writer;
 
@@ -28,6 +30,17 @@ public class ConvertSheetSteps {
     public void a_sheet_file(String file) throws Throwable {
         reader = new FileReader(new File(SHEETS_LOCATION + file));
     }
+
+    @Given("^an initial sheet$")
+    public void an_initial_sheet() throws Throwable {
+        reader = new FileReader(new File(SHEETS_LOCATION + INITIAL_SHEET));
+    }
+
+    @And("^I add an advantage named \"([^\"]*)\"$")
+            public void i_add_an_advantage_named(String advantage) throws Throwable {
+    //TODO use the reader to modify the in-memory yaml? i.e. add the named advantage?
+    }
+
 
     @When("^I convert it to json$")
     public void i_convert_it_to_yaml() throws Throwable {

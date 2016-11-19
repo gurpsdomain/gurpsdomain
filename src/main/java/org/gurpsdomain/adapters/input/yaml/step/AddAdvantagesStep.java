@@ -20,16 +20,18 @@ public class AddAdvantagesStep implements YamlBuildStep {
     @Override
     public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
         List<Map<String, Object>> inputAdvantages = (List<Map<String, Object>>) data.get("advantages");
-        for (Map<String, Object> inputAdvantage: inputAdvantages) {
-            String advantageName = (String) inputAdvantage.get("name");
-            if (repository.exists(advantageName)){
-                AdvantageDescription advantageDescription = repository.getByName(advantageName);
+        if (!(inputAdvantages == null)) {
+            for (Map<String, Object> inputAdvantage : inputAdvantages) {
+                String advantageName = (String) inputAdvantage.get("name");
+                if (repository.exists(advantageName)) {
+                    AdvantageDescription advantageDescription = repository.getByName(advantageName);
 
-                List<Map<String, String>> modifiers = (List <Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
-                List<String> modifierNames = modifiers.stream().map(m -> m.get("name")).collect(Collectors.toList());
+                    List<Map<String, String>> modifiers = (List<Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
+                    List<String> modifierNames = modifiers.stream().map(m -> m.get("name")).collect(Collectors.toList());
 
-                Advantage advantage = advantageDescription.createAdvantage(modifierNames);
-                sheetBuilder.addAdvantage(advantage);
+                    Advantage advantage = advantageDescription.createAdvantage(modifierNames);
+                    sheetBuilder.addAdvantage(advantage);
+                }
             }
         }
     }
