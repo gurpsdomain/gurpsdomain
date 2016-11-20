@@ -26,6 +26,9 @@ rewards:
   - 3
   - 5
 
+skills:
+  - name: Alchemy
+
 advantages:
   - name: Absolute Direction
     modifiers:

@@ -16,7 +16,7 @@ public class SkillLevelTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{ new Skill(1, EASY), 0 });
+        data.add(new Object[]{ new Skill("Airshipman",1, EASY, "B185"), 0 });
         return data;
     }
 

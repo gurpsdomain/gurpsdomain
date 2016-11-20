@@ -6,8 +6,10 @@ import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.domain.description.SkillDescription;
 import org.gurpsdomain.repositories.InMemoryRepository;
 import org.gurpsdomain.repositories.xml.AdvantageDescriptions;
+import org.gurpsdomain.repositories.xml.SkillDescriptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;
@@ -19,9 +21,11 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        Repository<AdvantageDescription> repository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
+        Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
+        Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, "src/main/resources/data/skills.basic-set.xml");
         YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
-        yamlSheetInput.addBuildStep(new AddAdvantagesStep(repository));
+        yamlSheetInput.addBuildStep(new AddAdvantagesStep(advantageRepository));
+        yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
         return yamlSheetInput;
     }
 

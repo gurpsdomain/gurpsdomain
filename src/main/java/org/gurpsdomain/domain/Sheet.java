@@ -9,6 +9,7 @@ public class Sheet {
     private final Points points;
     private String note;
     private final List<Advantage> advantages = new ArrayList<Advantage>();
+    private final List<Skill> skills = new ArrayList<Skill>();
     private final Map<String, Object> metaData = new HashMap<String, Object>();
 
     public Sheet() {
@@ -26,6 +27,11 @@ public class Sheet {
     public void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
         advantages.add(advantage);
+    }
+
+    public void addSkill(Skill skill) {
+        skill.payCost(points);
+        skills.add(skill);
     }
 
     public void setMetaDataProperty(String[] keys, String value) {

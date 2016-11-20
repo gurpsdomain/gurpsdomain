@@ -7,13 +7,15 @@ import java.util.Map;
 public class SheetSheet {
     private final SheetPoints points;
     private final List<SheetAdvantage> advantages = new ArrayList<SheetAdvantage>();
+    private final List<SheetSkill> skills = new ArrayList<SheetSkill>();
     private final Map<String, String> metaData;
     private final String note;
 
-    public SheetSheet(Map<String, String> metaData, SheetPoints sheetPoints, List<SheetAdvantage> sheetAdvantages, String note) {
+    public SheetSheet(Map<String, String> metaData, SheetPoints sheetPoints, List<SheetAdvantage> sheetAdvantages, List<SheetSkill> sheetSkills, String note) {
         this.metaData = metaData;
         this.points = sheetPoints;
         this.advantages.addAll(sheetAdvantages);
+        this.skills.addAll(sheetSkills);
         this.note = note;
     }
 }

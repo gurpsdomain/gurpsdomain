@@ -3,6 +3,7 @@ package org.gurpsdomain.adapters.output.converter;
 import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.domain.*;
 import org.gurpsdomain.domain.Advantage;
+import org.gurpsdomain.domain.Skill;
 import org.gurpsdomain.domain.Cost;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Sheet;
@@ -24,6 +25,8 @@ public class ReflectionConverter implements SheetConverter {
         SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet));
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
         List<Advantage> originalAdvantages = read("advantages").from(sheet);
+        List<SheetSkill> sheetSkills = new ArrayList<>();
+        List<Skill> originalSkills = read("skills").from(sheet);
         ReflectionReader readName = read("name");
         ReflectionCaller callCost = call("cost");
         ReflectionReader readCost = read("cost");
@@ -31,6 +34,7 @@ public class ReflectionConverter implements SheetConverter {
         ReflectionReader readModifiers = read("modifiers");
         ReflectionReader readValue = read("value");
         ReflectionReader readType = read("type");
+        ReflectionReader readDifficultyLevel = read("difficultyLevel");
         for (Advantage originalAdvantage : originalAdvantages) {
             SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage), readPageReference.from(originalAdvantage));
 
@@ -42,6 +46,13 @@ public class ReflectionConverter implements SheetConverter {
             }
             sheetAdvantages.add(sheetAdvantage);
         }
-        return new SheetSheet(metaData, sheetPoints, sheetAdvantages, note);
+
+        for (Skill originalSkill : originalSkills) {
+            SheetSkill sheetSkill= new SheetSkill(readName.from(originalSkill), readCost.from(originalSkill), readPageReference.from(originalSkill), readDifficultyLevel.from(originalSkill));
+            sheetSkills.add(sheetSkill);
+        }
+
+
+        return new SheetSheet(metaData, sheetPoints, sheetAdvantages, sheetSkills, note);
     }
 }
