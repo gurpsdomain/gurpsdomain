@@ -20,6 +20,6 @@ public class Skill {
     }
 
     public int delta() {
-        return 0;
+        return difficultyLevel.determineDelta(cost);
     }
 }
