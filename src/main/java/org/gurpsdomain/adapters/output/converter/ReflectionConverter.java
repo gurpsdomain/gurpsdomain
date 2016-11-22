@@ -34,6 +34,7 @@ public class ReflectionConverter implements SheetConverter {
         ReflectionReader readModifiers = read("modifiers");
         ReflectionReader readValue = read("value");
         ReflectionReader readType = read("type");
+        ReflectionReader readControllingAttribute = read("controllingAttribute");
         ReflectionReader readDifficultyLevel = read("difficultyLevel");
         for (Advantage originalAdvantage : originalAdvantages) {
             SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage), readPageReference.from(originalAdvantage));
@@ -48,7 +49,7 @@ public class ReflectionConverter implements SheetConverter {
         }
 
         for (Skill originalSkill : originalSkills) {
-            SheetSkill sheetSkill= new SheetSkill(readName.from(originalSkill), readCost.from(originalSkill), readPageReference.from(originalSkill), readDifficultyLevel.from(originalSkill));
+            SheetSkill sheetSkill= new SheetSkill(readName.from(originalSkill), readCost.from(originalSkill), readPageReference.from(originalSkill), readControllingAttribute.from(originalSkill), readDifficultyLevel.from(originalSkill));
             sheetSkills.add(sheetSkill);
         }
 

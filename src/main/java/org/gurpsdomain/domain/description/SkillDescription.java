@@ -1,5 +1,6 @@
 package org.gurpsdomain.domain.description;
 
+import org.gurpsdomain.domain.Attribute;
 import org.gurpsdomain.domain.DifficultyLevel;
 import org.gurpsdomain.domain.Skill;
 import org.gurpsdomain.domain.Repository;
@@ -23,6 +24,16 @@ public class SkillDescription implements Registerable<SkillDescription> {
         difficultyLevelMap.put("VH", DifficultyLevel.VERY_HARD);
     }
     
+    static final private Map<String, Attribute> controllingAttributeMap = new HashMap<>();
+    static {
+        controllingAttributeMap.put("DX", Attribute.DX);
+        controllingAttributeMap.put("HT", Attribute.HT);
+        controllingAttributeMap.put("IQ", Attribute.IQ);
+        controllingAttributeMap.put("ST", Attribute.ST);
+        controllingAttributeMap.put("Will", Attribute.Will);
+        controllingAttributeMap.put("Per", Attribute.Per);
+    }
+    
     private String name;
     private int points;
     private String reference;
@@ -41,10 +52,10 @@ public class SkillDescription implements Registerable<SkillDescription> {
 }
 
     public Skill createSkill() {
-        String controllingAttribute = difficulty.split("/")[0];
+        Attribute controllingAttribute = controllingAttributeMap.get(difficulty.split("/")[0]);
         DifficultyLevel difficultyLevel = difficultyLevelMap.get(difficulty.split("/")[1]);
         
-        Skill skill = new Skill(name, points, difficultyLevel ,reference);
+        Skill skill = new Skill(name, points, controllingAttribute, difficultyLevel, reference);
         return skill;
     }
 

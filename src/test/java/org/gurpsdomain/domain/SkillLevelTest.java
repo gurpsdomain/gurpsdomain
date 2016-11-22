@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static org.gurpsdomain.domain.Attribute.IQ;
 import static org.gurpsdomain.domain.DifficultyLevel.EASY;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -16,7 +17,7 @@ public class SkillLevelTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{ new Skill("Airshipman",1, EASY, "B185"), 0 });
+        data.add(new Object[]{ new Skill("Airshipman", 1, IQ, EASY, "B185"), 0 });
         return data;
     }
 
