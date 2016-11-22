@@ -6,29 +6,44 @@ import org.gurpsdomain.domain.Repository;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.HashMap;
+import java.util.Map;
 
 @XmlRootElement(name="skill")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SkillDescription implements Registerable<SkillDescription> {
+    
+    static final private Map<String, DifficultyLevel> difficultyLevelMap = new HashMap<>();
+    static {
+        difficultyLevelMap.put("E", DifficultyLevel.EASY);
+        difficultyLevelMap.put("A", DifficultyLevel.AVERAGE);
+        difficultyLevelMap.put("H", DifficultyLevel.HARD);
+        difficultyLevelMap.put("VH", DifficultyLevel.VERY_HARD);
+    }
+    
     private String name;
-    private  int points;
+    private int points;
     private String reference;
-    private DifficultyLevel difficultyLevel;
+    private String difficulty;
 
     private SkillDescription() {
         /* needed for JAXB */
     }
 
-    public SkillDescription(String name, int points, DifficultyLevel difficultyLevel,String pageReference) {
+    public SkillDescription(String name, int points, String difficulty, String pageReference) {
         this.name = name;
         this.points = points;
-        this.difficultyLevel = difficultyLevel;
+        this.difficulty = difficulty;
         this.reference = pageReference;
 
 }
 
     public Skill createSkill() {
+        String controllingAttribute = difficulty.split("/")[0];
+        DifficultyLevel difficultyLevel = difficultyLevelMap.get(difficulty.split("/")[1]);
+        
         Skill skill = new Skill(name, points, difficultyLevel ,reference);
         return skill;
     }

@@ -34,7 +34,7 @@
     { "name": "Flexibility", "points": 5, "pageReference": "B56", "modifiers": [] }
   ],
   "skills": [
-    { "name": "Alchemy", "points": 1, "pageReference": "B174" }
+    { "name": "Alchemy", "points": 1, "pageReference": "B174", "difficultyLevel": "VERY_HARD" }
   ],
 
   "note": "This is a very important note that I would like to have on my sheet"
