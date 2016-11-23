@@ -35,22 +35,22 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         this.sheet = sheet;
-        return new SheetSheet(convertMetaData(), convertSheetPoints(), convertSheetAdvantages(), convertSheetSkills(), convertNote(), convertSheetAttributes());
+        return new SheetSheet(metaData(), sheetPoints(), sheetAdvantages(), sheetSkills(), note(), sheetAttributes());
     }
 
-    private Map<String, String> convertMetaData() {
+    private Map<String, String> metaData() {
         return readMetaData.from(sheet);
     }
 
-    private SheetPoints convertSheetPoints() {
+    private SheetPoints sheetPoints() {
         return new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet), read("points", "skills").from(sheet));
     }
 
-    private SheetAttributes convertSheetAttributes() {
+    private SheetAttributes sheetAttributes() {
         return new SheetAttributes(read("attributes", "health").from(sheet), read("attributes", "dexterity").from(sheet), read("attributes", "intelligence").from(sheet), read("attributes", "strength").from(sheet), read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet));
     }
 
-    private List<SheetAdvantage> convertSheetAdvantages() {
+    private List<SheetAdvantage> sheetAdvantages() {
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
         List<Advantage> domainAdvantages = readAdvantages.from(sheet);
 
@@ -68,7 +68,7 @@ public class ReflectionConverter implements SheetConverter {
         return sheetAdvantages;
     }
 
-    private List<SheetSkill> convertSheetSkills() {
+    private List<SheetSkill> sheetSkills() {
         List<SheetSkill> sheetSkills = new ArrayList<>();
         List<Skill> domainSkills = readSkills.from(sheet);
 
@@ -79,7 +79,7 @@ public class ReflectionConverter implements SheetConverter {
         return sheetSkills;
     }
 
-    private String convertNote() {
+    private String note() {
         return readNote.from(sheet);
     }
 }
