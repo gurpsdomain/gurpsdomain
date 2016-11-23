@@ -22,7 +22,7 @@ public class ReflectionConverter implements SheetConverter {
         metaData = read("metaData").from(sheet);
         String note = read("note").from(sheet);
 
-        SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet));
+        SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet), read("points", "skills").from(sheet));
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
         List<Advantage> originalAdvantages = read("advantages").from(sheet);
         List<SheetSkill> sheetSkills = new ArrayList<>();
