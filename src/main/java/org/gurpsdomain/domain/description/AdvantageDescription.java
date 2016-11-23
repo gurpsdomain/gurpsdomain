@@ -40,8 +40,9 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     public Advantage createAdvantage(List<String> modifierNames) {
         List<Modifier> modifiers = new ArrayList<Modifier>();
         for(String modifierName: modifierNames) {
-            if (hasModifier(modifierName)) {
-                modifiers.add(createModifier(modifierName));
+            ModifierDescriptionPredicate predicate = Name.name(modifierName);
+            if (hasModifier(predicate)) {
+                modifiers.add(createModifier(predicate));
             }
         }
         Advantage advantage = new Advantage(name, basePoints, reference, modifiers);
@@ -52,12 +53,11 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         repository.register(name, this);
     }
 
-    private boolean hasModifier(String modifierName) {
-        return modifiers.stream().anyMatch(m -> m.matchesName(modifierName));
+    private boolean hasModifier(ModifierDescriptionPredicate predicate) {
+        return modifiers.stream().anyMatch(m -> predicate.fullfilledBy(m));
     }
 
-    private Modifier createModifier(String modifierName) {
-        ModifierDescriptionPredicate predicate = new Name(modifierName);
+    private Modifier createModifier(ModifierDescriptionPredicate predicate) {
         return modifiers.stream().filter(m -> predicate.fullfilledBy(m)).findAny().get().createModifier();
     }
 }
