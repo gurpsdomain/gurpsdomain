@@ -43,15 +43,14 @@ public class SkillDescription implements Registerable<SkillDescription> {
         /* needed for JAXB */
     }
 
-    public SkillDescription(String name, int points, String difficulty, String pageReference) {
+    public SkillDescription(String name, String difficulty, String pageReference) {
         this.name = name;
-        this.points = points;
         this.difficulty = difficulty;
         this.reference = pageReference;
 
 }
 
-    public Skill createSkill() {
+    public Skill createSkill(int points) {
         Attribute controllingAttribute = controllingAttributeMap.get(difficulty.split("/")[0]);
         DifficultyLevel difficultyLevel = difficultyLevelMap.get(difficulty.split("/")[1]);
         

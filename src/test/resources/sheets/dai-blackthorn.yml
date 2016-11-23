@@ -28,7 +28,9 @@ rewards:
 
 skills:
   - name: Alchemy
+    points: 3
   - name: Stealth
+    points: 2
 
 advantages:
   - name: Absolute Direction

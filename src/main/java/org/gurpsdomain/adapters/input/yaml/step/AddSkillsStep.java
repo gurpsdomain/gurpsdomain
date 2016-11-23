@@ -21,10 +21,11 @@ public class AddSkillsStep implements YamlBuildStep {
         if (!(inputSkills == null)) {
             for (Map<String, Object> inputSkill : inputSkills) {
                 String skillName = (String) inputSkill.get("name");
+                int points = (int) inputSkill.get("points");
                 if (repository.exists(skillName)) {
                     SkillDescription skillDescription = repository.getByName(skillName);
 
-                    Skill skill = skillDescription.createSkill();
+                    Skill skill = skillDescription.createSkill(points);
                     sheetBuilder.addSkill(skill);
                 }
             }
