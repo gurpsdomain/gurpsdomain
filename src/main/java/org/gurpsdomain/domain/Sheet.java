@@ -11,9 +11,11 @@ public class Sheet {
     private final List<Advantage> advantages = new ArrayList<Advantage>();
     private final List<Skill> skills = new ArrayList<Skill>();
     private final Map<String, Object> metaData = new HashMap<String, Object>();
+    private final Attributes attributes;
 
     public Sheet() {
         this.points = new Points(0);
+        this.attributes = new Attributes(10);
     }
 
     public void award(int amount) {
@@ -23,6 +25,7 @@ public class Sheet {
     public void setNote(String note) {
         this.note = note;
     }
+
 
     public void addAdvantage(Advantage advantage) {
         advantage.payCost(points);

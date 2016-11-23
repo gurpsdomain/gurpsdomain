@@ -30,6 +30,14 @@
     "advantages": 15,
     "skills": 5
   },
+  "attributes": {
+    "strength": 10,
+    "dexterity": 10,
+    "health": 10,
+    "intelligence": 10,
+    "will": 10,
+    "perception": 10
+  },
   "advantages": [
     { "name": "Absolute Direction", "points": 10, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
     { "name": "Flexibility", "points": 5, "pageReference": "B56", "modifiers": [] }
