@@ -3,6 +3,8 @@ package org.gurpsdomain.domain.description;
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Repository;
+import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
+import org.gurpsdomain.domain.description.predicate.Name;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -55,6 +57,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     private Modifier createModifier(String modifierName) {
-        return modifiers.stream().filter(m -> m.matchesName(modifierName)).findAny().get().createModifier();
+        ModifierDescriptionPredicate predicate = new Name(modifierName);
+        return modifiers.stream().filter(m -> predicate.fullfilledBy(m)).findAny().get().createModifier();
     }
 }
