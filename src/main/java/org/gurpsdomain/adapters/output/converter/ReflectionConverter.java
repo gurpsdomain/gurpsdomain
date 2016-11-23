@@ -24,9 +24,9 @@ public class ReflectionConverter implements SheetConverter {
 
         SheetPoints sheetPoints = new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet), read("points", "skills").from(sheet));
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
-        List<Advantage> originalAdvantages = read("advantages").from(sheet);
+        List<Advantage> domainAdvantages = read("advantages").from(sheet);
         List<SheetSkill> sheetSkills = new ArrayList<>();
-        List<Skill> originalSkills = read("skills").from(sheet);
+        List<Skill> domainSkills = read("skills").from(sheet);
         ReflectionReader readName = read("name");
         ReflectionCaller callCost = call("cost");
         ReflectionReader readCost = read("cost");
@@ -36,10 +36,10 @@ public class ReflectionConverter implements SheetConverter {
         ReflectionReader readType = read("type");
         ReflectionReader readControllingAttribute = read("controllingAttribute");
         ReflectionReader readDifficultyLevel = read("difficultyLevel");
-        for (Advantage originalAdvantage : originalAdvantages) {
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(originalAdvantage), callCost.of(originalAdvantage), readPageReference.from(originalAdvantage));
+        for (Advantage domainAdvantage : domainAdvantages) {
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.of(domainAdvantage), readPageReference.from(domainAdvantage));
 
-            for (Modifier modifier : (List<Modifier>) readModifiers.from(originalAdvantage)) {
+            for (Modifier modifier : (List<Modifier>) readModifiers.from(domainAdvantage)) {
                 Cost cost = readCost.from(modifier);
                 SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
                 SheetModifier sheetModifier = new SheetModifier(readName.from(modifier), sheetCost, readPageReference.from(modifier));
@@ -48,8 +48,8 @@ public class ReflectionConverter implements SheetConverter {
             sheetAdvantages.add(sheetAdvantage);
         }
 
-        for (Skill originalSkill : originalSkills) {
-            SheetSkill sheetSkill= new SheetSkill(readName.from(originalSkill), readCost.from(originalSkill), readPageReference.from(originalSkill), readControllingAttribute.from(originalSkill), readDifficultyLevel.from(originalSkill));
+        for (Skill domainSkill : domainSkills) {
+            SheetSkill sheetSkill= new SheetSkill(readName.from(domainSkill), readCost.from(domainSkill), readPageReference.from(domainSkill), readControllingAttribute.from(domainSkill), readDifficultyLevel.from(domainSkill));
             sheetSkills.add(sheetSkill);
         }
 
