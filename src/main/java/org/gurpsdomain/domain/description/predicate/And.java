@@ -1,6 +1,5 @@
 package org.gurpsdomain.domain.description.predicate;
 
-import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.description.ModifierDescription;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class And implements ModifierDescriptionPredicate {
     }
 
     @Override
-    public boolean fullfilledBy(ModifierDescription modifier) {
-        return predicates.stream().allMatch(p -> p.fullfilledBy(modifier));
+    public boolean isFullfilledBy(ModifierDescription modifier) {
+        return predicates.stream().allMatch(p -> p.isFullfilledBy(modifier));
     }
 }

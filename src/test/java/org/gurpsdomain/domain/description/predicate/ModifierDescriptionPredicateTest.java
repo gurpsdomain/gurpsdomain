@@ -18,16 +18,16 @@ public class ModifierDescriptionPredicateTest {
     public void nameShouldBeFullfilledByExactName() {
         ModifierDescriptionPredicate predicate = name("A");
 
-        assertTrue(predicate.fullfilledBy(aModifierNamed("A")));
-        assertFalse(predicate.fullfilledBy(aModifierNamed("B")));
+        assertTrue(predicate.isFullfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFullfilledBy(aModifierNamed("B")));
     }
 
     @Test
     public void andShouldCombinePredicates() {
         ModifierDescriptionPredicate predicate = and(name("A"), Always.True);
 
-        assertTrue(predicate.fullfilledBy(aModifierNamed("A")));
-        assertFalse(predicate.fullfilledBy(aModifierNamed("B")));
+        assertTrue(predicate.isFullfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFullfilledBy(aModifierNamed("B")));
     }
 
     private ModifierDescription aModifierNamed(String aName) {
@@ -45,7 +45,7 @@ enum Always implements ModifierDescriptionPredicate {
     }
 
     @Override
-    public boolean fullfilledBy(ModifierDescription modifier) {
+    public boolean isFullfilledBy(ModifierDescription modifier) {
         return answer;
     }
 }

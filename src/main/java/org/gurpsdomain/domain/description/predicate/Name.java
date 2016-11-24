@@ -13,7 +13,7 @@ public class Name implements ModifierDescriptionPredicate {
     }
 
     @Override
-    public boolean fullfilledBy(ModifierDescription modifier) {
+    public boolean isFullfilledBy(ModifierDescription modifier) {
         return modifier.matchesName(wantedName);
     }
 }
