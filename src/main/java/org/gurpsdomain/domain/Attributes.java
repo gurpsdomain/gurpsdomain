@@ -8,12 +8,12 @@ public class Attributes {
     private int will ;
     private int perception;
 
-    public Attributes(int defolt){
-        this.strength = defolt;
-        this.dexterity = defolt;
-        this.health = defolt;
-        this.intelligence = defolt;
-        this.will = defolt;
-        this.perception = defolt;
+    public Attributes(int aDefault){
+        this.strength = aDefault;
+        this.dexterity = aDefault;
+        this.health = aDefault;
+        this.intelligence = aDefault;
+        this.will = aDefault;
+        this.perception = aDefault;
     }
 }
