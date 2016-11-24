@@ -7,11 +7,67 @@
     <groupId>gurpsdomain</groupId>
     <artifactId>gurpsdomain</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>GURPS Domain</name>
+    <description>A Java project used to model GURPS</description>
+    <url>https://github.com/gurpsdomain/gurpsdomain</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Paul Ebeling</name>
+            <email>paul.ebeling@luminis.eu</email>
+            <organization>Luminis</organization>
+            <organizationUrl>https://www.luminis.eu/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Robin van Kaathoven</name>
+            <email>robin.vankaathoven@luminis.eu</email>
+            <organization>Luminis</organization>
+            <organizationUrl>https://www.luminis.eu/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Marcel Gorissen</name>
+            <email>damnhighc4@hotmail.com</email>
+            <organization>CTAC</organization>
+            <organizationUrl>https://www.ctac.nl/Home</organizationUrl>
+        </developer>
+        <developer>
+            <name>Daan van Berkel</name>
+            <email>daan@fifth-postulate.nl</email>
+            <organization>Fifth Postulate</organization>
+            <organizationUrl>http://fifth-postulate.nl</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/gurpsdomain/gurpsdomain.git</connection>
+        <developerConnection>scm:git:ssh://github.com:gurpsdomain/gurpsdomain.git</developerConnection>
+        <url>http://github.com/gurpsdomain/gurpsdomain/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -22,6 +78,44 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
