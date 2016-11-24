@@ -44,7 +44,7 @@ public class YamlSheetInput implements SheetInput {
         addBuildStep(new DescriptionStep());
         addBuildStep(new SetBasePointsStep());
         addBuildStep(new AwardRewardsStep());
-        addBuildStep(new SetNoteStep());
+        addBuildStep(new AddNotesStep());
     }
 
     private void addBuildStep(YamlBuildStep buildStep) {

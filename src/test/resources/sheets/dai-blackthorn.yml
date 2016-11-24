@@ -38,5 +38,9 @@ advantages:
     - name: 3D Spatial Sense
   - name: Flexibility
 
-note: This is a very important note that I would like to have on my sheet
+notes:
+- name: general note
+  note: This is a very important note that I would like to have on my sheet
+- name: combat
+  note: Do extra damage by going all out!
 ...

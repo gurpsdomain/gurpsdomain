@@ -4,6 +4,7 @@ import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.domain.*;
 import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Skill;
+import org.gurpsdomain.domain.Note;
 import org.gurpsdomain.domain.Cost;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Sheet;
@@ -28,6 +29,7 @@ public class ReflectionConverter implements SheetConverter {
     private ReflectionReader readSkills = read("skills");
     private ReflectionReader readMetaData = read("metaData");
     private ReflectionReader readNote = read("note");
+    private ReflectionReader readNotes = read("notes");
     private ReflectionCaller callCost = call("cost");
     private Sheet sheet;
 
@@ -35,7 +37,7 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         this.sheet = sheet;
-        return new SheetSheet(metaData(), sheetPoints(), sheetAdvantages(), sheetSkills(), note(), sheetAttributes());
+        return new SheetSheet(metaData(), sheetPoints(), sheetAdvantages(), sheetSkills(), sheetNotes(), sheetAttributes());
     }
 
     private Map<String, String> metaData() {
@@ -79,7 +81,14 @@ public class ReflectionConverter implements SheetConverter {
         return sheetSkills;
     }
 
-    private String note() {
-        return readNote.from(sheet);
+    private List<SheetNote> sheetNotes() {
+        List<SheetNote> sheetNotes = new ArrayList<>();
+        List<Note> domainNotes = readNotes.from(sheet);
+
+        for (Note domainNote : domainNotes) {
+            SheetNote sheetNote = new SheetNote(readName.from(domainNote), readNote.from(domainNote));
+            sheetNotes.add(sheetNote);
+        }
+        return sheetNotes;
     }
 }
