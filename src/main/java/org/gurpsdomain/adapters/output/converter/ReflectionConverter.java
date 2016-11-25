@@ -37,22 +37,22 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         this.sheet = sheet;
-        return new SheetSheet(metaData(), sheetPoints(), sheetAdvantages(), sheetSkills(), sheetNotes(), sheetAttributes());
+        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes());
     }
 
     private Map<String, String> metaData() {
         return readMetaData.from(sheet);
     }
 
-    private SheetPoints sheetPoints() {
+    private SheetPoints points() {
         return new SheetPoints(read("points", "total").from(sheet), read("points", "advantages").from(sheet), read("points", "skills").from(sheet));
     }
 
-    private SheetAttributes sheetAttributes() {
+    private SheetAttributes attributes() {
         return new SheetAttributes(read("attributes", "health").from(sheet), read("attributes", "dexterity").from(sheet), read("attributes", "intelligence").from(sheet), read("attributes", "strength").from(sheet), read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet));
     }
 
-    private List<SheetAdvantage> sheetAdvantages() {
+    private List<SheetAdvantage> advantages() {
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
         List<Advantage> domainAdvantages = readAdvantages.from(sheet);
 
@@ -70,7 +70,7 @@ public class ReflectionConverter implements SheetConverter {
         return sheetAdvantages;
     }
 
-    private List<SheetSkill> sheetSkills() {
+    private List<SheetSkill> skills() {
         List<SheetSkill> sheetSkills = new ArrayList<>();
         List<Skill> domainSkills = readSkills.from(sheet);
 
@@ -81,7 +81,7 @@ public class ReflectionConverter implements SheetConverter {
         return sheetSkills;
     }
 
-    private List<SheetNote> sheetNotes() {
+    private List<SheetNote> notes() {
         List<SheetNote> sheetNotes = new ArrayList<>();
         List<Note> domainNotes = readNotes.from(sheet);
 
