@@ -7,7 +7,8 @@ public class Attributes {
     private int intelligence;
     private int will;
     private int perception;
-    //    private Dice damage;
+    private Dice damageThrusting;
+    private Dice damageSwinging;
     private double basicLift;
     private int hitPoints;
     private int fatiguePoints;
@@ -26,6 +27,8 @@ public class Attributes {
         this.fatiguePoints = health;
         this.basicSpeed = determineBasicSpeed();
         this.basicMove = determineBasicMove();
+        this.damageThrusting = determineDamageThrusting();
+        this.damageSwinging = determineDamageSwinging();
     }
 
     private double determineBasicLift() {
@@ -44,4 +47,13 @@ public class Attributes {
     private int determineBasicMove() {
         return (int) basicSpeed;
     }
+
+    private Dice determineDamageThrusting() {
+        return new Dice(1,1); //FIXME
+    }
+
+    private Dice determineDamageSwinging() {
+        return new Dice(1,1); //FIXME
+    }
+
 }
