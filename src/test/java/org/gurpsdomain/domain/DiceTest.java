@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class DiceTest {
-    @Parameterized.Parameters(name = "number {0} and bonus {1} should give {2}")
+    @Parameterized.Parameters(name = "number of dice {0} and bonus {1} should give {2}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
         data.add(new Object[]{ 1, 1, "1d+1" });

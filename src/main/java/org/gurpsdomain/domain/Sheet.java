@@ -29,6 +29,7 @@ public class Sheet {
 
     public void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
+        advantage.updateAttributes(attributes);
         advantages.add(advantage);
     }
 

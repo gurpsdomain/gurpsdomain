@@ -24,6 +24,7 @@ public class Skill {
         points.addSkill(cost);
     }
 
+
     public int delta() {
         return difficultyLevel.determineDelta(cost);
     }

@@ -21,11 +21,12 @@ public class SheetBuilder {
         sheet.addNote(note);
     }
 
+    public  void addSkill(Skill skill) {sheet.addSkill(skill);}
+
     public  void addAdvantage(Advantage advantage) {
         sheet.addAdvantage(advantage);
     }
 
-    public  void addSkill(Skill skill) {sheet.addSkill(skill);}
 
     public  void addMetaData(String... keys) {
         String value = keys[keys.length - 1];

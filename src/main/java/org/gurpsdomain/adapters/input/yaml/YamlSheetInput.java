@@ -24,8 +24,8 @@ public class YamlSheetInput implements SheetInput {
         Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
         Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, "src/main/resources/data/skills.basic-set.xml");
         YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
-        yamlSheetInput.addBuildStep(new AddAdvantagesStep(advantageRepository));
         yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
+        yamlSheetInput.addBuildStep(new AddAdvantagesStep(advantageRepository));
         return yamlSheetInput;
     }
 

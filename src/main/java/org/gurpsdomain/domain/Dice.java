@@ -24,16 +24,16 @@ public class Dice {
         }
     }
 
-    public static Dice addDice(Dice firstDice, Dice secondDice) {
-        return new Dice(firstDice.number + secondDice.number, firstDice.bonus + secondDice.bonus);
+    public void addDice(Dice dice) {
+        number = dice.number;
+        bonus = dice.bonus;
     }
 
-    public static Dice addNumber(Dice dice, int number) {
-        return new Dice(dice.number + number, dice.bonus);
+    public void addNumber(int number) {
+        this.number += number;
     }
 
-    public static Dice addBonus(Dice dice, int bonus) {
-        return new Dice(dice.number, dice.bonus + bonus);
+    public void addBonus(int bonus) {
+        this.bonus += bonus;
     }
-
 }

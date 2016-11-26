@@ -35,4 +35,10 @@ public class Advantage {
         points.addAdvantage(cost());
     }
 
+    public void updateAttributes(Attributes attributes) {
+        attributes.applyHealthBonus(0);
+    } //TODO implement correct logic
+    // AdvantageDescription will need to contain info on bonuses so we can use these
+
+
 }
