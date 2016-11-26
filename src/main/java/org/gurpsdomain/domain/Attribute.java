@@ -1,12 +1,12 @@
 package org.gurpsdomain.domain;
 
 public enum Attribute {
-    STRENGTH("ST",true,true),
-    DEXTERITY("DX",true,true),
-    HEALTH("HT",true,true),
-    INTELLIGENCE("IQ",true,true),
-    WILL("Will",false,true),
-    PERCEPTION("Per",false,true);
+    STRENGTH("ST", true, true),
+    DEXTERITY("DX", true, true),
+    HEALTH("HT", true, true),
+    INTELLIGENCE("IQ", true, true),
+    WILL("Will", false, true),
+    PERCEPTION("Per", false, true);
 
     Attribute(String shorthand, boolean isPrimary, boolean isControlling) {
         this.shorthand = shorthand;
@@ -21,5 +21,14 @@ public enum Attribute {
     public String getShorthand() {
         return shorthand;
     }
+
+    public boolean isPrimary() {
+        return isPrimary;
+    }
+
+    public boolean isControlling() {
+        return isControlling;
+    }
+
 }
 

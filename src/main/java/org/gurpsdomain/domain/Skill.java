@@ -3,7 +3,7 @@ package org.gurpsdomain.domain;
 public class Skill {
     private final int cost;
     private final String name;
-	private final Attribute controllingAttribute;
+    private final Attribute controllingAttribute;
     private final DifficultyLevel difficultyLevel;
     private final String pageReference;
 
@@ -11,7 +11,12 @@ public class Skill {
         this.cost = cost;
         this.name = name;
         this.pageReference = pageReference;
-		this.controllingAttribute = controllingAttribute;
+
+        if (!controllingAttribute.isControlling()) {
+            throw new IllegalArgumentException("Attribute" + controllingAttribute + "needs to be a controlling attribute.");
+        }
+
+        this.controllingAttribute = controllingAttribute;
         this.difficultyLevel = difficultyLevel;
     }
 
