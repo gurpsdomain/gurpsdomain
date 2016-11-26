@@ -25,12 +25,15 @@ public class Dice {
     }
 
     public void addDice(Dice dice) {
-        number = dice.number;
-        bonus = dice.bonus;
+        number += dice.number;
+        bonus += dice.bonus;
     }
 
     public void addNumber(int number) {
         this.number += number;
+        if (this.number < 0) {
+            throw new IllegalArgumentException("An negative number of " + this.number + " dice is unexpected.");
+        }
     }
 
     public void addBonus(int bonus) {
