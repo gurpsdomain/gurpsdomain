@@ -14,7 +14,7 @@ public enum Attribute {
     BASIC_SPEED("Basic Speed", false, false),
     BASIC_MOVE("Basic Move", false, false);
 
-    
+
     Attribute(String shorthand, boolean isPrimary, boolean isControlling) {
         this.shorthand = shorthand;
         this.isPrimary = isPrimary;

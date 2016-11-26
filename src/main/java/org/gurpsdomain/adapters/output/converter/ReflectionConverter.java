@@ -37,7 +37,7 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         this.sheet = sheet;
-        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes());
+        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
     }
 
     private Map<String, String> metaData() {
@@ -49,7 +49,11 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetAttributes attributes() {
-        return new SheetAttributes(read("attributes", "health").from(sheet), read("attributes", "dexterity").from(sheet), read("attributes", "intelligence").from(sheet), read("attributes", "strength").from(sheet), read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet));
+        return new SheetAttributes(read("attributes", "health").from(sheet), read("attributes", "dexterity").from(sheet), read("attributes", "intelligence").from(sheet), read("attributes", "strength").from(sheet));
+    }
+
+    private SheetSecondaryCharacteristics secondaryCharacteristics() {
+        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet));
     }
 
     private List<SheetAdvantage> advantages() {

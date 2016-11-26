@@ -1,29 +1,29 @@
 {
   "metaData": {
-      "player information": {
-        "player": "Daan van Berkel",
-        "campaign": "Paul's Total Party Kill",
-        "created on" : "Oct 13, 2015"
-      },
-      "identity": {
-        "name": "Dai Blackthorn",
-        "title": "Sergeant",
-        "religion": "K-theorist"
-      },
-      "description": {
-        "race": "Human",
-        "gender": "Male",
-        "age": "35",
-        "birthday": "February 12",
-        "height": "5' 9''",
-        "weight": "154 lb",
-        "size": "+0",
-        "TL": "4",
-        "hair": "Brown, wavy, long",
-        "eyes": "Green",
-        "skin": "Pale",
-        "hand": "Right"
-      }
+    "player information": {
+      "player": "Daan van Berkel",
+      "campaign": "Paul's Total Party Kill",
+      "created on": "Oct 13, 2015"
+    },
+    "identity": {
+      "name": "Dai Blackthorn",
+      "title": "Sergeant",
+      "religion": "K-theorist"
+    },
+    "description": {
+      "race": "Human",
+      "gender": "Male",
+      "age": "35",
+      "birthday": "February 12",
+      "height": "5' 9''",
+      "weight": "154 lb",
+      "size": "+0",
+      "TL": "4",
+      "hair": "Brown, wavy, long",
+      "eyes": "Green",
+      "skin": "Pale",
+      "hand": "Right"
+    }
   },
   "points": {
     "total": 258,
@@ -34,10 +34,15 @@
     "strength": 10,
     "dexterity": 10,
     "health": 10,
-    "intelligence": 10,
-    "will": 10,
-    "perception": 10
+    "intelligence": 10
   },
+  "secondaryCharacteristics": {
+  "will": 10,
+  "perception": 10,
+  "basicLift": 20.0,
+  "hitPoints": 10
+},
+
   "advantages": [
     { "name": "Absolute Direction", "points": 10, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
     { "name": "Flexibility", "points": 5, "pageReference": "B56", "modifiers": [] }
