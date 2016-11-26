@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.gurpsdomain.domain.Attribute.IQ;
+import static org.gurpsdomain.domain.Attribute.INTELLIGENCE;;
 import static org.gurpsdomain.domain.DifficultyLevel.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -41,7 +41,7 @@ public class SkillLevelTest {
     private int expectedDelta;
 
     public SkillLevelTest(int cost, DifficultyLevel difficultyLevel, int expectedDelta) {
-        this.skill = new Skill("Airshipman",cost, IQ, difficultyLevel, "B185");
+        this.skill = new Skill("Airshipman",cost, INTELLIGENCE, difficultyLevel, "B185");
         this.expectedDelta = expectedDelta;
     }
 

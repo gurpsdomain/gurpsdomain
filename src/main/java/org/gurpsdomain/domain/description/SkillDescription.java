@@ -26,12 +26,12 @@ public class SkillDescription implements Registerable<SkillDescription> {
     
     static final private Map<String, Attribute> controllingAttributeMap = new HashMap<>();
     static {
-        controllingAttributeMap.put("DX", Attribute.DX);
-        controllingAttributeMap.put("HT", Attribute.HT);
-        controllingAttributeMap.put("IQ", Attribute.IQ);
-        controllingAttributeMap.put("ST", Attribute.ST);
-        controllingAttributeMap.put("Will", Attribute.Will);
-        controllingAttributeMap.put("Per", Attribute.Per);
+        controllingAttributeMap.put(Attribute.DEXTERITY.getShorthand(), Attribute.DEXTERITY);
+        controllingAttributeMap.put(Attribute.HEALTH.getShorthand(), Attribute.HEALTH);
+        controllingAttributeMap.put(Attribute.INTELLIGENCE.getShorthand(), Attribute.INTELLIGENCE);
+        controllingAttributeMap.put(Attribute.STRENGTH.getShorthand(), Attribute.STRENGTH);
+        controllingAttributeMap.put(Attribute.WILL.getShorthand(), Attribute.WILL);
+        controllingAttributeMap.put(Attribute.PERCEPTION.getShorthand(), Attribute.PERCEPTION);
     }
     
     private String name;
