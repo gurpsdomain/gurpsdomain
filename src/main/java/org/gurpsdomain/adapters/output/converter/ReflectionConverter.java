@@ -53,7 +53,7 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetSecondaryCharacteristics secondaryCharacteristics() {
-        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet));
+        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet),read("attributes", "fatiguePoints").from(sheet),read("attributes", "basicSpeed").from(sheet),read("attributes", "basicMove").from(sheet));
     }
 
     private List<SheetAdvantage> advantages() {

@@ -5,29 +5,43 @@ public class Attributes {
     private int dexterity;
     private int health;
     private int intelligence;
-    private int will ;
+    private int will;
     private int perception;
-//    private Dice damage;
+    //    private Dice damage;
     private double basicLift;
     private int hitPoints;
-//    private int fatiguePoints;
-//    private double basicSpeed;
-//    private int basicMove;
+    private int fatiguePoints;
+    private double basicSpeed;
+    private int basicMove;
 
-    public Attributes(int aDefault){
+    public Attributes(int aDefault) {
         this.strength = aDefault;
         this.dexterity = aDefault;
         this.health = aDefault;
         this.intelligence = aDefault;
         this.will = aDefault;
         this.perception = aDefault;
-        this.basicLift = determineBasicLift(strength);
+        this.basicLift = determineBasicLift();
         this.hitPoints = strength;
+        this.fatiguePoints = health;
+        this.basicSpeed = determineBasicSpeed();
+        this.basicMove = determineBasicMove();
     }
 
-    private double determineBasicLift(int strength){
-        double basicLift = (strength * strength) / 5.0 ;
-        if (basicLift > 10){return Math.round(basicLift);}
-        else {return basicLift;}
+    private double determineBasicLift() {
+        double basicLift = (strength * strength) / 5.0;
+        if (basicLift > 10) {
+            return Math.round(basicLift);
+        } else {
+            return basicLift;
+        }
+    }
+
+    private double determineBasicSpeed() {
+        return (health + dexterity) / 4.0;
+    }
+
+    private int determineBasicMove() {
+        return (int) basicSpeed;
     }
 }

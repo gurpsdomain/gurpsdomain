@@ -40,7 +40,10 @@
   "will": 10,
   "perception": 10,
   "basicLift": 20.0,
-  "hitPoints": 10
+  "hitPoints": 10,
+  "fatiguePoints": 10,
+  "basicSpeed": 5.0,
+  "basicMove": 5
 },
 
   "advantages": [
