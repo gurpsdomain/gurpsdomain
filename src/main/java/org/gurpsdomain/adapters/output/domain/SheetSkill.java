@@ -3,9 +3,6 @@ package org.gurpsdomain.adapters.output.domain;
 import org.gurpsdomain.domain.Attribute;
 import org.gurpsdomain.domain.DifficultyLevel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SheetSkill {
     private String name;
     private int points;

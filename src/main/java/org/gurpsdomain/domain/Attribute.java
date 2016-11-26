@@ -6,8 +6,15 @@ public enum Attribute {
     HEALTH("HT", true, true),
     INTELLIGENCE("IQ", true, true),
     WILL("Will", false, true),
-    PERCEPTION("Per", false, true);
+    PERCEPTION("Per", false, true),
+    DAMAGE("Dmg", false, false),
+    BASIC_LIFT("BL", false, false),
+    HIT_POINTS("HP", false, false),
+    FATIGUE_POINTS("FP", false, false),
+    BASIC_SPEED("Basic Speed", false, false),
+    BASIC_MOVE("Basic Move", false, false);
 
+    
     Attribute(String shorthand, boolean isPrimary, boolean isControlling) {
         this.shorthand = shorthand;
         this.isPrimary = isPrimary;
