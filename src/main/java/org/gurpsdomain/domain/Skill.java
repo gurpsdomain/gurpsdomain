@@ -12,9 +12,6 @@ public class Skill {
         this.name = name;
         this.pageReference = pageReference;
 
-        if (!controllingAttribute.isControlling()) {
-            throw new IllegalArgumentException("Attribute" + controllingAttribute + "needs to be a controlling attribute.");
-        }
 
         this.controllingAttribute = controllingAttribute;
         this.difficultyLevel = difficultyLevel;

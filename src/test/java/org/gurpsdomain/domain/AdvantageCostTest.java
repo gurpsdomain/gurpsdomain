@@ -61,6 +61,7 @@ class AdvantageCostTestCase {
 
     private int baseCost = 100;
     private List<Modifier> modifiers = new ArrayList<Modifier>();
+    private List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
     public int expectedCost = 100;
 
     private AdvantageCostTestCase(){};
@@ -86,7 +87,7 @@ class AdvantageCostTestCase {
     }
 
     public Advantage create() {
-        return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers);
+        return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers,attributeBonuses);
     }
 
     @Override

@@ -28,12 +28,11 @@ public class SkillDescription implements Registerable<SkillDescription> {
     static final private Map<String, Attribute> controllingAttributeMap = new HashMap<>();
 
     static {
-        for (Attribute attribute : Attribute.values()) {
-            if (attribute.isControlling()) {
-                controllingAttributeMap.put(attribute.getShorthand(), attribute);
-            }
+        for (Attribute controllingAttribute : Attribute.controllingValues()) {
+            controllingAttributeMap.put(controllingAttribute.getShorthand(), controllingAttribute);
         }
     }
+
 
     private String name;
     private int points;

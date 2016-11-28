@@ -1,9 +1,6 @@
 package org.gurpsdomain.repository;
 
-import org.gurpsdomain.domain.description.AdvantageDescription;
-import org.gurpsdomain.domain.description.CostDescription;
-import org.gurpsdomain.domain.description.CostType;
-import org.gurpsdomain.domain.description.ModifierDescription;
+import org.gurpsdomain.domain.description.*;
 import org.gurpsdomain.repositories.InMemoryRepository;
 import org.gurpsdomain.repositories.ItemNotFoundException;
 import org.junit.Test;
@@ -16,7 +13,7 @@ import static org.junit.Assert.assertThat;
 public class InMemoryRepositoryTest {
     private static final String NOT_REGISTERED_ADVANTAGE_NAME = "Not Registered Advantage Name";
     private static final String REGISTERED_ADVANTAGE_NAME = "Registered Advantage Name";
-    private static final AdvantageDescription ANY_ADVANTAGE = new AdvantageDescription("test", 10, "B128", Arrays.asList(new ModifierDescription("ModifierDescription 1", new CostDescription(10, CostType.points), "B129")));
+    private static final AdvantageDescription ANY_ADVANTAGE = new AdvantageDescription("test", 10, "B128", Arrays.asList(new ModifierDescription("ModifierDescription 1", new CostDescription(10, CostType.points), "B129")),Arrays.asList(new AttributeBonusDescription("HT", 1)));
 
     @Test
     public void shouldNotKnowAnItemBeforeItIsRegistered() {

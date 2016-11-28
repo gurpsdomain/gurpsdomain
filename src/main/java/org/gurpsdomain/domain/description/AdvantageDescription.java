@@ -1,6 +1,7 @@
 package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.Advantage;
+import org.gurpsdomain.domain.AttributeBonus;
 import org.gurpsdomain.domain.Modifier;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
@@ -14,38 +15,47 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@XmlRootElement(name="advantage")
+@XmlRootElement(name = "advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AdvantageDescription implements Registerable<AdvantageDescription> {
     private String name;
-    @XmlElement(name="base_points")
+    @XmlElement(name = "base_points")
     private int basePoints;
-    @XmlElement(name="points_per_level", required=false)
+    @XmlElement(name = "points_per_level", required = false)
     private Integer pointsPerLevel;
     private String reference;
-    @XmlElement(name="modifier", required=false)
-    private List <ModifierDescription> modifiers;
+    @XmlElement(name = "modifier", required = false)
+    private List<ModifierDescription> modifiers;
+    @XmlElement(name = "attribute_bonus", required = false)
+    private List<AttributeBonusDescription> attributeBonuses;
 
     private AdvantageDescription() {
         /* needed for JAXB */
     }
 
-    public AdvantageDescription(String name, int basePoints, String pageReference, List<ModifierDescription> modifiers) {
+    public AdvantageDescription(String name, int basePoints, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonuses) {
         this.name = name;
         this.basePoints = basePoints;
         this.reference = pageReference;
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
+        this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
     }
 
-    public Advantage createAdvantage(List<String> modifierNames) {
+    public Advantage createAdvantage(List<String> modifierNames, List<String> attributeBonusAttributes) {
         List<Modifier> modifiers = new ArrayList<Modifier>();
-        for(String modifierName: modifierNames) {
+        for (String modifierName : modifierNames) {
             ModifierDescriptionPredicate predicate = Name.name(modifierName);
             if (hasModifier(predicate)) {
                 modifiers.add(createModifier(predicate));
             }
         }
-        Advantage advantage = new Advantage(name, basePoints, reference, modifiers);
+
+        List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
+        for (String attributeBonusAttribute : attributeBonusAttributes) {
+//TODO
+        }
+
+        Advantage advantage = new Advantage(name, basePoints, reference, modifiers, attributeBonuses);
         return advantage;
     }
 

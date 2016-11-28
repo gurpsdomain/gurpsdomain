@@ -10,16 +10,18 @@ public class Advantage {
     private String pageReference;
     private int baseCost;
     private List<Modifier> modifiers;
+    private List<AttributeBonus> attributeBonuses;
 
     public Advantage(String name, int cost, String pageReference) {
-        this(name, cost, pageReference, new ArrayList<Modifier>());
+        this(name, cost, pageReference, new ArrayList<Modifier>(), new ArrayList<AttributeBonus>());
     }
 
-    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers) {
+    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses) {
         this.name = name;
         this.baseCost = baseCost;
         this.pageReference = pageReference;
         this.modifiers = modifiers;
+        this.attributeBonuses = attributeBonuses;
     }
 
     private int cost() {

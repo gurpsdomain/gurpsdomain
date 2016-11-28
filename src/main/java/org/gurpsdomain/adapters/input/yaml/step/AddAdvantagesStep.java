@@ -27,9 +27,11 @@ public class AddAdvantagesStep implements YamlBuildStep {
                     AdvantageDescription advantageDescription = repository.getByName(advantageName);
 
                     List<Map<String, String>> modifiers = (List<Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
+                    List<Map<String, String>> attributeBonuses = (List<Map<String, String>>) (inputAdvantage.getOrDefault("attribute_bonus", Collections.EMPTY_LIST));
                     List<String> modifierNames = modifiers.stream().map(m -> m.get("name")).collect(Collectors.toList());
+                    List<String> attributeBonusAttributes = attributeBonuses.stream().map(m -> m.get("attribute")).collect(Collectors.toList());
 
-                    Advantage advantage = advantageDescription.createAdvantage(modifierNames);
+                    Advantage advantage = advantageDescription.createAdvantage(modifierNames,attributeBonusAttributes );
                     sheetBuilder.addAdvantage(advantage);
                 }
             }
