@@ -31,7 +31,7 @@ public enum Attribute {
 
     private final String shorthand;
 
-    public String getShorthand() {
+    public String shorthand() {
         return shorthand;
     }
 

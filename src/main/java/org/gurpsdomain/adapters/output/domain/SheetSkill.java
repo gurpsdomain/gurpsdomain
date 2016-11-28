@@ -14,7 +14,7 @@ public class SheetSkill {
         this.name = name;
         this.points = points;
         this.pageReference = pageReference;
-        this.controllingAttribute = controllingAttribute.getShorthand();
+        this.controllingAttribute = controllingAttribute.shorthand();
         this.difficultyLevel = difficultyLevel;
     }
 }
