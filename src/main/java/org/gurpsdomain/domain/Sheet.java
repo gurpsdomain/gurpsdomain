@@ -6,6 +6,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Sheet {
+    public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Note> notes) {
+        Sheet sheet = new Sheet();
+        for (Map.Entry<String[], String> entry: metaData.entrySet()) {
+            sheet.setMetaDataProperty(entry.getKey(), entry.getValue());
+        }
+        for (int award: awards) {
+            sheet.award(award);
+        }
+        for (Advantage advantage: advantages) {
+            sheet.addAdvantage(advantage);
+        }
+        for (Skill skill: skills) {
+            sheet.addSkill(skill);
+        }
+        for (Note note: notes) {
+            sheet.addNote(note);
+        }
+        return sheet;
+    }
+
     private final Points points;
     private List<Note> notes = new ArrayList<Note>();
     private final List<Advantage> advantages = new ArrayList<Advantage>();

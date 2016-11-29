@@ -1,5 +1,10 @@
 package org.gurpsdomain.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.gurpsdomain.domain.Util.slice;
 
 public class SheetBuilder {
@@ -7,35 +12,37 @@ public class SheetBuilder {
         return new SheetBuilder();
     }
 
-    private Sheet sheet;
-
-    private SheetBuilder() {
-        this.sheet = new Sheet();
-    }
+    private List<Integer> awards = new ArrayList<Integer>();
+    private List<Note> notes = new ArrayList<Note>();
+    private List<Skill> skills = new ArrayList<Skill>();
+    private List<Advantage> advantages = new ArrayList<Advantage>();
+    private Map<String[], String> metaData = new HashMap<String[], String>();
 
     public void award(int amount) {
-        sheet.award(amount);
+        awards.add(amount);
     }
 
     public void addNote(Note note) {
-        sheet.addNote(note);
+        notes.add(note);
     }
 
-    public  void addSkill(Skill skill) {sheet.addSkill(skill);}
+    public  void addSkill(Skill skill) {
+       skills.add(skill);
+    }
 
     public  void addAdvantage(Advantage advantage) {
-        sheet.addAdvantage(advantage);
+        advantages.add(advantage);
     }
 
 
     public  void addMetaData(String... keys) {
         String value = keys[keys.length - 1];
         keys = slice(keys, 0, keys.length - 1);
-        sheet.setMetaDataProperty(keys, value);
+        metaData.put(keys, value);
     }
 
     public Sheet build() {
-        return sheet;
+        return Sheet.from(metaData, awards, advantages, skills, notes);
     }
 }
 
