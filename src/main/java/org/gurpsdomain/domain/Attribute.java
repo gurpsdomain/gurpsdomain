@@ -43,10 +43,6 @@ public enum Attribute {
         this.shorthand = shorthand;
     }
 
-    public static EnumSet<Attribute> primaryValues() {
-        return EnumSet.of(STRENGTH, DEXTERITY, HEALTH, INTELLIGENCE);
-    }
-
     private final String shorthand;
 
     public String shorthand() {
