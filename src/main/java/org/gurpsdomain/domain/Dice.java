@@ -29,14 +29,14 @@ public class Dice {
         bonus += dice.bonus;
     }
 
-    public void addNumber(int number) {
-        this.number += number;
-        if (this.number < 0) {
-            throw new IllegalArgumentException("An negative number of " + this.number + " dice is unexpected.");
+    public Dice addNumber(int number) {
+        if (this.number + number < 0) {
+            throw new IllegalArgumentException("Operation results in an unsupported negative number of dice");
         }
+        return new Dice(this.number + number, this.bonus);
     }
 
-    public void addBonus(int bonus) {
-        this.bonus += bonus;
+    public Dice addBonus(int bonus) {
+        return new Dice(this.number, this.bonus + bonus);
     }
 }
