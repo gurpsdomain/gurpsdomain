@@ -1,8 +1,7 @@
 package org.gurpsdomain.domain;
 
-import java.util.EnumSet;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +29,7 @@ public enum Attribute {
     }
 
     private static Collection<Attribute> controllingAttributes() {
-        return Arrays.asList(STRENGTH, DEXTERITY, HEALTH, INTELLIGENCE, WILL, PERCEPTION);
+        return EnumSet.of(STRENGTH, DEXTERITY, HEALTH, INTELLIGENCE, WILL, PERCEPTION);
     }
 
     public static Attribute fromDescription(String description) {
@@ -42,10 +41,6 @@ public enum Attribute {
 
     Attribute(String shorthand) {
         this.shorthand = shorthand;
-    }
-
-    public static EnumSet<Attribute> controllingValues() {
-        return EnumSet.of(STRENGTH, DEXTERITY, HEALTH, INTELLIGENCE, WILL, PERCEPTION);
     }
 
     public static EnumSet<Attribute> primaryValues() {
