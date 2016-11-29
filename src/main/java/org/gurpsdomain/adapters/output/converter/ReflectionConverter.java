@@ -53,7 +53,7 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetSecondaryCharacteristics secondaryCharacteristics() {
-        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet),read("attributes", "fatiguePoints").from(sheet),read("attributes", "basicSpeed").from(sheet),read("attributes", "basicMove").from(sheet),read("attributes", "damageThrusting").from(sheet).toString(),read("attributes", "damageSwinging").from(sheet).toString());
+        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet), read("attributes", "fatiguePoints").from(sheet), read("attributes", "basicSpeed").from(sheet), read("attributes", "basicMove").from(sheet), read("attributes", "damageThrusting").from(sheet).toString(), read("attributes", "damageSwinging").from(sheet).toString());
     }
 
     private List<SheetAdvantage> advantages() {
@@ -61,14 +61,17 @@ public class ReflectionConverter implements SheetConverter {
         List<Advantage> domainAdvantages = readAdvantages.from(sheet);
 
         for (Advantage domainAdvantage : domainAdvantages) {
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.of(domainAdvantage), readPageReference.from(domainAdvantage));
+
+            List<SheetModifier> sheetModifiers = new ArrayList<SheetModifier>();
 
             for (Modifier modifier : (List<Modifier>) readModifiers.from(domainAdvantage)) {
                 Cost cost = readCost.from(modifier);
                 SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
                 SheetModifier sheetModifier = new SheetModifier(readName.from(modifier), sheetCost, readPageReference.from(modifier));
-                sheetAdvantage.addModifier(sheetModifier);
+                sheetModifiers.add(sheetModifier);
             }
+
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.of(domainAdvantage), readPageReference.from(domainAdvantage), sheetModifiers);
             sheetAdvantages.add(sheetAdvantage);
         }
         return sheetAdvantages;
