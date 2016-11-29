@@ -1,10 +1,10 @@
 package org.gurpsdomain.adapters.output.domain;
 
 public class SheetAttributes {
-    private int strength;
-    private int dexterity;
-    private int health;
-    private int intelligence;
+    private final int strength;
+    private final int dexterity;
+    private final int health;
+    private final int intelligence;
 
 
     public SheetAttributes(int strength, int dexterity, int health, int intelligence) {

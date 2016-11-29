@@ -1,9 +1,9 @@
 package org.gurpsdomain.adapters.output.domain;
 
 public class SheetPoints {
-    private int total;
-    private int advantages;
-    private int skills;
+    private final int total;
+    private final int advantages;
+    private final int skills;
 
     public SheetPoints(int total, int advantages, int skills) {
         this.total = total;

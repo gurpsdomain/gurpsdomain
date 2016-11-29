@@ -2,8 +2,8 @@ package org.gurpsdomain.adapters.output.domain;
 
 
 public class SheetNote {
-    private String name;
-    private String note;
+    private final String name;
+    private final String note;
 
     public SheetNote(String name, String note) {
         this.name = name;

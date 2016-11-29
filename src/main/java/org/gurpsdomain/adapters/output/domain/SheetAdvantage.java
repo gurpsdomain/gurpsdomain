@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SheetAdvantage {
-    private String name;
-    private int points;
-    private String pageReference;
-    private List<SheetModifier> modifiers;
+    private final String name;
+    private final int points;
+    private final String pageReference;
+    private final List<SheetModifier> modifiers;
 
     public SheetAdvantage(String name, int points, String pageReference) {
         this.name = name;
