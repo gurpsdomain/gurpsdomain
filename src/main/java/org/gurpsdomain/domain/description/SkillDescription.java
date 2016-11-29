@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SkillDescription implements Registerable<SkillDescription> {
     private String name;
-    private int points;
     private String reference;
     private String difficulty;
 
@@ -25,17 +24,19 @@ public class SkillDescription implements Registerable<SkillDescription> {
         this.name = name;
         this.difficulty = difficulty;
         this.reference = pageReference;
-
     }
 
     public Skill createSkill(int points) {
-        Attribute controllingAttribute = Attribute.fromDescription(difficulty.split("/")[0]);
-        DifficultyLevel difficultyLevel = DifficultyLevel.fromDescription(difficulty.split("/")[1]);
-
-        Skill skill = new Skill(name, points, controllingAttribute, difficultyLevel, reference);
-        return skill;
+        return new Skill(name, points, controllingAttribute(), difficultyLevel(), reference);
     }
 
+    private Attribute controllingAttribute() {
+        return Attribute.fromDescription(difficulty.split("/")[0]);
+    }
+
+    private DifficultyLevel difficultyLevel() {
+        return DifficultyLevel.fromDescription(difficulty.split("/")[1]);
+    }
 
     @Override
     public void registerIn(Repository<SkillDescription> repository) {
