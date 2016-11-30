@@ -7,46 +7,51 @@ import org.junit.runners.Parameterized;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.gurpsdomain.domain.Attribute.INTELLIGENCE;;
+import static org.gurpsdomain.domain.Attribute.DEXTERITY;
+import static org.gurpsdomain.domain.Attribute.INTELLIGENCE;
 import static org.gurpsdomain.domain.DifficultyLevel.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+
+;
 
 @RunWith(Parameterized.class)
 public class SkillLevelTest {
-    @Parameterized.Parameters(name = "cost {0} for difficulty {1} should add {2} levels")
+    @Parameterized.Parameters(name = "cost {0} for difficulty {1} and controlling attribute level of {2} should give a skill level {3}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{ 1, EASY, 0 });
-        data.add(new Object[]{ 2, EASY, 1 });
-        data.add(new Object[]{ 3, EASY, 1 });
-        data.add(new Object[]{ 4, EASY, 2 });
-        data.add(new Object[]{ 5, EASY, 2 });
-        data.add(new Object[]{ 6, EASY, 2 });
-        data.add(new Object[]{ 7, EASY, 2 });
-        data.add(new Object[]{ 8, EASY, 3 });
-
-        data.add(new Object[]{ 1, AVERAGE, 0-1 });
-        data.add(new Object[]{ 2, AVERAGE, 1-1 });
-        data.add(new Object[]{ 3, AVERAGE, 1-1 });
-        data.add(new Object[]{ 4, AVERAGE, 2-1 });
-        data.add(new Object[]{ 5, AVERAGE, 2-1 });
-        data.add(new Object[]{ 6, AVERAGE, 2-1 });
-        data.add(new Object[]{ 7, AVERAGE, 2-1 });
-        data.add(new Object[]{ 8, AVERAGE, 3-1 });
+        data.add(new Object[]{ 1, EASY, INTELLIGENCE, 10 ,10 });
+        data.add(new Object[]{ 2, EASY, INTELLIGENCE, 10 ,11 });
+        data.add(new Object[]{ 3, EASY, INTELLIGENCE, 10 ,11 });
+        data.add(new Object[]{ 4, EASY, INTELLIGENCE, 10 ,12 });
+        data.add(new Object[]{ 1, EASY, DEXTERITY, 10 ,10 });
+        data.add(new Object[]{ 2, EASY, DEXTERITY, 10 ,11 });
+        data.add(new Object[]{ 3, EASY, DEXTERITY, 10 ,11 });
+        data.add(new Object[]{ 4, EASY, DEXTERITY, 10 ,12 });
+        data.add(new Object[]{ 1, AVERAGE, INTELLIGENCE, 10 ,9 });
+        data.add(new Object[]{ 2, AVERAGE, INTELLIGENCE, 10 ,10 });
+        data.add(new Object[]{ 3, AVERAGE, INTELLIGENCE, 10 ,10 });
+        data.add(new Object[]{ 4, AVERAGE, INTELLIGENCE, 10 ,11 });
+        data.add(new Object[]{ 1, HARD, DEXTERITY, 10 ,8 });
+        data.add(new Object[]{ 2, HARD, DEXTERITY, 10 ,9 });
+        data.add(new Object[]{ 3, VERY_HARD, DEXTERITY, 10 ,8 });
+        data.add(new Object[]{ 4, VERY_HARD, DEXTERITY, 10 ,9 });
         return data;
     }
 
     private Skill skill;
-    private int expectedDelta;
+    private int expectedLevel;
+    private Attributes attributes;
 
-    public SkillLevelTest(int cost, DifficultyLevel difficultyLevel, int expectedDelta) {
-        this.skill = new Skill("Airshipman",cost, INTELLIGENCE, difficultyLevel, "B185");
-        this.expectedDelta = expectedDelta;
+    public SkillLevelTest(int cost, DifficultyLevel difficultyLevel, Attribute controllingAttribute, int attributeLevel, int expectedLevel) {
+        this.skill = new Skill("dummyName",cost, controllingAttribute, difficultyLevel, "dummyReference");
+        this.expectedLevel = expectedLevel;
+        this.attributes = new Attributes(attributeLevel);
     }
 
     @Test
-    public void shouldDetermineCorrectDelta() {
-        assertThat(skill.delta(), is(expectedDelta));
+    public void shouldDetermineCorrectLevel() {
+        assertThat(skill.level(attributes), is(expectedLevel));
     }
 }

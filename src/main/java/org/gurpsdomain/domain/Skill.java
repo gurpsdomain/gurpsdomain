@@ -11,8 +11,6 @@ public class Skill {
         this.cost = cost;
         this.name = name;
         this.pageReference = pageReference;
-
-
         this.controllingAttribute = controllingAttribute;
         this.difficultyLevel = difficultyLevel;
     }
@@ -24,6 +22,10 @@ public class Skill {
 
     public int delta() {
         return difficultyLevel.determineDelta(cost);
+    }
+
+    public int level(Attributes attributes) {
+        return attributes.level(controllingAttribute) + delta();
     }
 
 }
