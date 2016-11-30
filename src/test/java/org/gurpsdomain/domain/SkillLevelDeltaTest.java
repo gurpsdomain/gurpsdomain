@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -47,6 +49,23 @@ public class SkillLevelDeltaTest {
 
     @Test
     public void shouldDetermineCorrectDelta() {
-        assertThat(skill.delta(), is(expectedDelta));
+        int result = 0;
+        Method delta = null;
+        try {
+            delta = Skill.class.getDeclaredMethod("delta",null );
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        delta.setAccessible(true);
+
+        try {
+            result = (int) delta.invoke(skill, null);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(result, is(expectedDelta));
     }
 }
