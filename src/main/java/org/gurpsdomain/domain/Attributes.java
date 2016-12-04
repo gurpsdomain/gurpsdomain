@@ -7,13 +7,13 @@ public class Attributes {
     private int intelligence;
     private int will;
     private int perception;
-    private Dice damageThrusting;
-    private Dice damageSwinging;
-    private double basicLift;
     private int hitPoints;
     private int fatiguePoints;
-    private double basicSpeed;
     private int basicMove;
+    private double basicSpeed;
+    private double basicLift;
+    private Dice damageThrusting;
+    private Dice damageSwinging;
 
     public Attributes(int aDefault) {
         this.strength = aDefault;
@@ -22,66 +22,29 @@ public class Attributes {
         this.intelligence = aDefault;
         this.will = intelligence;
         this.perception = intelligence;
-        this.basicLift = determineBasicLift();
         this.hitPoints = strength;
         this.fatiguePoints = health;
-        this.basicSpeed = determineBasicSpeed();
-        this.basicMove = determineBasicMove();
-        this.damageThrusting = determineDamageThrusting();
-        this.damageSwinging = determineDamageSwinging();
+
+        this.basicLift = basicLift();
+        this.basicSpeed = basicSpeed();
+        this.basicMove = basicMove();
+        this.damageThrusting = damageThrusting();
+        this.damageSwinging = damageSwinging();
     }
 
-    public void applyStrengthBonus(int bonus) {
-        strength += bonus;
-    }
-
-    public void applyDexterityBonus(int bonus) {
-        dexterity += bonus;
-    }
-
-    public void applyHealthBonus(int bonus) {
-        health += bonus;
-    }
-
-    public void applyIntelligenceBonus(int bonus) {
-        intelligence += bonus;
-    }
-
-    public void applyWillBonus(int bonus) {
-        will += bonus;
-    }
-
-    public void applyPerceptionBonus(int bonus) {
-        perception += bonus;
-    }
-
-    public void applyDamageThrustingBonus(Dice bonus) {
-        damageThrusting.addDice(bonus);
-    }
-
-    public void applyDamageSwingingBonus(Dice bonus) {
-        damageSwinging.addDice(bonus);
-    }
-
-    public void applyBasicLiftBonus(double bonus) {
-        basicLift += bonus;
-    }
-
-    public void applyHitPointsBonus(int bonus) {
-        hitPoints += bonus;
-    }
-
-    public void applyFatiguePointsBonus(int bonus) {
-        fatiguePoints += bonus;
-    }
-
-    public void applyBasicSpeedBonus(double bonus) {
-        basicSpeed += bonus;
-    }
-
-    public void applyBasicMoveBonus(int bonus) {
-        basicMove += bonus;
-    }
+    public void applyStrengthBonus(int bonus){strength += bonus;}
+    public void applyDexterityBonus(int bonus){dexterity += bonus;}
+    public void applyHealthBonus(int bonus){health += bonus;}
+    public void applyIntelligenceBonus(int bonus){intelligence += bonus;}
+    public void applyWillBonus(int bonus){will += bonus;}
+    public void applyPerceptionBonus(int bonus){perception += bonus;}
+    public void applyHitPointsBonus(int bonus){hitPoints += bonus;}
+    public void applyFatiguePointsBonus(int bonus){fatiguePoints += bonus;}
+    public void applyBasicLiftBonus(double bonus){basicLift += bonus;}
+    public void applyBasicSpeedBonus(double bonus){basicSpeed += bonus;}
+    public void applyBasicMoveBonus(int bonus){basicMove += bonus;}
+    public void applyDamageThrustingBonus(Dice bonus){damageThrusting.addDice(bonus);}
+    public void applyDamageSwingingBonus(Dice bonus){damageSwinging.addDice(bonus);}
 
     //FIXME : could the enum Attribute and the class Attributes be merged? Incomplete
     public int level(Attribute attribute) {
@@ -103,7 +66,7 @@ public class Attributes {
         }
     }
 
-    private double determineBasicLift() {
+    private double basicLift() {
         double basicLift = (strength * strength) / 5.0;
         if (basicLift > 10) {
             return Math.round(basicLift);
@@ -112,15 +75,15 @@ public class Attributes {
         }
     }
 
-    private double determineBasicSpeed() {
+    private double basicSpeed() {
         return (health + dexterity) / 4.0;
     }
 
-    private int determineBasicMove() {
+    private int basicMove() {
         return (int) basicSpeed;
     }
 
-    private Dice determineDamageThrusting() {
+    private Dice damageThrusting() {
         //ref: B15
         if (strength > 99) {
             return new Dice((strength / 10) + 1, 0);
@@ -128,7 +91,7 @@ public class Attributes {
         return new Dice(1, 1); //FIXME
     }
 
-    private Dice determineDamageSwinging() {
+    private Dice damageSwinging() {
         //ref: B15
         if (strength > 99) {
             return new Dice((strength / 10) + 3, 0);
