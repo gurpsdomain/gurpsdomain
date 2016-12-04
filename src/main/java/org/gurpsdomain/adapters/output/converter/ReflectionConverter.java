@@ -2,12 +2,7 @@ package org.gurpsdomain.adapters.output.converter;
 
 import org.gurpsdomain.adapters.output.SheetConverter;
 import org.gurpsdomain.adapters.output.domain.*;
-import org.gurpsdomain.domain.Advantage;
-import org.gurpsdomain.domain.Skill;
-import org.gurpsdomain.domain.Note;
-import org.gurpsdomain.domain.Cost;
-import org.gurpsdomain.domain.Modifier;
-import org.gurpsdomain.domain.Sheet;
+import org.gurpsdomain.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +44,26 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetAttributes attributes() {
-        return new SheetAttributes(read("attributes", "health").from(sheet), read("attributes", "dexterity").from(sheet), read("attributes", "intelligence").from(sheet), read("attributes", "strength").from(sheet));
+        Attributes attributes = read("attributes").from(sheet);
+        return new SheetAttributes(
+                call("health").of(attributes),
+                call("dexterity").of(attributes),
+                call("intelligence").of(attributes),
+                call("strength").of(attributes));
     }
 
     private SheetSecondaryCharacteristics secondaryCharacteristics() {
-        return new SheetSecondaryCharacteristics(read("attributes", "will").from(sheet), read("attributes", "perception").from(sheet), read("attributes", "basicLift").from(sheet), read("attributes", "hitPoints").from(sheet), read("attributes", "fatiguePoints").from(sheet), read("attributes", "basicSpeed").from(sheet), read("attributes", "basicMove").from(sheet), read("attributes", "damageThrusting").from(sheet).toString(), read("attributes", "damageSwinging").from(sheet).toString());
+        Attributes attributes = read("attributes").from(sheet);
+        return new SheetSecondaryCharacteristics(
+                call("will").of(attributes),
+                call("perception").of(attributes),
+                call("basicLift").of(attributes),
+                call("hitPoints").of(attributes),
+                call("fatiguePoints").of(attributes),
+                call("basicSpeed").of(attributes),
+                call("basicMove").of(attributes),
+                read("attributes", "damageThrusting").from(sheet).toString(),
+                read("attributes", "damageSwinging").from(sheet).toString());
     }
 
     private List<SheetAdvantage> advantages() {
