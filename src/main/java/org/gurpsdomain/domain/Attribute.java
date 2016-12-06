@@ -112,7 +112,7 @@ public enum Attribute {
     }
 
     public Object value(Attributes attributes, Object bonus) {
-        return 10;
+        return 10 + (int) bonus;
     }
 }
 
