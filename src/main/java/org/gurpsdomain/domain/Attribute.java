@@ -69,7 +69,10 @@ public enum Attribute {
     BASIC_MOVE("Basic Move") {
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return ((Double) attributes.value(Attribute.BASIC_SPEED)).intValue() + (int) bonus;
+            int health = (int) attributes.value(Attribute.HEALTH);
+            int dexterity = (int) attributes.value(Attribute.DEXTERITY);
+            int move = (health + dexterity) / 4;
+            return move + (int) bonus;
         }
     },
     DAMAGE("Dmg")/* FIXME this is not implemented in attributes, copying */;

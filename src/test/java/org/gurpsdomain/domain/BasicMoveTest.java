@@ -29,10 +29,10 @@ public class BasicMoveTest {
     @Test
     public void shouldDetermineCorrectBasicMoveAfterBasicSpeedBonus() {
         Attributes attributes = new Attributes();
-        attributes.addBasicSpeedBonus(1);
+        attributes.addBasicSpeedBonus(1.0);
 
         int basicMove = attributes.basicMove();
 
-        assertThat(basicMove, is(6));
+        assertThat(basicMove, is(5));
     }
 }
