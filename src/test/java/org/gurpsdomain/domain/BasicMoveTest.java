@@ -19,7 +19,7 @@ public class BasicMoveTest {
     @Test
     public void shouldDetermineCorrectBasicMoveAfterBasicMoveBonus() {
         Attributes attributes = new Attributes(10);
-        attributes.applyBasicMoveBonus(1);
+        attributes.addBasicMoveBonus(1);
 
         int basicMove = attributes.basicMove();
 
@@ -29,7 +29,7 @@ public class BasicMoveTest {
     @Test
     public void shouldDetermineCorrectBasicMoveAfterBasicSpeedBonus() {
         Attributes attributes = new Attributes(10);
-        attributes.applyBasicSpeedBonus(1);
+        attributes.addBasicSpeedBonus(1);
 
         int basicMove = attributes.basicMove();
 

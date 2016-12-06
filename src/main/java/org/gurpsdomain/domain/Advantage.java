@@ -38,7 +38,7 @@ public class Advantage {
     }
 
     public void updateAttributes(Attributes attributes) {
-        attributes.applyHealthBonus(0);
+        attributes.addHealthBonus(0);
     } //TODO implement correct logic
     // AdvantageDescription will need to contain info on bonuses so we can use these
 

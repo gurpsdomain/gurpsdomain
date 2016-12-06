@@ -18,57 +18,57 @@ public class Attributes {
         this.damageSwinging = new Dice(1, 1);
     }
 
-    public void applyStrengthBonus(int bonus) {
+    public void addStrengthBonus(int bonus) {
         addIntBonus(Attribute.STRENGTH, bonus);
     }
 
-    public void applyDexterityBonus(int bonus) {
+    public void addDexterityBonus(int bonus) {
         addIntBonus(Attribute.DEXTERITY, bonus);
     }
 
-    public void applyHealthBonus(int bonus) {
+    public void addHealthBonus(int bonus) {
         addIntBonus(Attribute.HEALTH, bonus);
     }
 
-    public void applyIntelligenceBonus(int bonus) {
+    public void addIntelligenceBonus(int bonus) {
         addIntBonus(Attribute.INTELLIGENCE, bonus);
     }
 
-    public void applyWillBonus(int bonus) {
+    public void addWillBonus(int bonus) {
         addIntBonus(Attribute.WILL, bonus);
     }
 
-    public void applyPerceptionBonus(int bonus) {
+    public void addPerceptionBonus(int bonus) {
         addIntBonus(Attribute.PERCEPTION, bonus);
     }
 
-    public void applyHitPointsBonus(int bonus) {
+    public void addHitPointsBonus(int bonus) {
         addIntBonus(Attribute.HIT_POINTS, bonus);
     }
 
-    public void applyFatiguePointsBonus(int bonus) {
+    public void addFatiguePointsBonus(int bonus) {
         addIntBonus(Attribute.FATIGUE_POINTS, bonus);
     }
 
-    public void applyBasicLiftBonus(double bonus) {
+    public void addBasicLiftBonus(double bonus) {
         addDoubleBonus(Attribute.BASIC_LIFT, bonus);
     }
 
-    public void applyBasicSpeedBonus(double bonus) {
+    public void addBasicSpeedBonus(double bonus) {
         addDoubleBonus(Attribute.BASIC_SPEED, bonus);
     }
 
-    public void applyBasicMoveBonus(int bonus) {
+    public void addBasicMoveBonus(int bonus) {
         addIntBonus(Attribute.BASIC_MOVE, bonus);
     }
 
-    public void applyDamageThrustingBonus(Dice bonus) {
+    public void addDamageThrustingBonus(Dice bonus) {
         damageThrusting.addDice(bonus);
     }
 
     ;
 
-    public void applyDamageSwingingBonus(Dice bonus) {
+    public void addDamageSwingingBonus(Dice bonus) {
         damageSwinging.addDice(bonus);
     }
 
