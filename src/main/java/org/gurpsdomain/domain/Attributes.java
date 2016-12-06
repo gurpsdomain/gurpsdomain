@@ -13,7 +13,7 @@ public class Attributes {
     private Dice damageThrusting;
     private Dice damageSwinging;
 
-    public Attributes(int aDefault) {
+    public Attributes() {
         this.damageThrusting = new Dice(1, 1);
         this.damageSwinging = new Dice(1, 1);
     }

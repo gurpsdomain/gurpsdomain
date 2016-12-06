@@ -35,7 +35,7 @@ public class Sheet {
 
     public Sheet() {
         this.points = new Points(0);
-        this.attributes = new Attributes(10);
+        this.attributes = new Attributes();
     }
 
     public void award(int amount) {
