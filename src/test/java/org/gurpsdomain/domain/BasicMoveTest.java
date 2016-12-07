@@ -17,6 +17,30 @@ public class BasicMoveTest {
     }
 
     @Test
+    public void shouldDetermineCorrectBasicMoveAfterDexterityOneBonus() {
+        Attributes attributes = new Attributes();
+        attributes.addDexterityBonus(1);
+        int basicMove = attributes.basicMove();
+        assertThat(basicMove, is(5));
+    }
+
+    @Test
+    public void shouldDetermineCorrectBasicMoveAfterDexterityThreeBonus() {
+        Attributes attributes = new Attributes();
+        attributes.addDexterityBonus(3);
+        int basicMove = attributes.basicMove();
+        assertThat(basicMove, is(5));
+    }
+
+    @Test
+    public void shouldDetermineCorrectBasicMoveAfterDexterityFourBonus() {
+        Attributes attributes = new Attributes();
+        attributes.addDexterityBonus(4);
+        int basicMove = attributes.basicMove();
+        assertThat(basicMove, is(6));
+    }
+
+    @Test
     public void shouldDetermineCorrectBasicMoveAfterBasicMoveBonus() {
         Attributes attributes = new Attributes();
         attributes.addBasicMoveBonus(1);
