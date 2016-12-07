@@ -1,8 +1,8 @@
-package org.gurpsdomain.repository;
+package org.gurpsdomain.domain.repository;
 
 import org.gurpsdomain.domain.description.*;
-import org.gurpsdomain.repositories.InMemoryRepository;
-import org.gurpsdomain.repositories.ItemNotFoundException;
+import org.gurpsdomain.domain.repositories.InMemoryRepository;
+import org.gurpsdomain.domain.repositories.ItemNotFoundException;
 import org.junit.Test;
 
 import java.util.Arrays;

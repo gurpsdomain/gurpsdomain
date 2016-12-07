@@ -7,9 +7,9 @@ import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.domain.description.SkillDescription;
-import org.gurpsdomain.repositories.InMemoryRepository;
-import org.gurpsdomain.repositories.xml.AdvantageDescriptions;
-import org.gurpsdomain.repositories.xml.SkillDescriptions;
+import org.gurpsdomain.domain.repositories.InMemoryRepository;
+import org.gurpsdomain.domain.repositories.xml.AdvantageDescriptions;
+import org.gurpsdomain.domain.repositories.xml.SkillDescriptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.Reader;

@@ -2,8 +2,8 @@ package org.gurpsdomain.integration;
 
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.description.SkillDescription;
-import org.gurpsdomain.repositories.InMemoryRepository;
-import org.gurpsdomain.repositories.xml.SkillDescriptions;
+import org.gurpsdomain.domain.repositories.InMemoryRepository;
+import org.gurpsdomain.domain.repositories.xml.SkillDescriptions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

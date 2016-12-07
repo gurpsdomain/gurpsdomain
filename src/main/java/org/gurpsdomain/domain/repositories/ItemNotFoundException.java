@@ -1,4 +1,4 @@
-package org.gurpsdomain.repositories;
+package org.gurpsdomain.domain.repositories;
 
 public class ItemNotFoundException extends RuntimeException {
     public ItemNotFoundException(String itemName) {

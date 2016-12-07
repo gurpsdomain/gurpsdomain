@@ -1,4 +1,4 @@
-package org.gurpsdomain.repositories.xml;
+package org.gurpsdomain.domain.repositories.xml;
 
 
 import org.gurpsdomain.domain.description.AdvantageDescription;

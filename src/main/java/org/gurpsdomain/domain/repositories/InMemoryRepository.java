@@ -1,4 +1,4 @@
-package org.gurpsdomain.repositories;
+package org.gurpsdomain.domain.repositories;
 
 import org.gurpsdomain.domain.description.Registerable;
 import org.gurpsdomain.domain.Repository;
