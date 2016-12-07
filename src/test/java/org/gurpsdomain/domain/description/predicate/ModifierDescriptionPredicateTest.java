@@ -15,19 +15,19 @@ public class ModifierDescriptionPredicateTest {
     private static final String ANY_PAGE_REFERENCE = "B1";
 
     @Test
-    public void nameShouldBeFullfilledByExactName() {
+    public void nameShouldBeFulfilledByExactName() {
         ModifierDescriptionPredicate predicate = name("A");
 
-        assertTrue(predicate.isFullfilledBy(aModifierNamed("A")));
-        assertFalse(predicate.isFullfilledBy(aModifierNamed("B")));
+        assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
     }
 
     @Test
     public void andShouldCombinePredicates() {
         ModifierDescriptionPredicate predicate = and(name("A"), Always.True);
 
-        assertTrue(predicate.isFullfilledBy(aModifierNamed("A")));
-        assertFalse(predicate.isFullfilledBy(aModifierNamed("B")));
+        assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
     }
 
     private ModifierDescription aModifierNamed(String aName) {
@@ -45,7 +45,7 @@ enum Always implements ModifierDescriptionPredicate {
     }
 
     @Override
-    public boolean isFullfilledBy(ModifierDescription modifier) {
+    public boolean isFulfilledBy(ModifierDescription modifier) {
         return answer;
     }
 }

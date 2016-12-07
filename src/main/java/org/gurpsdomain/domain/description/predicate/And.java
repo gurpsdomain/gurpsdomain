@@ -19,7 +19,7 @@ public class And implements ModifierDescriptionPredicate {
     }
 
     @Override
-    public boolean isFullfilledBy(ModifierDescription modifier) {
-        return predicates.stream().allMatch(p -> p.isFullfilledBy(modifier));
+    public boolean isFulfilledBy(ModifierDescription modifier) {
+        return predicates.stream().allMatch(p -> p.isFulfilledBy(modifier));
     }
 }

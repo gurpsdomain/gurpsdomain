@@ -64,10 +64,10 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     private boolean hasModifier(ModifierDescriptionPredicate predicate) {
-        return modifiers.stream().anyMatch(m -> predicate.isFullfilledBy(m));
+        return modifiers.stream().anyMatch(m -> predicate.isFulfilledBy(m));
     }
 
     private Modifier createModifier(ModifierDescriptionPredicate predicate) {
-        return modifiers.stream().filter(m -> predicate.isFullfilledBy(m)).findAny().get().createModifier();
+        return modifiers.stream().filter(m -> predicate.isFulfilledBy(m)).findAny().get().createModifier();
     }
 }

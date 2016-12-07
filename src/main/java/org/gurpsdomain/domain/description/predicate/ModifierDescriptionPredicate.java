@@ -6,5 +6,5 @@ import org.gurpsdomain.domain.description.ModifierDescription;
 
 @Assign(developer= Developer.PAUL, issues = {21,7})
 public interface ModifierDescriptionPredicate {
-    boolean isFullfilledBy(ModifierDescription modifier);
+    boolean isFulfilledBy(ModifierDescription modifier);
 }
