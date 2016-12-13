@@ -31,6 +31,8 @@ public class AdvantageCostTest {
         data.add(new Object[]{anAdvantage().withBaseCost(100).withPercentageModifier(-95).hasExpectedCost(20)});
         data.add(new Object[]{anAdvantage().withBaseCost(100).withPercentageModifier(12).withPointModifier(10).hasExpectedCost(124)});
         data.add(new Object[]{anAdvantage().withBaseCost(100).withPercentageModifier(-40).withPercentageModifier(-10).withPointModifier(5).withPointModifier(15).hasExpectedCost(60)});
+        data.add(new Object[]{anAdvantage().withBaseCost(100).withPointsPerLevel(5).withLevel(5).hasExpectedCost(125)});
+        data.add(new Object[]{anAdvantage().withBaseCost(100).withPercentageModifier(-40).withPercentageModifier(-10).withPointModifier(5).withPointModifier(15).withPointsPerLevel(10).withLevel(2).hasExpectedCost(70)});
         return data;
     }
 
@@ -60,14 +62,30 @@ class AdvantageCostTestCase {
     }
 
     private int baseCost = 100;
+    private int pointsPerLevel = 10;
+
+
     private List<Modifier> modifiers = new ArrayList<Modifier>();
     private List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
+    private List<AdvantageLevel> levels = new ArrayList<AdvantageLevel>();
     public int expectedCost = 100;
 
     private AdvantageCostTestCase(){};
 
     public AdvantageCostTestCase withBaseCost(int baseCost) {
         this.baseCost = baseCost;
+        return this;
+    }
+
+    public AdvantageCostTestCase withLevel(int amount) {
+        for(int i = 0; i < amount; i++) {
+            this.levels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
+        }
+        return this;
+    }
+
+    public AdvantageCostTestCase withPointsPerLevel(int amount) {
+        this.pointsPerLevel = amount;
         return this;
     }
 
@@ -87,7 +105,7 @@ class AdvantageCostTestCase {
     }
 
     public Advantage create() {
-        return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers,attributeBonuses);
+        return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, levels);
     }
 
     @Override
