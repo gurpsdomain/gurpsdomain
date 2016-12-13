@@ -1,9 +1,6 @@
 package org.gurpsdomain.domain.description;
 
-import org.gurpsdomain.domain.Advantage;
-import org.gurpsdomain.domain.AttributeBonus;
-import org.gurpsdomain.domain.Modifier;
-import org.gurpsdomain.domain.Repository;
+import org.gurpsdomain.domain.*;
 import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
 import org.gurpsdomain.domain.description.predicate.Name;
 
@@ -21,6 +18,8 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private String name;
     @XmlElement(name = "base_points")
     private int basePoints;
+    @XmlElement(name = "levels", required = false)
+    private Integer levels;
     @XmlElement(name = "points_per_level", required = false)
     private Integer pointsPerLevel;
     private String reference;
@@ -33,15 +32,17 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         /* needed for JAXB */
     }
 
-    public AdvantageDescription(String name, int basePoints, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonuses) {
+    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonuses) {
         this.name = name;
         this.basePoints = basePoints;
+        this.levels = levels;
+        this.pointsPerLevel = pointsPerLevel;
         this.reference = pageReference;
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
         this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
     }
 
-    public Advantage createAdvantage(List<String> modifierNames, List<String> attributeBonusAttributes) {
+    public Advantage createAdvantage(List<String> modifierNames, List<String> attributeBonusAttributes, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<Modifier>();
         for (String modifierName : modifierNames) {
             ModifierDescriptionPredicate predicate = Name.name(modifierName);
