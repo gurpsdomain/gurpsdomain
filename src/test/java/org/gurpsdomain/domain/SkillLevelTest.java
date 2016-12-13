@@ -14,8 +14,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
-;
-
 @RunWith(Parameterized.class)
 public class SkillLevelTest {
     @Parameterized.Parameters(name = "cost {0} for difficulty {1} and controlling attribute level of {2} should give a skill level {3}")
