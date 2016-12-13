@@ -27,7 +27,7 @@
   },
   "points": {
     "total": 258,
-    "advantages": 15,
+    "advantages": 45,
     "skills": 5
   },
   "attributes": {
@@ -49,8 +49,9 @@
 },
 
   "advantages": [
-    { "name": "Absolute Direction", "points": 10, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
-    { "name": "Flexibility", "points": 5, "pageReference": "B56", "modifiers": [] }
+    { "name": "Absolute Direction", "points": 10, "level": 0, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
+    { "name": "Flexibility", "points": 5, "level": 0, "pageReference": "B56", "modifiers": [] },
+    { "name": "Power Investiture", "points": 30, "level": 3, "pageReference": "B77", "modifiers": [] }
   ],
   "skills": [
     { "name": "Alchemy", "points": 3, "pageReference": "B174", "controllingAttribute": "IQ", "difficultyLevel": "VERY_HARD" },
