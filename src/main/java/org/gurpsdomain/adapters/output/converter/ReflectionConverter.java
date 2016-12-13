@@ -14,6 +14,7 @@ import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
 public class ReflectionConverter implements SheetConverter {
     private ReflectionReader readName = read("name");
     private ReflectionReader readCost = read("cost");
+    private ReflectionReader readLevels = read("levels");
     private ReflectionReader readPageReference = read("pageReference");
     private ReflectionReader readModifiers = read("modifiers");
     private ReflectionReader readValue = read("value");
@@ -81,7 +82,7 @@ public class ReflectionConverter implements SheetConverter {
                 sheetModifiers.add(sheetModifier);
             }
 
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.of(domainAdvantage), readPageReference.from(domainAdvantage), sheetModifiers);
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.of(domainAdvantage), ((List<AdvantageLevel>) readLevels.from(domainAdvantage)).size(), readPageReference.from(domainAdvantage), sheetModifiers);
             sheetAdvantages.add(sheetAdvantage);
         }
         return sheetAdvantages;

@@ -31,9 +31,11 @@ public class Advantage {
         for (Modifier modifier : modifiers) {
             modifier.accumulateCost(accumulator);
         }
+        for (AdvantageLevel level : levels) {
+            level.accumulateCost(accumulator);
+        }
         return accumulator.cost();
     }
-
 
     public void payCost(Points points) {
         points.addAdvantage(cost());
