@@ -2,18 +2,19 @@ package org.gurpsdomain.adapters.output.converter;
 
 import org.junit.Test;
 
-import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
+import static org.gurpsdomain.adapters.output.converter.Reflection.withReflection;
+import static org.gurpsdomain.adapters.output.converter.Reflection.read;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ReflectionReaderTest {
+public class ReflectionReadTest {
     private static final int ANY_INT_VALUE = 37;
 
     @Test
     public void shouldReadPropertyOneLevelDeep() {
         SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
 
-        Integer value = read("value").from(singleValue);
+        Integer value = withReflection(read("value")).from(singleValue);
 
         assertThat(value, is(ANY_INT_VALUE));
     }
@@ -22,7 +23,7 @@ public class ReflectionReaderTest {
     public void shouldReadPropertyTwoLevelsDeep() {
         NestedValue nestedValue = new NestedValue(new SingleValue(ANY_INT_VALUE));
 
-        Integer value = read("singleValue", "value").from(nestedValue);
+        Integer value = withReflection(read("singleValue"), read("value")).from(nestedValue);
 
         assertThat(value, is(ANY_INT_VALUE));
     }
