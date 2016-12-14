@@ -36,9 +36,11 @@ public class ConvertSheetSteps {
         reader = new FileReader(new File(SHEETS_LOCATION + INITIAL_SHEET));
     }
 
-    @And("^I add an advantage named \"([^\"]*)\"$")
-            public void i_add_an_advantage_named(String advantage) throws Throwable {
-    //TODO use the reader to modify the in-memory yaml? i.e. add the named advantage?
+
+    @Given("^I add an advantage named \"([^\"]*)\"$")
+    public void i_add_an_advantage_named(String advantage) throws Throwable {
+        reader = updateYaml(reader, "advantages:", "- name: " + advantage);
+        //TODO use the reader to modify the in-memory yaml? i.e. add the named advantage?
     }
 
 
@@ -64,11 +66,54 @@ public class ConvertSheetSteps {
         assertThat(data, hasPath("points.total", is(pointTotal)));
     }
 
+    @Then("^I expect an advantages points total of (\\d+)$")
+    public void i_expect_an_advantages_points_total_of(double pointTotal) throws Throwable {
+        Map<String, Object> data = outputAsMap(writer);
+
+        assertThat(data, hasPath("points.advantages", is(pointTotal)));
+    }
+
 
     private Map<String, Object> outputAsMap(Writer writer) {
         String result = writer.toString();
         Gson gson = new Gson();
-        Type stringObjectMap = new TypeToken<Map<String, Object>>(){}.getType();
+        Type stringObjectMap = new TypeToken<Map<String, Object>>() {
+        }.getType();
         return gson.fromJson(result, stringObjectMap);
+    }
+
+    private Reader updateYaml(Reader reader, String marker, String data) throws Throwable {
+        File tempFile = File.createTempFile("temp-from-empty-sheet-", ".yml");
+        tempFile.deleteOnExit();
+
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        try {
+            br = new BufferedReader(reader);
+            bw = new BufferedWriter(new FileWriter(tempFile));
+            String line;
+            while ((line = br.readLine()) != null) {
+                bw.write(line + "\n");
+                if (line.contains(marker)) {
+                    bw.write(data + "\n");
+                }
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                if (br != null)
+                    br.close();
+            } catch (IOException e) {
+                //
+            }
+            try {
+                if (bw != null)
+                    bw.close();
+            } catch (IOException e) {
+                //
+            }
+        }
+        return new FileReader(tempFile);
     }
 }
