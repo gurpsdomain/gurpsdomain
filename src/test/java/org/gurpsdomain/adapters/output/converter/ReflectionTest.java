@@ -19,17 +19,15 @@ public class ReflectionTest {
         assertThat(value, is(37));
     }
 
-//    @Test
-//    public void shouldCallMethodWithParameterAndReadFieldChainedFromObjects() {
-//        NestedReflection nestedReflection = new NestedReflection(new SingleReflection(0));
-//        int parameter = 55;
-//
-//        Integer value = withReflectionChain(call("testWithSingleParameter", parameter), read("value")).from(nestedReflection);
-//
-//        assertThat(value, is(55));
-//    }
+    @Test
+    public void shouldCallMethodWithParameterAndReadFieldChainedFromObjects() {
+        NestedReflection nestedReflection = new NestedReflection(new SingleReflection(0));
+        int parameter = 55;
 
+        Integer value = withReflectionChain(call("testWithSingleParameter", parameter), read("value")).from(nestedReflection);
 
+        assertThat(value, is(55));
+    }
 }
 
 
@@ -52,7 +50,7 @@ class NestedReflection {
         return singleReflection;
     }
 
-    private SingleReflection testWithSingleParameter(int value) {
+    private SingleReflection testWithSingleParameter(Integer value) {
         return new SingleReflection(value);
     }
 }

@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Reflection {
     public static Reflection withReflectionChain(ReflectionOption... options) {
@@ -42,6 +43,7 @@ public class Reflection {
 class ReflectionCall implements ReflectionOption {
     private final String methodName;
     private List<Object> arguments = new ArrayList<Object>();
+
 
     public ReflectionCall(String methodName) {
         this.methodName = methodName;
@@ -87,10 +89,14 @@ class ReflectionCall implements ReflectionOption {
     }
 
     private <T> T unsafeCallOf(String methodName, List<Object> arguments, Object object) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        List<Class> argumentTypes = new ArrayList<Class>();
+        for (Object argument : arguments) {
+            argumentTypes.add(argument.getClass());
+        }
         Class<?> objectClass = object.getClass();
-        Method method = objectClass.getDeclaredMethod(methodName);
+        Method method = objectClass.getDeclaredMethod(methodName,argumentTypes.toArray(new Class[argumentTypes.size()]));
         method.setAccessible(true);
-        return (T) method.invoke(object);
+        return (T) method.invoke(object, arguments.toArray(new Object[arguments.size()]));
     }
 
 }
