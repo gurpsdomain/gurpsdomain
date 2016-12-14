@@ -11,7 +11,7 @@ public class Reflection {
     public static Reflection withReflectionChain(ReflectionOption... options) {
         return new Reflection(Arrays.asList(options));
     }
-    
+
 
     public static ReflectionOption call(String methodName, Object... arguments) {
         return new ReflectionCall(methodName, arguments);
@@ -48,7 +48,7 @@ class ReflectionCall implements ReflectionOption {
 
     @Override
     public Object actOn(Object object) {
-            return safeCallOf(methodName, object, arguments);
+        return safeCallOf(methodName, object, arguments);
     }
 
 
@@ -60,22 +60,17 @@ class ReflectionCall implements ReflectionOption {
         }
     }
 
-    private <T> T unsafeCallOf(String methodName, Object object) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Class<?> objectClass = object.getClass();
-        Method method = objectClass.getDeclaredMethod(methodName);
-        method.setAccessible(true);
-        return (T) method.invoke(object);
-    }
 
     private <T> T unsafeCallOf(String methodName, Object object, List<Object> arguments) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         List<Class> argumentTypes = new ArrayList<Class>();
+        int numberOfArguments = arguments.size();
         for (Object argument : arguments) {
             argumentTypes.add(argument.getClass());
         }
         Class<?> objectClass = object.getClass();
-        Method method = objectClass.getDeclaredMethod(methodName,argumentTypes.toArray(new Class[argumentTypes.size()]));
+        Method method = objectClass.getDeclaredMethod(methodName, argumentTypes.toArray(new Class[numberOfArguments]));
         method.setAccessible(true);
-        return (T) method.invoke(object, arguments.toArray(new Object[arguments.size()]));
+        return (T) method.invoke(object, arguments.toArray(new Object[numberOfArguments]));
     }
 
 }
