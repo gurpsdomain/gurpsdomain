@@ -11,13 +11,23 @@ import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectio
 
 public class ReflectionTest {
     @Test
-    public void shouldReadFieldsAndCallMethodsChainedFromObjects() {
+    public void shouldCallMethodAndReadFieldChainedFromObjects() {
         NestedReflection nestedReflection = new NestedReflection(new SingleReflection(37));
 
-        Integer value = withReflectionChain(call("test"), read("value")).from(nestedReflection);
+        Integer value = withReflectionChain(call("testNoParameters"), read("value")).from(nestedReflection);
 
         assertThat(value, is(37));
     }
+
+//    @Test
+//    public void shouldCallMethodWithParameterAndReadFieldChainedFromObjects() {
+//        NestedReflection nestedReflection = new NestedReflection(new SingleReflection(0));
+//        int parameter = 55;
+//
+//        Integer value = withReflectionChain(call("testWithSingleParameter", parameter), read("value")).from(nestedReflection);
+//
+//        assertThat(value, is(55));
+//    }
 
 
 }
@@ -38,7 +48,11 @@ class NestedReflection {
         this.singleReflection = singleReflection;
     }
 
-    private SingleReflection test() {
+    private SingleReflection testNoParameters() {
         return singleReflection;
+    }
+
+    private SingleReflection testWithSingleParameter(int value) {
+        return new SingleReflection(value);
     }
 }
