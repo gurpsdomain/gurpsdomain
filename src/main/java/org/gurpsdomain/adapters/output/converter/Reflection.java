@@ -48,20 +48,9 @@ class ReflectionCall implements ReflectionOption {
 
     @Override
     public Object actOn(Object object) {
-        if (arguments.size() == 0) {
-            return safeCallOf(methodName, object);
-        } else {
             return safeCallOf(methodName, object, arguments);
-        }
     }
 
-    private <T> T safeCallOf(String method, Object object) {
-        try {
-            return unsafeCallOf(method, object);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private <T> T safeCallOf(String method, Object object, List<Object> arguments) {
         try {
