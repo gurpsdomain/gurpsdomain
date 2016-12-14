@@ -7,14 +7,14 @@ import static org.gurpsdomain.adapters.output.converter.Reflection.read;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflection;
+import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
 
 public class ReflectionTest {
     @Test
-    public void shouldReadFieldsAndCallMethodsFromObjects() {
+    public void shouldReadFieldsAndCallMethodsChainedFromObjects() {
         NestedReflection nestedReflection = new NestedReflection(new SingleReflection(37));
 
-        Integer value = withReflection(call("test"), read("value")).from(nestedReflection);
+        Integer value = withReflectionChain(call("test"), read("value")).from(nestedReflection);
 
         assertThat(value, is(37));
     }

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reflection {
-    public static Reflection withReflection(ReflectionOption... options) {
+    public static Reflection withReflectionChain(ReflectionOption... options) {
         return new Reflection(Arrays.asList(options));
     }
 

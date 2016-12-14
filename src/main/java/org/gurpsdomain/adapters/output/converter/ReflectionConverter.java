@@ -10,25 +10,25 @@ import java.util.Map;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.call;
 import static org.gurpsdomain.adapters.output.converter.Reflection.read;
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflection;
+import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
 
 public class ReflectionConverter implements SheetConverter {
 
-    private Reflection readName = withReflection(read("name"));
-    private Reflection readCost = withReflection(read("cost"));
-    private Reflection readLevels = withReflection(read("levels"));
-    private Reflection readPageReference = withReflection(read("pageReference"));
-    private Reflection readModifiers = withReflection(read("modifiers"));
-    private Reflection readValue = withReflection(read("value"));
-    private Reflection readType = withReflection(read("type"));
-    private Reflection readControllingAttribute = withReflection(read("controllingAttribute"));
-    private Reflection readDifficultyLevel = withReflection(read("difficultyLevel"));
-    private Reflection readAdvantages = withReflection(read("advantages"));
-    private Reflection readSkills = withReflection(read("skills"));
-    private Reflection readMetaData = withReflection(read("metaData"));
-    private Reflection readNote = withReflection(read("note"));
-    private Reflection readNotes = withReflection(read("notes"));
-    private Reflection callCost = withReflection(call("cost"));
+    private Reflection readName = withReflectionChain(read("name"));
+    private Reflection readCost = withReflectionChain(read("cost"));
+    private Reflection readLevels = withReflectionChain(read("levels"));
+    private Reflection readPageReference = withReflectionChain(read("pageReference"));
+    private Reflection readModifiers = withReflectionChain(read("modifiers"));
+    private Reflection readValue = withReflectionChain(read("value"));
+    private Reflection readType = withReflectionChain(read("type"));
+    private Reflection readControllingAttribute = withReflectionChain(read("controllingAttribute"));
+    private Reflection readDifficultyLevel = withReflectionChain(read("difficultyLevel"));
+    private Reflection readAdvantages = withReflectionChain(read("advantages"));
+    private Reflection readSkills = withReflectionChain(read("skills"));
+    private Reflection readMetaData = withReflectionChain(read("metaData"));
+    private Reflection readNote = withReflectionChain(read("note"));
+    private Reflection readNotes = withReflectionChain(read("notes"));
+    private Reflection callCost = withReflectionChain(call("cost"));
     private Sheet sheet;
 
 
@@ -43,30 +43,30 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetPoints points() {
-        return new SheetPoints(withReflection(read("points"),read("total")).from(sheet), withReflection(read("points"),read( "advantages")).from(sheet), withReflection(read("points"),read( "skills")).from(sheet));
+        return new SheetPoints(withReflectionChain(read("points"),read("total")).from(sheet), withReflectionChain(read("points"),read( "advantages")).from(sheet), withReflectionChain(read("points"),read( "skills")).from(sheet));
     }
 
     private SheetAttributes attributes() {
-        Attributes attributes = withReflection(read("attributes")).from(sheet);
+        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
         return new SheetAttributes(
-                withReflection(call("health")).from(attributes),
-                withReflection(call("dexterity")).from(attributes),
-                withReflection(call("intelligence")).from(attributes),
-                withReflection(call("strength")).from(attributes));
+                withReflectionChain(call("health")).from(attributes),
+                withReflectionChain(call("dexterity")).from(attributes),
+                withReflectionChain(call("intelligence")).from(attributes),
+                withReflectionChain(call("strength")).from(attributes));
     }
 
     private SheetSecondaryCharacteristics secondaryCharacteristics() {
-        Attributes attributes = withReflection(read("attributes")).from(sheet);
+        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
         return new SheetSecondaryCharacteristics(
-                withReflection(call("will")).from(attributes),
-                withReflection(call("perception")).from(attributes),
-                withReflection(call("basicLift")).from(attributes),
-                withReflection(call("hitPoints")).from(attributes),
-                withReflection(call("fatiguePoints")).from(attributes),
-                withReflection(call("basicSpeed")).from(attributes),
-                withReflection(call("basicMove")).from(attributes),
-                withReflection(read("attributes"),read( "damageThrusting")).from(sheet).toString(),
-                withReflection(read("attributes"),read( "damageSwinging")).from(sheet).toString());
+                withReflectionChain(call("will")).from(attributes),
+                withReflectionChain(call("perception")).from(attributes),
+                withReflectionChain(call("basicLift")).from(attributes),
+                withReflectionChain(call("hitPoints")).from(attributes),
+                withReflectionChain(call("fatiguePoints")).from(attributes),
+                withReflectionChain(call("basicSpeed")).from(attributes),
+                withReflectionChain(call("basicMove")).from(attributes),
+                withReflectionChain(read("attributes"),read( "damageThrusting")).from(sheet).toString(),
+                withReflectionChain(read("attributes"),read( "damageSwinging")).from(sheet).toString());
     }
 
     private List<SheetAdvantage> advantages() {
