@@ -12,10 +12,7 @@ public class Reflection {
     public static Reflection withReflectionChain(ReflectionOption... options) {
         return new Reflection(Arrays.asList(options));
     }
-
-    public static ReflectionOption call(String methodName) {
-        return new ReflectionCall(methodName);
-    }
+    
 
     public static ReflectionOption call(String methodName, Object... arguments) {
         return new ReflectionCall(methodName, arguments);
@@ -44,10 +41,6 @@ class ReflectionCall implements ReflectionOption {
     private final String methodName;
     private List<Object> arguments = new ArrayList<Object>();
 
-
-    public ReflectionCall(String methodName) {
-        this.methodName = methodName;
-    }
 
     public ReflectionCall(String methodName, Object... arguments) {
         this.arguments = Arrays.asList(arguments);
