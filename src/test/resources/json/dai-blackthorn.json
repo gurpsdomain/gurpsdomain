@@ -54,8 +54,8 @@
     { "name": "Power Investiture", "points": 30, "level": 3, "pageReference": "B77", "modifiers": [] }
   ],
   "skills": [
-    { "name": "Alchemy", "points": 3, "pageReference": "B174", "controllingAttribute": "IQ", "difficultyLevel": "VERY_HARD" },
-    { "name": "Stealth", "points": 2, "pageReference": "B222", "controllingAttribute": "DX", "difficultyLevel": "AVERAGE" }
+    { "name": "Alchemy", "points": 3, "level": 8,"pageReference": "B174", "controllingAttribute": "IQ", "difficultyLevel": "VERY_HARD" },
+    { "name": "Stealth", "points": 2, "level": 10, "pageReference": "B222", "controllingAttribute": "DX", "difficultyLevel": "AVERAGE" }
   ],
 
   "notes": [

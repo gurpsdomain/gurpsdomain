@@ -9,12 +9,14 @@ public class SheetSkill {
     private final String pageReference;
     private final String controllingAttribute;
     private final DifficultyLevel difficultyLevel;
+    private final int level;
 
-    public SheetSkill(String name, int points, String pageReference, Attribute controllingAttribute, DifficultyLevel difficultyLevel) {
+    public SheetSkill(String name, int points, String pageReference, Attribute controllingAttribute, DifficultyLevel difficultyLevel, int level) {
         this.name = name;
         this.points = points;
         this.pageReference = pageReference;
         this.controllingAttribute = controllingAttribute.shorthand();
         this.difficultyLevel = difficultyLevel;
+        this.level = level;
     }
 }

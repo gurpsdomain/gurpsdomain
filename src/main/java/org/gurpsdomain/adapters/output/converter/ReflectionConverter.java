@@ -94,9 +94,11 @@ public class ReflectionConverter implements SheetConverter {
     private List<SheetSkill> skills() {
         List<SheetSkill> sheetSkills = new ArrayList<>();
         List<Skill> domainSkills = readSkills.from(sheet);
+        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
+        Reflection callLevel = withReflectionChain(call("level", attributes));
 
         for (Skill domainSkill : domainSkills) {
-            SheetSkill sheetSkill = new SheetSkill(readName.from(domainSkill), readCost.from(domainSkill), readPageReference.from(domainSkill), readControllingAttribute.from(domainSkill), readDifficultyLevel.from(domainSkill));
+            SheetSkill sheetSkill = new SheetSkill(readName.from(domainSkill), readCost.from(domainSkill), readPageReference.from(domainSkill), readControllingAttribute.from(domainSkill), readDifficultyLevel.from(domainSkill), callLevel.from(domainSkill));
             sheetSkills.add(sheetSkill);
         }
         return sheetSkills;
