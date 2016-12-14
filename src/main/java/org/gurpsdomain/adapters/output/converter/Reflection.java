@@ -33,10 +33,6 @@ public class Reflection {
     }
 }
 
-interface ReflectionOption {
-    Object actOn(Object object);
-}
-
 class ReflectionCall implements ReflectionOption {
     private final String methodName;
 

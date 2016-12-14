@@ -1,6 +1,7 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.adapters.output.converter.ReflectionReader;
+import org.gurpsdomain.adapters.output.converter.Reflection;
+import org.gurpsdomain.adapters.output.converter.ReflectionOption;
 import org.gurpsdomain.domain.description.CostType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,8 @@ import org.junit.runners.Parameterized;
 
 import java.util.*;
 
-import static org.gurpsdomain.adapters.output.converter.ReflectionReader.read;
+import static org.gurpsdomain.adapters.output.converter.Reflection.read;
+import static org.gurpsdomain.adapters.output.converter.Reflection.withReflection;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -110,8 +112,8 @@ class AdvantageCostTestCase {
 
     @Override
     public String toString() {
-        ReflectionReader readValue = read("cost", "value");
-        ReflectionReader readCostType = read("cost", "type");
+        Reflection readValue = withReflection(read("cost"),read( "value"));
+        Reflection readCostType = withReflection(read("cost"),read( "type"));
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("base cost %d", baseCost));
         builder.append(" ");
