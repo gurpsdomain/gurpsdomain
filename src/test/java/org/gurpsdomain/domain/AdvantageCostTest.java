@@ -72,7 +72,10 @@ class AdvantageCostTestCase {
     private List<AdvantageLevel> levels = new ArrayList<AdvantageLevel>();
     public int expectedCost = 100;
 
-    private AdvantageCostTestCase(){};
+    private AdvantageCostTestCase() {
+    }
+
+    ;
 
     public AdvantageCostTestCase withBaseCost(int baseCost) {
         this.baseCost = baseCost;
@@ -80,7 +83,7 @@ class AdvantageCostTestCase {
     }
 
     public AdvantageCostTestCase withLevel(int amount) {
-        for(int i = 0; i < amount; i++) {
+        for (int i = 0; i < amount; i++) {
             this.levels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
         }
         return this;
@@ -112,18 +115,16 @@ class AdvantageCostTestCase {
 
     @Override
     public String toString() {
-        Reflection readValue = withReflection(read("cost"),read( "value"));
-        Reflection readCostType = withReflection(read("cost"),read( "type"));
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("base cost %d", baseCost));
         builder.append(" ");
         builder.append(String.format("expected cost %d", expectedCost));
         builder.append(" ");
         StringJoiner joiner = new StringJoiner(", ", "(", ")");
-        for (Modifier modifier: modifiers) {
-            int value = readValue.from(modifier);
-            CostType costType = readCostType.from(modifier);
-            joiner.add(String.format("%d%s", value, costType.equals(CostType.percentage)? "%": ""));
+        for (Modifier modifier : modifiers) {
+            int value = withReflection(read("cost"), read("value")).from(modifier);
+            CostType costType = withReflection(read("cost"), read("type")).from(modifier);
+            joiner.add(String.format("%d%s", value, costType.equals(CostType.percentage) ? "%" : ""));
         }
         builder.append(joiner);
 
