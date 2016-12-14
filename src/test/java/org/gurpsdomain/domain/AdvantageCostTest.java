@@ -73,7 +73,6 @@ class AdvantageCostTestCase {
     private AdvantageCostTestCase() {
     }
 
-    ;
 
     public AdvantageCostTestCase withBaseCost(int baseCost) {
         this.baseCost = baseCost;
