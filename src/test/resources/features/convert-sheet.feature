@@ -24,3 +24,10 @@ Feature: Convert a sheet
     And I add an advantage named "Combat Reflexes"
     When I convert it to json
     Then I expect an advantages points total of 15
+
+#  Scenario: add a skill to the initial sheet and convert from yml to json and check total skills points
+#
+#    Given an initial sheet
+#    And I add a skill named "Alchemy" for 3 points
+#    When I convert it to json
+#    Then I expect a skills points total of 3

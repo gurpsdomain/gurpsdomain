@@ -37,10 +37,14 @@ public class ConvertSheetSteps {
     }
 
 
-    @Given("^I add an advantage named \"([^\"]*)\"$")
+    @And("^I add an advantage named \"([^\"]*)\"$")
     public void i_add_an_advantage_named(String advantage) throws Throwable {
         reader = updateYaml(reader, "advantages:", "- name: " + advantage);
-        //TODO use the reader to modify the in-memory yaml? i.e. add the named advantage?
+    }
+
+    @And("^I add a skill named \"([^\"]*)\" for (\\d+) points$")
+    public void i_add_a_skill_named_for_points(String skill, int points) throws Throwable {
+        reader = updateYaml(reader, "skills:", "- name: " + skill + "\n points: " + points);
     }
 
 
@@ -66,11 +70,11 @@ public class ConvertSheetSteps {
         assertThat(data, hasPath("points.total", is(pointTotal)));
     }
 
-    @Then("^I expect an advantages points total of (\\d+)$")
-    public void i_expect_an_advantages_points_total_of(double pointTotal) throws Throwable {
+    @Then("^I expect (?:a|an) (.*) points total of (\\d+)$")
+    public void i_expect_an_X_points_total_of(String category, double pointsTotal) throws Throwable {
         Map<String, Object> data = outputAsMap(writer);
 
-        assertThat(data, hasPath("points.advantages", is(pointTotal)));
+        assertThat(data, hasPath("points." + category, is(pointsTotal)));
     }
 
 
