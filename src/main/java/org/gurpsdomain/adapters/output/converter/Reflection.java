@@ -50,9 +50,7 @@ class ReflectionCall implements ReflectionOption {
     }
 
     public ReflectionCall(String methodName, Object... arguments) {
-        for (Object argument : arguments) {
-            this.arguments.add(argument);
-        }
+        this.arguments = Arrays.asList(arguments);
         this.methodName = methodName;
     }
 
