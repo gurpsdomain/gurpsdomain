@@ -28,64 +28,59 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection readMetaData = withReflectionChain(read("metaData"));
     private Reflection readNote = withReflectionChain(read("note"));
     private Reflection readNotes = withReflectionChain(read("notes"));
+    private Reflection readAttributes = withReflectionChain(read("attributes"));
     private Reflection callCost = withReflectionChain(call("cost"));
-    private Sheet sheet;
+    private Reflection callHealth = withReflectionChain(call("health"));
+    private Reflection callDexterity = withReflectionChain(call("dexterity"));
+    private Reflection callIntelligence = withReflectionChain(call("intelligence"));
+    private Reflection callStrength = withReflectionChain(call("strength"));
+    private Reflection callWill = withReflectionChain(call("will"));
+    private Reflection callPerception = withReflectionChain(call("perception"));
+    private Reflection callBasicLift = withReflectionChain(call("basicLift"));
+    private Reflection callHitPoints = withReflectionChain(call("hitPoints"));
+    private Reflection callFatiguePoints = withReflectionChain(call("fatiguePoints"));
+    private Reflection callBasicSpeed = withReflectionChain(call("basicSpeed"));
+    private Reflection callBasicMove = withReflectionChain(call("basicMove"));
+    private Sheet domainSheet;
 
 
     @Override
     public SheetSheet convert(Sheet sheet) {
-        this.sheet = sheet;
+        this.domainSheet = sheet;
         return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
     }
 
     private Map<String, String> metaData() {
-        return readMetaData.from(sheet);
+        return readMetaData.from(domainSheet);
     }
 
     private SheetPoints points() {
-        return new SheetPoints(withReflectionChain(read("points"),read("total")).from(sheet), withReflectionChain(read("points"),read( "advantages")).from(sheet), withReflectionChain(read("points"),read( "skills")).from(sheet));
-    }
-
-    private SheetAttributes attributes() {
-        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
-        return new SheetAttributes(
-                withReflectionChain(call("health")).from(attributes),
-                withReflectionChain(call("dexterity")).from(attributes),
-                withReflectionChain(call("intelligence")).from(attributes),
-                withReflectionChain(call("strength")).from(attributes));
-    }
-
-    private SheetSecondaryCharacteristics secondaryCharacteristics() {
-        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
-        return new SheetSecondaryCharacteristics(
-                withReflectionChain(call("will")).from(attributes),
-                withReflectionChain(call("perception")).from(attributes),
-                withReflectionChain(call("basicLift")).from(attributes),
-                withReflectionChain(call("hitPoints")).from(attributes),
-                withReflectionChain(call("fatiguePoints")).from(attributes),
-                withReflectionChain(call("basicSpeed")).from(attributes),
-                withReflectionChain(call("basicMove")).from(attributes),
-                withReflectionChain(read("attributes"),read( "damageThrusting")).from(sheet).toString(),
-                withReflectionChain(read("attributes"),read( "damageSwinging")).from(sheet).toString());
+        return new SheetPoints(
+                withReflectionChain(read("points"), read("total")).from(domainSheet),
+                withReflectionChain(read("points"), read("advantages")).from(domainSheet),
+                withReflectionChain(read("points"), read("skills")).from(domainSheet));
     }
 
     private List<SheetAdvantage> advantages() {
         List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
-        List<Advantage> domainAdvantages = readAdvantages.from(sheet);
-
+        List<Advantage> domainAdvantages = readAdvantages.from(domainSheet);
         for (Advantage domainAdvantage : domainAdvantages) {
-
             List<SheetModifier> sheetModifiers = new ArrayList<SheetModifier>();
-
             for (Modifier modifier : (List<Modifier>) readModifiers.from(domainAdvantage)) {
                 Cost cost = readCost.from(modifier);
                 SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
-                SheetModifier sheetModifier = new SheetModifier(readName.from(modifier), sheetCost, readPageReference.from(modifier));
+                SheetModifier sheetModifier = new SheetModifier(
+                        readName.from(modifier),
+                        sheetCost,
+                        readPageReference.from(modifier));
                 sheetModifiers.add(sheetModifier);
             }
-
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(readName.from(domainAdvantage), callCost.from(domainAdvantage), ((List<AdvantageLevel>) readLevels.from(domainAdvantage)).size(), readPageReference.from(domainAdvantage), sheetModifiers);
-
+            SheetAdvantage sheetAdvantage = new SheetAdvantage(
+                    readName.from(domainAdvantage),
+                    callCost.from(domainAdvantage),
+                    ((List<AdvantageLevel>) readLevels.from(domainAdvantage)).size(),
+                    readPageReference.from(domainAdvantage),
+                    sheetModifiers);
             sheetAdvantages.add(sheetAdvantage);
         }
         return sheetAdvantages;
@@ -93,12 +88,18 @@ public class ReflectionConverter implements SheetConverter {
 
     private List<SheetSkill> skills() {
         List<SheetSkill> sheetSkills = new ArrayList<>();
-        List<Skill> domainSkills = readSkills.from(sheet);
-        Attributes attributes = withReflectionChain(read("attributes")).from(sheet);
-        Reflection callLevel = withReflectionChain(call("level", attributes));
+        List<Skill> domainSkills = readSkills.from(domainSheet);
+        Attributes domainAttributes = readAttributes.from(domainSheet);
+        Reflection callLevel = withReflectionChain(call("level", domainAttributes));
 
         for (Skill domainSkill : domainSkills) {
-            SheetSkill sheetSkill = new SheetSkill(readName.from(domainSkill), readCost.from(domainSkill), readPageReference.from(domainSkill), readControllingAttribute.from(domainSkill), readDifficultyLevel.from(domainSkill), callLevel.from(domainSkill));
+            SheetSkill sheetSkill = new SheetSkill(
+                    readName.from(domainSkill),
+                    readCost.from(domainSkill),
+                    readPageReference.from(domainSkill),
+                    readControllingAttribute.from(domainSkill),
+                    readDifficultyLevel.from(domainSkill),
+                    callLevel.from(domainSkill));
             sheetSkills.add(sheetSkill);
         }
         return sheetSkills;
@@ -106,12 +107,34 @@ public class ReflectionConverter implements SheetConverter {
 
     private List<SheetNote> notes() {
         List<SheetNote> sheetNotes = new ArrayList<>();
-        List<Note> domainNotes = readNotes.from(sheet);
-
+        List<Note> domainNotes = readNotes.from(domainSheet);
         for (Note domainNote : domainNotes) {
             SheetNote sheetNote = new SheetNote(readName.from(domainNote), readNote.from(domainNote));
             sheetNotes.add(sheetNote);
         }
         return sheetNotes;
+    }
+
+    private SheetAttributes attributes() {
+        Attributes domainAttributes = readAttributes.from(domainSheet);
+        return new SheetAttributes(
+                callHealth.from(domainAttributes),
+                callDexterity.from(domainAttributes),
+                callIntelligence.from(domainAttributes),
+                callStrength.from(domainAttributes));
+    }
+
+    private SheetSecondaryCharacteristics secondaryCharacteristics() {
+        Attributes attributes = readAttributes.from(domainSheet);
+        return new SheetSecondaryCharacteristics(
+                callWill.from(attributes),
+                callPerception.from(attributes),
+                callBasicLift.from(attributes),
+                callHitPoints.from(attributes),
+                callFatiguePoints.from(attributes),
+                callBasicSpeed.from(attributes),
+                callBasicMove.from(attributes),
+                withReflectionChain(read("attributes"), read("damageThrusting")).from(domainSheet).toString(),
+                withReflectionChain(read("attributes"), read("damageSwinging")).from(domainSheet).toString());
     }
 }
