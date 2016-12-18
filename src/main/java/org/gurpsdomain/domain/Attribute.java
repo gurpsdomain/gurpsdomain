@@ -46,7 +46,6 @@ public enum Attribute {
             double strength = ((Integer) attributes.value(Attribute.STRENGTH)).doubleValue();
             double basicLift = (strength * strength) / 5.0 + (double) bonus;
             if (basicLift > 10) {
-
                 basicLift = Math.round(basicLift);
             }
             return basicLift;

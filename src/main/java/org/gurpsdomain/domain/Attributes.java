@@ -34,9 +34,7 @@ public class Attributes {
         addIntBonus(Attribute.INTELLIGENCE, bonus);
     }
 
-     void addWillBonus(int bonus) {
-        addIntBonus(Attribute.WILL, bonus);
-    }
+     void addWillBonus(int bonus) {addIntBonus(Attribute.WILL, bonus); }
 
      void addPerceptionBonus(int bonus) {
         addIntBonus(Attribute.PERCEPTION, bonus);
@@ -48,10 +46,6 @@ public class Attributes {
 
      void addFatiguePointsBonus(int bonus) {
         addIntBonus(Attribute.FATIGUE_POINTS, bonus);
-    }
-
-     void addBasicLiftBonus(double bonus) {
-        addDoubleBonus(Attribute.BASIC_LIFT, bonus);
     }
 
      void addBasicSpeedBonus(double bonus) {
@@ -108,23 +102,23 @@ public class Attributes {
         return (int) value(Attribute.INTELLIGENCE);
     }
 
-    public int will() {
+    int will() {
         return (int) value(Attribute.WILL);
     }
 
-    public int perception() {
+    int perception() {
         return (int) value(Attribute.PERCEPTION);
     }
 
-    public int hitPoints() {
+    int hitPoints() {
         return (int) value(Attribute.HIT_POINTS);
     }
 
-    public int fatiguePoints() {
+    int fatiguePoints() {
         return (int) value(Attribute.FATIGUE_POINTS);
     }
 
-    public double basicLift() {
+    double basicLift() {
         return (double) value(Attribute.BASIC_LIFT);
     }
 
