@@ -14,6 +14,9 @@ import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectio
 
 public class ReflectionConverter implements SheetConverter {
 
+    private Sheet domainSheet;
+    private List<Advantage> domainAdvantages;
+    private List<Skill> domainSkills;
     private Reflection name = withReflectionChain(read("name"));
     private Reflection cost = withReflectionChain(read("cost"));
     private Reflection levels = withReflectionChain(read("levels"));
@@ -44,17 +47,17 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
     private Reflection basicSpeed = withReflectionChain(call("basicSpeed"));
     private Reflection basicMove = withReflectionChain(call("basicMove"));
-    private Sheet domainSheet;
-    private List<Advantage> domainAdvantages;
-    private List<Skill> domainSkills;
-
 
     @Override
     public SheetSheet convert(Sheet sheet) {
+        setDomainSheetData(sheet);
+        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
+    }
+
+    private void setDomainSheetData(Sheet sheet) {
         this.domainSheet = sheet;
         this.domainAdvantages = advantages.from(domainSheet);
         this.domainSkills = skills.from(domainSheet);
-        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
     }
 
     private Map<String, String> metaData() {
@@ -88,7 +91,7 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private List<SheetModifier> sheetModifiersFromDomainModifiers(List<Modifier> domainModifiers) {
-        List<SheetModifier> sheetModifiers = new ArrayList<SheetModifier>();
+        List<SheetModifier> sheetModifiers = new ArrayList<>();
         for (Modifier domainModifier : domainModifiers) {
             sheetModifiers.add(sheetModifierFromDomainModifier(domainModifier));
         }
@@ -96,8 +99,8 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetModifier sheetModifierFromDomainModifier(Modifier domainModifier) {
-        Cost cost = this.cost.from(domainModifier);
-        SheetCost sheetCost = new SheetCost(value.from(cost), type.from(cost));
+        Cost domainCost = cost.from(domainModifier);
+        SheetCost sheetCost = new SheetCost(value.from(domainCost), type.from(domainCost));
         return new SheetModifier(
                 name.from(domainModifier),
                 sheetCost,
@@ -114,14 +117,14 @@ public class ReflectionConverter implements SheetConverter {
 
     private SheetSkill sheetSkillFromDomainSkill(Skill domainSkill) {
         Attributes domainAttributes = attributes.from(domainSheet);
-        Reflection callLevel = withReflectionChain(call("level", domainAttributes));
+        Reflection level = withReflectionChain(call("level", domainAttributes));
         return new SheetSkill(
                 name.from(domainSkill),
                 cost.from(domainSkill),
                 pageReference.from(domainSkill),
                 controllingAttribute.from(domainSkill),
                 difficultyLevel.from(domainSkill),
-                callLevel.from(domainSkill));
+                level.from(domainSkill));
     }
 
     private List<SheetNote> notes() {
@@ -153,6 +156,7 @@ public class ReflectionConverter implements SheetConverter {
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),
                 basicMove.from(attributes),
+                //TODO statements below to be retrieved from attributes as above
                 withReflectionChain(read("attributes"), read("damageThrusting")).from(domainSheet).toString(),
                 withReflectionChain(read("attributes"), read("damageSwinging")).from(domainSheet).toString());
     }
