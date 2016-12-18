@@ -13,10 +13,6 @@ public class Modifier {
         this.pageReference = pageReference;
     }
 
-    public Cost getCost() {
-        return cost;
-    }
-
     void accumulateCost(AdvantageCostAccumulator accumulator) {
         cost.accumulateCost(accumulator);
     }
