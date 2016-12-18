@@ -42,11 +42,15 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection callBasicSpeed = withReflectionChain(call("basicSpeed"));
     private Reflection callBasicMove = withReflectionChain(call("basicMove"));
     private Sheet domainSheet;
+    private List<Advantage> domainAdvantages;
+    private List<SheetAdvantage> sheetAdvantages;
 
 
     @Override
     public SheetSheet convert(Sheet sheet) {
         this.domainSheet = sheet;
+        this.domainAdvantages = readAdvantages.from(domainSheet);
+        this.sheetAdvantages = new ArrayList<>();
         return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
     }
 
@@ -62,28 +66,36 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private List<SheetAdvantage> advantages() {
-        List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
-        List<Advantage> domainAdvantages = readAdvantages.from(domainSheet);
         for (Advantage domainAdvantage : domainAdvantages) {
-            List<SheetModifier> sheetModifiers = new ArrayList<SheetModifier>();
-            for (Modifier modifier : (List<Modifier>) readModifiers.from(domainAdvantage)) {
-                Cost cost = readCost.from(modifier);
-                SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
-                SheetModifier sheetModifier = new SheetModifier(
-                        readName.from(modifier),
-                        sheetCost,
-                        readPageReference.from(modifier));
-                sheetModifiers.add(sheetModifier);
-            }
-            SheetAdvantage sheetAdvantage = new SheetAdvantage(
-                    readName.from(domainAdvantage),
-                    callCost.from(domainAdvantage),
-                    ((List<AdvantageLevel>) readLevels.from(domainAdvantage)).size(),
-                    readPageReference.from(domainAdvantage),
-                    sheetModifiers);
-            sheetAdvantages.add(sheetAdvantage);
+            addToSheetAdvantages(domainAdvantage);
         }
         return sheetAdvantages;
+    }
+
+    private void addToSheetAdvantages(Advantage domainAdvantage) {
+        List<Modifier> domainModifiers = readModifiers.from(domainAdvantage);
+        List<SheetModifier> sheetModifiers = sheetModifiersFromDomainModifiers(domainModifiers);
+        SheetAdvantage sheetAdvantage = new SheetAdvantage(
+                readName.from(domainAdvantage),
+                callCost.from(domainAdvantage),
+                ((List<AdvantageLevel>) readLevels.from(domainAdvantage)).size(),
+                readPageReference.from(domainAdvantage),
+                sheetModifiers);
+        sheetAdvantages.add(sheetAdvantage);
+    }
+
+    private List<SheetModifier> sheetModifiersFromDomainModifiers(List<Modifier> domainModifiers) {
+        List<SheetModifier> sheetModifiers = new ArrayList<SheetModifier>();
+        for (Modifier domainModifier : domainModifiers) {
+            Cost cost = readCost.from(domainModifier);
+            SheetCost sheetCost = new SheetCost(readValue.from(cost), readType.from(cost));
+            SheetModifier sheetModifier = new SheetModifier(
+                    readName.from(domainModifier),
+                    sheetCost,
+                    readPageReference.from(domainModifier));
+            sheetModifiers.add(sheetModifier);
+        }
+        return sheetModifiers;
     }
 
     private List<SheetSkill> skills() {
