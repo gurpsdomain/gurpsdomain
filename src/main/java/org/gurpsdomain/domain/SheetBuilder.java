@@ -12,11 +12,11 @@ public class SheetBuilder {
         return new SheetBuilder();
     }
 
-    private List<Integer> awards = new ArrayList<Integer>();
-    private List<Note> notes = new ArrayList<Note>();
-    private List<Skill> skills = new ArrayList<Skill>();
-    private List<Advantage> advantages = new ArrayList<Advantage>();
-    private Map<String[], String> metaData = new HashMap<String[], String>();
+    private List<Integer> awards = new ArrayList<>();
+    private List<Note> notes = new ArrayList<>();
+    private List<Skill> skills = new ArrayList<>();
+    private List<Advantage> advantages = new ArrayList<>();
+    private Map<String[], String> metaData = new HashMap<>();
 
     public void award(int amount) {
         awards.add(amount);
@@ -47,11 +47,10 @@ public class SheetBuilder {
 }
 
 class Util {
-    public static String[] slice(String[] original, int startInclusive, int finishExclusive) {
-        String[] slice = new String[finishExclusive - startInclusive];
-        for (int index = startInclusive; index < finishExclusive; index++) {
-            slice[index - startInclusive] = original[index];
-        }
+    static String[] slice(String[] original, int startInclusive, int finishExclusive) {
+        int length = finishExclusive - startInclusive;
+        String[] slice = new String[length];
+        System.arraycopy(original,startInclusive,slice,0,length);
         return slice;
     }
 }
