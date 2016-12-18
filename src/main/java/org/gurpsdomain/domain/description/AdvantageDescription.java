@@ -43,26 +43,22 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     public Advantage createAdvantage(List<String> modifierNames, List<String> attributeBonusAttributes, int levelAmount) {
-        List<Modifier> modifiers = new ArrayList<Modifier>();
+        List<Modifier> modifiers = new ArrayList<>();
         for (String modifierName : modifierNames) {
             ModifierDescriptionPredicate predicate = Name.name(modifierName);
             if (hasModifier(predicate)) {
                 modifiers.add(createModifier(predicate));
             }
         }
-
-        List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
+        List<AttributeBonus> attributeBonuses = new ArrayList<>();
         for (String attributeBonusAttribute : attributeBonusAttributes) {
 //TODO
         }
-
-        List<AdvantageLevel> advantageLevels = new ArrayList<AdvantageLevel>();
+        List<AdvantageLevel> advantageLevels = new ArrayList<>();
         for (int i = 0; i < levelAmount; i++) {
             advantageLevels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
         }
-
-        Advantage advantage = new Advantage(name, basePoints, reference, modifiers, attributeBonuses, advantageLevels);
-        return advantage;
+        return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, advantageLevels);
     }
 
     public void registerIn(Repository<AdvantageDescription> repository) {
@@ -70,10 +66,10 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     private boolean hasModifier(ModifierDescriptionPredicate predicate) {
-        return modifiers.stream().anyMatch(m -> predicate.isFulfilledBy(m));
+        return modifiers.stream().anyMatch(predicate::isFulfilledBy);
     }
 
     private Modifier createModifier(ModifierDescriptionPredicate predicate) {
-        return modifiers.stream().filter(m -> predicate.isFulfilledBy(m)).findAny().get().createModifier();
+        return modifiers.stream().filter(predicate::isFulfilledBy).findAny().get().createModifier();
     }
 }
