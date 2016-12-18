@@ -1,13 +1,12 @@
 package org.gurpsdomain.domain;
 
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum DifficultyLevel {
     EASY(0), AVERAGE(-1), HARD(-2), VERY_HARD(-3);
 
-    static final private Map<String, DifficultyLevel> descriptionToLevel = new HashMap<String, DifficultyLevel>();
+    static final private Map<String, DifficultyLevel> descriptionToLevel = new HashMap<>();
 
     static {
         descriptionToLevel.put("E", DifficultyLevel.EASY);
@@ -32,7 +31,7 @@ public enum DifficultyLevel {
 
     public int determineDelta(int cost) {
         if (cost < 2) {
-            return 0 + offset;
+            return offset;
         }
         if (cost < 4) {
             return 1 + offset;

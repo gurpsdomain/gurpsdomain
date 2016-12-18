@@ -15,7 +15,7 @@ public class Skill {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public void payCost(Points points) {
+    void payCost(Points points) {
         points.addSkill(cost);
     }
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Attributes {
-    private Map<Attribute, Object> bonus = new HashMap<Attribute, Object>();
+    private Map<Attribute, Object> bonus = new HashMap<>();
 
     public Object value(Attribute attribute) {
         return attribute.value(this, bonus.getOrDefault(attribute, attribute.defaultBonus()));
@@ -18,55 +18,53 @@ public class Attributes {
         this.damageSwinging = new Dice(1, 1);
     }
 
-    public void addStrengthBonus(int bonus) {
+     void addStrengthBonus(int bonus) {
         addIntBonus(Attribute.STRENGTH, bonus);
     }
 
-    public void addDexterityBonus(int bonus) {
+     void addDexterityBonus(int bonus) {
         addIntBonus(Attribute.DEXTERITY, bonus);
     }
 
-    public void addHealthBonus(int bonus) {
+     void addHealthBonus(int bonus) {
         addIntBonus(Attribute.HEALTH, bonus);
     }
 
-    public void addIntelligenceBonus(int bonus) {
+     void addIntelligenceBonus(int bonus) {
         addIntBonus(Attribute.INTELLIGENCE, bonus);
     }
 
-    public void addWillBonus(int bonus) {
+     void addWillBonus(int bonus) {
         addIntBonus(Attribute.WILL, bonus);
     }
 
-    public void addPerceptionBonus(int bonus) {
+     void addPerceptionBonus(int bonus) {
         addIntBonus(Attribute.PERCEPTION, bonus);
     }
 
-    public void addHitPointsBonus(int bonus) {
+     void addHitPointsBonus(int bonus) {
         addIntBonus(Attribute.HIT_POINTS, bonus);
     }
 
-    public void addFatiguePointsBonus(int bonus) {
+     void addFatiguePointsBonus(int bonus) {
         addIntBonus(Attribute.FATIGUE_POINTS, bonus);
     }
 
-    public void addBasicLiftBonus(double bonus) {
+     void addBasicLiftBonus(double bonus) {
         addDoubleBonus(Attribute.BASIC_LIFT, bonus);
     }
 
-    public void addBasicSpeedBonus(double bonus) {
+     void addBasicSpeedBonus(double bonus) {
         addDoubleBonus(Attribute.BASIC_SPEED, bonus);
     }
 
-    public void addBasicMoveBonus(int bonus) {
+     void addBasicMoveBonus(int bonus) {
         addIntBonus(Attribute.BASIC_MOVE, bonus);
     }
 
     public void addDamageThrustingBonus(Dice bonus) {
         damageThrusting.addDice(bonus);
     }
-
-    ;
 
     public void addDamageSwingingBonus(Dice bonus) {
         damageSwinging.addDice(bonus);
@@ -94,19 +92,19 @@ public class Attributes {
         return (int) value(attribute);
     }
 
-    public int strength() {
+    int strength() {
         return (int) value(Attribute.STRENGTH);
     }
 
-    public int dexterity() {
+    int dexterity() {
         return (int) value(Attribute.DEXTERITY);
     }
 
-    public int health() {
+    int health() {
         return (int) value(Attribute.HEALTH);
     }
 
-    public int intelligence() {
+    int intelligence() {
         return (int) value(Attribute.INTELLIGENCE);
     }
 
@@ -130,11 +128,11 @@ public class Attributes {
         return (double) value(Attribute.BASIC_LIFT);
     }
 
-    public double basicSpeed() {
+    double basicSpeed() {
         return (double) value(Attribute.BASIC_SPEED);
     }
 
-    public int basicMove() {
+    int basicMove() {
         return (int) value(Attribute.BASIC_MOVE);
     }
 }

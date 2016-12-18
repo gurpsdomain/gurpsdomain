@@ -17,7 +17,7 @@ public class Modifier {
         return cost;
     }
 
-    public void accumulateCost(AdvantageCostAccumulator accumulator) {
+    void accumulateCost(AdvantageCostAccumulator accumulator) {
         cost.accumulateCost(accumulator);
     }
 }

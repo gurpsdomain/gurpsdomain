@@ -14,7 +14,7 @@ public class Advantage {
     private List<AttributeBonus> attributeBonuses;
 
     public Advantage(String name, int cost, String pageReference) {
-        this(name, cost, pageReference, new ArrayList<Modifier>(), new ArrayList<AttributeBonus>(), new ArrayList<AdvantageLevel>());
+        this(name, cost, pageReference, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<AdvantageLevel> levels) {
@@ -37,14 +37,12 @@ public class Advantage {
         return accumulator.cost();
     }
 
-    public void payCost(Points points) {
+    void payCost(Points points) {
         points.addAdvantage(cost());
     }
 
-    public void updateAttributes(Attributes attributes) {
+    void updateAttributes(Attributes attributes) {
         attributes.addHealthBonus(0);
     } //TODO implement correct logic
     // AdvantageDescription will need to contain info on bonuses so we can use these
-
-
 }

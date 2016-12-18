@@ -27,38 +27,38 @@ public class Sheet {
     }
 
     private final Points points;
-    private List<Note> notes = new ArrayList<Note>();
-    private final List<Advantage> advantages = new ArrayList<Advantage>();
-    private final List<Skill> skills = new ArrayList<Skill>();
-    private final Map<String, Object> metaData = new HashMap<String, Object>();
+    private List<Note> notes = new ArrayList<>();
+    private final List<Advantage> advantages = new ArrayList<>();
+    private final List<Skill> skills = new ArrayList<>();
+    private final Map<String, Object> metaData = new HashMap<>();
     private final Attributes attributes;
 
-    public Sheet() {
+    private Sheet() {
         this.points = new Points(0);
         this.attributes = new Attributes();
     }
 
-    public void award(int amount) {
+    private void award(int amount) {
         points.award(amount);
     }
 
-    public void addNote(Note note) {
+    private void addNote(Note note) {
         notes.add(note);
     }
 
 
-    public void addAdvantage(Advantage advantage) {
+    private void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
         advantage.updateAttributes(attributes);
         advantages.add(advantage);
     }
 
-    public void addSkill(Skill skill) {
+    private void addSkill(Skill skill) {
         skill.payCost(points);
         skills.add(skill);
     }
 
-    public void setMetaDataProperty(String[] keys, String value) {
+    private void setMetaDataProperty(String[] keys, String value) {
         Map<String, Object> current = metaData;
         for (int index = 0; index < keys.length - 1; index++) {
             if (!current.containsKey(keys[index])) {

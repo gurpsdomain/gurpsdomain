@@ -12,7 +12,7 @@ public class Cost {
         this.value = value;
     }
 
-    public void accumulateCost(AdvantageCostAccumulator accumulator) {
+    void accumulateCost(AdvantageCostAccumulator accumulator) {
         type.accumulateCost(accumulator, value);
     }
 }

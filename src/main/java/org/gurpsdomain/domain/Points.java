@@ -9,11 +9,11 @@ public class Points {
         this.total = total;
     }
 
-    public void award(int amount) {
+    void award(int amount) {
         this.total += amount;
     }
 
-    public void addAdvantage(int amount) {this.advantages += amount;}
+    void addAdvantage(int amount) {this.advantages += amount;}
 
-    public void addSkill(int amount) {this.skills += amount;}
+    void addSkill(int amount) {this.skills += amount;}
 }

@@ -78,7 +78,7 @@ public enum Attribute {
     DAMAGE("Dmg")/* FIXME this is not implemented in attributes, copying */;
 
 
-    static final private Map<String, Attribute> descriptionToAttribute = new HashMap<String, Attribute>();
+    static final private Map<String, Attribute> descriptionToAttribute = new HashMap<>();
 
     static {
         for (Attribute attribute: controllingAttributes()) {
