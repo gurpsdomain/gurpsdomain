@@ -12,9 +12,9 @@ public class And implements ModifierDescriptionPredicate {
         return new And(Arrays.asList(predicates));
     }
 
-    private final List<ModifierDescriptionPredicate> predicates = new ArrayList<ModifierDescriptionPredicate>();
+    private final List<ModifierDescriptionPredicate> predicates = new ArrayList<>();
 
-    public And(Collection<ModifierDescriptionPredicate> predicates) {
+    private And(Collection<ModifierDescriptionPredicate> predicates) {
         this.predicates.addAll(predicates);
     }
 

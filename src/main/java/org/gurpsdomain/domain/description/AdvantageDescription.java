@@ -57,8 +57,8 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         }
 
         List<AdvantageLevel> advantageLevels = new ArrayList<AdvantageLevel>();
-        for(int i = 0; i < levelAmount; i++) {
-                advantageLevels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
+        for (int i = 0; i < levelAmount; i++) {
+            advantageLevels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
         }
 
         Advantage advantage = new Advantage(name, basePoints, reference, modifiers, attributeBonuses, advantageLevels);

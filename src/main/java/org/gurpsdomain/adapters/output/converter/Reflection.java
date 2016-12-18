@@ -13,7 +13,7 @@ public class Reflection {
     }
 
 
-    public static ReflectionOption call(String methodName, Object... arguments) {
+    static ReflectionOption call(String methodName, Object... arguments) {
         return new ReflectionCall(methodName, arguments);
     }
 
@@ -38,10 +38,10 @@ public class Reflection {
 
 class ReflectionCall implements ReflectionOption {
     private final String methodName;
-    private List<Object> arguments = new ArrayList<Object>();
+    private List<Object> arguments = new ArrayList<>();
 
 
-    public ReflectionCall(String methodName, Object... arguments) {
+    ReflectionCall(String methodName, Object... arguments) {
         this.arguments = Arrays.asList(arguments);
         this.methodName = methodName;
     }
@@ -62,7 +62,7 @@ class ReflectionCall implements ReflectionOption {
 
 
     private <T> T unsafeCallOf(String methodName, Object object, List<Object> arguments) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        List<Class> argumentTypes = new ArrayList<Class>();
+        List<Class> argumentTypes = new ArrayList<>();
         int numberOfArguments = arguments.size();
         for (Object argument : arguments) {
             argumentTypes.add(argument.getClass());
@@ -79,7 +79,7 @@ class ReflectionRead implements ReflectionOption {
 
     private final String fieldName;
 
-    public ReflectionRead(String fieldName) {
+    ReflectionRead(String fieldName) {
         this.fieldName = fieldName;
     }
 
