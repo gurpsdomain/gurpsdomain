@@ -38,29 +38,70 @@
     "intelligence": 10
   },
   "secondaryCharacteristics": {
-  "will": 10,
-  "perception": 10,
-  "basicLift": 20.0,
-  "hitPoints": 10,
-  "fatiguePoints": 10,
-  "basicSpeed": 5.0,
-  "basicMove": 5,
-  "damageSwinging": "1d+1",
-  "damageThrusting": "1d+1"
-},
-
+    "will": 10,
+    "perception": 10,
+    "basicLift": 20.0,
+    "hitPoints": 10,
+    "fatiguePoints": 10,
+    "basicSpeed": 5.0,
+    "basicMove": 5,
+    "damageSwinging": "1d+1",
+    "damageThrusting": "1d+1"
+  },
   "advantages": [
-    { "name": "Absolute Direction", "points": 10, "level": 0, "pageReference": "B34", "modifiers": [{"name": "3D Spatial Sense", "pageReference": "B34"}] },
-    { "name": "Flexibility", "points": 5, "level": 0, "pageReference": "B56", "modifiers": [] },
-    { "name": "Power Investiture", "points": 30, "level": 3, "pageReference": "B77", "modifiers": [] }
+    {
+      "name": "Absolute Direction",
+      "points": 10,
+      "level": 0,
+      "pageReference": "B34",
+      "modifiers": [
+        {
+          "name": "3D Spatial Sense",
+          "pageReference": "B34"
+        }
+      ]
+    },
+    {
+      "name": "Flexibility",
+      "points": 5,
+      "level": 0,
+      "pageReference": "B56",
+      "modifiers": []
+    },
+    {
+      "name": "Power Investiture",
+      "points": 30,
+      "level": 3,
+      "pageReference": "B77",
+      "modifiers": []
+    }
   ],
   "skills": [
-    { "name": "Alchemy", "points": 3, "level": 8,"pageReference": "B174", "controllingAttribute": "IQ", "difficultyLevel": "VERY_HARD" },
-    { "name": "Stealth", "points": 2, "level": 10, "pageReference": "B222", "controllingAttribute": "DX", "difficultyLevel": "AVERAGE" }
-  ],
-
-  "notes": [
-    { "name": "general note", "note": "This is a very important note that I would like to have on my sheet"},
-    { "name": "combat", "note": "Do extra damage by going all out!"}
-]
+    {
+      "name": "Alchemy",
+      "points": 3,
+      "level": 8,
+      "pageReference": "B174",
+      "controllingAttribute": "IQ",
+      "difficultyLevel": "VERY_HARD"
+    },
+    {
+      "name": "Stealth",
+      "points": 2,
+      "level": 10,
+      "pageReference": "B222",
+      "controllingAttribute": "DX",
+      "difficultyLevel": "AVERAGE"
     }
+  ],
+  "notes": [
+    {
+      "name": "general note",
+      "note": "This is a very important note that I would like to have on my sheet"
+    },
+    {
+      "name": "combat",
+      "note": "Do extra damage by going all out!"
+    }
+  ]
+}
