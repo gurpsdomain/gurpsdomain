@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Name.name;
+import static org.gurpsdomain.domain.description.predicate.Or.or;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -28,6 +29,15 @@ public class ModifierDescriptionPredicateTest {
 
         assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
         assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
+    }
+
+    @Test
+    public void orShouldCombinePredicate() {
+        ModifierDescriptionPredicate predicate = or(name("A"), name("B"));
+
+        assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
+        assertTrue(predicate.isFulfilledBy(aModifierNamed("B")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("C")));
     }
 
     private ModifierDescription aModifierNamed(String aName) {
