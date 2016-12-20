@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 public class SnakeYamlTest {
     @Test
     public void shouldReturnMap() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream(new File("src/test/resources/snake.yml"));
+        FileInputStream input = new FileInputStream(new File("src/test/resources/tools/snake.yml"));
         Yaml yaml = new Yaml();
 
         Map<String, Object> data = (Map<String, Object>) yaml.load(input);
