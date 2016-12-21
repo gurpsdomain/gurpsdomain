@@ -14,12 +14,6 @@ public class LeveledAdvantage extends Advantage {
         this.pointsPerLevel = pointsPerLevel;
     }
 
-
-    protected int cost() {
-        return super.cost();
-    }
-
-
     @Override
     protected void accumulateCost(AdvantageCostAccumulator accumulator) {
         super.accumulateCost(accumulator);

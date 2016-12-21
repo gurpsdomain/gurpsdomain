@@ -62,17 +62,38 @@ class ReflectionCall implements ReflectionOption {
 
 
     private <T> T unsafeCallOf(String methodName, Object object, List<Object> arguments) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class[] argumentClasses = argumentClasses(arguments);
+        Class<?> receiver = receiverOf(methodName, argumentClasses, object);
+        Method method = receiver.getDeclaredMethod(methodName, argumentClasses);
+        method.setAccessible(true);
+        return (T) method.invoke(object, arguments.toArray(new Object[argumentClasses.length]));
+    }
+
+    private Class[] argumentClasses(List<Object> arguments) {
         List<Class> argumentTypes = new ArrayList<>();
-        int numberOfArguments = arguments.size();
         for (Object argument : arguments) {
             argumentTypes.add(argument.getClass());
         }
-        Class<?> objectClass = object.getClass();
-        Method method = objectClass.getDeclaredMethod(methodName, argumentTypes.toArray(new Class[numberOfArguments]));
-        method.setAccessible(true);
-        return (T) method.invoke(object, arguments.toArray(new Object[numberOfArguments]));
+        return argumentTypes.toArray(new Class[arguments.size()]);
     }
 
+
+    private Class<?> receiverOf(String methodName, Class[] argumentClasses, Object object) throws NoSuchMethodException {
+        Class<?> currentClass = object.getClass();
+        Method field = null;
+        while (field == null) {
+            try {
+                field = currentClass.getDeclaredMethod(methodName, argumentClasses);
+            } catch (NoSuchMethodException e) {
+                Class<?> superClass = currentClass.getSuperclass();
+                if (superClass == null) {
+                    throw e;
+                }
+                currentClass = superClass;
+            }
+        }
+        return currentClass;
+    }
 }
 
 class ReflectionRead implements ReflectionOption {
@@ -97,14 +118,14 @@ class ReflectionRead implements ReflectionOption {
     }
 
     private <T> T unsafeReadFrom(String property, Object object) throws IllegalAccessException, NoSuchFieldException {
-        Class<?> receiver = receiverClassOf(property, object);
+        Class<?> receiver = receiverOf(property, object);
         object = receiver.cast(object);
         Field field = receiver.getDeclaredField(property);
         field.setAccessible(true);
         return (T) field.get(object);
     }
 
-    private Class<?> receiverClassOf(String property, Object object) throws NoSuchFieldException {
+    private Class<?> receiverOf(String property, Object object) throws NoSuchFieldException {
         Class<?> currentClass = object.getClass();
         Field field = null;
         while (field == null) {
