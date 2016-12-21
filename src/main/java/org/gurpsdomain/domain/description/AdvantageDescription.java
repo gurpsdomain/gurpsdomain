@@ -54,11 +54,11 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         for (String attributeBonusAttribute : attributeBonusAttributes) {
 //TODO
         }
-        List<AdvantageLevel> advantageLevels = new ArrayList<>();
-        for (int i = 0; i < levelAmount; i++) {
-            advantageLevels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
+        if (pointsPerLevel != null) {
+            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, levelAmount, pointsPerLevel);
+        } else {
+            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses);
         }
-        return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, advantageLevels);
     }
 
     public void registerIn(Repository<AdvantageDescription> repository) {

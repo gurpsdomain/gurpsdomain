@@ -27,12 +27,30 @@ public class ReflectionReadTest {
 
         assertThat(value, is(ANY_INT_VALUE));
     }
+
+    @Test
+    public void shouldReadPropertyOfSuperClass() {
+        SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
+
+        Integer value = withReflectionChain(read("parentValue")).from(singleValue);
+
+        assertThat(value, is(2 * ANY_INT_VALUE));
+    }
 }
 
-class SingleValue {
+class Parent {
+    private int parentValue;
+
+    public Parent(int parentValue) {
+        this.parentValue = parentValue;
+    }
+}
+
+class SingleValue extends Parent {
     private int value;
 
     public SingleValue(int value) {
+        super(2 * value);
         this.value = value;
     }
 }

@@ -9,36 +9,30 @@ public class Advantage {
     private String name;
     private String pageReference;
     private int baseCost;
-    private List<AdvantageLevel> levels;
     private List<Modifier> modifiers;
     private List<AttributeBonus> attributeBonuses;
 
-    public Advantage(String name, int cost, String pageReference) {
-        this(name, cost, pageReference, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-    }
-
-    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<AdvantageLevel> levels) {
+    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses) {
         this.name = name;
         this.baseCost = baseCost;
         this.pageReference = pageReference;
         this.modifiers = modifiers;
         this.attributeBonuses = attributeBonuses;
-        this.levels = levels;
+    }
+    void payCost(Points points) {
+        points.addAdvantage(cost());
     }
 
-    private int cost() {
+    protected int cost() {
         AdvantageCostAccumulator accumulator = new AdvantageCostAccumulator(baseCost);
-        for (Modifier modifier : modifiers) {
-            modifier.accumulateCost(accumulator);
-        }
-        for (AdvantageLevel level : levels) {
-            level.accumulateCost(accumulator);
-        }
+        accumulateCost(accumulator);
         return accumulator.cost();
     }
 
-    void payCost(Points points) {
-        points.addAdvantage(cost());
+    protected void accumulateCost(AdvantageCostAccumulator accumulator) {
+        for (Modifier modifier : modifiers) {
+            modifier.accumulateCost(accumulator);
+        }
     }
 
     void updateAttributes(Attributes attributes) {

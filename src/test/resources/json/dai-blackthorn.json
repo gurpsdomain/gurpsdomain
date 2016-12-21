@@ -52,7 +52,6 @@
     {
       "name": "Absolute Direction",
       "points": 10,
-      "level": 0,
       "pageReference": "B34",
       "modifiers": [
         {
@@ -64,7 +63,6 @@
     {
       "name": "Flexibility",
       "points": 5,
-      "level": 0,
       "pageReference": "B56",
       "modifiers": []
     },

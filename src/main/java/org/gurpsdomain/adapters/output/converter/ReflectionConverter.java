@@ -20,6 +20,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection name = withReflectionChain(read("name"));
     private Reflection cost = withReflectionChain(read("cost"));
     private Reflection levels = withReflectionChain(read("levels"));
+    private Reflection level = withReflectionChain(read("level"));
     private Reflection pageReference = withReflectionChain(read("pageReference"));
     private Reflection modifiers = withReflectionChain(read("modifiers"));
     private Reflection value = withReflectionChain(read("value"));
@@ -84,12 +85,20 @@ public class ReflectionConverter implements SheetConverter {
     private SheetAdvantage sheetAdvantageFromDomainAdvantage(Advantage domainAdvantage) {
         List<Modifier> domainModifiers = modifiers.from(domainAdvantage);
         List<SheetModifier> sheetModifiers = sheetModifiersFromDomainModifiers(domainModifiers);
-        return new SheetAdvantage(
-                name.from(domainAdvantage),
-                callCost.from(domainAdvantage),
-                ((List<AdvantageLevel>) levels.from(domainAdvantage)).size(), //FIXME: nasty?
-                pageReference.from(domainAdvantage),
-                sheetModifiers);
+        if (domainAdvantage instanceof LeveledAdvantage) {
+            return new SheetLeveledAdvantage(
+                    name.from(domainAdvantage),
+                    callCost.from(domainAdvantage),
+                    level.from(domainAdvantage),
+                    pageReference.from(domainAdvantage),
+                    sheetModifiers);
+        } else {
+            return new SheetAdvantage(
+                    name.from(domainAdvantage),
+                    callCost.from(domainAdvantage),
+                    pageReference.from(domainAdvantage),
+                    sheetModifiers);
+        }
     }
 
     private List<SheetModifier> sheetModifiersFromDomainModifiers(List<Modifier> domainModifiers) {

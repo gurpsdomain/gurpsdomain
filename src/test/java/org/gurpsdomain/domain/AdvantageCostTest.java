@@ -62,13 +62,14 @@ class AdvantageCostTestCase {
     }
 
     private int baseCost = 100;
-    private int pointsPerLevel = 10;
+    private int pointsPerLevel = 0;
 
 
     private List<Modifier> modifiers = new ArrayList<Modifier>();
     private List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
-    private List<AdvantageLevel> levels = new ArrayList<AdvantageLevel>();
+    private Integer level;
     public int expectedCost = 100;
+
 
     private AdvantageCostTestCase() {
     }
@@ -79,10 +80,8 @@ class AdvantageCostTestCase {
         return this;
     }
 
-    public AdvantageCostTestCase withLevel(int amount) {
-        for (int i = 0; i < amount; i++) {
-            this.levels.add(new AdvantageLevel(new Cost(pointsPerLevel, CostType.points)));
-        }
+    public AdvantageCostTestCase withLevel(int level) {
+        this.level = level;
         return this;
     }
 
@@ -107,7 +106,11 @@ class AdvantageCostTestCase {
     }
 
     public Advantage create() {
-        return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, levels);
+        if (level != null) {
+            return new LeveledAdvantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, level, pointsPerLevel);
+        } else {
+            return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses);
+        }
     }
 
     @Override
