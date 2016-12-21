@@ -97,6 +97,14 @@ class ReflectionRead implements ReflectionOption {
     }
 
     private <T> T unsafeReadFrom(String property, Object object) throws IllegalAccessException, NoSuchFieldException {
+        Class<?> receiver = receiverClassOf(property, object);
+        object = receiver.cast(object);
+        Field field = receiver.getDeclaredField(property);
+        field.setAccessible(true);
+        return (T) field.get(object);
+    }
+
+    private Class<?> receiverClassOf(String property, Object object) throws NoSuchFieldException {
         Class<?> currentClass = object.getClass();
         Field field = null;
         while (field == null) {
@@ -110,8 +118,6 @@ class ReflectionRead implements ReflectionOption {
                 currentClass = superClass;
             }
         }
-        object = currentClass.cast(object);
-        field.setAccessible(true);
-        return (T) field.get(object);
+        return currentClass;
     }
 }
