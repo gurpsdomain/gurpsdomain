@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.gurpsdomain.domain.description.predicate.Note.note;
+import static org.gurpsdomain.domain.description.predicate.Or.or;
+
 @XmlRootElement(name = "advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AdvantageDescription implements Registerable<AdvantageDescription> {
@@ -42,10 +45,10 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
     }
 
-    public Advantage createAdvantage(List<String> modifierNames, List<String> attributeBonusAttributes, int levelAmount) {
+    public Advantage createAdvantage(List<String> modifierIdentifiers, List<String> attributeBonusAttributes, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
-        for (String modifierName : modifierNames) {
-            ModifierDescriptionPredicate predicate = Name.name(modifierName);
+        for (String modifierIdentifier : modifierIdentifiers) {
+            ModifierDescriptionPredicate predicate = or(Name.name(modifierIdentifier),note(modifierIdentifier));
             if (hasModifier(predicate)) {
                 modifiers.add(createModifier(predicate));
             }

@@ -27,9 +27,9 @@
   },
   "points": {
     "total": 258,
-    "advantages": 45,
+    "advantages": 60,
     "skills": 5,
-    "unspent": 208
+    "unspent": 193
   },
   "attributes": {
     "strength": 10,
@@ -57,6 +57,17 @@
         {
           "name": "3D Spatial Sense",
           "pageReference": "B34"
+        }
+      ]
+    },
+    {
+      "name": "Speak With Animals",
+      "points": 15,
+      "pageReference": "B87",
+      "modifiers": [
+        {
+          "name": "Specialized",
+          "pageReference": "B87"
         }
       ]
     },

@@ -12,14 +12,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ModifierDescription {
     @XmlElement(name = "name")
     private String name;
-    @XmlElement(name = "cost", required=false)
+    @XmlElement(name = "cost", required = false)
     private CostDescription cost;
-    @XmlElement(name = "notes", required=false)
+    @XmlElement(name = "notes", required = false)
     private String note;
     @XmlElement(name = "reference")
     private String pageReference;
 
-    public ModifierDescription(){
+    public ModifierDescription() {
         /* needed by JAXB */
     }
 
@@ -31,14 +31,26 @@ public class ModifierDescription {
     }
 
     public boolean matchesName(String wantedName) {
-        return this.name.equals(wantedName);
+        try {
+            return this.name.equals(wantedName);
+        }
+        catch (NullPointerException e){
+            return false;
+        }
     }
 
     public boolean matchesNote(String wantedNote) {
-        return this.note.equals(wantedNote);
+        try {
+            return this.note.equals(wantedNote);
+        }
+        catch (NullPointerException e){
+            return false;
+        }
     }
 
     public Modifier createModifier() {
-        return new Modifier(name, cost.createCost(), pageReference);
+        //TODO here construct a name as concat with a note when required? In that case nullify the note?
+        //TODO From this point on it is only for output purposes?
+        return new Modifier(name, cost.createCost(), pageReference, note);
     }
 }
