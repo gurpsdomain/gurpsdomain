@@ -26,6 +26,16 @@ public class PerceptionTest {
     }
 
     @Test
+    public void shouldDetermineCorrectPerceptionAfterIntelligenceBonus() {
+        Attributes attributes = new Attributes();
+        attributes.addIntelligenceBonus(1);
+
+        int perception = attributes.perception();
+
+        assertThat(perception, is(11));
+    }
+
+    @Test
     public void shouldDetermineCorrectPerceptionAfterNegativePerceptionBonus() {
         Attributes attributes = new Attributes();
         attributes.addPerceptionBonus(-1);

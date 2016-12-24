@@ -26,6 +26,16 @@ public class WillTest {
     }
 
     @Test
+    public void shouldDetermineCorrectWillAfterIntelligenceBonus() {
+        Attributes attributes = new Attributes();
+        attributes.addIntelligenceBonus(1);
+
+        int will = attributes.will();
+
+        assertThat(will, is(11));
+    }
+
+    @Test
     public void shouldDetermineCorrectWillAfterNegativeWillBonus() {
         Attributes attributes = new Attributes();
         attributes.addWillBonus(-1);
