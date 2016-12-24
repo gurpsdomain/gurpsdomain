@@ -21,19 +21,24 @@ public class ModifierDescriptionPredicateTest {
         ModifierDescriptionPredicate predicate = name("A");
 
         assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("a")));
         assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("AB")));
     }
 
     @Test
-    public void andShouldCombinePredicates() {
-        ModifierDescriptionPredicate predicate = and(name("A"), Always.True);
+    public void andShouldOperateAndOnPredicates() {
+        ModifierDescriptionPredicate truePredicate = and(name("A"), Always.True);
+        ModifierDescriptionPredicate falsePredicate = and(name("A"), Always.False);
 
-        assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
-        assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
+        assertTrue(truePredicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(truePredicate.isFulfilledBy(aModifierNamed("B")));
+        assertFalse(falsePredicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(falsePredicate.isFulfilledBy(aModifierNamed("B")));
     }
 
     @Test
-    public void orShouldCombinePredicates() {
+    public void orShouldOperateOrOnPredicates() {
         ModifierDescriptionPredicate predicate = or(name("A"), name("B"));
 
         assertTrue(predicate.isFulfilledBy(aModifierNamed("A")));
@@ -42,11 +47,20 @@ public class ModifierDescriptionPredicateTest {
     }
 
     @Test
-    public void notShouldCombinePredicates() {
+    public void notShouldNegatePredicates() {
         ModifierDescriptionPredicate predicate = not(name("A"));
 
         assertFalse(predicate.isFulfilledBy(aModifierNamed("A")));
         assertTrue(predicate.isFulfilledBy(aModifierNamed("B")));
+        assertTrue(predicate.isFulfilledBy(aModifierNamed("C")));
+    }
+
+    @Test
+    public void predicatesCanBeMixed() {
+        ModifierDescriptionPredicate predicate = and(not(name("A")),not(name("B")));
+
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("A")));
+        assertFalse(predicate.isFulfilledBy(aModifierNamed("B")));
         assertTrue(predicate.isFulfilledBy(aModifierNamed("C")));
     }
 
