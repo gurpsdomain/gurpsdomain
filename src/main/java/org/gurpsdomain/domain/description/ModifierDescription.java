@@ -14,6 +14,8 @@ public class ModifierDescription {
     private String name;
     @XmlElement(name = "cost", required=false)
     private CostDescription cost;
+    @XmlElement(name = "notes", required=false)
+    private String note;
     @XmlElement(name = "reference")
     private String pageReference;
 
@@ -21,14 +23,19 @@ public class ModifierDescription {
         /* needed by JAXB */
     }
 
-    public ModifierDescription(String name, CostDescription cost, String pageReference) {
+    public ModifierDescription(String name, CostDescription cost, String pageReference, String note) {
         this.name = name;
         this.cost = cost;
         this.pageReference = pageReference;
+        this.note = note;
     }
 
     public boolean matchesName(String wantedName) {
         return this.name.equals(wantedName);
+    }
+
+    public boolean matchesNote(String wantedNote) {
+        return this.note.equals(wantedNote);
     }
 
     public Modifier createModifier() {
