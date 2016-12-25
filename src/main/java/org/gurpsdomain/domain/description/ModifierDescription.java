@@ -31,21 +31,11 @@ public class ModifierDescription {
     }
 
     public boolean matchesName(String wantedName) {
-        try {
-            return this.name.equals(wantedName);
-        }
-        catch (NullPointerException e){
-            return false;
-        }
+        return name != null && name.equals(wantedName);
     }
 
     public boolean matchesNote(String wantedNote) {
-        try {
-            return this.note.equals(wantedNote);
-        }
-        catch (NullPointerException e){
-            return false;
-        }
+        return note != null && note.equals(wantedNote);
     }
 
     public Modifier createModifier() {
