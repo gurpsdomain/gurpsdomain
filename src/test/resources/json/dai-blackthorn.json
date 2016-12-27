@@ -56,7 +56,8 @@
       "modifiers": [
         {
           "name": "3D Spatial Sense",
-          "pageReference": "B34"
+          "pageReference": "B34",
+          "note": ""
         }
       ]
     },
@@ -67,7 +68,8 @@
       "modifiers": [
         {
           "name": "Specialized",
-          "pageReference": "B87"
+          "pageReference": "B87",
+          "note": "All aquatic animals"
         }
       ]
     },

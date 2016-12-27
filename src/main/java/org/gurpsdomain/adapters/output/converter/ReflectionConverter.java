@@ -115,7 +115,8 @@ public class ReflectionConverter implements SheetConverter {
         return new SheetModifier(
                 name.from(domainModifier),
                 sheetCost,
-                pageReference.from(domainModifier));
+                pageReference.from(domainModifier),
+                note.from(domainModifier));
     }
 
     private List<SheetSkill> skills() {

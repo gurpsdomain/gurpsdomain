@@ -43,6 +43,11 @@ public class ModifierDescription {
     }
 
     public Modifier createModifier() {
-        return new Modifier(name, cost.createCost(), pageReference, note);
+        if (note == null) {
+            return new Modifier(name, cost.createCost(), pageReference);
+        } else {
+            return new Modifier(name, cost.createCost(), pageReference, note);
+        }
+
     }
 }
