@@ -30,6 +30,10 @@ public class ModifierDescription {
         this.note = note;
     }
 
+    public ModifierDescription(String name, CostDescription cost, String pageReference) {
+        this(name, cost, pageReference, "");
+    }
+
     public boolean matchesName(String wantedName) {
         return name != null && name.equals(wantedName);
     }
