@@ -5,9 +5,7 @@ import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddAdvantagesStep implements YamlBuildStep {
@@ -30,10 +28,17 @@ public class AddAdvantagesStep implements YamlBuildStep {
 
                     List<Map<String, String>> modifiers = (List<Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
                     List<Map<String, String>> attributeBonuses = (List<Map<String, String>>) (inputAdvantage.getOrDefault("attribute_bonus", Collections.EMPTY_LIST));
-                    List<String> modifierIdentifiers = modifiers.stream().map(m -> m.get("name")).collect(Collectors.toList());
                     List<String> attributeBonusAttributes = attributeBonuses.stream().map(m -> m.get("attribute")).collect(Collectors.toList());
 
-                    Advantage advantage = advantageDescription.createAdvantage(modifierIdentifiers,attributeBonusAttributes,levels);
+                    List<Map<String, String>> modifierIdentifiers = new ArrayList<>();
+                    for (Map<String, String> modifier : modifiers) {
+                        Map<String, String> identifiers = new HashMap<>();
+                        identifiers.put("name",modifier.getOrDefault("name", ""));
+                        identifiers.put("variation",modifier.getOrDefault("variation", ""));
+                        modifierIdentifiers.add(identifiers);
+                    }
+
+                    Advantage advantage = advantageDescription.createAdvantage(modifierIdentifiers, attributeBonusAttributes, levels);
                     sheetBuilder.addAdvantage(advantage);
                 }
             }

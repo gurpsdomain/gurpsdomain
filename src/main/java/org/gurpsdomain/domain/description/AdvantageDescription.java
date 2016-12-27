@@ -11,7 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
+import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
 import static org.gurpsdomain.domain.description.predicate.Or.or;
 
@@ -45,10 +47,16 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
     }
 
-    public Advantage createAdvantage(List<String> modifierIdentifiers, List<String> attributeBonusAttributes, int levelAmount) {
+    public Advantage createAdvantage(List<Map<String, String>> modifierIdentifiers, List<String> attributeBonusAttributes, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
-        for (String modifierIdentifier : modifierIdentifiers) {
-            ModifierDescriptionPredicate predicate = or(Name.name(modifierIdentifier),note(modifierIdentifier));
+        for (Map<String, String> identifiers : modifierIdentifiers) {
+            String modifierName = identifiers.getOrDefault("name", "");
+            String modifierVariation = identifiers.getOrDefault("variation", "");
+            ModifierDescriptionPredicate predicate;
+            if(modifierVariation.equals("")) {
+                predicate = Name.name(modifierName);
+            }
+            else{predicate = and(Name.name(modifierName), note(modifierVariation));}
             if (hasModifier(predicate)) {
                 modifiers.add(createModifier(predicate));
             }

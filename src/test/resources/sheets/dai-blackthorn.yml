@@ -38,7 +38,8 @@ advantages:
     - name: 3D Spatial Sense
   - name: Speak With Animals
     modifiers:
-    - name: All aquatic animals
+    - name: Specialized
+    - variation: All aquatic animals
   - name: Flexibility
   - name: Power Investiture
     levels: 3

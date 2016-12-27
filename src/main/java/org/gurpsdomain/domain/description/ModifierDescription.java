@@ -39,8 +39,6 @@ public class ModifierDescription {
     }
 
     public Modifier createModifier() {
-        //TODO here construct a name as concat with a note when required? In that case nullify the note?
-        //TODO From this point on it is only for output purposes?
         return new Modifier(name, cost.createCost(), pageReference, note);
     }
 }
