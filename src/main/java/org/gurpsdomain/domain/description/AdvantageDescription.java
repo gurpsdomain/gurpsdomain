@@ -1,5 +1,7 @@
 package org.gurpsdomain.domain.description;
 
+import documentation.Assign;
+import documentation.Developer;
 import org.gurpsdomain.domain.*;
 import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
 import org.gurpsdomain.domain.description.predicate.Name;
@@ -47,6 +49,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
     }
 
+    @Assign(developer = Developer.PAUL, issues = {23})
     public Advantage createAdvantage(List<Map<String, String>> modifierIdentifiers, List<String> attributeBonusAttributes, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
         for (Map<String, String> identifiers : modifierIdentifiers) {
