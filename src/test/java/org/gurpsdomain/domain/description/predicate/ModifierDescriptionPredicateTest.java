@@ -6,6 +6,7 @@ import org.gurpsdomain.domain.description.ModifierDescription;
 import org.junit.Test;
 
 import static org.gurpsdomain.domain.description.predicate.And.and;
+import static org.gurpsdomain.domain.description.predicate.ModifierDescriptionBuilder.aModifierDescription;
 import static org.gurpsdomain.domain.description.predicate.Name.name;
 import static org.gurpsdomain.domain.description.predicate.Not.not;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
@@ -14,29 +15,25 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ModifierDescriptionPredicateTest {
-    private static final CostDescription ANY_COST = new CostDescription(1, CostType.points);
-    private static final String ANY_PAGE_REFERENCE = "B1";
-    private static final String ANY_NAME = "dummyName";
-    private static final String ANY_NOTE = "dummyNote";
 
     @Test
     public void nameShouldBeFulfilledByExactName() {
         ModifierDescriptionPredicate predicate = name("A");
 
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("A")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("a")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("B")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("AB")));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("a").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("B").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("AB").build()));
     }
 
     @Test
     public void noteShouldBeFulfilledByExactNote() {
         ModifierDescriptionPredicate predicate = note("A");
 
-        assertTrue(predicate.isFulfilledBy(aModifierWithNote("A")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithNote("a")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithNote("B")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithNote("AB")));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withNote("A").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withNote("a").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withNote("B").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withNote("AB").build()));
     }
 
     @Test
@@ -44,59 +41,75 @@ public class ModifierDescriptionPredicateTest {
         ModifierDescriptionPredicate truePredicate = and(name("A"), Always.True);
         ModifierDescriptionPredicate falsePredicate = and(name("A"), Always.False);
 
-        assertTrue(truePredicate.isFulfilledBy(aModifierWithName("A")));
-        assertFalse(truePredicate.isFulfilledBy(aModifierWithName("B")));
-        assertFalse(falsePredicate.isFulfilledBy(aModifierWithName("A")));
-        assertFalse(falsePredicate.isFulfilledBy(aModifierWithName("B")));
+        assertTrue(truePredicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertFalse(truePredicate.isFulfilledBy(aModifierDescription().withName("B").build()));
+        assertFalse(falsePredicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertFalse(falsePredicate.isFulfilledBy(aModifierDescription().withName("B").build()));
     }
 
     @Test
     public void orShouldOperateOrOnPredicates() {
         ModifierDescriptionPredicate predicate = or(name("A"), name("B"));
 
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("A")));
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("B")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("C")));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("B").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("C").build()));
     }
 
     @Test
     public void notShouldNegatePredicates() {
         ModifierDescriptionPredicate predicate = not(name("A"));
 
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("A")));
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("B")));
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("C")));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("B").build()));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("C").build()));
     }
 
     @Test
     public void predicatesCanBeMixed() {
-        ModifierDescriptionPredicate predicate = and(not(name("A")),not(name("B")));
+        ModifierDescriptionPredicate predicate = and(not(name("A")), not(name("B")));
 
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("A")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithName("B")));
-        assertTrue(predicate.isFulfilledBy(aModifierWithName("C")));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("A").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("B").build()));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("C").build()));
     }
 
     @Test
     public void validateByNameOrNote() {
         ModifierDescriptionPredicate predicate = or(name("A"), note("B"));
 
-        assertTrue(predicate.isFulfilledBy(aModifierWithNameAndNote("A","B")));
-        assertFalse(predicate.isFulfilledBy(aModifierWithNameAndNote("B","A")));
-    }
-
-    private ModifierDescription aModifierWithName(String aName) {
-        return new ModifierDescription(aName, ANY_COST, ANY_PAGE_REFERENCE, ANY_NOTE);
-    }
-
-    private ModifierDescription aModifierWithNote(String aNote) {
-        return new ModifierDescription(ANY_NAME, ANY_COST, ANY_PAGE_REFERENCE, aNote);
-    }
-
-    private ModifierDescription aModifierWithNameAndNote(String aName, String aNote) {
-        return new ModifierDescription(aName, ANY_COST, ANY_PAGE_REFERENCE, aNote);
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("A").withNote("B").build()));
+        assertTrue(predicate.isFulfilledBy(aModifierDescription().withName("A").withNote("B").build()));
+        assertFalse(predicate.isFulfilledBy(aModifierDescription().withName("B").withNote("A").build()));
     }
 }
+
+class ModifierDescriptionBuilder {
+    private String name = "aDummyName";
+    private String note;
+    private final CostDescription ANY_COST = new CostDescription(1, CostType.points);
+    private final String ANY_PAGE_REFERENCE = "B123";
+
+    static ModifierDescriptionBuilder aModifierDescription(){return new ModifierDescriptionBuilder();}
+
+    public ModifierDescriptionBuilder() {
+    }
+
+    public ModifierDescriptionBuilder withName(String name){
+        this.name = name;
+        return this;
+    }
+
+    public ModifierDescriptionBuilder withNote(String note){
+        this.note = note;
+        return this;
+    }
+
+    public ModifierDescription build() {
+        return new ModifierDescription(name, ANY_COST, ANY_PAGE_REFERENCE, note);
+    }
+}
+
 
 enum Always implements ModifierDescriptionPredicate {
     True(true), False(false);
