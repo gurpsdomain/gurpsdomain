@@ -8,6 +8,10 @@ public class Modifier {
     private final String pageReference;
     private final String note;
 
+    public Modifier(String name, Cost cost, String pageReference) {
+        this(name, cost, pageReference, "");
+    }
+
     public Modifier(String name, Cost cost, String pageReference, String note) {
         this.name = name;
         this.cost = cost;
