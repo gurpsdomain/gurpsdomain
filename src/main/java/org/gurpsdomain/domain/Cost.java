@@ -4,8 +4,8 @@ import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 import org.gurpsdomain.domain.description.CostType;
 
 public class Cost {
-    private CostType type;
-    private int value;
+    private final CostType type;
+    private final int value;
 
     public Cost(int value, CostType type) {
         this.type = type;

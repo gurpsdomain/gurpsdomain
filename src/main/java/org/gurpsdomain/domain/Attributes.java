@@ -4,18 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Attributes {
-    private Map<Attribute, Object> bonus = new HashMap<>();
-
-    public Object value(Attribute attribute) {
-        return attribute.value(this, bonus.getOrDefault(attribute, attribute.defaultBonus()));
-    }
-
-    private Dice damageThrusting;
-    private Dice damageSwinging;
+    private final Map<Attribute, Object> bonuses = new HashMap<>();
+    private final Dice damageThrusting;
+    private final Dice damageSwinging;
 
     public Attributes() {
         this.damageThrusting = new Dice(1, 1);
         this.damageSwinging = new Dice(1, 1);
+    }
+
+    public Object value(Attribute attribute) {
+        return attribute.value(this, bonuses.getOrDefault(attribute, attribute.defaultBonus()));
     }
 
      void addStrengthBonus(int bonus) {
@@ -65,19 +64,19 @@ public class Attributes {
     }
 
     private void addIntBonus(Attribute attribute, int aBonus) {
-        int previous = (int) bonus.getOrDefault(attribute, attribute.defaultBonus());
+        int previous = (int) bonuses.getOrDefault(attribute, attribute.defaultBonus());
         int current = previous + aBonus;
-        bonus.put(attribute, current);
+        bonuses.put(attribute, current);
     }
 
     private void addDoubleBonus(Attribute attribute, double aBonus) {
-        double previous = (double) bonus.getOrDefault(attribute, attribute.defaultBonus());
+        double previous = (double) bonuses.getOrDefault(attribute, attribute.defaultBonus());
         double current = previous + aBonus;
-        bonus.put(attribute, current);
+        bonuses.put(attribute, current);
     }
 
     private void addDiceBonus(Attribute attribute, Dice aBonus) {
-        Dice previous = (Dice) bonus.getOrDefault(attribute, attribute.defaultBonus());
+        Dice previous = (Dice) bonuses.getOrDefault(attribute, attribute.defaultBonus());
         previous.addDice(aBonus); /* TODO mutable dice? Big no no */
     }
 

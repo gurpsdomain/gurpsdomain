@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Sheet {
+    private final Points points;
+    private final List<Note> notes = new ArrayList<>();
+    private final List<Advantage> advantages = new ArrayList<>();
+    private final List<Skill> skills = new ArrayList<>();
+    private final Map<String, Object> metaData = new HashMap<>();
+    private final Attributes attributes;
+
     public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Note> notes) {
         Sheet sheet = new Sheet();
         for (Map.Entry<String[], String> entry: metaData.entrySet()) {
@@ -25,13 +32,6 @@ public class Sheet {
         }
         return sheet;
     }
-
-    private final Points points;
-    private List<Note> notes = new ArrayList<>();
-    private final List<Advantage> advantages = new ArrayList<>();
-    private final List<Skill> skills = new ArrayList<>();
-    private final Map<String, Object> metaData = new HashMap<>();
-    private final Attributes attributes;
 
     private Sheet() {
         this.points = new Points(0);

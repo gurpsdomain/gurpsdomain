@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Advantage {
-    private String name;
-    private String pageReference;
-    private int baseCost;
-    private List<Modifier> modifiers;
-    private List<AttributeBonus> attributeBonuses;
+    private final String name;
+    private final String pageReference;
+    private final int baseCost;
+    private final List<Modifier> modifiers;
+    private final List<AttributeBonus> attributeBonuses;
 
     public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses) {
         this.name = name;

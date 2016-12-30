@@ -7,6 +7,7 @@ public enum DifficultyLevel {
     EASY(0), AVERAGE(-1), HARD(-2), VERY_HARD(-3);
 
     static final private Map<String, DifficultyLevel> descriptionToLevel = new HashMap<>();
+    private final int offset;
 
     static {
         descriptionToLevel.put("E", DifficultyLevel.EASY);
@@ -22,12 +23,9 @@ public enum DifficultyLevel {
         return descriptionToLevel.get(description);
     }
 
-    private int offset;
-
-    DifficultyLevel(int offset){
+    DifficultyLevel(int offset) {
         this.offset = offset;
     }
-
 
     public int determineDelta(int cost) {
         if (cost < 2) {
@@ -38,5 +36,4 @@ public enum DifficultyLevel {
         }
         return (cost / 4) + 1 + offset;
     }
-
 }

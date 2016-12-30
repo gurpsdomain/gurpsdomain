@@ -5,8 +5,8 @@ import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 import java.util.List;
 
 public class LeveledAdvantage extends Advantage {
-    private int level;
-    private int pointsPerLevel;
+    private final int level;
+    private final int pointsPerLevel;
 
     public LeveledAdvantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, int level, int pointsPerLevel) {
         super(name, baseCost, pageReference, modifiers, attributeBonuses);
