@@ -5,6 +5,10 @@ public class Dice {
     private int number;
     private int bonus;
 
+    public static Dice sumDice(Dice firstDice, Dice secondDice) {
+        return new Dice(firstDice.number + secondDice.number, firstDice.bonus + secondDice.bonus);
+    }
+
     Dice(int number, int bonus) {
         if (number < 0) {
             throw new IllegalArgumentException("An negative number of " + number + " dice is unexpected.");
@@ -22,17 +26,5 @@ public class Dice {
         } else {
             return number + "d";
         }
-    }
-
-    void addDice(Dice dice) {
-        number += dice.number;
-        bonus += dice.bonus;
-    }
-
-    Dice addNumber(int number) {
-        if (this.number + number < 0) {
-            throw new IllegalArgumentException("Operation results in an unsupported negative number of dice");
-        }
-        return new Dice(this.number + number, this.bonus);
     }
 }

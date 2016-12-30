@@ -19,7 +19,6 @@ public class ReflectionConverter implements SheetConverter {
     private List<Skill> domainSkills;
     private Reflection name = withReflectionChain(read("name"));
     private Reflection cost = withReflectionChain(read("cost"));
-    private Reflection levels = withReflectionChain(read("levels"));
     private Reflection level = withReflectionChain(read("level"));
     private Reflection pageReference = withReflectionChain(read("pageReference"));
     private Reflection modifiers = withReflectionChain(read("modifiers"));
@@ -49,6 +48,8 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
     private Reflection basicSpeed = withReflectionChain(call("basicSpeed"));
     private Reflection basicMove = withReflectionChain(call("basicMove"));
+    private Reflection damageThrusting = withReflectionChain(call("damageThrusting"));
+    private Reflection damageSwinging = withReflectionChain(call("damageSwinging"));
 
     @Override
     public SheetSheet convert(Sheet sheet) {
@@ -168,8 +169,7 @@ public class ReflectionConverter implements SheetConverter {
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),
                 basicMove.from(attributes),
-                //TODO statements below to be retrieved from attributes as above
-                withReflectionChain(read("attributes"), read("damageThrusting")).from(domainSheet).toString(),
-                withReflectionChain(read("attributes"), read("damageSwinging")).from(domainSheet).toString());
+                damageThrusting.from(attributes).toString(),
+                damageSwinging.from(attributes).toString());
     }
 }

@@ -12,22 +12,22 @@ import static org.junit.Assert.assertThat;
 
 
 @RunWith(Parameterized.class)
-public class DiceSimpleAdditionTest {
-    @Parameterized.Parameters(name = "(A number {0} added to a dice {1} should give {2}")
+public class DiceAdditionTest {
+    @Parameterized.Parameters(name = "(A dice {0} added to a dice {1} should give {2}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{0,new Dice(1,1), "1d+1"});
-        data.add(new Object[]{-1,new Dice(1,-1),"0d-1"});
-        data.add(new Object[]{2,new Dice(1,0), "3d"});
-        data.add(new Object[]{1,new Dice(0,4), "1d+4"});
+        data.add(new Object[]{new Dice(1,1),new Dice(1,1), "2d+2"});
+        data.add(new Object[]{new Dice(1,1),new Dice(1,-1),"2d"});
+        data.add(new Object[]{new Dice(1,1),new Dice(1,0), "2d+1"});
+        data.add(new Object[]{new Dice(1,1),new Dice(0,4), "1d+5"});
         return data;
     }
 
     private Dice dice;
     private String expectedString;
 
-    public DiceSimpleAdditionTest(int number, Dice dice, String expectedString) {
-        this.dice = dice.addNumber(number);
+    public DiceAdditionTest(Dice firstDice, Dice secondDice, String expectedString) {
+        this.dice = Dice.sumDice(firstDice,secondDice);
         this.expectedString = expectedString;
     }
 

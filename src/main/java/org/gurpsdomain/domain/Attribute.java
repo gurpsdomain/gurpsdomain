@@ -74,13 +74,36 @@ public enum Attribute {
             return move + (int) bonus;
         }
     },
-    DAMAGE("Dmg")/* FIXME this is not implemented in attributes, copying */;
+    DAMAGE_THRUSTING("Thrusting") {
+        @Override
+        public Object defaultBonus() {
+            return new Dice(0, 0);
+        }
 
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            Dice damage = new Dice(1, 1); //TODO implement correct value based on ST. See B16
+            return Dice.sumDice(damage, (Dice) bonus);
+        }
+    },
+    DAMAGE_SWINGING("Swinging") {
+        @Override
+        public Object defaultBonus() {
+            return new Dice(0, 0);
+        }
+
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            Dice damage = new Dice(2, 2); //TODO implement correct value based on ST. See B16
+            return Dice.sumDice(damage, (Dice) bonus);
+        }
+    };
 
     static final private Map<String, Attribute> descriptionToAttribute = new HashMap<>();
+    private final String shorthand;
 
     static {
-        for (Attribute attribute: controllingAttributes()) {
+        for (Attribute attribute : controllingAttributes()) {
             descriptionToAttribute.put(attribute.shorthand(), attribute);
         }
     }
@@ -99,8 +122,6 @@ public enum Attribute {
     Attribute(String shorthand) {
         this.shorthand = shorthand;
     }
-
-    private final String shorthand;
 
     public String shorthand() {
         return shorthand;

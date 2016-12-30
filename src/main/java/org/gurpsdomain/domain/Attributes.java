@@ -17,50 +17,52 @@ public class Attributes {
         return attribute.value(this, bonuses.getOrDefault(attribute, attribute.defaultBonus()));
     }
 
-     void addStrengthBonus(int bonus) {
+    void addStrengthBonus(int bonus) {
         addIntBonus(Attribute.STRENGTH, bonus);
     }
 
-     void addDexterityBonus(int bonus) {
+    void addDexterityBonus(int bonus) {
         addIntBonus(Attribute.DEXTERITY, bonus);
     }
 
-     void addHealthBonus(int bonus) {
+    void addHealthBonus(int bonus) {
         addIntBonus(Attribute.HEALTH, bonus);
     }
 
-     void addIntelligenceBonus(int bonus) {
+    void addIntelligenceBonus(int bonus) {
         addIntBonus(Attribute.INTELLIGENCE, bonus);
     }
 
-     void addWillBonus(int bonus) {addIntBonus(Attribute.WILL, bonus); }
+    void addWillBonus(int bonus) {
+        addIntBonus(Attribute.WILL, bonus);
+    }
 
-     void addPerceptionBonus(int bonus) {
+    void addPerceptionBonus(int bonus) {
         addIntBonus(Attribute.PERCEPTION, bonus);
     }
 
-     void addHitPointsBonus(int bonus) {
+    void addHitPointsBonus(int bonus) {
         addIntBonus(Attribute.HIT_POINTS, bonus);
     }
 
-     void addFatiguePointsBonus(int bonus) {
+    void addFatiguePointsBonus(int bonus) {
         addIntBonus(Attribute.FATIGUE_POINTS, bonus);
     }
 
-     void addBasicSpeedBonus(double bonus) {
+    void addBasicSpeedBonus(double bonus) {
         addDoubleBonus(Attribute.BASIC_SPEED, bonus);
     }
 
-     void addBasicMoveBonus(int bonus) {
+    void addBasicMoveBonus(int bonus) {
         addIntBonus(Attribute.BASIC_MOVE, bonus);
     }
 
     public void addDamageThrustingBonus(Dice bonus) {
-        damageThrusting.addDice(bonus);
+        addDiceBonus(Attribute.DAMAGE_THRUSTING, bonus);
     }
 
     public void addDamageSwingingBonus(Dice bonus) {
-        damageSwinging.addDice(bonus);
+        addDiceBonus(Attribute.DAMAGE_SWINGING, bonus);
     }
 
     private void addIntBonus(Attribute attribute, int aBonus) {
@@ -77,7 +79,8 @@ public class Attributes {
 
     private void addDiceBonus(Attribute attribute, Dice aBonus) {
         Dice previous = (Dice) bonuses.getOrDefault(attribute, attribute.defaultBonus());
-        previous.addDice(aBonus); /* TODO mutable dice? Big no no */
+        Dice current = Dice.sumDice(previous, aBonus);
+        bonuses.put(attribute, current);
     }
 
     //FIXME : could the enum Attribute and the class Attributes be merged? Incomplete
@@ -128,4 +131,10 @@ public class Attributes {
     int basicMove() {
         return (int) value(Attribute.BASIC_MOVE);
     }
+
+    Dice damageThrusting() {
+        return (Dice) value(Attribute.DAMAGE_THRUSTING);
+    }
+
+    Dice damageSwinging() { return (Dice) value(Attribute.DAMAGE_SWINGING); }
 }
