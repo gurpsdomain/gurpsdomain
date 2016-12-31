@@ -9,7 +9,7 @@ public class Dice {
         return new Dice(firstDice.number + secondDice.number, firstDice.bonus + secondDice.bonus);
     }
 
-    Dice(int number, int bonus) {
+    public Dice(int number, int bonus) {
         if (number < 0) {
             throw new IllegalArgumentException("An negative number of " + number + " dice is unexpected.");
         }

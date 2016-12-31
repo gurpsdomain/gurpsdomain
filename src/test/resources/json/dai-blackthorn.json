@@ -45,8 +45,8 @@
     "fatiguePoints": 10,
     "basicSpeed": 5.0,
     "basicMove": 5,
-    "damageSwinging": "2d+2",
-    "damageThrusting": "1d+1"
+    "damageSwinging": "1d",
+    "damageThrusting": "1d-2"
   },
   "advantages": [
     {

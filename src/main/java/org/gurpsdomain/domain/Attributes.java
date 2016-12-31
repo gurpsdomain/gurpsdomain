@@ -5,13 +5,6 @@ import java.util.Map;
 
 public class Attributes {
     private final Map<Attribute, Object> bonuses = new HashMap<>();
-    private final Dice damageThrusting;
-    private final Dice damageSwinging;
-
-    public Attributes() {
-        this.damageThrusting = new Dice(1, 1);
-        this.damageSwinging = new Dice(1, 1);
-    }
 
     public Object value(Attribute attribute) {
         return attribute.value(this, bonuses.getOrDefault(attribute, attribute.defaultBonus()));
@@ -136,5 +129,7 @@ public class Attributes {
         return (Dice) value(Attribute.DAMAGE_THRUSTING);
     }
 
-    Dice damageSwinging() { return (Dice) value(Attribute.DAMAGE_SWINGING); }
+    Dice damageSwinging() {
+        return (Dice) value(Attribute.DAMAGE_SWINGING);
+    }
 }

@@ -1,9 +1,14 @@
 package org.gurpsdomain.domain;
 
+import org.gurpsdomain.domain.tables.DamageTable;
+
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.gurpsdomain.domain.tables.DamageTable.swingingDamageForStrength;
+import static org.gurpsdomain.domain.tables.DamageTable.thrustingDamageForStrength;
 
 /* TODO Vision et. al. are missing */
 public enum Attribute {
@@ -82,7 +87,8 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            Dice damage = new Dice(1, 1); //TODO implement correct value based on ST. See B16
+            int strength = (int) attributes.value(Attribute.STRENGTH);
+            Dice damage = thrustingDamageForStrength(strength);
             return Dice.sumDice(damage, (Dice) bonus);
         }
     },
@@ -94,7 +100,8 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            Dice damage = new Dice(2, 2); //TODO implement correct value based on ST. See B16
+            int strength = (int) attributes.value(Attribute.STRENGTH);
+            Dice damage = swingingDamageForStrength(strength);
             return Dice.sumDice(damage, (Dice) bonus);
         }
     };
