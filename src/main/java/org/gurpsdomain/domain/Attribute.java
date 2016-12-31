@@ -28,6 +28,30 @@ public enum Attribute {
             return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
         }
     },
+    VISION("Vision") {
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+        }
+    },
+    HEARING("Hearing") {
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+        }
+    },
+    TASTE_AND_SMELL("Taste & Smell") {
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+        }
+    },
+    TOUCH("Touch") {
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+        }
+    },
     HIT_POINTS("HP") {
         @Override
         public Object value(Attributes attributes, Object bonus) {
@@ -79,7 +103,7 @@ public enum Attribute {
             return move + (int) bonus;
         }
     },
-    DAMAGE_THRUSTING("Thrusting") {
+    DAMAGE_THRUSTING("Dmg. Thrusting") {
         @Override
         public Object defaultBonus() {
             return new Dice(0, 0);
@@ -92,7 +116,7 @@ public enum Attribute {
             return Dice.sumDice(damage, (Dice) bonus);
         }
     },
-    DAMAGE_SWINGING("Swinging") {
+    DAMAGE_SWINGING("Dmg. Swinging") {
         @Override
         public Object defaultBonus() {
             return new Dice(0, 0);

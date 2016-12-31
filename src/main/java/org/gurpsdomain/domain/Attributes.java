@@ -34,6 +34,22 @@ public class Attributes {
         addIntBonus(Attribute.PERCEPTION, bonus);
     }
 
+    void addVisionBonus(int bonus) {
+        addIntBonus(Attribute.VISION, bonus);
+    }
+
+    void addHearingBonus(int bonus) {
+        addIntBonus(Attribute.HEARING, bonus);
+    }
+
+    void addTasteAndSmellBonus(int bonus) {
+        addIntBonus(Attribute.TASTE_AND_SMELL, bonus);
+    }
+
+    void addTouchBonus(int bonus) {
+        addIntBonus(Attribute.TOUCH, bonus);
+    }
+
     void addHitPointsBonus(int bonus) {
         addIntBonus(Attribute.HIT_POINTS, bonus);
     }
@@ -103,6 +119,20 @@ public class Attributes {
 
     int perception() {
         return (int) value(Attribute.PERCEPTION);
+    }
+
+    int vision() {
+        return (int) value(Attribute.VISION);
+    }
+
+    int hearing() {return (int) value(Attribute.HEARING); }
+
+    int tasteAndSmell() {
+        return (int) value(Attribute.TASTE_AND_SMELL);
+    }
+
+    int touch() {
+        return (int) value(Attribute.TOUCH);
     }
 
     int hitPoints() {
