@@ -1,6 +1,5 @@
 package tools;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
 
@@ -8,7 +7,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;

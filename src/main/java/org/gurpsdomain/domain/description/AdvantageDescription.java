@@ -17,7 +17,6 @@ import java.util.Map;
 
 import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
-import static org.gurpsdomain.domain.description.predicate.Or.or;
 
 @XmlRootElement(name = "advantage")
 @XmlAccessorType(XmlAccessType.FIELD)

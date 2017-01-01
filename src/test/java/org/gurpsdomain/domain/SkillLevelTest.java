@@ -12,7 +12,6 @@ import static org.gurpsdomain.domain.Attribute.INTELLIGENCE;
 import static org.gurpsdomain.domain.DifficultyLevel.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
 public class SkillLevelTest {

@@ -18,7 +18,7 @@ import static org.gurpsdomain.domain.AdvantageCostTestCase.anAdvantage;
 public class AdvantageCostTest {
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> data() {
-        Collection<Object[]> data = new ArrayList<Object[]>();
+        Collection<Object[]> data = new ArrayList<>();
         data.add(new Object[]{anAdvantage().withBaseCost(100).hasExpectedCost(100)});
         data.add(new Object[]{anAdvantage().withBaseCost(100).withPointModifier(10).hasExpectedCost(110)});
         data.add(new Object[]{anAdvantage().withBaseCost(100).withPointModifier(-5).hasExpectedCost(95)});
@@ -65,8 +65,8 @@ class AdvantageCostTestCase {
     private int pointsPerLevel = 0;
 
 
-    private List<Modifier> modifiers = new ArrayList<Modifier>();
-    private List<AttributeBonus> attributeBonuses = new ArrayList<AttributeBonus>();
+    private List<Modifier> modifiers = new ArrayList<>();
+    private List<AttributeBonus> attributeBonuses = new ArrayList<>();
     private Integer level;
     public int expectedCost = 100;
 

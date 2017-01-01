@@ -2,7 +2,6 @@ package org.gurpsdomain.domain;
 
 import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Advantage {

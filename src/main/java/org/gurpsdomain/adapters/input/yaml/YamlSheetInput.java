@@ -31,7 +31,7 @@ public class YamlSheetInput implements SheetInput {
 
     private Reader reader;
     private SheetBuilder sheetBuilder;
-    private Collection<YamlBuildStep> buildSteps = new ArrayList<YamlBuildStep>();
+    private Collection<YamlBuildStep> buildSteps = new ArrayList<>();
 
     private YamlSheetInput(Reader reader) {
         this.reader = reader;

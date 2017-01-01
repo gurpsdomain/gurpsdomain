@@ -1,7 +1,5 @@
 package org.gurpsdomain.domain;
 
-import org.gurpsdomain.domain.tables.DamageTable;
-
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;

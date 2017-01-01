@@ -6,7 +6,6 @@ import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AddAdvantagesStep implements YamlBuildStep {
     private Repository<AdvantageDescription> repository;

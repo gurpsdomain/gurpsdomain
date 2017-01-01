@@ -23,8 +23,7 @@ public class MapOfMapMatcher<T> extends TypeSafeMatcher<Map<String, Object>> {
     protected boolean matchesSafely(Map<String, Object> start) {
         String[] properties = propertyPath.split("\\.");
         Object current = start;
-        for (int index = 0; index < properties.length; index++) {
-            String property = properties[index];
+        for (String property : properties) {
             if (current instanceof Map) {
                 Map<String, Object> aMap = (Map<String, Object>) current;
                 if (aMap.containsKey(property)) {

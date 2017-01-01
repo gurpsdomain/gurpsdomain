@@ -17,14 +17,14 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void shouldNotKnowAnItemBeforeItIsRegistered() {
-        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<AdvantageDescription>();
+        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<>();
 
         assertThat(repository.exists(NOT_REGISTERED_ADVANTAGE_NAME), is(false));
     }
 
     @Test
     public void shouldReturnRegisteredItem() {
-        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<AdvantageDescription>();
+        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<>();
         repository.register(REGISTERED_ADVANTAGE_NAME, ANY_ADVANTAGE);
 
         AdvantageDescription advantage = repository.getByName(REGISTERED_ADVANTAGE_NAME);
@@ -34,7 +34,7 @@ public class InMemoryRepositoryTest {
 
     @Test(expected = ItemNotFoundException.class)
     public void shouldThrowAnExceptionWhenGettingAnUnregisteredItem() {
-        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<AdvantageDescription>();
+        InMemoryRepository<AdvantageDescription> repository = new InMemoryRepository<>();
 
         repository.getByName(NOT_REGISTERED_ADVANTAGE_NAME);
     }

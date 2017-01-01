@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class InMemoryRepository<T> implements Repository<T> {
     public static <U extends Registerable<U>, V extends Iterable<U>> InMemoryRepository<U> loadedWith(Class<V> containerClass, String... locations) {
-        InMemoryRepository<U> repository = new InMemoryRepository<U>();
+        InMemoryRepository<U> repository = new InMemoryRepository<>();
         for (String location: locations) {
             loadWith(containerClass, repository, location);
         }
@@ -45,7 +45,7 @@ public class InMemoryRepository<T> implements Repository<T> {
 
     }
 
-    private Map<String, T> items = new HashMap<String, T>();
+    private Map<String, T> items = new HashMap<>();
 
     @Override
     public boolean exists(String itemName) {
