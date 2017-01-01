@@ -43,6 +43,10 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection strength = withReflectionChain(call("strength"));
     private Reflection will = withReflectionChain(call("will"));
     private Reflection perception = withReflectionChain(call("perception"));
+    private Reflection vision = withReflectionChain(call("vision"));
+    private Reflection hearing = withReflectionChain(call("hearing"));
+    private Reflection tasteAndSmell = withReflectionChain(call("tasteAndSmell"));
+    private Reflection touch = withReflectionChain(call("touch"));
     private Reflection basicLift = withReflectionChain(call("basicLift"));
     private Reflection hitPoints = withReflectionChain(call("hitPoints"));
     private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
@@ -164,6 +168,10 @@ public class ReflectionConverter implements SheetConverter {
         return new SheetSecondaryCharacteristics(
                 will.from(attributes),
                 perception.from(attributes),
+                vision.from(attributes),
+                hearing.from(attributes),
+                tasteAndSmell.from(attributes),
+                touch.from(attributes),
                 basicLift.from(attributes),
                 hitPoints.from(attributes),
                 fatiguePoints.from(attributes),
