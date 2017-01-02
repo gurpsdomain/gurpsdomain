@@ -74,6 +74,10 @@ public class Attributes {
         addDiceBonus(Attribute.DAMAGE_SWINGING, bonus);
     }
 
+    public void addBasicLiftBonus(Weight bonus) {
+        addWeightBonus(Attribute.BASIC_LIFT, bonus);
+    }
+
     private void addIntBonus(Attribute attribute, int aBonus) {
         int previous = (int) bonuses.getOrDefault(attribute, attribute.defaultBonus());
         int current = previous + aBonus;
@@ -89,6 +93,12 @@ public class Attributes {
     private void addDiceBonus(Attribute attribute, Dice aBonus) {
         Dice previous = (Dice) bonuses.getOrDefault(attribute, attribute.defaultBonus());
         Dice current = Dice.sumDice(previous, aBonus);
+        bonuses.put(attribute, current);
+    }
+
+    private void addWeightBonus(Attribute attribute, Weight aBonus) {
+        Weight previous = (Weight) bonuses.getOrDefault(attribute, attribute.defaultBonus());
+        Weight current = Weight.sumWeights(previous, aBonus);
         bonuses.put(attribute, current);
     }
 
@@ -143,8 +153,8 @@ public class Attributes {
         return (int) value(Attribute.FATIGUE_POINTS);
     }
 
-    double basicLift() {
-        return (double) value(Attribute.BASIC_LIFT);
+    Weight basicLift() {
+        return (Weight) value(Attribute.BASIC_LIFT);
     }
 
     double basicSpeed() {

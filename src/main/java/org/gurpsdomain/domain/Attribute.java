@@ -75,7 +75,7 @@ public enum Attribute {
             if (basicLift > 10) {
                 basicLift = Math.round(basicLift);
             }
-            return basicLift;
+            return new Weight(basicLift);
         }
     },
     BASIC_SPEED("Basic Speed") {

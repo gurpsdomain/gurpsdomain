@@ -172,7 +172,7 @@ public class ReflectionConverter implements SheetConverter {
                 hearing.from(attributes),
                 tasteAndSmell.from(attributes),
                 touch.from(attributes),
-                basicLift.from(attributes),
+                basicLift.from(attributes).toString(),
                 hitPoints.from(attributes),
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),

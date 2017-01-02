@@ -44,7 +44,7 @@
     "hearing": 10,
     "tasteAndSmell": 10,
     "touch": 10,
-    "basicLift": 20.0,
+    "basicLift": "20.0 lbs.",
     "hitPoints": 10,
     "fatiguePoints": 10,
     "basicSpeed": 5.0,
