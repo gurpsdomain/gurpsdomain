@@ -17,6 +17,7 @@ public class Dice {
         this.adds = adds;
     }
 
+    @Override
     public String toString() {
         if (adds < 0) {
             return number + "d" + adds;
