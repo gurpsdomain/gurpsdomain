@@ -52,8 +52,8 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
     private Reflection basicSpeed = withReflectionChain(call("basicSpeed"));
     private Reflection basicMove = withReflectionChain(call("basicMove"));
-    private Reflection damageThrusting = withReflectionChain(call("damageThrusting"));
-    private Reflection damageSwinging = withReflectionChain(call("damageSwinging"));
+    private Reflection damageThrusting = withReflectionChain(call("damageThrustingAsString"));
+    private Reflection damageSwinging = withReflectionChain(call("damageSwingingAsString"));
 
     @Override
     public SheetSheet convert(Sheet sheet) {
@@ -177,7 +177,7 @@ public class ReflectionConverter implements SheetConverter {
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),
                 basicMove.from(attributes),
-                damageThrusting.from(attributes).toString(),
-                damageSwinging.from(attributes).toString());
+                damageThrusting.from(attributes),
+                damageSwinging.from(attributes));
     }
 }

@@ -16,6 +16,15 @@ public class DamageSwingingTest {
     }
 
     @Test
+    public void shouldDetermineCorrectDamageSwingingAsString() {
+        Attributes attributes = new Attributes();
+
+        String damageSwingingAsString = attributes.damageSwingingAsString();
+
+        assertThat(damageSwingingAsString, is("1d"));
+    }
+
+    @Test
     public void shouldDetermineCorrectDamageSwingingAfterStrengthThreeBonus() {
         Attributes attributes = new Attributes();
         attributes.addStrengthBonus(3);

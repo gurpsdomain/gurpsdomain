@@ -169,7 +169,15 @@ public class Attributes {
         return (Dice) value(Attribute.DAMAGE_THRUSTING);
     }
 
+    String damageThrustingAsString() {
+        return damageThrusting().toString();
+    }
+
     Dice damageSwinging() {
         return (Dice) value(Attribute.DAMAGE_SWINGING);
+    }
+
+    String damageSwingingAsString() {
+        return damageSwinging().toString();
     }
 }
