@@ -12,20 +12,27 @@ public class Weight {
         this.weightInPounds = weightInPounds;
     }
 
-    @Override
-    public String toString() {
+    public String toStringImperialSystemNotation() {
         return poundsInImperialSystem() + " lbs.";
     }
 
-    public String toStringMetricSystemNotation() {
-        return kilogramsInMetricSystem() + " kg";
+    public String toStringRealMetricSystemNotation() {
+        return kilogramsInRealMetricSystem() + " kg";
+    }
+
+    public String toStringGameMetricSystemNotation() {
+        return kilogramsInGameMetricSystem() + " kg";
     }
 
     public double poundsInImperialSystem() {
         return weightInPounds;
     }
 
-    public double kilogramsInMetricSystem() {
+    public double kilogramsInRealMetricSystem() {
         return weightInPounds * 0.454;
+    }
+
+    public double kilogramsInGameMetricSystem() {
+        return weightInPounds * 0.5;
     }
 }

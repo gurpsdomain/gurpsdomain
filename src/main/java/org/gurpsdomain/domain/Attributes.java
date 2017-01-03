@@ -157,6 +157,18 @@ public class Attributes {
         return (Weight) value(Attribute.BASIC_LIFT);
     }
 
+    String basicLiftAsStringInImperialSystem() {
+        return basicLift().toStringImperialSystemNotation();
+    }
+
+    String basicLiftAsStringInRealMetricSystem() {
+        return basicLift().toStringRealMetricSystemNotation();
+    }
+
+    String basicLiftAsStringInGameMetricSystem() {
+        return basicLift().toStringGameMetricSystemNotation();
+    }
+
     double basicSpeed() {
         return (double) value(Attribute.BASIC_SPEED);
     }

@@ -17,7 +17,7 @@ public class BasicLiftTest {
     public void shouldDetermineCorrectBasicLiftAsString() {
         Attributes attributes = new Attributes();
         Weight basicLift = attributes.basicLift();
-        assertThat(basicLift.toString(), is("20.0 lbs."));
+        assertThat(basicLift.toStringImperialSystemNotation(), is("20.0 lbs."));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class BasicLiftTest {
         Attributes attributes = new Attributes();
         attributes.addStrengthBonus(1);
         Weight basicLift = attributes.basicLift();
-        assertThat(basicLift.toString(), is("24.0 lbs."));
+        assertThat(basicLift.toStringImperialSystemNotation(), is("24.0 lbs."));
     }
 
     @Test
@@ -33,6 +33,6 @@ public class BasicLiftTest {
         Attributes attributes = new Attributes();
         attributes.addStrengthBonus(2);
         Weight basicLift = attributes.basicLift();
-        assertThat(basicLift.toString(), is("29.0 lbs."));
+        assertThat(basicLift.toStringImperialSystemNotation(), is("29.0 lbs."));
     }
 }

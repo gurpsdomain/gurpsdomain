@@ -44,7 +44,11 @@
     "hearing": 10,
     "tasteAndSmell": 10,
     "touch": 10,
-    "basicLift": "20.0 lbs.",
+    "basicLift": {
+      "imperial": "20.0 lbs.",
+      "realMetric": "9.08 kg",
+      "gameMetric": "10.0 kg"
+    },
     "hitPoints": 10,
     "fatiguePoints": 10,
     "basicSpeed": 5.0,

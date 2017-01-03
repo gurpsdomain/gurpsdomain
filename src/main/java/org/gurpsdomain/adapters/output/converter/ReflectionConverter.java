@@ -47,7 +47,9 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection hearing = withReflectionChain(call("hearing"));
     private Reflection tasteAndSmell = withReflectionChain(call("tasteAndSmell"));
     private Reflection touch = withReflectionChain(call("touch"));
-    private Reflection basicLift = withReflectionChain(call("basicLift"));
+    private Reflection basicLiftImperialSystem = withReflectionChain(call("basicLiftAsStringInImperialSystem"));
+    private Reflection basicLiftRealMetricSystem = withReflectionChain(call("basicLiftAsStringInRealMetricSystem"));
+    private Reflection basicLiftGameMetricSystem = withReflectionChain(call("basicLiftAsStringInGameMetricSystem"));
     private Reflection hitPoints = withReflectionChain(call("hitPoints"));
     private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
     private Reflection basicSpeed = withReflectionChain(call("basicSpeed"));
@@ -172,7 +174,9 @@ public class ReflectionConverter implements SheetConverter {
                 hearing.from(attributes),
                 tasteAndSmell.from(attributes),
                 touch.from(attributes),
-                basicLift.from(attributes).toString(),
+                new SheetBasicLift(basicLiftRealMetricSystem.from(attributes),
+                        basicLiftGameMetricSystem.from(attributes),
+                        basicLiftImperialSystem.from(attributes)),
                 hitPoints.from(attributes),
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),

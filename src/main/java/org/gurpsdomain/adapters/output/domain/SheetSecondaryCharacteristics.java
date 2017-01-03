@@ -7,7 +7,7 @@ public class SheetSecondaryCharacteristics {
     private final int hearing;
     private final int tasteAndSmell;
     private final int touch;
-    private final String basicLift;
+    private final SheetBasicLift basicLift;
     private final int hitPoints;
     private final int fatiguePoints;
     private final double basicSpeed;
@@ -15,7 +15,7 @@ public class SheetSecondaryCharacteristics {
     private final String damageThrusting;
     private final String damageSwinging;
 
-    public SheetSecondaryCharacteristics(int will, int perception, int vision, int hearing, int tasteAndSmell, int touch, String basicLift, int hitPoints, int fatiguePoints, double basicSpeed, int basicMove, String damageThrusting, String damageSwinging) {
+    public SheetSecondaryCharacteristics(int will, int perception, int vision, int hearing, int tasteAndSmell, int touch, SheetBasicLift basicLift, int hitPoints, int fatiguePoints, double basicSpeed, int basicMove, String damageThrusting, String damageSwinging) {
         this.will = will;
         this.perception =  perception;
         this.vision = vision;
