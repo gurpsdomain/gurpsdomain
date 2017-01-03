@@ -65,13 +65,13 @@ public enum Attribute {
     BASIC_LIFT("BL") {
         @Override
         public Object defaultBonus() {
-            return 0.0;
+            return new Weight(0);
         }
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
             double strength = ((Integer) attributes.value(Attribute.STRENGTH)).doubleValue();
-            double basicLift = (strength * strength) / 5.0 + (double) bonus;
+            double basicLift = (strength * strength) / 5.0 + ((Weight) bonus).poundsInImperialSystem();
             if (basicLift > 10) {
                 basicLift = Math.round(basicLift);
             }

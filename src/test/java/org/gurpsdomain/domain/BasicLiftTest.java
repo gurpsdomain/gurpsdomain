@@ -35,4 +35,13 @@ public class BasicLiftTest {
         Weight basicLift = attributes.basicLift();
         assertThat(basicLift.toStringImperialSystemNotation(), is("29.0 lbs."));
     }
+
+    @Test
+    public void shouldDetermineCorrectBasicLiftAfterBasicLiftBonus() {
+        Attributes attributes = new Attributes();
+        Weight bonus = new Weight(5);
+        attributes.addBasicLiftBonus(bonus);
+        Weight basicLift = attributes.basicLift();
+        assertThat(basicLift.toStringImperialSystemNotation(), is("25.0 lbs."));
+    }
 }

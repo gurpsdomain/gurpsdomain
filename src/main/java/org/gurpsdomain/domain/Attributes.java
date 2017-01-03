@@ -102,7 +102,6 @@ public class Attributes {
         bonuses.put(attribute, current);
     }
 
-    //FIXME : could the enum Attribute and the class Attributes be merged? Incomplete
     public int level(Attribute attribute) {
         return (int) value(attribute);
     }
@@ -135,7 +134,9 @@ public class Attributes {
         return (int) value(Attribute.VISION);
     }
 
-    int hearing() {return (int) value(Attribute.HEARING); }
+    int hearing() {
+        return (int) value(Attribute.HEARING);
+    }
 
     int tasteAndSmell() {
         return (int) value(Attribute.TASTE_AND_SMELL);

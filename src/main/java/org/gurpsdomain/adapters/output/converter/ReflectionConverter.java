@@ -167,6 +167,7 @@ public class ReflectionConverter implements SheetConverter {
 
     private SheetSecondaryCharacteristics secondaryCharacteristics() {
         Attributes attributes = this.attributes.from(domainSheet);
+        SheetBasicLift basicLift = new SheetBasicLift(basicLiftRealMetricSystem.from(attributes), basicLiftGameMetricSystem.from(attributes), basicLiftImperialSystem.from(attributes));
         return new SheetSecondaryCharacteristics(
                 will.from(attributes),
                 perception.from(attributes),
@@ -174,9 +175,7 @@ public class ReflectionConverter implements SheetConverter {
                 hearing.from(attributes),
                 tasteAndSmell.from(attributes),
                 touch.from(attributes),
-                new SheetBasicLift(basicLiftRealMetricSystem.from(attributes),
-                        basicLiftGameMetricSystem.from(attributes),
-                        basicLiftImperialSystem.from(attributes)),
+                basicLift,
                 hitPoints.from(attributes),
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),
