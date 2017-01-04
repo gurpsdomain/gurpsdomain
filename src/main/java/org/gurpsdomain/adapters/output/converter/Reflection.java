@@ -13,7 +13,7 @@ public class Reflection {
     }
 
 
-    static ReflectionOption call(String methodName, Object... arguments) {
+    public static ReflectionOption call(String methodName, Object... arguments) {
         return new ReflectionCall(methodName, arguments);
     }
 

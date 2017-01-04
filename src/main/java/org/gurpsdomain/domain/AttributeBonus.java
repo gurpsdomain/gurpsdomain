@@ -8,4 +8,8 @@ public class AttributeBonus {
         this.attribute = attribute;
         this.amount = amount;
     }
+
+    public void applyTo(Attributes attributes) {
+        attributes.addIntelligenceBonus(amount);
+    }
 }
