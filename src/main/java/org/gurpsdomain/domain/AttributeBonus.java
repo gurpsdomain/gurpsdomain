@@ -10,6 +10,6 @@ public class AttributeBonus {
     }
 
     public void applyTo(Attributes attributes) {
-        attributes.addIntelligenceBonus(amount);
+        attribute.addBonusTo(attributes, amount);
     }
 }

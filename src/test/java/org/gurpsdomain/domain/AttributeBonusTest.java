@@ -19,6 +19,9 @@ public class AttributeBonusTest {
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
         data.add(new Object[]{Attribute.INTELLIGENCE, 1, Reflection.withReflectionChain(call("intelligence")), 11});
+        data.add(new Object[]{Attribute.INTELLIGENCE, 2, Reflection.withReflectionChain(call("intelligence")), 12});
+        data.add(new Object[]{Attribute.STRENGTH, 1, Reflection.withReflectionChain(call("strength")), 11});
+        data.add(new Object[]{Attribute.STRENGTH, 2, Reflection.withReflectionChain(call("strength")), 12});
         return data;
     }
 
