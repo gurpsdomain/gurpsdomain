@@ -2,14 +2,14 @@ package org.gurpsdomain.domain;
 
 public class AttributeBonus {
     private final Attribute attribute;
-    private final int amount;
+    private final String bonus;
 
-    public AttributeBonus(Attribute attribute, int amount) {
+    public AttributeBonus(Attribute attribute, String bonus) {
         this.attribute = attribute;
-        this.amount = amount;
+        this.bonus = bonus;
     }
 
     public void applyTo(Attributes attributes) {
-        attribute.addBonusTo(attributes, amount);
+        attribute.addBonusTo(attributes, bonus);
     }
 }

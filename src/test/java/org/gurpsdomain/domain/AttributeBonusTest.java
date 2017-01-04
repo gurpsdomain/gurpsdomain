@@ -18,19 +18,21 @@ public class AttributeBonusTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{Attribute.INTELLIGENCE, 1, Reflection.withReflectionChain(call("intelligence")), 11});
-        data.add(new Object[]{Attribute.INTELLIGENCE, 2, Reflection.withReflectionChain(call("intelligence")), 12});
-        data.add(new Object[]{Attribute.STRENGTH, 1, Reflection.withReflectionChain(call("strength")), 11});
-        data.add(new Object[]{Attribute.STRENGTH, 2, Reflection.withReflectionChain(call("strength")), 12});
+        data.add(new Object[]{Attribute.INTELLIGENCE, "1", Reflection.withReflectionChain(call("intelligence")), 11});
+        data.add(new Object[]{Attribute.INTELLIGENCE, "2", Reflection.withReflectionChain(call("intelligence")), 12});
+        data.add(new Object[]{Attribute.STRENGTH, "1", Reflection.withReflectionChain(call("strength")), 11});
+        data.add(new Object[]{Attribute.STRENGTH, "2", Reflection.withReflectionChain(call("strength")), 12});
+        data.add(new Object[]{Attribute.BASIC_SPEED, "0.25", Reflection.withReflectionChain(call("basicSpeed")), 5.25});
+        data.add(new Object[]{Attribute.BASIC_MOVE, "-2", Reflection.withReflectionChain(call("basicMove")), 3});
         return data;
     }
 
     private final AttributeBonus attributeBonus;
     private final Reflection expectedAttribute;
-    private final int expectedValue;
+    private final Object expectedValue;
     private Attributes attributes;
 
-    public AttributeBonusTest(Attribute attribute, int bonus, Reflection expectedAttribute, int expectedValue) {
+    public AttributeBonusTest(Attribute attribute, String bonus, Reflection expectedAttribute, Object expectedValue) {
         this.attributeBonus = new AttributeBonus(attribute, bonus);
         this.expectedAttribute = expectedAttribute;
         this.expectedValue = expectedValue;

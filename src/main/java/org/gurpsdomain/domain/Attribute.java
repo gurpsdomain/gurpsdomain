@@ -9,32 +9,32 @@ import static org.gurpsdomain.domain.tables.DamageTable.thrustingDamageForStreng
 public enum Attribute {
     STRENGTH("ST", "st") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addStrengthBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addStrengthBonus(Integer.parseInt(bonus));
         }
     },
     DEXTERITY("DX", "dx") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addDexterityBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addDexterityBonus(Integer.parseInt(bonus));
         }
     },
     HEALTH("HT", "ht") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addHealthBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addHealthBonus(Integer.parseInt(bonus));
         }
     },
     INTELLIGENCE("IQ", "iq") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addIntelligenceBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addIntelligenceBonus(Integer.parseInt(bonus));
         }
     },
     WILL("Will", "will") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addWillBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addWillBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -44,8 +44,8 @@ public enum Attribute {
     },
     PERCEPTION("Per", "perception") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addPerceptionBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addPerceptionBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -55,8 +55,8 @@ public enum Attribute {
     },
     VISION("Vision", "vision") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addVisionBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addVisionBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -66,8 +66,8 @@ public enum Attribute {
     },
     HEARING("Hearing", "hearing") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addHearingBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addHearingBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -77,8 +77,8 @@ public enum Attribute {
     },
     TASTE_AND_SMELL("Taste & Smell", "taste smell") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addTasteAndSmellBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addTasteAndSmellBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -88,8 +88,8 @@ public enum Attribute {
     },
     TOUCH("Touch", "touch") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addTouchBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addTouchBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -99,8 +99,8 @@ public enum Attribute {
     },
     HIT_POINTS("HP", "hp") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addHitPointsBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addHitPointsBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -110,8 +110,8 @@ public enum Attribute {
     },
     FATIGUE_POINTS("FP", "fp") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addFatiguePointsBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addFatiguePointsBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -121,7 +121,7 @@ public enum Attribute {
     },
     BASIC_LIFT("BL") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
+        public void addBonusTo(Attributes attributes, String bonus) {
             throw new RuntimeException("not implemented yet");
         }
 
@@ -142,8 +142,8 @@ public enum Attribute {
     },
     BASIC_SPEED("Basic Speed", "speed") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            throw new RuntimeException("not implemented yet");
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addBasicSpeedBonus(Double.parseDouble(bonus));
         }
 
         @Override
@@ -161,8 +161,8 @@ public enum Attribute {
     },
     BASIC_MOVE("Basic Move", "move") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            throw new RuntimeException("not implemented yet");
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addBasicMoveBonus(Integer.parseInt(bonus));
         }
 
         @Override
@@ -175,8 +175,8 @@ public enum Attribute {
     },
     DODGE("Dodge", "dodge") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
-            attributes.addDodgeBonus((int) bonus);
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addDodgeBonus(Integer.parseInt(bonus));
         }
 
 
@@ -190,7 +190,7 @@ public enum Attribute {
     },
     DAMAGE_THRUSTING("Dmg. Thrusting") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
+        public void addBonusTo(Attributes attributes, String bonus) {
             throw new RuntimeException("not implemented yet");
         }
 
@@ -208,7 +208,7 @@ public enum Attribute {
     },
     DAMAGE_SWINGING("Dmg. Swinging") {
         @Override
-        public void addBonusTo(Attributes attributes, Object bonus) {
+        public void addBonusTo(Attributes attributes, String bonus) {
             throw new RuntimeException("not implemented yet");
         }
 
@@ -233,7 +233,7 @@ public enum Attribute {
         for (Attribute attribute : Attribute.values()) {
             descriptionToAttribute.put(attribute.shorthand(), attribute);
 
-            for (String alternativeDescription: attribute.alternativeDescriptions()) {
+            for (String alternativeDescription : attribute.alternativeDescriptions()) {
                 descriptionToAttribute.put(alternativeDescription, attribute);
             }
         }
@@ -259,7 +259,9 @@ public enum Attribute {
         return shorthand;
     }
 
-    private List<String> alternativeDescriptions() { return alternatives; }
+    private List<String> alternativeDescriptions() {
+        return alternatives;
+    }
 
     public Object defaultBonus() {
         return 0;
@@ -269,6 +271,6 @@ public enum Attribute {
         return 10 + (int) bonus;
     }
 
-    public abstract void addBonusTo(Attributes attributes, Object bonus);
+    public abstract void addBonusTo(Attributes attributes, String bonus);
 }
 

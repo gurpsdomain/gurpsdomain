@@ -14,19 +14,19 @@ public class AttributeBonusDescription {
     @XmlElement(name = "attribute")
     private String attribute;
     @XmlElement(name = "amount")
-    private int amount;
+    private String bonus;
 
     public AttributeBonusDescription() {
         /* needed by JAXB */
     }
 
-    public AttributeBonusDescription(String attribute, int amount) {
+    public AttributeBonusDescription(String attribute, String bonus) {
         this.attribute = attribute;
-        this.amount = amount;
+        this.bonus = bonus;
     }
 
     public AttributeBonus createAttributeBonus() {
-        return new AttributeBonus(Attribute.fromDescription(attribute), amount);
+        return new AttributeBonus(Attribute.fromDescription(attribute), bonus);
     }
 
 }
