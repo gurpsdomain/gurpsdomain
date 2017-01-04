@@ -173,6 +173,21 @@ public enum Attribute {
             return move + (int) bonus;
         }
     },
+    DODGE("Dodge", "dodge") {
+        @Override
+        public void addBonusTo(Attributes attributes, int amount) {
+            attributes.addDodgeBonus(amount);
+        }
+
+
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            double speed = (double) attributes.value(Attribute.BASIC_SPEED);
+            int dodge = (int) (speed + 3);
+
+            return dodge + (int) bonus;
+        }
+    },
     DAMAGE_THRUSTING("Dmg. Thrusting") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
@@ -215,7 +230,7 @@ public enum Attribute {
     private final List<String> alternatives;
 
     static {
-        for (Attribute attribute : controllingAttributes()) {
+        for (Attribute attribute : Attribute.values()) {
             descriptionToAttribute.put(attribute.shorthand(), attribute);
 
             for (String alternativeDescription: attribute.alternativeDescriptions()) {

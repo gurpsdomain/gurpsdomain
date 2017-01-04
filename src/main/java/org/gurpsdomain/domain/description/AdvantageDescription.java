@@ -32,20 +32,20 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     @XmlElement(name = "modifier", required = false)
     private List<ModifierDescription> modifiers;
     @XmlElement(name = "attribute_bonus", required = false)
-    private List<AttributeBonusDescription> attributeBonuses;
+    private List<AttributeBonusDescription> attributeBonusDescriptions;
 
     private AdvantageDescription() {
         /* needed for JAXB */
     }
 
-    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonuses) {
+    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonusDescriptions) {
         this.name = name;
         this.basePoints = basePoints;
         this.levels = levels;
         this.pointsPerLevel = pointsPerLevel;
         this.reference = pageReference;
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
-        this.attributeBonuses = attributeBonuses != null ? attributeBonuses : Collections.emptyList();
+        this.attributeBonusDescriptions = attributeBonusDescriptions != null ? attributeBonusDescriptions : Collections.emptyList();
     }
 
     @Assign(developer = Developer.PAUL, issues = {23})
@@ -65,6 +65,9 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
             }
         }
         List<AttributeBonus> attributeBonuses = new ArrayList<>();
+        for (AttributeBonusDescription attributeBonusDescription: attributeBonusDescriptions()) {
+            attributeBonuses.add(attributeBonusDescription.createAttributeBonus());
+        }
 
         if (pointsPerLevel != null) {
             return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, levelAmount, pointsPerLevel);
@@ -83,5 +86,13 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
 
     private Modifier createModifier(ModifierDescriptionPredicate predicate) {
         return modifiers.stream().filter(predicate::isFulfilledBy).findAny().get().createModifier();
+    }
+
+    private List<AttributeBonusDescription> attributeBonusDescriptions() {
+        if (attributeBonusDescriptions != null) {
+            return attributeBonusDescriptions;
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

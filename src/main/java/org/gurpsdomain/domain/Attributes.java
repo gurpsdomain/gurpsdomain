@@ -66,6 +66,10 @@ public class Attributes {
         addIntBonus(Attribute.BASIC_MOVE, bonus);
     }
 
+    void addDodgeBonus(int bonus) {
+        addIntBonus(Attribute.DODGE, bonus);
+    }
+
     public void addDamageThrustingBonus(Dice bonus) {
         addDiceBonus(Attribute.DAMAGE_THRUSTING, bonus);
     }
@@ -176,6 +180,10 @@ public class Attributes {
 
     int basicMove() {
         return (int) value(Attribute.BASIC_MOVE);
+    }
+
+    int dodge() {
+        return (int) value(Attribute.DODGE);
     }
 
     Dice damageThrusting() {
