@@ -22,4 +22,12 @@ public class LeveledAdvantage extends Advantage {
         super.accumulateCost(accumulator);
         accumulator.addPoints(level * pointsPerLevel);
     }
+
+
+    void updateAttributes(Attributes attributes) {
+        // TODO do not assume that all bonusses are leveled
+        for (int index = 0; index < level; index++) {
+            super.updateAttributes(attributes);
+        }
+    }
 }

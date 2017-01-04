@@ -27,9 +27,9 @@
   },
   "points": {
     "total": 258,
-    "advantages": 65,
+    "advantages": 70,
     "skills": 5,
-    "unspent": 188
+    "unspent": 183
   },
   "attributes": {
     "strength": 10,
@@ -38,7 +38,7 @@
     "intelligence": 10
   },
   "secondaryCharacteristics": {
-    "will": 11,
+    "will": 12,
     "perception": 10,
     "vision": 10,
     "hearing": 10,
@@ -96,8 +96,8 @@
     },
     {
       "name": "Increased Will",
-      "points": 5,
-      "level": 1,
+      "points": 10,
+      "level": 2,
       "pageReference": "B16",
       "modifiers": []
     }
