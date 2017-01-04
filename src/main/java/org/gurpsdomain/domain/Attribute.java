@@ -13,13 +13,13 @@ public enum Attribute {
             attributes.addStrengthBonus(amount);
         }
     },
-    DEXTERITY("DX") {
+    DEXTERITY("DX", "dx") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addDexterityBonus(amount);
         }
     },
-    HEALTH("HT") {
+    HEALTH("HT", "ht") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addHealthBonus(amount);
@@ -42,7 +42,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
         }
     },
-    PERCEPTION("Per") {
+    PERCEPTION("Per", "perception") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addPerceptionBonus(amount);
@@ -53,7 +53,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
         }
     },
-    VISION("Vision") {
+    VISION("Vision", "vision") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addVisionBonus(amount);
@@ -64,7 +64,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
         }
     },
-    HEARING("Hearing") {
+    HEARING("Hearing", "hearing") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addHearingBonus(amount);
@@ -75,7 +75,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
         }
     },
-    TASTE_AND_SMELL("Taste & Smell") {
+    TASTE_AND_SMELL("Taste & Smell", "taste smell") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addTasteAndSmellBonus(amount);
@@ -86,7 +86,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
         }
     },
-    TOUCH("Touch") {
+    TOUCH("Touch", "touch") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addTouchBonus(amount);
@@ -97,7 +97,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
         }
     },
-    HIT_POINTS("HP") {
+    HIT_POINTS("HP", "hp") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addHitPointsBonus(amount);
@@ -108,7 +108,7 @@ public enum Attribute {
             return (int) attributes.value(Attribute.STRENGTH) + (int) bonus;
         }
     },
-    FATIGUE_POINTS("FP") {
+    FATIGUE_POINTS("FP", "fp") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addFatiguePointsBonus(amount);
@@ -140,7 +140,7 @@ public enum Attribute {
             return new Weight(basicLift);
         }
     },
-    BASIC_SPEED("Basic Speed") {
+    BASIC_SPEED("Basic Speed", "speed") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             throw new RuntimeException("not implemented yet");
@@ -159,7 +159,7 @@ public enum Attribute {
             return speed + (double) bonus;
         }
     },
-    BASIC_MOVE("Basic Move") {
+    BASIC_MOVE("Basic Move", "move") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             throw new RuntimeException("not implemented yet");
