@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
 public class AttributeBonusTest {
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "A bonus {1} for {0} should give {3}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
         data.add(new Object[]{Attribute.INTELLIGENCE, "1", Reflection.withReflectionChain(call("intelligence")), 11});
@@ -29,6 +29,8 @@ public class AttributeBonusTest {
         data.add(new Object[]{Attribute.PERCEPTION, "1", Reflection.withReflectionChain(call("perception")), 11});
         data.add(new Object[]{Attribute.WILL, "1", Reflection.withReflectionChain(call("will")), 11});
         data.add(new Object[]{Attribute.FRIGHT_CHECK, "2", Reflection.withReflectionChain(call("frightCheck")), 12});
+        data.add(new Object[]{Attribute.DAMAGE_SWINGING, "5d+2", Reflection.withReflectionChain(call("damageSwingingAsString")), "6d+2"});
+        data.add(new Object[]{Attribute.DAMAGE_THRUSTING, "5d+2", Reflection.withReflectionChain(call("damageThrustingAsString")), "6d"});
         return data;
     }
 

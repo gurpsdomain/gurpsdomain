@@ -201,7 +201,7 @@ public enum Attribute {
     DAMAGE_THRUSTING("Dmg. Thrusting") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
-            throw new RuntimeException("not implemented yet");
+            attributes.addDamageThrustingBonus(Dice.parseDice(bonus));
         }
 
         @Override
@@ -219,7 +219,7 @@ public enum Attribute {
     DAMAGE_SWINGING("Dmg. Swinging") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
-            throw new RuntimeException("not implemented yet");
+            attributes.addDamageSwingingBonus(Dice.parseDice(bonus));
         }
 
         @Override
