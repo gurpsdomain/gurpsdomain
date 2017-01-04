@@ -1,16 +1,13 @@
 package org.gurpsdomain.domain;
 
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.gurpsdomain.domain.tables.DamageTable.swingingDamageForStrength;
 import static org.gurpsdomain.domain.tables.DamageTable.thrustingDamageForStrength;
 
 /* TODO Vision et. al. are missing */
 public enum Attribute {
-    STRENGTH("ST") {
+    STRENGTH("ST", "st") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addStrengthBonus(amount);
@@ -28,7 +25,7 @@ public enum Attribute {
             attributes.addHealthBonus(amount);
         }
     },
-    INTELLIGENCE("IQ") {
+    INTELLIGENCE("IQ", "iq") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addIntelligenceBonus(amount);
@@ -215,10 +212,15 @@ public enum Attribute {
 
     static final private Map<String, Attribute> descriptionToAttribute = new HashMap<>();
     private final String shorthand;
+    private final List<String> alternatives;
 
     static {
         for (Attribute attribute : controllingAttributes()) {
             descriptionToAttribute.put(attribute.shorthand(), attribute);
+
+            for (String alternativeDescription: attribute.alternativeDescriptions()) {
+                descriptionToAttribute.put(alternativeDescription, attribute);
+            }
         }
     }
 
@@ -233,13 +235,16 @@ public enum Attribute {
         return descriptionToAttribute.get(description);
     }
 
-    Attribute(String shorthand) {
+    Attribute(String shorthand, String... alternatives) {
         this.shorthand = shorthand;
+        this.alternatives = Arrays.asList(alternatives);
     }
 
     public String shorthand() {
         return shorthand;
     }
+
+    private List<String> alternativeDescriptions() { return alternatives; }
 
     public Object defaultBonus() {
         return 0;

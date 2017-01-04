@@ -1,5 +1,8 @@
 package org.gurpsdomain.domain.description;
 
+import org.gurpsdomain.domain.Attribute;
+import org.gurpsdomain.domain.AttributeBonus;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,6 +23,10 @@ public class AttributeBonusDescription {
     public AttributeBonusDescription(String attribute, int amount) {
         this.attribute = attribute;
         this.amount = amount;
+    }
+
+    public AttributeBonus createAttributeBonus() {
+        return new AttributeBonus(Attribute.fromDescription(attribute), amount);
     }
 
 }
