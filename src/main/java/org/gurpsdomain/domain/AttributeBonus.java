@@ -1,10 +1,10 @@
 package org.gurpsdomain.domain;
 
 public class AttributeBonus {
-    private final String attribute;
+    private final Attribute attribute;
     private final int amount;
 
-    public AttributeBonus(String attribute, int amount) {
+    public AttributeBonus(Attribute attribute, int amount) {
         this.attribute = attribute;
         this.amount = amount;
     }

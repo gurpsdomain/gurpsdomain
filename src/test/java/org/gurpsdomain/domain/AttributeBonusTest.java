@@ -18,7 +18,7 @@ public class AttributeBonusTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{new AttributeBonus("iq", 1), Reflection.withReflectionChain(call("intelligence"))});
+        data.add(new Object[]{new AttributeBonus(Attribute.INTELLIGENCE, 1), Reflection.withReflectionChain(call("intelligence"))});
         return data;
     }
 
