@@ -31,7 +31,7 @@ public enum Attribute {
             attributes.addIntelligenceBonus(amount);
         }
     },
-    WILL("Will") {
+    WILL("Will", "will") {
         @Override
         public void addBonusTo(Attributes attributes, int amount) {
             attributes.addWillBonus(amount);

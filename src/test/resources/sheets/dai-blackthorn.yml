@@ -43,6 +43,8 @@ advantages:
   - name: Flexibility
   - name: Power Investiture
     levels: 3
+  - name: Increased Will
+    levels: 1
 
 notes:
 - name: general note
