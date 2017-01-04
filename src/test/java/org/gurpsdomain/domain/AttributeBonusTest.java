@@ -18,17 +18,19 @@ public class AttributeBonusTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{new AttributeBonus(Attribute.INTELLIGENCE, 1), Reflection.withReflectionChain(call("intelligence"))});
+        data.add(new Object[]{Attribute.INTELLIGENCE, 1, Reflection.withReflectionChain(call("intelligence")), 11});
         return data;
     }
 
     private final AttributeBonus attributeBonus;
-    private final Reflection attribute;
+    private final Reflection expectedAttribute;
+    private final int expectedValue;
     private Attributes attributes;
 
-    public AttributeBonusTest(AttributeBonus attributeBonus, Reflection attribute) {
-        this.attributeBonus = attributeBonus;
-        this.attribute = attribute;
+    public AttributeBonusTest(Attribute attribute, int bonus, Reflection expectedAttribute, int expectedValue) {
+        this.attributeBonus = new AttributeBonus(attribute, bonus);
+        this.expectedAttribute = expectedAttribute;
+        this.expectedValue = expectedValue;
     }
 
     @Before
@@ -40,6 +42,6 @@ public class AttributeBonusTest {
     public void shouldEffectAttributes() {
         attributeBonus.applyTo(attributes);
 
-        assertThat(attribute.from(attributes), is(11));
+        assertThat(expectedAttribute.from(attributes), is(expectedValue));
     }
 }
