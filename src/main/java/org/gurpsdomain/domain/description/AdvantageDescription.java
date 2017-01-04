@@ -47,8 +47,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
         this.attributeBonusDescriptions = attributeBonusDescriptions != null ? attributeBonusDescriptions : Collections.emptyList();
     }
-
-    @Assign(developer = Developer.PAUL, issues = {23})
+    
     public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
         for (ModifierDescriptionPredicate predicate: modifierDescriptionPredicates) {
