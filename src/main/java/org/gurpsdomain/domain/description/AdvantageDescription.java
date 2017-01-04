@@ -50,12 +50,12 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
-        List<Modifier> modifiers = new ArrayList<>();
-        for (ModifierDescriptionPredicate predicate: modifierDescriptionPredicates) {
-            if (hasModifier(predicate)) {
-                modifiers.add(createModifier(predicate));
-            }
-        }
+        List<Modifier> modifiers = modifierDescriptionPredicates
+                .stream()
+                .filter(p -> hasModifier(p))
+                .map(p -> createModifier(p))
+                .collect(Collectors.toList());
+
         List<AttributeBonus> attributeBonuses = attributeBonusDescriptions()
                 .stream()
                 .map(AttributeBonusDescription::createAttributeBonus)
