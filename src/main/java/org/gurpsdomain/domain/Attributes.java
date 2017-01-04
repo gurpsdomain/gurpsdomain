@@ -29,6 +29,9 @@ public class Attributes {
     void addWillBonus(int bonus) {
         addIntBonus(Attribute.WILL, bonus);
     }
+    void addFrightCheckBonus(int bonus) {
+        addIntBonus(Attribute.FRIGHT_CHECK, bonus);
+    }
 
     void addPerceptionBonus(int bonus) {
         addIntBonus(Attribute.PERCEPTION, bonus);
@@ -128,6 +131,10 @@ public class Attributes {
 
     int will() {
         return (int) value(Attribute.WILL);
+    }
+
+    int frightCheck() {
+        return (int) value(Attribute.FRIGHT_CHECK);
     }
 
     int perception() {

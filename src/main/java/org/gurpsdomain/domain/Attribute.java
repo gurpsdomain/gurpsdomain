@@ -42,6 +42,17 @@ public enum Attribute {
             return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
         }
     },
+    FRIGHT_CHECK("Fright Check", "fright check") {
+        @Override
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addFrightCheckBonus(Integer.parseInt(bonus));
+        }
+
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return (int) attributes.value(Attribute.WILL) + (int) bonus;
+        }
+    },
     PERCEPTION("Per", "perception") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {

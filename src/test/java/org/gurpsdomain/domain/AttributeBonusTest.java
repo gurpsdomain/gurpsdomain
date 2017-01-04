@@ -27,6 +27,8 @@ public class AttributeBonusTest {
         data.add(new Object[]{Attribute.DEXTERITY, "-1", Reflection.withReflectionChain(call("dexterity")), 9});
         data.add(new Object[]{Attribute.HEARING, "2", Reflection.withReflectionChain(call("hearing")), 12});
         data.add(new Object[]{Attribute.PERCEPTION, "1", Reflection.withReflectionChain(call("perception")), 11});
+        data.add(new Object[]{Attribute.WILL, "1", Reflection.withReflectionChain(call("will")), 11});
+        data.add(new Object[]{Attribute.FRIGHT_CHECK, "2", Reflection.withReflectionChain(call("frightCheck")), 12});
         return data;
     }
 
