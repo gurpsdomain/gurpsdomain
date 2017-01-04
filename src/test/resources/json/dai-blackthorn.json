@@ -54,7 +54,8 @@
     "basicSpeed": 5.0,
     "basicMove": 5,
     "damageSwinging": "1d",
-    "damageThrusting": "1d-2"
+    "damageThrusting": "1d-2",
+    "frightCheck": 12
   },
   "advantages": [
     {
