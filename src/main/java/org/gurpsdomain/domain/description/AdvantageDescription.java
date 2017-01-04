@@ -49,17 +49,9 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     }
 
     @Assign(developer = Developer.PAUL, issues = {23})
-    public Advantage createAdvantage(List<Map<String, String>> modifierIdentifiers, int levelAmount) {
+    public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
-        for (Map<String, String> identifiers : modifierIdentifiers) {
-            String modifierName = identifiers.getOrDefault("name", "");
-            String modifierVariation = identifiers.getOrDefault("variation", "");
-            ModifierDescriptionPredicate predicate;
-            if (modifierVariation.equals("")) {
-                predicate = Name.name(modifierName);
-            } else {
-                predicate = and(Name.name(modifierName), note(modifierVariation));
-            }
+        for (ModifierDescriptionPredicate predicate: modifierDescriptionPredicates) {
             if (hasModifier(predicate)) {
                 modifiers.add(createModifier(predicate));
             }

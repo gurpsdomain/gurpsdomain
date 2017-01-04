@@ -4,8 +4,13 @@ import org.gurpsdomain.domain.Advantage;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
+import org.gurpsdomain.domain.description.predicate.Name;
 
 import java.util.*;
+
+import static org.gurpsdomain.domain.description.predicate.And.and;
+import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 public class AddAdvantagesStep implements YamlBuildStep {
     private Repository<AdvantageDescription> repository;
@@ -26,16 +31,20 @@ public class AddAdvantagesStep implements YamlBuildStep {
                     Integer levels = (int) inputAdvantage.getOrDefault("levels", 0);
 
                     List<Map<String, String>> modifiers = (List<Map<String, String>>) (inputAdvantage.getOrDefault("modifiers", Collections.EMPTY_LIST));
-
-                    List<Map<String, String>> modifierIdentifiers = new ArrayList<>();
-                    for (Map<String, String> modifier : modifiers) {
-                        Map<String, String> identifiers = new HashMap<>();
-                        identifiers.put("name", modifier.getOrDefault("name", ""));
-                        identifiers.put("variation", modifier.getOrDefault("variation", ""));
-                        modifierIdentifiers.add(identifiers);
+                    List<ModifierDescriptionPredicate> modifierDescriptionPredicates = new ArrayList<>();
+                    for (Map<String, String> modifier: modifiers) {
+                        String modifierName = modifier.get("name");
+                        ModifierDescriptionPredicate predicate;
+                        if (modifier.containsKey("variation") && !modifier.get("variation").equals("")) {
+                            String modifierVariation = modifier.get("variation");
+                            predicate = and(Name.name(modifierName), note(modifierVariation));
+                        } else {
+                            predicate = Name.name(modifierName);
+                        }
+                        modifierDescriptionPredicates.add(predicate);
                     }
 
-                    Advantage advantage = advantageDescription.createAdvantage(modifierIdentifiers, levels);
+                    Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
                     sheetBuilder.addAdvantage(advantage);
                 }
             }
