@@ -5,7 +5,6 @@ import java.util.*;
 import static org.gurpsdomain.domain.tables.DamageTable.swingingDamageForStrength;
 import static org.gurpsdomain.domain.tables.DamageTable.thrustingDamageForStrength;
 
-/* TODO Vision et. al. are missing */
 public enum Attribute {
     STRENGTH("ST", "st") {
         @Override
@@ -248,10 +247,6 @@ public enum Attribute {
                 descriptionToAttribute.put(alternativeDescription, attribute);
             }
         }
-    }
-
-    private static Collection<Attribute> controllingAttributes() {
-        return EnumSet.of(STRENGTH, DEXTERITY, HEALTH, INTELLIGENCE, WILL, PERCEPTION);
     }
 
     public static Attribute fromDescription(String description) {
