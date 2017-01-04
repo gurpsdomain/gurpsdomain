@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
@@ -47,7 +48,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
         this.attributeBonusDescriptions = attributeBonusDescriptions != null ? attributeBonusDescriptions : Collections.emptyList();
     }
-    
+
     public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
         List<Modifier> modifiers = new ArrayList<>();
         for (ModifierDescriptionPredicate predicate: modifierDescriptionPredicates) {
@@ -55,10 +56,10 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
                 modifiers.add(createModifier(predicate));
             }
         }
-        List<AttributeBonus> attributeBonuses = new ArrayList<>();
-        for (AttributeBonusDescription attributeBonusDescription: attributeBonusDescriptions()) {
-            attributeBonuses.add(attributeBonusDescription.createAttributeBonus());
-        }
+        List<AttributeBonus> attributeBonuses = attributeBonusDescriptions()
+                .stream()
+                .map(AttributeBonusDescription::createAttributeBonus)
+                .collect(Collectors.toList());
 
         if (pointsPerLevel != null) {
             return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, levelAmount, pointsPerLevel);
