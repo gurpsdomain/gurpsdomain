@@ -7,6 +7,7 @@ import org.gurpsdomain.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.call;
 import static org.gurpsdomain.adapters.output.converter.Reflection.read;
@@ -83,11 +84,7 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private List<SheetAdvantage> advantages() {
-        List<SheetAdvantage> sheetAdvantages = new ArrayList<>();
-        for (Advantage domainAdvantage : domainAdvantages) {
-            sheetAdvantages.add(sheetAdvantageFromDomainAdvantage(domainAdvantage));
-        }
-        return sheetAdvantages;
+        return domainAdvantages.stream().map(a -> sheetAdvantageFromDomainAdvantage(a)).collect(Collectors.toList());
     }
 
     private SheetAdvantage sheetAdvantageFromDomainAdvantage(Advantage domainAdvantage) {
