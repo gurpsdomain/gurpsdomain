@@ -26,12 +26,6 @@ rewards:
   - 3
   - 5
 
-skills:
-  - name: Alchemy
-    points: 3
-  - name: Stealth
-    points: 2
-
 advantages:
   - name: Absolute Direction
     modifiers:
@@ -48,6 +42,18 @@ advantages:
 
 disadvantages:
   - name: Indecisive
+
+skills:
+  - name: Alchemy
+    points: 3
+  - name: Stealth
+    points: 2
+
+spells:
+  - name: Truthsayer
+    points: 1
+  - name: Lightning Stare
+    points: 2
 
 notes:
 - name: general note

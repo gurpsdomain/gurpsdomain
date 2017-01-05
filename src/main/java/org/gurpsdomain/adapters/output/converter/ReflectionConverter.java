@@ -38,6 +38,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection pointsAdvantages = withReflectionChain(read("points"), read("advantages"));
     private Reflection pointsDisadvantages = withReflectionChain(read("points"), read("disadvantages"));
     private Reflection pointsSkills = withReflectionChain(read("points"), read("skills"));
+    private Reflection pointsSpells = withReflectionChain(read("points"), read("spells"));
     private Reflection pointsUnspent = withReflectionChain(read("points"), read("unspent"));
     private Reflection callCost = withReflectionChain(call("cost"));
     private Reflection health = withReflectionChain(call("health"));
@@ -83,6 +84,7 @@ public class ReflectionConverter implements SheetConverter {
                 pointsAdvantages.from(domainSheet),
                 pointsDisadvantages.from(domainSheet),
                 pointsSkills.from(domainSheet),
+                pointsSpells.from(domainSheet),
                 pointsUnspent.from(domainSheet));
     }
 

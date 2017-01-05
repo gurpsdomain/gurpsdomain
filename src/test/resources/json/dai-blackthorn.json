@@ -30,7 +30,8 @@
     "advantages": 70,
     "disadvantages": -10,
     "skills": 5,
-    "unspent": 193
+    "spells": 3,
+    "unspent": 190
   },
   "attributes": {
     "strength": 10,

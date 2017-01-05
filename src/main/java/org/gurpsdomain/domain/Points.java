@@ -5,6 +5,7 @@ public class Points {
     private int advantages;
     private int disadvantages;
     private int skills;
+    private int spells;
     private int unspent;
 
     public Points(int total) {
@@ -28,6 +29,11 @@ public class Points {
 
     void addSkill(int amount) {
         this.skills += amount;
+        this.unspent -= amount;
+    }
+
+    void addSpell(int amount) {
+        this.spells += amount;
         this.unspent -= amount;
     }
 }

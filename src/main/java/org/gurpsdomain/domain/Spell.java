@@ -12,7 +12,7 @@ public class Spell {
     }
 
     void payCost(Points points) {
-        points.addSkill(cost);
+        points.addSpell(cost);
     }
 
     //TODO
