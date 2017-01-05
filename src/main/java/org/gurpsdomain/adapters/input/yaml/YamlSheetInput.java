@@ -30,6 +30,7 @@ public class YamlSheetInput implements SheetInput {
         Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, "src/main/resources/data/spells.magic-set.xml");
         YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
         yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
+        yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));
         yamlSheetInput.addBuildStep(addAdvantagesStep(advantageRepository));
         yamlSheetInput.addBuildStep(addDisadvantagesStep(advantageRepository));
         return yamlSheetInput;

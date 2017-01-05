@@ -15,6 +15,7 @@ public class SheetBuilder {
     private List<Integer> awards = new ArrayList<>();
     private List<Note> notes = new ArrayList<>();
     private List<Skill> skills = new ArrayList<>();
+    private List<Spell> spells = new ArrayList<>();
     private List<Advantage> advantages = new ArrayList<>();
     private Map<String[], String> metaData = new HashMap<>();
 
@@ -28,6 +29,10 @@ public class SheetBuilder {
 
     public  void addSkill(Skill skill) {
        skills.add(skill);
+    }
+
+    public  void addSpell(Spell spell) {
+        spells.add(spell);
     }
 
     public  void addAdvantage(Advantage advantage) {

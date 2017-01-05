@@ -22,8 +22,8 @@ public class SpellDescription implements Registerable<SpellDescription> {
         this.reference = pageReference;
     }
 
-    public Spell createSpell() {
-        return new Spell(name, reference);
+    public Spell createSpell(int points) {
+        return new Spell(name, points, reference);
     }
 
     @Override
