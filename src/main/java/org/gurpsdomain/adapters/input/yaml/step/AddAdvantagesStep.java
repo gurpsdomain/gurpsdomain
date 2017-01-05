@@ -13,15 +13,21 @@ import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 public class AddAdvantagesStep implements YamlBuildStep {
-    private Repository<AdvantageDescription> repository;
+    public static AddAdvantagesStep addAdvantagesStep(Repository<AdvantageDescription> repository) {
+        return new AddAdvantagesStep(repository, "advantages");
+    }
 
-    public AddAdvantagesStep(Repository<AdvantageDescription> repository) {
+    private final Repository<AdvantageDescription> repository;
+    private final String category;
+
+    private AddAdvantagesStep(Repository<AdvantageDescription> repository, String category) {
         this.repository = repository;
+        this.category = category;
     }
 
     @Override
     public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        List<Map<String, Object>> inputAdvantages = (List<Map<String, Object>>) data.get("advantages");
+        List<Map<String, Object>> inputAdvantages = (List<Map<String, Object>>) data.get(category);
         if (!(inputAdvantages == null)) {
             for (Map<String, Object> inputAdvantage : inputAdvantages) {
                 String advantageName = (String) inputAdvantage.get("name");
