@@ -47,7 +47,7 @@ public class SheetBuilder {
     }
 
     public Sheet build() {
-        return Sheet.from(metaData, awards, advantages, skills, notes);
+        return Sheet.from(metaData, awards, advantages, skills, spells, notes);
     }
 }
 
