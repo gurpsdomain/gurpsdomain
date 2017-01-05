@@ -170,9 +170,13 @@ public class ReflectionConverter implements SheetConverter {
     }
 
     private SheetSpell sheetSpellFromDomainSpell(Spell domainSpell) {
+        Attributes domainAttributes = attributes.from(domainSheet);
+        Reflection level = withReflectionChain(call("level", domainAttributes));
         return new SheetSpell(
                 name.from(domainSpell),
                 cost.from(domainSpell),
+                level.from(domainSpell),
+                difficultyLevel.from(domainSpell),
                 pageReference.from(domainSpell));
     }
 

@@ -136,12 +136,16 @@
     {
       "name": "Truthsayer",
       "points": 1,
+      "level": 8,
+      "difficultyLevel": "HARD",
       "pageReference": "M45"
     },
     {
-      "name": "Lightning Stare",
+      "name": "Mind-Sending",
       "points": 2,
-      "pageReference": "M198"
+      "level": 9,
+      "difficultyLevel": "HARD",
+      "pageReference": "M47"
     }
   ],
   "notes": [
