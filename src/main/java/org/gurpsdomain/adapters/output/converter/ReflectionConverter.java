@@ -5,6 +5,7 @@ import org.gurpsdomain.adapters.output.domain.*;
 import org.gurpsdomain.domain.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,6 +36,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection attributes = withReflectionChain(read("attributes"));
     private Reflection pointsTotal = withReflectionChain(read("points"), read("total"));
     private Reflection pointsAdvantages = withReflectionChain(read("points"), read("advantages"));
+    private Reflection pointsDisadvantages = withReflectionChain(read("points"), read("disadvantages"));
     private Reflection pointsSkills = withReflectionChain(read("points"), read("skills"));
     private Reflection pointsUnspent = withReflectionChain(read("points"), read("unspent"));
     private Reflection callCost = withReflectionChain(call("cost"));
@@ -62,7 +64,7 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         setDomainSheetData(sheet);
-        return new SheetSheet(metaData(), points(), advantages(), skills(), notes(), attributes(), secondaryCharacteristics());
+        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), notes(), attributes(), secondaryCharacteristics());
     }
 
     private void setDomainSheetData(Sheet sheet) {
@@ -79,12 +81,23 @@ public class ReflectionConverter implements SheetConverter {
         return new SheetPoints(
                 pointsTotal.from(domainSheet),
                 pointsAdvantages.from(domainSheet),
+                pointsDisadvantages.from(domainSheet),
                 pointsSkills.from(domainSheet),
                 pointsUnspent.from(domainSheet));
     }
 
     private List<SheetAdvantage> advantages() {
-        return domainAdvantages.stream().map(a -> sheetAdvantageFromDomainAdvantage(a)).collect(Collectors.toList());
+        return domainAdvantages.stream()
+                .filter(a -> (int) callCost.from(a) >= 0)
+                .map(this::sheetAdvantageFromDomainAdvantage)
+                .collect(Collectors.toList());
+    }
+
+    private List<SheetAdvantage> disadvantages() {
+        return domainAdvantages.stream()
+                .filter(a -> (int) callCost.from(a) < 0)
+                .map(this::sheetAdvantageFromDomainAdvantage)
+                .collect(Collectors.toList());
     }
 
     private SheetAdvantage sheetAdvantageFromDomainAdvantage(Advantage domainAdvantage) {

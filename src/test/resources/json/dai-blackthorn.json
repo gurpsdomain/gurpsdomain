@@ -28,8 +28,9 @@
   "points": {
     "total": 258,
     "advantages": 70,
+    "disadvantages": -10,
     "skills": 5,
-    "unspent": 183
+    "unspent": 193
   },
   "attributes": {
     "strength": 10,
@@ -103,6 +104,14 @@
       "modifiers": []
     }
 
+  ],
+  "disadvantages": [
+    {
+      "name": "Indecisive",
+      "points": -10,
+      "pageReference": "B140",
+      "modifiers": []
+    }
   ],
   "skills": [
     {

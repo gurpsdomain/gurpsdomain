@@ -17,6 +17,10 @@ public class AddAdvantagesStep implements YamlBuildStep {
         return new AddAdvantagesStep(repository, "advantages");
     }
 
+    public static AddAdvantagesStep addDisadvantagesStep(Repository<AdvantageDescription> repository) {
+        return new AddAdvantagesStep(repository, "disadvantages");
+    }
+
     private final Repository<AdvantageDescription> repository;
     private final String category;
 

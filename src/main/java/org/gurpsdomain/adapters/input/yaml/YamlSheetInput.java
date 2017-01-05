@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addAdvantagesStep;
+import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addDisadvantagesStep;
 import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
@@ -27,6 +28,7 @@ public class YamlSheetInput implements SheetInput {
         YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
         yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
         yamlSheetInput.addBuildStep(addAdvantagesStep(advantageRepository));
+        yamlSheetInput.addBuildStep(addDisadvantagesStep(advantageRepository));
         return yamlSheetInput;
     }
 

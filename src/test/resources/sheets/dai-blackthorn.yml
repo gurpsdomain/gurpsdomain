@@ -46,6 +46,9 @@ advantages:
   - name: Increased Will
     levels: 2
 
+disadvantages:
+  - name: Indecisive
+
 notes:
 - name: general note
   note: This is a very important note that I would like to have on my sheet
