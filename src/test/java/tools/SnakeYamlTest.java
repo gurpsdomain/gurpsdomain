@@ -2,7 +2,9 @@ package tools;
 
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
+import javax.print.attribute.standard.MediaSize;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
@@ -50,5 +52,48 @@ public class SnakeYamlTest {
             expectedOutput += "\n";
         }
         assertThat(output,is(expectedOutput));
+    }
+
+    @Test
+    public void shouldLoadYamlIntoAnActualObject() throws FileNotFoundException {
+        FileInputStream input = new FileInputStream(new File("src/test/resources/tools/loaded-by-yaml.yml"));
+        Yaml yaml = new Yaml(new Constructor(LoadedByYaml.class));
+
+        LoadedByYaml o = (LoadedByYaml) yaml.load(input);
+        assertThat(o.name, is("Actual Object"));
+        assertThat(o.value, is(37));
+        assertThat(o.otherObject, is(new OtherObject(51)));
+    }
+}
+
+
+class LoadedByYaml {
+    public String name;
+    public int value;
+    public OtherObject otherObject;
+}
+
+class OtherObject {
+    public int value;
+
+    public OtherObject(){}
+
+    public OtherObject(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OtherObject that = (OtherObject) o;
+
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
     }
 }
