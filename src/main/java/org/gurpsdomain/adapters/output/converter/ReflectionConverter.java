@@ -19,6 +19,7 @@ public class ReflectionConverter implements SheetConverter {
     private Sheet domainSheet;
     private List<Advantage> domainAdvantages;
     private List<Skill> domainSkills;
+    private List<Spell> domainSpells;
     private Reflection name = withReflectionChain(read("name"));
     private Reflection cost = withReflectionChain(read("cost"));
     private Reflection level = withReflectionChain(read("level"));
@@ -30,6 +31,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection difficultyLevel = withReflectionChain(read("difficultyLevel"));
     private Reflection advantages = withReflectionChain(read("advantages"));
     private Reflection skills = withReflectionChain(read("skills"));
+    private Reflection spells = withReflectionChain(read("spells"));
     private Reflection metaData = withReflectionChain(read("metaData"));
     private Reflection note = withReflectionChain(read("note"));
     private Reflection notes = withReflectionChain(read("notes"));
@@ -65,13 +67,14 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         setDomainSheetData(sheet);
-        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), notes(), attributes(), secondaryCharacteristics());
+        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), notes(), attributes(), secondaryCharacteristics());
     }
 
     private void setDomainSheetData(Sheet sheet) {
         this.domainSheet = sheet;
         this.domainAdvantages = advantages.from(domainSheet);
         this.domainSkills = skills.from(domainSheet);
+        this.domainSpells = spells.from(domainSheet);
     }
 
     private Map<String, String> metaData() {
@@ -157,6 +160,21 @@ public class ReflectionConverter implements SheetConverter {
                 controllingAttribute.from(domainSkill),
                 difficultyLevel.from(domainSkill),
                 level.from(domainSkill));
+    }
+
+    private List<SheetSpell> spells() {
+        List<SheetSpell> sheetSpells = new ArrayList<>();
+        for (Spell domainSpell : domainSpells) {
+            sheetSpells.add(sheetSpellFromDomainSpell(domainSpell));
+        }
+        return sheetSpells;
+    }
+
+    private SheetSpell sheetSpellFromDomainSpell(Spell domainSpell) {
+        return new SheetSpell(
+                name.from(domainSpell),
+                cost.from(domainSpell),
+                pageReference.from(domainSpell));
     }
 
     private List<SheetNote> notes() {

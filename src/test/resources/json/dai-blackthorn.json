@@ -132,6 +132,18 @@
       "difficultyLevel": "AVERAGE"
     }
   ],
+  "spells": [
+    {
+      "name": "Truthsayer",
+      "points": 1,
+      "pageReference": "M45"
+    },
+    {
+      "name": "Lightning Stare",
+      "points": 2,
+      "pageReference": "M198"
+    }
+  ],
   "notes": [
     {
       "name": "general note",
