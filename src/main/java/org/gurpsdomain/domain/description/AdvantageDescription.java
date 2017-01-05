@@ -1,23 +1,16 @@
 package org.gurpsdomain.domain.description;
 
-import documentation.Assign;
-import documentation.Developer;
 import org.gurpsdomain.domain.*;
 import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
-import org.gurpsdomain.domain.description.predicate.Name;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.gurpsdomain.domain.description.predicate.And.and;
-import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 @XmlRootElement(name = "advantage")
 @XmlAccessorType(XmlAccessType.FIELD)

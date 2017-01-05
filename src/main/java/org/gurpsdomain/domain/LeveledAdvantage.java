@@ -25,7 +25,7 @@ public class LeveledAdvantage extends Advantage {
 
 
     void updateAttributes(Attributes attributes) {
-        // TODO do not assume that all bonusses are leveled
+        // TODO do not assume that all bonuses are leveled
         for (int index = 0; index < level; index++) {
             super.updateAttributes(attributes);
         }
