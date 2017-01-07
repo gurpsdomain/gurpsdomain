@@ -27,7 +27,7 @@ public class SpellLevelTest {
     private Attributes attributes;
 
     public SpellLevelTest(int cost, DifficultyLevel difficultyLevel, int expectedLevel) {
-        this.spell = new Spell("dummyName", cost, "dummyReference", difficultyLevel);
+        this.spell = new Spell("dummyName", cost, "dummyReference", difficultyLevel , "dummyColleges" , "dummyPowerSource", "dummySpellClasses", "dummyMaintenanceCost", "dummyCastingTime", "dummyDuration");
         this.expectedLevel = expectedLevel;
         this.attributes = new Attributes();
     }

@@ -15,15 +15,35 @@ public class SpellDescription implements Registerable<SpellDescription> {
     private String name;
     @XmlElement(name = "reference")
     private String reference;
+    @XmlElement(name = "college")
+    private String colleges;
+    @XmlElement(name = "power_source")
+    private String powerSource;
+    @XmlElement(name = "spell_class")
+    private String spellClasses;
+    @XmlElement(name = "maintenance_cost")
+    private String maintenanceCost;
+    @XmlElement(name = "casting_time")
+    private String castingTime;
+    @XmlElement(name = "duration")
+    private String duration;
+
+
 
     private SpellDescription() {
         /* needed for JAXB */
     }
 
-    public SpellDescription(String name, String pageReference, String veryHardString) {
+    public SpellDescription(String name, String pageReference, String veryHardString, String colleges, String powerSource, String spellClasses, String maintenanceCost, String castingTime, String duration) {
         this.name = name;
         this.reference = pageReference;
         this.veryHardString = veryHardString;
+        this.colleges = colleges;
+        this.powerSource = powerSource;
+        this.spellClasses = spellClasses;
+        this.maintenanceCost = maintenanceCost;
+        this.castingTime = castingTime;
+        this.duration = duration;
     }
 
     public Spell createSpell(int points) {
@@ -31,7 +51,7 @@ public class SpellDescription implements Registerable<SpellDescription> {
         if ("yes".equals(veryHardString)) {
             difficultyLevel = DifficultyLevel.VERY_HARD;
         }
-        return new Spell(name, points, reference, difficultyLevel);
+        return new Spell(name, points, reference, difficultyLevel,colleges, powerSource, spellClasses, maintenanceCost, castingTime, duration);
     }
 
     @Override
