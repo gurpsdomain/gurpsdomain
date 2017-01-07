@@ -15,10 +15,10 @@ public class SpellLevelTest {
     @Parameterized.Parameters(name = "cost {0} for difficulty very hard: '{1}' should give a spell level {2}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{1, true, 7});
-        data.add(new Object[]{1, false, 8});
-        data.add(new Object[]{2, true, 8});
-        data.add(new Object[]{2, false, 9});
+        data.add(new Object[]{1, DifficultyLevel.VERY_HARD, 7});
+        data.add(new Object[]{1, DifficultyLevel.HARD, 8});
+        data.add(new Object[]{2, DifficultyLevel.VERY_HARD, 8});
+        data.add(new Object[]{2, DifficultyLevel.HARD, 9});
         return data;
     }
 
@@ -26,8 +26,8 @@ public class SpellLevelTest {
     private int expectedLevel;
     private Attributes attributes;
 
-    public SpellLevelTest(int cost, boolean veryHard, int expectedLevel) {
-        this.spell = new Spell("dummyName", cost, "dummyReference", veryHard);
+    public SpellLevelTest(int cost, DifficultyLevel difficultyLevel, int expectedLevel) {
+        this.spell = new Spell("dummyName", cost, "dummyReference", difficultyLevel);
         this.expectedLevel = expectedLevel;
         this.attributes = new Attributes();
     }

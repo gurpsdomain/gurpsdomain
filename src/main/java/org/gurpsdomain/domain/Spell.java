@@ -6,14 +6,13 @@ public class Spell {
     private final String pageReference;
     private final DifficultyLevel difficultyLevel;
 
-    public Spell(String name, int cost, String pageReference, boolean veryHard) {
+    public Spell(String name, int cost, String pageReference, DifficultyLevel difficultyLevel) {
         this.name = name;
         this.cost = cost;
         this.pageReference = pageReference;
-        if (veryHard) {
-            this.difficultyLevel = DifficultyLevel.VERY_HARD;
-        } else {
-            this.difficultyLevel = DifficultyLevel.HARD;
+        this.difficultyLevel = difficultyLevel;
+        if (!(difficultyLevel.equals(DifficultyLevel.HARD)) && !(difficultyLevel.equals(DifficultyLevel.VERY_HARD))) {
+            throw new IllegalArgumentException("Unexpected difficultyLevel " + difficultyLevel + " for spell " + name);
         }
     }
 
