@@ -134,11 +134,11 @@
   ],
   "spells": [
     {
-      "name": "Truthsayer",
+      "name": "Gift of Letters",
       "points": 1,
-      "level": 8,
-      "difficultyLevel": "HARD",
-      "pageReference": "M45"
+      "level": 7,
+      "difficultyLevel": "VERY_HARD",
+      "pageReference": "M46"
     },
     {
       "name": "Mind-Sending",

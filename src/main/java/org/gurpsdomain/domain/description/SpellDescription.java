@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "spell")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SpellDescription implements Registerable<SpellDescription> {
-    @XmlAttribute(name = "very_hard", required = false) //FIXME this doesn't seem to do what I hoped
+    @XmlAttribute(name = "very_hard")
     private String veryHardString;
     @XmlElement(name = "name")
     private String name;
