@@ -138,6 +138,12 @@
       "points": 1,
       "level": 7,
       "difficultyLevel": "VERY_HARD",
+      "castingTime": "1 sec",
+      "colleges": "Communication",
+      "powerSource": "Arcane",
+      "duration": "1 min",
+      "maintenanceCost": "Half",
+      "spellClasses": "Regular",
       "pageReference": "M46"
     },
     {
@@ -145,6 +151,12 @@
       "points": 2,
       "level": 9,
       "difficultyLevel": "HARD",
+      "castingTime": "4 sec",
+      "colleges": "Communication",
+      "powerSource": "Arcane",
+      "duration": "1 min",
+      "maintenanceCost": "4",
+      "spellClasses": "Regular",
       "pageReference": "M47"
     }
   ],

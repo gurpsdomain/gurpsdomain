@@ -23,6 +23,12 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection cost = withReflectionChain(read("cost"));
     private Reflection level = withReflectionChain(read("level"));
     private Reflection pageReference = withReflectionChain(read("pageReference"));
+    private Reflection colleges = withReflectionChain(read("colleges"));
+    private Reflection powerSource = withReflectionChain(read("powerSource"));
+    private Reflection spellClasses = withReflectionChain(read("spellClasses"));
+    private Reflection maintenanceCost = withReflectionChain(read("maintenanceCost"));
+    private Reflection castingTime = withReflectionChain(read("castingTime"));
+    private Reflection duration = withReflectionChain(read("duration"));
     private Reflection modifiers = withReflectionChain(read("modifiers"));
     private Reflection value = withReflectionChain(read("value"));
     private Reflection type = withReflectionChain(read("type"));
@@ -177,7 +183,13 @@ public class ReflectionConverter implements SheetConverter {
                 cost.from(domainSpell),
                 level.from(domainSpell),
                 difficultyLevel.from(domainSpell),
-                pageReference.from(domainSpell));
+                pageReference.from(domainSpell),
+                colleges.from(domainSpell),
+                powerSource.from(domainSpell),
+                spellClasses.from(domainSpell),
+                maintenanceCost.from(domainSpell),
+                castingTime.from(domainSpell),
+                duration.from(domainSpell));
     }
 
     private List<SheetNote> notes() {
