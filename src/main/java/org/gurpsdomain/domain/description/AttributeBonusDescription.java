@@ -3,10 +3,7 @@ package org.gurpsdomain.domain.description;
 import org.gurpsdomain.domain.Attribute;
 import org.gurpsdomain.domain.AttributeBonus;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "attribute_bonus")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -15,6 +12,8 @@ public class AttributeBonusDescription {
     private String attribute;
     @XmlElement(name = "amount")
     private String bonus;
+    @XmlAttribute(name = "per_level")
+    private String perLevelString;
 
     public AttributeBonusDescription() {
         /* needed by JAXB */
