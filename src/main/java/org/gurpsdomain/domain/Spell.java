@@ -36,10 +36,10 @@ public class Spell {
         return difficultyLevel.determineDelta(cost);
     }
 
-    //TODO assume magery 0 now. To be implemented as attribute?
+    //TODO add the spell bonuses
     public int level(Attributes attributes) {
         Attribute controllingAttribute = Attribute.INTELLIGENCE;
-        return attributes.level(controllingAttribute) + delta() + 0;
+        return attributes.level(controllingAttribute) + delta();
     }
 
 }

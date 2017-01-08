@@ -24,6 +24,7 @@ public class Skill {
         return difficultyLevel.determineDelta(cost);
     }
 
+    //TODO add the skill bonuses
     public int level(Attributes attributes) {
         return attributes.level(controllingAttribute) + delta();
     }
