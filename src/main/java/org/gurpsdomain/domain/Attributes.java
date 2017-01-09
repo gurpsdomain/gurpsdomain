@@ -29,6 +29,11 @@ public class Attributes {
     void addWillBonus(int bonus) {
         addIntBonus(Attribute.WILL, bonus);
     }
+
+    void addMageryBonus(int bonus) {
+        addIntBonus(Attribute.MAGERY, bonus);
+    }
+
     void addFrightCheckBonus(int bonus) {
         addIntBonus(Attribute.FRIGHT_CHECK, bonus);
     }
@@ -131,6 +136,10 @@ public class Attributes {
 
     int will() {
         return (int) value(Attribute.WILL);
+    }
+
+    int magery() {
+        return (int) value(Attribute.MAGERY);
     }
 
     int frightCheck() {

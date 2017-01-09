@@ -35,11 +35,11 @@ public class Spell {
     private int delta() {
         return difficultyLevel.determineDelta(cost);
     }
-
-    //TODO add the spell bonuses
+    
     public int level(Attributes attributes) {
         Attribute controllingAttribute = Attribute.INTELLIGENCE;
-        return attributes.level(controllingAttribute) + delta();
+        Attribute magery = Attribute.MAGERY;
+        return attributes.level(controllingAttribute) + delta() + attributes.level(magery);
     }
 
 }

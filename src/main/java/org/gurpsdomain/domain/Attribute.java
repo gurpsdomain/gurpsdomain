@@ -41,6 +41,17 @@ public enum Attribute {
             return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
         }
     },
+    MAGERY("Magery", "magery") {
+        @Override
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addWillBonus(Integer.parseInt(bonus));
+        }
+
+        @Override
+        public Object value(Attributes attributes, Object bonus) {
+            return 0 + (int) bonus;
+        }
+    },
     FRIGHT_CHECK("Fright Check", "fright check") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
