@@ -7,7 +7,7 @@ public class SheetSpell {
     private final String name;
     private final int points;
     private final int level;
-    private final DifficultyLevel difficultyLevel;
+    private final String difficultyLevel;
     private final String pageReference;
     private final String colleges;
     private final String powerSource;
@@ -20,7 +20,7 @@ public class SheetSpell {
         this.name = name;
         this.points = points;
         this.level = level;
-        this.difficultyLevel = difficultyLevel;
+        this.difficultyLevel = difficultyLevel.shorthand();
         this.pageReference = pageReference;
         this.colleges = colleges;
         this.powerSource = powerSource;

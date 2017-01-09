@@ -7,6 +7,7 @@ public enum DifficultyLevel {
     EASY(0), AVERAGE(-1), HARD(-2), VERY_HARD(-3);
 
     static final private Map<String, DifficultyLevel> descriptionToLevel = new HashMap<>();
+    static final private Map<DifficultyLevel, String> LevelToDescription = new HashMap<>();
     private final int offset;
 
     static {
@@ -14,6 +15,11 @@ public enum DifficultyLevel {
         descriptionToLevel.put("A", DifficultyLevel.AVERAGE);
         descriptionToLevel.put("H", DifficultyLevel.HARD);
         descriptionToLevel.put("VH", DifficultyLevel.VERY_HARD);
+
+        LevelToDescription.put(DifficultyLevel.EASY, "E");
+        LevelToDescription.put(DifficultyLevel.AVERAGE, "A");
+        LevelToDescription.put(DifficultyLevel.HARD, "H");
+        LevelToDescription.put(DifficultyLevel.VERY_HARD, "VH");
     }
 
     public static DifficultyLevel fromDescription(String description) {
@@ -35,5 +41,9 @@ public enum DifficultyLevel {
             return 1 + offset;
         }
         return (cost / 4) + 1 + offset;
+    }
+
+    public String shorthand() {
+        return LevelToDescription.get(this);
     }
 }

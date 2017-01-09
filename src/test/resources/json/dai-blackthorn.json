@@ -121,7 +121,7 @@
       "level": 8,
       "pageReference": "B174",
       "controllingAttribute": "IQ",
-      "difficultyLevel": "VERY_HARD"
+      "difficultyLevel": "VH"
     },
     {
       "name": "Stealth",
@@ -129,7 +129,7 @@
       "level": 10,
       "pageReference": "B222",
       "controllingAttribute": "DX",
-      "difficultyLevel": "AVERAGE"
+      "difficultyLevel": "A"
     }
   ],
   "spells": [
@@ -137,7 +137,7 @@
       "name": "Gift of Letters",
       "points": 1,
       "level": 7,
-      "difficultyLevel": "VERY_HARD",
+      "difficultyLevel": "VH",
       "castingTime": "1 sec",
       "colleges": "Communication",
       "powerSource": "Arcane",
@@ -150,7 +150,7 @@
       "name": "Mind-Sending",
       "points": 2,
       "level": 9,
-      "difficultyLevel": "HARD",
+      "difficultyLevel": "H",
       "castingTime": "4 sec",
       "colleges": "Communication",
       "powerSource": "Arcane",

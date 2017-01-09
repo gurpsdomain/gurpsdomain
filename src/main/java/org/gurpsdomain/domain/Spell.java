@@ -35,7 +35,7 @@ public class Spell {
     private int delta() {
         return difficultyLevel.determineDelta(cost);
     }
-    
+
     public int level(Attributes attributes) {
         Attribute controllingAttribute = Attribute.INTELLIGENCE;
         Attribute magery = Attribute.MAGERY;
