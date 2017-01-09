@@ -1,6 +1,7 @@
 package org.gurpsdomain.adapters.input.yaml;
 
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.adapters.input.yaml.domain.InputSheet;
 import org.gurpsdomain.adapters.input.yaml.step.*;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.Sheet;
@@ -17,7 +18,6 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addAdvantagesStep;
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addDisadvantagesStep;
@@ -61,8 +61,8 @@ public class YamlSheetInput implements SheetInput {
     @Override
     public Sheet produce() {
         if (sheetBuilder == null) {
-            Yaml yaml = new Yaml();
-            Map<String, Object> data = (Map<String, Object>) yaml.load(reader);
+            Yaml yaml = new Yaml(InputSheet.constructor());
+            InputSheet data = (InputSheet) yaml.load(reader);
             sheetBuilder = builder();
             for (YamlBuildStep buildStep: buildSteps) {
                 buildStep.build(data, sheetBuilder);

@@ -1,12 +1,13 @@
 package org.gurpsdomain.adapters.input.yaml.step;
 
+import org.gurpsdomain.adapters.input.yaml.domain.InputSheet;
+import org.gurpsdomain.adapters.input.yaml.domain.InputSkill;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.Spell;
 import org.gurpsdomain.domain.description.SpellDescription;
 
 import java.util.List;
-import java.util.Map;
 
 public class AddSpellsStep implements YamlBuildStep {
     private Repository<SpellDescription> repository;
@@ -16,12 +17,12 @@ public class AddSpellsStep implements YamlBuildStep {
     }
 
     @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        List<Map<String, Object>> inputSpells = (List<Map<String, Object>>) data.get("spells");
+    public void build(InputSheet data, SheetBuilder sheetBuilder) {
+        List<InputSkill> inputSpells = data.spells;
         if (!(inputSpells == null)) {
-            for (Map<String, Object> inputSpell : inputSpells) {
-                String spellName = (String) inputSpell.get("name");
-                int points = (int) inputSpell.get("points");
+            for (InputSkill inputSpell : inputSpells) {
+                String spellName = inputSpell.name;
+                int points = inputSpell.points;
                 if (repository.exists(spellName)) {
                     SpellDescription spellDescription = repository.getByName(spellName);
 

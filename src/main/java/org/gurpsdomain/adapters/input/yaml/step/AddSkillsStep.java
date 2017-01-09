@@ -1,8 +1,10 @@
 package org.gurpsdomain.adapters.input.yaml.step;
 
-import org.gurpsdomain.domain.Skill;
+import org.gurpsdomain.adapters.input.yaml.domain.InputSheet;
+import org.gurpsdomain.adapters.input.yaml.domain.InputSkill;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
+import org.gurpsdomain.domain.Skill;
 import org.gurpsdomain.domain.description.SkillDescription;
 
 import java.util.List;
@@ -16,12 +18,12 @@ public class AddSkillsStep implements YamlBuildStep {
     }
 
     @Override
-    public void build(Map<String, Object> data, SheetBuilder sheetBuilder) {
-        List<Map<String, Object>> inputSkills = (List<Map<String, Object>>) data.get("skills");
+    public void build(InputSheet data, SheetBuilder sheetBuilder) {
+        List<InputSkill> inputSkills = data.skills;
         if (!(inputSkills == null)) {
-            for (Map<String, Object> inputSkill : inputSkills) {
-                String skillName = (String) inputSkill.get("name");
-                int points = (int) inputSkill.get("points");
+            for (InputSkill inputSkill : inputSkills) {
+                String skillName = inputSkill.name;
+                int points = (int) inputSkill.points;
                 if (repository.exists(skillName)) {
                     SkillDescription skillDescription = repository.getByName(skillName);
 

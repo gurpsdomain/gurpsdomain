@@ -6,6 +6,8 @@ import org.yaml.snakeyaml.introspector.Property;
 import org.yaml.snakeyaml.introspector.PropertyUtils;
 
 import java.beans.IntrospectionException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class InputSheet {
@@ -38,12 +40,12 @@ public class InputSheet {
     public String religion;
     public String race;
     public String gender;
-    public int age;
+    public Integer age;
     public String birthday;
     public String height;
     public String weight;
     public String size;
-    public int TL;
+    public Integer TL;
     public String hair;
     public String eyes;
     public String skin;
@@ -55,4 +57,141 @@ public class InputSheet {
     public List<InputSkill> skills;
     public List<InputSkill> spells;
     public List<InputNote> notes;
+
+    public String birthday() {
+        if (birthday != null) {
+            return birthday;
+        } else {
+            return "";
+        }
+    }
+
+    public String campaign() {
+        if (campaign != null) {
+            return campaign;
+        } else {
+            return "";
+        }
+    }
+
+    public String createdOn() {
+        if (createdOn != null) {
+            return createdOn;
+        } else {
+            return "";
+        }
+
+    }
+
+    public String eyes() {
+        if (eyes != null) {
+            return eyes;
+        } else {
+            return "";
+        }
+    }
+
+    public String gender() {
+        if (gender != null) {
+            return gender;
+        } else {
+            return "";
+        }
+    }
+
+    public String hair() {
+        if (hair != null) {
+            return hair;
+        } else {
+            return "";
+        }
+    }
+
+    public String hand() {
+        if (hand != null) {
+            return hand;
+        } else {
+            return "";
+        }
+    }
+
+    public String height() {
+        if (height != null) {
+            return height;
+        } else {
+            return "";
+        }
+    }
+
+    public String player() {
+        if (player != null) {
+            return player;
+        } else {
+            return "";
+        }
+    }
+
+    public String race() {
+        if (race != null) {
+            return race;
+        } else {
+            return "";
+        }
+    }
+
+    public String religion() {
+        if (religion != null) {
+            return religion;
+        } else {
+            return "";
+        }
+    }
+
+    public String size() {
+        if (size != null) {
+            return size;
+        } else {
+            return "";
+        }
+    }
+
+    public String skin() {
+        if (skin != null) {
+            return skin;
+        } else {
+            return "";
+        }
+    }
+
+    public String title() {
+        if (title != null) {
+            return title;
+        } else {
+            return "";
+        }
+    }
+
+    public String weight() {
+        if (weight != null) {
+            return weight;
+        } else {
+            return "";
+        }
+    }
+
+    public List<InputAdvantage> advantages() {
+        if (advantages != null) {
+            return advantages;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<InputAdvantage> disadvantages() {
+        if (disadvantages != null) {
+            return disadvantages;
+        } else {
+            return Collections.emptyList();
+        }
+    }
 }
