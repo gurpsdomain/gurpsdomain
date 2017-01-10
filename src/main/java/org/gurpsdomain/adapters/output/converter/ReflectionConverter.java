@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.call;
 import static org.gurpsdomain.adapters.output.converter.Reflection.read;
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 
 public class ReflectionConverter implements SheetConverter {
 
@@ -19,55 +19,55 @@ public class ReflectionConverter implements SheetConverter {
     private List<Advantage> domainAdvantages;
     private List<Skill> domainSkills;
     private List<Spell> domainSpells;
-    private Reflection name = withReflectionChain(read("name"));
-    private Reflection cost = withReflectionChain(read("cost"));
-    private Reflection level = withReflectionChain(read("level"));
-    private Reflection pageReference = withReflectionChain(read("pageReference"));
-    private Reflection colleges = withReflectionChain(read("colleges"));
-    private Reflection powerSource = withReflectionChain(read("powerSource"));
-    private Reflection spellClasses = withReflectionChain(read("spellClasses"));
-    private Reflection maintenanceCost = withReflectionChain(read("maintenanceCost"));
-    private Reflection castingTime = withReflectionChain(read("castingTime"));
-    private Reflection duration = withReflectionChain(read("duration"));
-    private Reflection modifiers = withReflectionChain(read("modifiers"));
-    private Reflection value = withReflectionChain(read("value"));
-    private Reflection type = withReflectionChain(read("type"));
-    private Reflection controllingAttribute = withReflectionChain(read("controllingAttribute"));
-    private Reflection difficultyLevel = withReflectionChain(read("difficultyLevel"));
-    private Reflection advantages = withReflectionChain(read("advantages"));
-    private Reflection skills = withReflectionChain(read("skills"));
-    private Reflection spells = withReflectionChain(read("spells"));
-    private Reflection metaData = withReflectionChain(read("metaData"));
-    private Reflection note = withReflectionChain(read("note"));
-    private Reflection notes = withReflectionChain(read("notes"));
-    private Reflection attributes = withReflectionChain(read("attributes"));
-    private Reflection pointsTotal = withReflectionChain(read("points"), read("total"));
-    private Reflection pointsAdvantages = withReflectionChain(read("points"), read("advantages"));
-    private Reflection pointsDisadvantages = withReflectionChain(read("points"), read("disadvantages"));
-    private Reflection pointsSkills = withReflectionChain(read("points"), read("skills"));
-    private Reflection pointsSpells = withReflectionChain(read("points"), read("spells"));
-    private Reflection pointsUnspent = withReflectionChain(read("points"), read("unspent"));
-    private Reflection callCost = withReflectionChain(call("cost"));
-    private Reflection health = withReflectionChain(call("health"));
-    private Reflection dexterity = withReflectionChain(call("dexterity"));
-    private Reflection intelligence = withReflectionChain(call("intelligence"));
-    private Reflection strength = withReflectionChain(call("strength"));
-    private Reflection will = withReflectionChain(call("will"));
-    private Reflection perception = withReflectionChain(call("perception"));
-    private Reflection vision = withReflectionChain(call("vision"));
-    private Reflection hearing = withReflectionChain(call("hearing"));
-    private Reflection tasteAndSmell = withReflectionChain(call("tasteAndSmell"));
-    private Reflection touch = withReflectionChain(call("touch"));
-    private Reflection basicLiftImperialSystem = withReflectionChain(call("basicLiftAsStringInImperialSystem"));
-    private Reflection basicLiftRealMetricSystem = withReflectionChain(call("basicLiftAsStringInRealMetricSystem"));
-    private Reflection basicLiftGameMetricSystem = withReflectionChain(call("basicLiftAsStringInGameMetricSystem"));
-    private Reflection hitPoints = withReflectionChain(call("hitPoints"));
-    private Reflection fatiguePoints = withReflectionChain(call("fatiguePoints"));
-    private Reflection basicSpeed = withReflectionChain(call("basicSpeed"));
-    private Reflection basicMove = withReflectionChain(call("basicMove"));
-    private Reflection damageThrusting = withReflectionChain(call("damageThrustingAsString"));
-    private Reflection damageSwinging = withReflectionChain(call("damageSwingingAsString"));
-    private Reflection frightCheck = withReflectionChain(call("frightCheck"));
+    private Reflection name = traverse(read("name"));
+    private Reflection cost = traverse(read("cost"));
+    private Reflection level = traverse(read("level"));
+    private Reflection pageReference = traverse(read("pageReference"));
+    private Reflection colleges = traverse(read("colleges"));
+    private Reflection powerSource = traverse(read("powerSource"));
+    private Reflection spellClasses = traverse(read("spellClasses"));
+    private Reflection maintenanceCost = traverse(read("maintenanceCost"));
+    private Reflection castingTime = traverse(read("castingTime"));
+    private Reflection duration = traverse(read("duration"));
+    private Reflection modifiers = traverse(read("modifiers"));
+    private Reflection value = traverse(read("value"));
+    private Reflection type = traverse(read("type"));
+    private Reflection controllingAttribute = traverse(read("controllingAttribute"));
+    private Reflection difficultyLevel = traverse(read("difficultyLevel"));
+    private Reflection advantages = traverse(read("advantages"));
+    private Reflection skills = traverse(read("skills"));
+    private Reflection spells = traverse(read("spells"));
+    private Reflection metaData = traverse(read("metaData"));
+    private Reflection note = traverse(read("note"));
+    private Reflection notes = traverse(read("notes"));
+    private Reflection attributes = traverse(read("attributes"));
+    private Reflection pointsTotal = traverse(read("points"), read("total"));
+    private Reflection pointsAdvantages = traverse(read("points"), read("advantages"));
+    private Reflection pointsDisadvantages = traverse(read("points"), read("disadvantages"));
+    private Reflection pointsSkills = traverse(read("points"), read("skills"));
+    private Reflection pointsSpells = traverse(read("points"), read("spells"));
+    private Reflection pointsUnspent = traverse(read("points"), read("unspent"));
+    private Reflection callCost = traverse(call("cost"));
+    private Reflection health = traverse(call("health"));
+    private Reflection dexterity = traverse(call("dexterity"));
+    private Reflection intelligence = traverse(call("intelligence"));
+    private Reflection strength = traverse(call("strength"));
+    private Reflection will = traverse(call("will"));
+    private Reflection perception = traverse(call("perception"));
+    private Reflection vision = traverse(call("vision"));
+    private Reflection hearing = traverse(call("hearing"));
+    private Reflection tasteAndSmell = traverse(call("tasteAndSmell"));
+    private Reflection touch = traverse(call("touch"));
+    private Reflection basicLiftImperialSystem = traverse(call("basicLiftAsStringInImperialSystem"));
+    private Reflection basicLiftRealMetricSystem = traverse(call("basicLiftAsStringInRealMetricSystem"));
+    private Reflection basicLiftGameMetricSystem = traverse(call("basicLiftAsStringInGameMetricSystem"));
+    private Reflection hitPoints = traverse(call("hitPoints"));
+    private Reflection fatiguePoints = traverse(call("fatiguePoints"));
+    private Reflection basicSpeed = traverse(call("basicSpeed"));
+    private Reflection basicMove = traverse(call("basicMove"));
+    private Reflection damageThrusting = traverse(call("damageThrustingAsString"));
+    private Reflection damageSwinging = traverse(call("damageSwingingAsString"));
+    private Reflection frightCheck = traverse(call("frightCheck"));
 
     @Override
     public SheetSheet convert(Sheet sheet) {
@@ -157,7 +157,7 @@ public class ReflectionConverter implements SheetConverter {
 
     private SheetSkill sheetSkillFromDomainSkill(Skill domainSkill) {
         Attributes domainAttributes = attributes.from(domainSheet);
-        Reflection level = withReflectionChain(call("level", domainAttributes));
+        Reflection level = traverse(call("level", domainAttributes));
         return new SheetSkill(
                 name.from(domainSkill),
                 cost.from(domainSkill),
@@ -177,7 +177,7 @@ public class ReflectionConverter implements SheetConverter {
 
     private SheetSpell sheetSpellFromDomainSpell(Spell domainSpell) {
         Attributes domainAttributes = attributes.from(domainSheet);
-        Reflection level = withReflectionChain(call("level", domainAttributes));
+        Reflection level = traverse(call("level", domainAttributes));
         return new SheetSpell(
                 name.from(domainSpell),
                 cost.from(domainSpell),

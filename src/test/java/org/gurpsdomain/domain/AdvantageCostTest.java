@@ -8,7 +8,7 @@ import org.junit.runners.Parameterized;
 import java.util.*;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.read;
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -122,8 +122,8 @@ class AdvantageCostTestCase {
         builder.append(" ");
         StringJoiner joiner = new StringJoiner(", ", "(", ")");
         for (Modifier modifier : modifiers) {
-            int value = withReflectionChain(read("cost"), read("value")).from(modifier);
-            CostType costType = withReflectionChain(read("cost"), read("type")).from(modifier);
+            int value = traverse(read("cost"), read("value")).from(modifier);
+            CostType costType = traverse(read("cost"), read("type")).from(modifier);
             joiner.add(String.format("%d%s", value, costType.equals(CostType.percentage) ? "%" : ""));
         }
         builder.append(joiner);

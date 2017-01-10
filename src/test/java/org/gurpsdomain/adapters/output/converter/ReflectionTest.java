@@ -7,14 +7,14 @@ import static org.gurpsdomain.adapters.output.converter.Reflection.read;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 
 public class ReflectionTest {
     @Test
     public void shouldCallMethodAndReadFieldChainedFromObjects() {
         NestedReflection nestedReflection = new NestedReflection(new SingleReflection(37));
 
-        Integer value = withReflectionChain(call("testNoParameters"), read("value")).from(nestedReflection);
+        Integer value = traverse(call("testNoParameters"), read("value")).from(nestedReflection);
 
         assertThat(value, is(37));
     }
@@ -24,7 +24,7 @@ public class ReflectionTest {
         NestedReflection nestedReflection = new NestedReflection(new SingleReflection(0));
         int parameter = 55;
 
-        Integer value = withReflectionChain(call("testWithSingleParameter", parameter), read("value")).from(nestedReflection);
+        Integer value = traverse(call("testWithSingleParameter", parameter), read("value")).from(nestedReflection);
 
         assertThat(value, is(55));
     }

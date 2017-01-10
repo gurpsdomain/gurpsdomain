@@ -3,7 +3,7 @@ package org.gurpsdomain.adapters.output.converter;
 import org.junit.Test;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.call;
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,7 +14,7 @@ public class ReflectionCallTest {
     public void shouldCallMethodOneLevelDeep() {
         SingleLevel level = new SingleLevel(ANY_INTEGER);
 
-        Integer value = withReflectionChain(call("testMethod")).from(level);
+        Integer value = traverse(call("testMethod")).from(level);
 
         assertThat(value, is(ANY_INTEGER));
     }
@@ -23,7 +23,7 @@ public class ReflectionCallTest {
     public void shouldCallMethodTwoLevelsDeep() {
         NestedLevel level = new NestedLevel(new SingleLevel(ANY_INTEGER));
 
-        Integer value = withReflectionChain(call("getLevel"),call("testMethod")).from(level);
+        Integer value = traverse(call("getLevel"),call("testMethod")).from(level);
 
         assertThat(value, is(ANY_INTEGER));
     }

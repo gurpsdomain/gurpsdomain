@@ -2,7 +2,7 @@ package org.gurpsdomain.adapters.output.converter;
 
 import org.junit.Test;
 
-import static org.gurpsdomain.adapters.output.converter.Reflection.withReflectionChain;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 import static org.gurpsdomain.adapters.output.converter.Reflection.read;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,7 +14,7 @@ public class ReflectionReadTest {
     public void shouldReadPropertyOneLevelDeep() {
         SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
 
-        Integer value = withReflectionChain(read("value")).from(singleValue);
+        Integer value = traverse(read("value")).from(singleValue);
 
         assertThat(value, is(ANY_INT_VALUE));
     }
@@ -23,7 +23,7 @@ public class ReflectionReadTest {
     public void shouldReadPropertyTwoLevelsDeep() {
         NestedValue nestedValue = new NestedValue(new SingleValue(ANY_INT_VALUE));
 
-        Integer value = withReflectionChain(read("singleValue"), read("value")).from(nestedValue);
+        Integer value = traverse(read("singleValue"), read("value")).from(nestedValue);
 
         assertThat(value, is(ANY_INT_VALUE));
     }
@@ -32,7 +32,7 @@ public class ReflectionReadTest {
     public void shouldReadPropertyOfSuperClass() {
         SingleValue singleValue = new SingleValue(ANY_INT_VALUE);
 
-        Integer value = withReflectionChain(read("parentValue")).from(singleValue);
+        Integer value = traverse(read("parentValue")).from(singleValue);
 
         assertThat(value, is(2 * ANY_INT_VALUE));
     }

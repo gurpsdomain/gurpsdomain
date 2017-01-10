@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reflection {
-    public static Reflection withReflectionChain(ReflectionOption... options) {
+    public static Reflection traverse(ReflectionOption... options) {
         return new Reflection(Arrays.asList(options));
     }
 
