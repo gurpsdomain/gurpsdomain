@@ -4,22 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DifficultyLevel {
-    EASY(0), AVERAGE(-1), HARD(-2), VERY_HARD(-3);
+    EASY(0, "E"), AVERAGE(-1, "A"), HARD(-2, "H"), VERY_HARD(-3, "VH");
 
     static final private Map<String, DifficultyLevel> descriptionToLevel = new HashMap<>();
-    static final private Map<DifficultyLevel, String> LevelToDescription = new HashMap<>();
     private final int offset;
+    private final String shorthand;
 
     static {
         descriptionToLevel.put("E", DifficultyLevel.EASY);
         descriptionToLevel.put("A", DifficultyLevel.AVERAGE);
         descriptionToLevel.put("H", DifficultyLevel.HARD);
         descriptionToLevel.put("VH", DifficultyLevel.VERY_HARD);
-
-        LevelToDescription.put(DifficultyLevel.EASY, "E");
-        LevelToDescription.put(DifficultyLevel.AVERAGE, "A");
-        LevelToDescription.put(DifficultyLevel.HARD, "H");
-        LevelToDescription.put(DifficultyLevel.VERY_HARD, "VH");
     }
 
     public static DifficultyLevel fromDescription(String description) {
@@ -29,8 +24,9 @@ public enum DifficultyLevel {
         return descriptionToLevel.get(description);
     }
 
-    DifficultyLevel(int offset) {
+    DifficultyLevel(int offset, String shorthand) {
         this.offset = offset;
+        this.shorthand = shorthand;
     }
 
     public int determineDelta(int cost) {
@@ -44,6 +40,6 @@ public enum DifficultyLevel {
     }
 
     public String shorthand() {
-        return LevelToDescription.get(this);
+        return shorthand;
     }
 }
