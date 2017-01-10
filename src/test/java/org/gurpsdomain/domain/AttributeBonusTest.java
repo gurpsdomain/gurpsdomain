@@ -28,6 +28,7 @@ public class AttributeBonusTest {
         data.add(new Object[]{Attribute.HEARING, "2", Reflection.traverse(call("hearing")), 12});
         data.add(new Object[]{Attribute.PERCEPTION, "1", Reflection.traverse(call("perception")), 11});
         data.add(new Object[]{Attribute.WILL, "1", Reflection.traverse(call("will")), 11});
+        data.add(new Object[]{Attribute.MAGERY, "1", Reflection.traverse(call("magery")), 1});
         data.add(new Object[]{Attribute.FRIGHT_CHECK, "2", Reflection.traverse(call("frightCheck")), 12});
         data.add(new Object[]{Attribute.DAMAGE_SWINGING, "5d+2", Reflection.traverse(call("damageSwingingAsString")), "6d+2"});
         data.add(new Object[]{Attribute.DAMAGE_THRUSTING, "5d+2", Reflection.traverse(call("damageThrustingAsString")), "6d"});

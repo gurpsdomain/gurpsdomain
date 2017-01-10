@@ -44,7 +44,7 @@ public enum Attribute {
     MAGERY("Magery", "magery") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
-            attributes.addWillBonus(Integer.parseInt(bonus));
+            attributes.addMageryBonus(Integer.parseInt(bonus));
         }
 
         @Override
