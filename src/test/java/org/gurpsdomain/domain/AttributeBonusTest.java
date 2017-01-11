@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.gurpsdomain.adapters.output.converter.Reflection.call;
+import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,20 +19,20 @@ public class AttributeBonusTest {
     @Parameterized.Parameters(name = "A bonus {1} for {0} should give {3}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{Attribute.INTELLIGENCE, "1", Reflection.traverse(call("intelligence")), 11});
-        data.add(new Object[]{Attribute.INTELLIGENCE, "2", Reflection.traverse(call("intelligence")), 12});
-        data.add(new Object[]{Attribute.STRENGTH, "1", Reflection.traverse(call("strength")), 11});
-        data.add(new Object[]{Attribute.STRENGTH, "2", Reflection.traverse(call("strength")), 12});
-        data.add(new Object[]{Attribute.BASIC_SPEED, "0.25", Reflection.traverse(call("basicSpeed")), 5.25});
-        data.add(new Object[]{Attribute.BASIC_MOVE, "-2", Reflection.traverse(call("basicMove")), 3});
-        data.add(new Object[]{Attribute.DEXTERITY, "-1", Reflection.traverse(call("dexterity")), 9});
-        data.add(new Object[]{Attribute.HEARING, "2", Reflection.traverse(call("hearing")), 12});
-        data.add(new Object[]{Attribute.PERCEPTION, "1", Reflection.traverse(call("perception")), 11});
-        data.add(new Object[]{Attribute.WILL, "1", Reflection.traverse(call("will")), 11});
-        data.add(new Object[]{Attribute.MAGERY, "1", Reflection.traverse(call("magery")), 1});
-        data.add(new Object[]{Attribute.FRIGHT_CHECK, "2", Reflection.traverse(call("frightCheck")), 12});
-        data.add(new Object[]{Attribute.DAMAGE_SWINGING, "5d+2", Reflection.traverse(call("damageSwingingAsString")), "6d+2"});
-        data.add(new Object[]{Attribute.DAMAGE_THRUSTING, "5d+2", Reflection.traverse(call("damageThrustingAsString")), "6d"});
+        data.add(new Object[]{Attribute.INTELLIGENCE, "1", traverse(call("intelligence")), 11});
+        data.add(new Object[]{Attribute.INTELLIGENCE, "2", traverse(call("intelligence")), 12});
+        data.add(new Object[]{Attribute.STRENGTH, "1", traverse(call("strength")), 11});
+        data.add(new Object[]{Attribute.STRENGTH, "2", traverse(call("strength")), 12});
+        data.add(new Object[]{Attribute.BASIC_SPEED, "0.25", traverse(call("basicSpeed")), 5.25});
+        data.add(new Object[]{Attribute.BASIC_MOVE, "-2", traverse(call("basicMove")), 3});
+        data.add(new Object[]{Attribute.DEXTERITY, "-1", traverse(call("dexterity")), 9});
+        data.add(new Object[]{Attribute.HEARING, "2", traverse(call("hearing")), 12});
+        data.add(new Object[]{Attribute.PERCEPTION, "1", traverse(call("perception")), 11});
+        data.add(new Object[]{Attribute.WILL, "1", traverse(call("will")), 11});
+        data.add(new Object[]{Attribute.MAGERY, "1", traverse(call("magery")), 1});
+        data.add(new Object[]{Attribute.FRIGHT_CHECK, "2", traverse(call("frightCheck")), 12});
+        data.add(new Object[]{Attribute.DAMAGE_SWINGING, "5d+2", traverse(call("damageSwingingAsString")), "6d+2"});
+        data.add(new Object[]{Attribute.DAMAGE_THRUSTING, "5d+2", traverse(call("damageThrustingAsString")), "6d"});
         return data;
     }
 
