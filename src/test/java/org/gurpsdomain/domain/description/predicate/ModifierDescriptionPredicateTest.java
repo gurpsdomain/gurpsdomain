@@ -87,7 +87,7 @@ public class ModifierDescriptionPredicateTest {
 class ModifierDescriptionBuilder {
     private String name = "aDummyName";
     private String note;
-    private final CostDescription ANY_COST = new CostDescription(1, CostType.points);
+    private final CostDescription ANY_COST = new CostDescription(1, "points");
     private final String ANY_PAGE_REFERENCE = "B123";
 
     static ModifierDescriptionBuilder aModifierDescription(){return new ModifierDescriptionBuilder();}

@@ -1,17 +1,20 @@
 package org.gurpsdomain.domain.description;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.gurpsdomain.domain.DifficultyLevel;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.Spell;
 
 import javax.xml.bind.annotation.*;
 
+import static org.gurpsdomain.domain.DifficultyLevel.*;
+
 @XmlRootElement(name = "spell")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SpellDescription implements Registerable<SpellDescription> {
     @XmlAttribute(name = "very_hard")
     private String veryHardString;
-    @XmlElement(name = "name")
+    @XmlElement(name = "name", required = true)
     private String name;
     @XmlElement(name = "reference")
     private String reference;
@@ -27,7 +30,6 @@ public class SpellDescription implements Registerable<SpellDescription> {
     private String castingTime;
     @XmlElement(name = "duration")
     private String duration;
-
 
 
     private SpellDescription() {
@@ -47,11 +49,11 @@ public class SpellDescription implements Registerable<SpellDescription> {
     }
 
     public Spell createSpell(int points) {
-        DifficultyLevel difficultyLevel = DifficultyLevel.HARD;
+        DifficultyLevel difficultyLevel = HARD;
         if ("yes".equals(veryHardString)) {
-            difficultyLevel = DifficultyLevel.VERY_HARD;
+            difficultyLevel = VERY_HARD;
         }
-        return new Spell(name, points, reference, difficultyLevel,colleges, powerSource, spellClasses, maintenanceCost, castingTime, duration);
+        return new Spell(name, points, reference, difficultyLevel, colleges, powerSource, spellClasses, maintenanceCost, castingTime, duration);
     }
 
     @Override

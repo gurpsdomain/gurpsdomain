@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "modifier")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ModifierDescription {
-    @XmlElement(name = "name")
+    @XmlElement(name = "name", required = true)
     private String name;
     @XmlElement(name = "cost")
     private CostDescription cost;

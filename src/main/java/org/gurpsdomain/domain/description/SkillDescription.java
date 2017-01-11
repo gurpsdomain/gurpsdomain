@@ -7,11 +7,13 @@ import org.gurpsdomain.domain.Skill;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "skill")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SkillDescription implements Registerable<SkillDescription> {
+    @XmlElement(name = "name", required = true)
     private String name;
     private String reference;
     private String difficulty;

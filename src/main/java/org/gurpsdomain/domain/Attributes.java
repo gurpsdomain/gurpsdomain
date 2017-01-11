@@ -3,6 +3,8 @@ package org.gurpsdomain.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.gurpsdomain.domain.Attribute.*;
+
 public class Attributes {
     private final Map<Attribute, Object> bonuses = new HashMap<>();
 
@@ -11,83 +13,83 @@ public class Attributes {
     }
 
     void addStrengthBonus(int bonus) {
-        addIntBonus(Attribute.STRENGTH, bonus);
+        addIntBonus(STRENGTH, bonus);
     }
 
     void addDexterityBonus(int bonus) {
-        addIntBonus(Attribute.DEXTERITY, bonus);
+        addIntBonus(DEXTERITY, bonus);
     }
 
     void addHealthBonus(int bonus) {
-        addIntBonus(Attribute.HEALTH, bonus);
+        addIntBonus(HEALTH, bonus);
     }
 
     void addIntelligenceBonus(int bonus) {
-        addIntBonus(Attribute.INTELLIGENCE, bonus);
+        addIntBonus(INTELLIGENCE, bonus);
     }
 
     void addWillBonus(int bonus) {
-        addIntBonus(Attribute.WILL, bonus);
+        addIntBonus(WILL, bonus);
     }
 
     void addMageryBonus(int bonus) {
-        addIntBonus(Attribute.MAGERY, bonus);
+        addIntBonus(MAGERY, bonus);
     }
 
     void addFrightCheckBonus(int bonus) {
-        addIntBonus(Attribute.FRIGHT_CHECK, bonus);
+        addIntBonus(FRIGHT_CHECK, bonus);
     }
 
     void addPerceptionBonus(int bonus) {
-        addIntBonus(Attribute.PERCEPTION, bonus);
+        addIntBonus(PERCEPTION, bonus);
     }
 
     void addVisionBonus(int bonus) {
-        addIntBonus(Attribute.VISION, bonus);
+        addIntBonus(VISION, bonus);
     }
 
     void addHearingBonus(int bonus) {
-        addIntBonus(Attribute.HEARING, bonus);
+        addIntBonus(HEARING, bonus);
     }
 
     void addTasteAndSmellBonus(int bonus) {
-        addIntBonus(Attribute.TASTE_AND_SMELL, bonus);
+        addIntBonus(TASTE_AND_SMELL, bonus);
     }
 
     void addTouchBonus(int bonus) {
-        addIntBonus(Attribute.TOUCH, bonus);
+        addIntBonus(TOUCH, bonus);
     }
 
     void addHitPointsBonus(int bonus) {
-        addIntBonus(Attribute.HIT_POINTS, bonus);
+        addIntBonus(HIT_POINTS, bonus);
     }
 
     void addFatiguePointsBonus(int bonus) {
-        addIntBonus(Attribute.FATIGUE_POINTS, bonus);
+        addIntBonus(FATIGUE_POINTS, bonus);
     }
 
     void addBasicSpeedBonus(double bonus) {
-        addDoubleBonus(Attribute.BASIC_SPEED, bonus);
+        addDoubleBonus(BASIC_SPEED, bonus);
     }
 
     void addBasicMoveBonus(int bonus) {
-        addIntBonus(Attribute.BASIC_MOVE, bonus);
+        addIntBonus(BASIC_MOVE, bonus);
     }
 
     void addDodgeBonus(int bonus) {
-        addIntBonus(Attribute.DODGE, bonus);
+        addIntBonus(DODGE, bonus);
     }
 
-    public void addDamageThrustingBonus(Dice bonus) {
-        addDiceBonus(Attribute.DAMAGE_THRUSTING, bonus);
+    void addDamageThrustingBonus(Dice bonus) {
+        addDiceBonus(DAMAGE_THRUSTING, bonus);
     }
 
-    public void addDamageSwingingBonus(Dice bonus) {
-        addDiceBonus(Attribute.DAMAGE_SWINGING, bonus);
+    void addDamageSwingingBonus(Dice bonus) {
+        addDiceBonus(DAMAGE_SWINGING, bonus);
     }
 
-    public void addBasicLiftBonus(Weight bonus) {
-        addWeightBonus(Attribute.BASIC_LIFT, bonus);
+    void addBasicLiftBonus(Weight bonus) {
+        addWeightBonus(BASIC_LIFT, bonus);
     }
 
     private void addIntBonus(Attribute attribute, int aBonus) {
@@ -119,63 +121,63 @@ public class Attributes {
     }
 
     int strength() {
-        return (int) value(Attribute.STRENGTH);
+        return (int) value(STRENGTH);
     }
 
     int dexterity() {
-        return (int) value(Attribute.DEXTERITY);
+        return (int) value(DEXTERITY);
     }
 
     int health() {
-        return (int) value(Attribute.HEALTH);
+        return (int) value(HEALTH);
     }
 
     int intelligence() {
-        return (int) value(Attribute.INTELLIGENCE);
+        return (int) value(INTELLIGENCE);
     }
 
     int will() {
-        return (int) value(Attribute.WILL);
+        return (int) value(WILL);
     }
 
     int magery() {
-        return (int) value(Attribute.MAGERY);
+        return (int) value(MAGERY);
     }
 
     int frightCheck() {
-        return (int) value(Attribute.FRIGHT_CHECK);
+        return (int) value(FRIGHT_CHECK);
     }
 
     int perception() {
-        return (int) value(Attribute.PERCEPTION);
+        return (int) value(PERCEPTION);
     }
 
     int vision() {
-        return (int) value(Attribute.VISION);
+        return (int) value(VISION);
     }
 
     int hearing() {
-        return (int) value(Attribute.HEARING);
+        return (int) value(HEARING);
     }
 
     int tasteAndSmell() {
-        return (int) value(Attribute.TASTE_AND_SMELL);
+        return (int) value(TASTE_AND_SMELL);
     }
 
     int touch() {
-        return (int) value(Attribute.TOUCH);
+        return (int) value(TOUCH);
     }
 
     int hitPoints() {
-        return (int) value(Attribute.HIT_POINTS);
+        return (int) value(HIT_POINTS);
     }
 
     int fatiguePoints() {
-        return (int) value(Attribute.FATIGUE_POINTS);
+        return (int) value(FATIGUE_POINTS);
     }
 
     Weight basicLift() {
-        return (Weight) value(Attribute.BASIC_LIFT);
+        return (Weight) value(BASIC_LIFT);
     }
 
     String basicLiftAsStringInImperialSystem() {
@@ -191,19 +193,19 @@ public class Attributes {
     }
 
     double basicSpeed() {
-        return (double) value(Attribute.BASIC_SPEED);
+        return (double) value(BASIC_SPEED);
     }
 
     int basicMove() {
-        return (int) value(Attribute.BASIC_MOVE);
+        return (int) value(BASIC_MOVE);
     }
 
     int dodge() {
-        return (int) value(Attribute.DODGE);
+        return (int) value(DODGE);
     }
 
     Dice damageThrusting() {
-        return (Dice) value(Attribute.DAMAGE_THRUSTING);
+        return (Dice) value(DAMAGE_THRUSTING);
     }
 
     String damageThrustingAsString() {
@@ -211,7 +213,7 @@ public class Attributes {
     }
 
     Dice damageSwinging() {
-        return (Dice) value(Attribute.DAMAGE_SWINGING);
+        return (Dice) value(DAMAGE_SWINGING);
     }
 
     String damageSwingingAsString() {

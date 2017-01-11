@@ -7,8 +7,7 @@ import org.junit.runners.Parameterized;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.gurpsdomain.domain.Attribute.DEXTERITY;
-import static org.gurpsdomain.domain.Attribute.INTELLIGENCE;
+import static org.gurpsdomain.domain.Attribute.*;
 import static org.gurpsdomain.domain.DifficultyLevel.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

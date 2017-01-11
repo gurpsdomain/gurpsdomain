@@ -1,5 +1,8 @@
 package org.gurpsdomain.domain;
 
+import static org.gurpsdomain.domain.Attribute.*;
+import static org.gurpsdomain.domain.DifficultyLevel.*;
+
 public class Spell {
     private final String name;
     private final int cost;
@@ -23,7 +26,7 @@ public class Spell {
         this.maintenanceCost = maintenanceCost;
         this.castingTime = castingTime;
         this.duration = duration;
-        if (!(difficultyLevel.equals(DifficultyLevel.HARD)) && !(difficultyLevel.equals(DifficultyLevel.VERY_HARD))) {
+        if (!(difficultyLevel.equals(HARD)) && !(difficultyLevel.equals(VERY_HARD))) {
             throw new IllegalArgumentException("Unexpected difficultyLevel " + difficultyLevel + " for spell " + name);
         }
     }
@@ -37,8 +40,8 @@ public class Spell {
     }
 
     public int level(Attributes attributes) {
-        Attribute controllingAttribute = Attribute.INTELLIGENCE;
-        Attribute magery = Attribute.MAGERY;
+        Attribute controllingAttribute = INTELLIGENCE;
+        Attribute magery = MAGERY;
         return attributes.level(controllingAttribute) + delta() + attributes.level(magery);
     }
 

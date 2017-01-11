@@ -91,12 +91,12 @@ class AdvantageCostTestCase {
     }
 
     public AdvantageCostTestCase withPointModifier(int value) {
-        this.modifiers.add(new Modifier(String.format("%d point modifier", value), new Cost(value, CostType.points), ANY_PAGE_REFERENCE));
+        this.modifiers.add(new Modifier(String.format("%d point modifier", value), new Cost(value, CostType.POINTS), ANY_PAGE_REFERENCE));
         return this;
     }
 
     public AdvantageCostTestCase withPercentageModifier(int value) {
-        this.modifiers.add(new Modifier(String.format("%d percent modifier", value), new Cost(value, CostType.percentage), ANY_PAGE_REFERENCE));
+        this.modifiers.add(new Modifier(String.format("%d percent modifier", value), new Cost(value, CostType.PERCENTAGE), ANY_PAGE_REFERENCE));
         return this;
     }
 
@@ -124,7 +124,7 @@ class AdvantageCostTestCase {
         for (Modifier modifier : modifiers) {
             int value = traverse(read("cost"), read("value")).from(modifier);
             CostType costType = traverse(read("cost"), read("type")).from(modifier);
-            joiner.add(String.format("%d%s", value, costType.equals(CostType.percentage) ? "%" : ""));
+            joiner.add(String.format("%d%s", value, costType.equals(CostType.PERCENTAGE) ? "%" : ""));
         }
         builder.append(joiner);
 

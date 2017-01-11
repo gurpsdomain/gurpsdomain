@@ -38,7 +38,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
+            return (int) attributes.value(INTELLIGENCE) + (int) bonus;
         }
     },
     MAGERY("Magery", "magery") {
@@ -60,7 +60,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.WILL) + (int) bonus;
+            return (int) attributes.value(WILL) + (int) bonus;
         }
     },
     PERCEPTION("Per", "perception") {
@@ -71,7 +71,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.INTELLIGENCE) + (int) bonus;
+            return (int) attributes.value(INTELLIGENCE) + (int) bonus;
         }
     },
     VISION("Vision", "vision") {
@@ -82,7 +82,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+            return (int) attributes.value(PERCEPTION) + (int) bonus;
         }
     },
     HEARING("Hearing", "hearing") {
@@ -93,7 +93,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+            return (int) attributes.value(PERCEPTION) + (int) bonus;
         }
     },
     TASTE_AND_SMELL("Taste & Smell", "taste smell") {
@@ -104,7 +104,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+            return (int) attributes.value(PERCEPTION) + (int) bonus;
         }
     },
     TOUCH("Touch", "touch") {
@@ -115,7 +115,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.PERCEPTION) + (int) bonus;
+            return (int) attributes.value(PERCEPTION) + (int) bonus;
         }
     },
     HIT_POINTS("HP", "hp") {
@@ -126,7 +126,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.STRENGTH) + (int) bonus;
+            return (int) attributes.value(STRENGTH) + (int) bonus;
         }
     },
     FATIGUE_POINTS("FP", "fp") {
@@ -137,7 +137,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return (int) attributes.value(Attribute.HEALTH) + (int) bonus;
+            return (int) attributes.value(HEALTH) + (int) bonus;
         }
     },
     BASIC_LIFT("BL") {
@@ -153,7 +153,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            double strength = ((Integer) attributes.value(Attribute.STRENGTH)).doubleValue();
+            double strength = ((Integer) attributes.value(STRENGTH)).doubleValue();
             double basicLift = (strength * strength) / 5.0 + ((Weight) bonus).poundsInImperialSystem();
             if (basicLift > 10) {
                 basicLift = Math.round(basicLift);
@@ -174,8 +174,8 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            int health = (int) attributes.value(Attribute.HEALTH);
-            int dexterity = (int) attributes.value(Attribute.DEXTERITY);
+            int health = (int) attributes.value(HEALTH);
+            int dexterity = (int) attributes.value(DEXTERITY);
             double speed = (health + dexterity) / 4.0;
             return speed + (double) bonus;
         }
@@ -188,8 +188,8 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            int health = (int) attributes.value(Attribute.HEALTH);
-            int dexterity = (int) attributes.value(Attribute.DEXTERITY);
+            int health = (int) attributes.value(HEALTH);
+            int dexterity = (int) attributes.value(DEXTERITY);
             int move = (health + dexterity) / 4;
             return move + (int) bonus;
         }
@@ -203,7 +203,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            double speed = (double) attributes.value(Attribute.BASIC_SPEED);
+            double speed = (double) attributes.value(BASIC_SPEED);
             int dodge = (int) (speed + 3);
 
             return dodge + (int) bonus;
@@ -222,7 +222,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            int strength = (int) attributes.value(Attribute.STRENGTH);
+            int strength = (int) attributes.value(STRENGTH);
             Dice damage = thrustingDamageForStrength(strength);
             return Dice.sumDice(damage, (Dice) bonus);
         }
@@ -240,7 +240,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            int strength = (int) attributes.value(Attribute.STRENGTH);
+            int strength = (int) attributes.value(STRENGTH);
             Dice damage = swingingDamageForStrength(strength);
             return Dice.sumDice(damage, (Dice) bonus);
         }

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @XmlRootElement(name = "advantage")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AdvantageDescription implements Registerable<AdvantageDescription> {
+    @XmlElement(name = "name", required = true)
     private String name;
     @XmlElement(name = "base_points")
     private int basePoints;

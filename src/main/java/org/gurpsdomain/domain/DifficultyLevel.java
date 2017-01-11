@@ -11,10 +11,10 @@ public enum DifficultyLevel {
     private final String shorthand;
 
     static {
-        descriptionToLevel.put("E", DifficultyLevel.EASY);
-        descriptionToLevel.put("A", DifficultyLevel.AVERAGE);
-        descriptionToLevel.put("H", DifficultyLevel.HARD);
-        descriptionToLevel.put("VH", DifficultyLevel.VERY_HARD);
+        descriptionToLevel.put("E", EASY);
+        descriptionToLevel.put("A", AVERAGE);
+        descriptionToLevel.put("H", HARD);
+        descriptionToLevel.put("VH", VERY_HARD);
     }
 
     public static DifficultyLevel fromDescription(String description) {
