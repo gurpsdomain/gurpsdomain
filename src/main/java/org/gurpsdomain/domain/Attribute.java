@@ -49,7 +49,7 @@ public enum Attribute {
 
         @Override
         public Object value(Attributes attributes, Object bonus) {
-            return 0 + (int) bonus;
+            return bonus;
         }
     },
     FRIGHT_CHECK("Fright Check", "fright check") {

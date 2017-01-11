@@ -7,6 +7,6 @@ public class SetGenderStep implements YamlBuildStep {
 
 	@Override
 	public void build(InputSheet data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "gender", (String) data.gender());
+		sheetBuilder.addMetaData("description", "gender", data.gender());
 	}
 }

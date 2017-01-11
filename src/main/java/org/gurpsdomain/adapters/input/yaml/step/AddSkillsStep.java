@@ -8,7 +8,6 @@ import org.gurpsdomain.domain.Skill;
 import org.gurpsdomain.domain.description.SkillDescription;
 
 import java.util.List;
-import java.util.Map;
 
 public class AddSkillsStep implements YamlBuildStep {
     private Repository<SkillDescription> repository;
@@ -23,7 +22,7 @@ public class AddSkillsStep implements YamlBuildStep {
         if (!(inputSkills == null)) {
             for (InputSkill inputSkill : inputSkills) {
                 String skillName = inputSkill.name;
-                int points = (int) inputSkill.points;
+                int points = inputSkill.points;
                 if (repository.exists(skillName)) {
                     SkillDescription skillDescription = repository.getByName(skillName);
 

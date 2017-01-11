@@ -43,26 +43,26 @@ public class AttributeBonusTest {
         return data;
     }
 
-private final AttributeBonus attributeBonus;
-private final Reflection expectedAttribute;
-private final Object expectedValue;
-private Attributes attributes;
+    private final AttributeBonus attributeBonus;
+    private final Reflection expectedAttribute;
+    private final Object expectedValue;
+    private Attributes attributes;
 
-public AttributeBonusTest(Attribute attribute, String bonus, Reflection expectedAttribute, Object expectedValue) {
+    public AttributeBonusTest(Attribute attribute, String bonus, Reflection expectedAttribute, Object expectedValue) {
         this.attributeBonus = new AttributeBonus(attribute, bonus);
         this.expectedAttribute = expectedAttribute;
         this.expectedValue = expectedValue;
-        }
+    }
 
-@Before
-public void createAttributes() {
+    @Before
+    public void createAttributes() {
         attributes = new Attributes();
-        }
+    }
 
-@Test
-public void shouldEffectAttributes() {
+    @Test
+    public void shouldEffectAttributes() {
         attributeBonus.applyTo(attributes);
 
         assertThat(expectedAttribute.from(attributes), is(expectedValue));
-        }
-        }
+    }
+}

@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
-import javax.print.attribute.standard.MediaSize;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;

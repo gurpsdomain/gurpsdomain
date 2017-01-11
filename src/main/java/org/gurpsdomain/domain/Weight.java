@@ -1,8 +1,6 @@
 package org.gurpsdomain.domain;
 
 
-import java.util.DoubleSummaryStatistics;
-
 public class Weight {
     private double weightInPounds;
 

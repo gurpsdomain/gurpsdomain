@@ -18,14 +18,14 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private String name;
     @XmlElement(name = "base_points")
     private int basePoints;
-    @XmlElement(name = "levels", required = false)
+    @XmlElement(name = "levels")
     private Integer levels;
-    @XmlElement(name = "points_per_level", required = false)
+    @XmlElement(name = "points_per_level")
     private Integer pointsPerLevel;
     private String reference;
-    @XmlElement(name = "modifier", required = false)
+    @XmlElement(name = "modifier")
     private List<ModifierDescription> modifiers;
-    @XmlElement(name = "attribute_bonus", required = false)
+    @XmlElement(name = "attribute_bonus")
     private List<AttributeBonusDescription> attributeBonusDescriptions;
 
     private AdvantageDescription() {
@@ -45,8 +45,8 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
         List<Modifier> modifiers = modifierDescriptionPredicates
                 .stream()
-                .filter(p -> hasModifier(p))
-                .map(p -> createModifier(p))
+                .filter(this::hasModifier)
+                .map(this::createModifier)
                 .collect(Collectors.toList());
 
         List<AttributeBonus> attributeBonuses = attributeBonusDescriptions()

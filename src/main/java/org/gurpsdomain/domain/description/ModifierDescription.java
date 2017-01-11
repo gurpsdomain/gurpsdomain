@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ModifierDescription {
     @XmlElement(name = "name")
     private String name;
-    @XmlElement(name = "cost", required = false)
+    @XmlElement(name = "cost")
     private CostDescription cost;
-    @XmlElement(name = "notes", required = false)
+    @XmlElement(name = "notes")
     private String note;
     @XmlElement(name = "reference")
     private String pageReference;
