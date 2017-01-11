@@ -33,7 +33,8 @@ public class AttributeBonusTest {
         data.add(new Object[]{Attribute.TOUCH, "2", traverse(call("touch")), 12});
         data.add(new Object[]{Attribute.HIT_POINTS, "2", traverse(call("hitPoints")), 12});
         data.add(new Object[]{Attribute.FATIGUE_POINTS, "2", traverse(call("fatiguePoints")), 12});
-        //TODO BASIC_LIFT
+        data.add(new Object[]{Attribute.BASIC_LIFT, "1.3 lbs.", traverse(call("basicLiftAsStringInImperialSystem")), "21.0 lbs."});
+        data.add(new Object[]{Attribute.BASIC_LIFT, "-10.3 lbs.", traverse(call("basicLiftAsStringInImperialSystem")), "9.7 lbs."});
         data.add(new Object[]{Attribute.BASIC_SPEED, "0.25", traverse(call("basicSpeed")), 5.25});
         data.add(new Object[]{Attribute.BASIC_MOVE, "-2", traverse(call("basicMove")), 3});
         data.add(new Object[]{Attribute.DODGE, "2", traverse(call("dodge")), 10});

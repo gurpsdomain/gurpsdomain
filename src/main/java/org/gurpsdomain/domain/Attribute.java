@@ -143,7 +143,7 @@ public enum Attribute {
     BASIC_LIFT("BL") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
-            throw new RuntimeException("not implemented yet");
+            attributes.addBasicLiftBonus(Weight.parseWeightInPounds(bonus));
         }
 
         @Override

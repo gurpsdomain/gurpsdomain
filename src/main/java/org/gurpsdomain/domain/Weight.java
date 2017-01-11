@@ -1,11 +1,19 @@
 package org.gurpsdomain.domain;
 
 
+import java.util.DoubleSummaryStatistics;
+
 public class Weight {
     private double weightInPounds;
 
     public static Weight sumWeights(Weight firstWeight, Weight secondWeight) {
         return new Weight(firstWeight.poundsInImperialSystem() + secondWeight.poundsInImperialSystem());
+    }
+
+    public static Weight parseWeightInPounds(String inputString) {
+        String WeightAsString = inputString.split("lb")[0];
+        Double WeightAsDouble = Double.parseDouble(WeightAsString);
+        return new Weight(WeightAsDouble);
     }
 
     public Weight(double weightInPounds) {
