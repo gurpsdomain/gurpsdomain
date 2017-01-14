@@ -39,6 +39,8 @@ advantages:
     levels: 3
   - name: Increased Will
     levels: 2
+  - name: Acute Hearing
+    levels: 4
 
 disadvantages:
   - name: Indecisive

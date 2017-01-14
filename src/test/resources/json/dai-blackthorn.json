@@ -27,11 +27,11 @@
   },
   "points": {
     "total": 258,
-    "advantages": 70,
+    "advantages": 78,
     "disadvantages": -10,
     "skills": 5,
     "spells": 3,
-    "unspent": 190
+    "unspent": 182
   },
   "attributes": {
     "strength": 10,
@@ -43,7 +43,7 @@
     "will": 12,
     "perception": 10,
     "vision": 10,
-    "hearing": 10,
+    "hearing": 14,
     "tasteAndSmell": 10,
     "touch": 10,
     "basicLift": {
@@ -103,8 +103,14 @@
       "level": 2,
       "pageReference": "B16",
       "modifiers": []
+    },
+    {
+      "name": "Acute Hearing",
+      "points": 8,
+      "level": 4,
+      "pageReference": "B35",
+      "modifiers": []
     }
-
   ],
   "disadvantages": [
     {
