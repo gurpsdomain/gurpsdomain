@@ -14,6 +14,7 @@ import static org.gurpsdomain.adapters.output.converter.Reflection.traverse;
 import static org.gurpsdomain.domain.Attribute.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.gurpsdomain.domain.AttributeBonus.attributeBonus;
 
 @RunWith(Parameterized.class)
 public class AttributeBonusTest {
@@ -50,7 +51,7 @@ public class AttributeBonusTest {
     private Attributes attributes;
 
     public AttributeBonusTest(Attribute attribute, String bonus, Reflection expectedAttribute, Object expectedValue) {
-        this.attributeBonus = new AttributeBonus(attribute, bonus);
+        this.attributeBonus = attributeBonus(attribute, bonus);
         this.expectedAttribute = expectedAttribute;
         this.expectedValue = expectedValue;
     }

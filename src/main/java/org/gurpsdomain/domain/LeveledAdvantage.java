@@ -23,11 +23,10 @@ public class LeveledAdvantage extends Advantage {
         accumulator.addPoints(level * pointsPerLevel);
     }
 
-
-    void updateAttributes(Attributes attributes) {
-        // TODO do not assume that all bonuses are leveled
+    @Override
+    protected void updateLeveledAttributes(Attributes attributes, List<AttributeBonus> bonuses) {
         for (int index = 0; index < level; index++) {
-            super.updateAttributes(attributes);
+            super.updateRegularAttributes(attributes, bonuses);
         }
     }
 }

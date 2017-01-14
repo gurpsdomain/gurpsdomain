@@ -5,6 +5,9 @@ import org.gurpsdomain.domain.AttributeBonus;
 
 import javax.xml.bind.annotation.*;
 
+import static org.gurpsdomain.domain.AttributeBonus.attributeBonus;
+import static org.gurpsdomain.domain.AttributeBonus.leveledAttributeBonus;
+
 @XmlRootElement(name = "attribute_bonus")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AttributeBonusDescription {
@@ -23,9 +26,9 @@ public class AttributeBonusDescription {
 
     public AttributeBonus createAttributeBonus() {
         if (amount.isLeveled()) {
-            return new AttributeBonus(Attribute.fromDescription(attribute), amount.bonus);
+            return leveledAttributeBonus(Attribute.fromDescription(attribute), amount.bonus);
         } else {
-            return new AttributeBonus(Attribute.fromDescription(attribute), amount.bonus);
+            return attributeBonus(Attribute.fromDescription(attribute), amount.bonus);
         }
     }
 

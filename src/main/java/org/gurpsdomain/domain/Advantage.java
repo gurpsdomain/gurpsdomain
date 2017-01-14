@@ -3,6 +3,8 @@ package org.gurpsdomain.domain;
 import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Advantage {
     private final String name;
@@ -35,8 +37,19 @@ public class Advantage {
     }
 
     void updateAttributes(Attributes attributes) {
-        for (AttributeBonus attributeBonus: attributeBonuses) {
+        List<AttributeBonus> regularAttributeBonuses = attributeBonuses.stream().filter(b -> !b.isLeveled()).collect(Collectors.toList());
+        updateRegularAttributes(attributes, regularAttributeBonuses);
+        List<AttributeBonus> leveledAttributeBonuses = attributeBonuses.stream().filter(AttributeBonus::isLeveled).collect(Collectors.toList());
+        updateLeveledAttributes(attributes, leveledAttributeBonuses);
+    }
+
+    protected void updateRegularAttributes(Attributes attributes, List<AttributeBonus> bonuses) {
+        for (AttributeBonus attributeBonus: bonuses) {
             attributeBonus.applyTo(attributes);
         }
+    }
+
+    protected void updateLeveledAttributes(Attributes attributes, List<AttributeBonus> regularAttributeBonuses) {
+        /* should be overriden in LeveledAdvantage */
     }
 }
