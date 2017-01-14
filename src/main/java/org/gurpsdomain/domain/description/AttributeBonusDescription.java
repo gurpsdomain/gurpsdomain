@@ -10,10 +10,7 @@ import javax.xml.bind.annotation.*;
 public class AttributeBonusDescription {
     @XmlElement(name = "attribute")
     private String attribute;
-    @XmlElement(name = "amount")
-    private String bonus;
-    @XmlAttribute(name = "per_level")
-    private String perLevel;
+    private AmountDescription amount;
 
     public AttributeBonusDescription() {
         /* needed by JAXB */
@@ -21,11 +18,15 @@ public class AttributeBonusDescription {
 
     public AttributeBonusDescription(String attribute, String bonus) {
         this.attribute = attribute;
-        this.bonus = bonus;
+        this.amount = new AmountDescription(bonus);
     }
 
     public AttributeBonus createAttributeBonus() {
-        return new AttributeBonus(Attribute.fromDescription(attribute), bonus);
+        if (amount.isLeveled()) {
+            return new AttributeBonus(Attribute.fromDescription(attribute), amount.bonus);
+        } else {
+            return new AttributeBonus(Attribute.fromDescription(attribute), amount.bonus);
+        }
     }
 
 }
