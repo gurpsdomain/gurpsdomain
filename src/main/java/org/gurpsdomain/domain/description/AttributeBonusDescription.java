@@ -13,7 +13,7 @@ public class AttributeBonusDescription {
     @XmlElement(name = "amount")
     private String bonus;
     @XmlAttribute(name = "per_level")
-    private String perLevelString;
+    private String perLevel;
 
     public AttributeBonusDescription() {
         /* needed by JAXB */
