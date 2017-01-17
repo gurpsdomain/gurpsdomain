@@ -53,6 +53,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection intelligence = traverse(call("intelligence"));
     private Reflection strength = traverse(call("strength"));
     private Reflection will = traverse(call("will"));
+    private Reflection sizeModifier = traverse(call("sizeModifier"));
     private Reflection perception = traverse(call("perception"));
     private Reflection vision = traverse(call("vision"));
     private Reflection hearing = traverse(call("hearing"));
@@ -215,6 +216,7 @@ public class ReflectionConverter implements SheetConverter {
         Attributes attributes = this.attributes.from(domainSheet);
         SheetBasicLift basicLift = new SheetBasicLift(basicLiftRealMetricSystem.from(attributes), basicLiftGameMetricSystem.from(attributes), basicLiftImperialSystem.from(attributes));
         return new SheetSecondaryCharacteristics(
+                sizeModifier.from(attributes),
                 will.from(attributes),
                 perception.from(attributes),
                 vision.from(attributes),

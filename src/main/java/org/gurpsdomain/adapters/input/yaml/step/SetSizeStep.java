@@ -6,8 +6,8 @@ import org.gurpsdomain.domain.SheetBuilder;
 
 public class SetSizeStep implements YamlBuildStep {
 
-	@Override
-	public void build(InputSheet data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("description", "size", data.size());
-	}
+    @Override
+    public void build(InputSheet data, SheetBuilder sheetBuilder) {
+        sheetBuilder.setSize(data.size());
+    }
 }

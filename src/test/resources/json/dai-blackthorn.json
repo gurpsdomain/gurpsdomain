@@ -17,7 +17,6 @@
       "birthday": "February 12",
       "height": "5' 9''",
       "weight": "154 lb",
-      "size": "+0",
       "TL": "4",
       "hair": "Brown, wavy, long",
       "eyes": "Green",
@@ -40,6 +39,7 @@
     "intelligence": 10
   },
   "secondaryCharacteristics": {
+    "sizeModifier": -1,
     "will": 12,
     "perception": 10,
     "vision": 10,

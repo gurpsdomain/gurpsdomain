@@ -16,22 +16,22 @@ public class Sheet {
 
     public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Note> notes) {
         Sheet sheet = new Sheet();
-        for (Map.Entry<String[], String> entry: metaData.entrySet()) {
+        for (Map.Entry<String[], String> entry : metaData.entrySet()) {
             sheet.setMetaDataProperty(entry.getKey(), entry.getValue());
         }
-        for (int award: awards) {
+        for (int award : awards) {
             sheet.award(award);
         }
-        for (Advantage advantage: advantages) {
+        for (Advantage advantage : advantages) {
             sheet.addAdvantage(advantage);
         }
-        for (Skill skill: skills) {
+        for (Skill skill : skills) {
             sheet.addSkill(skill);
         }
-        for (Spell spell: spells) {
+        for (Spell spell : spells) {
             sheet.addSpell(spell);
         }
-        for (Note note: notes) {
+        for (Note note : notes) {
             sheet.addNote(note);
         }
         return sheet;
@@ -40,6 +40,10 @@ public class Sheet {
     private Sheet() {
         this.points = new Points(0);
         this.attributes = new Attributes();
+    }
+
+    public void setSizeModifier(int amount) {
+        attributes.addSizeModifierBonus(amount);
     }
 
     private void award(int amount) {

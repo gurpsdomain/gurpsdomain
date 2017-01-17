@@ -18,6 +18,7 @@ public class SheetBuilder {
     private List<Spell> spells = new ArrayList<>();
     private List<Advantage> advantages = new ArrayList<>();
     private Map<String[], String> metaData = new HashMap<>();
+    private String size = "0";
 
     public void award(int amount) {
         awards.add(amount);
@@ -27,27 +28,34 @@ public class SheetBuilder {
         notes.add(note);
     }
 
-    public  void addSkill(Skill skill) {
-       skills.add(skill);
+    public void addSkill(Skill skill) {
+        skills.add(skill);
     }
 
-    public  void addSpell(Spell spell) {
+    public void addSpell(Spell spell) {
         spells.add(spell);
     }
 
-    public  void addAdvantage(Advantage advantage) {
+    public void addAdvantage(Advantage advantage) {
         advantages.add(advantage);
     }
 
+    public void setSize(String size) {
+        this.size = size;
+    }
 
-    public  void addMetaData(String... keys) {
+
+    public void addMetaData(String... keys) {
         String value = keys[keys.length - 1];
         keys = slice(keys, 0, keys.length - 1);
         metaData.put(keys, value);
     }
 
     public Sheet build() {
-        return Sheet.from(metaData, awards, advantages, skills, spells, notes);
+        Sheet sheet = Sheet.from(metaData, awards, advantages, skills, spells, notes);
+        int amount = Integer.parseInt(size);
+        sheet.setSizeModifier(amount);
+        return sheet;
     }
 }
 
@@ -55,7 +63,7 @@ class Util {
     static String[] slice(String[] original, int startInclusive, int finishExclusive) {
         int length = finishExclusive - startInclusive;
         String[] slice = new String[length];
-        System.arraycopy(original,startInclusive,slice,0,length);
+        System.arraycopy(original, startInclusive, slice, 0, length);
         return slice;
     }
 }
