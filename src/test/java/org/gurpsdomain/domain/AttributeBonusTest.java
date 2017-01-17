@@ -25,6 +25,7 @@ public class AttributeBonusTest {
         data.add(new Object[]{DEXTERITY, "-1", traverse(call("dexterity")), 9});
         data.add(new Object[]{HEALTH, "1", traverse(call("health")), 11});
         data.add(new Object[]{INTELLIGENCE, "2", traverse(call("intelligence")), 12});
+        data.add(new Object[]{SIZE_MODIFIER, "1", traverse(call("sizeModifier")), 1});
         data.add(new Object[]{WILL, "1", traverse(call("will")), 11});
         data.add(new Object[]{MAGERY, "1", traverse(call("magery")), 1});
         data.add(new Object[]{FRIGHT_CHECK, "2", traverse(call("frightCheck")), 12});

@@ -30,6 +30,15 @@ public enum Attribute {
             attributes.addIntelligenceBonus(Integer.parseInt(bonus));
         }
     },
+    SIZE_MODIFIER("SM", "sm") {
+        @Override
+        public void addBonusTo(Attributes attributes, String bonus) {
+            attributes.addSizeModifierBonus(Integer.parseInt(bonus));
+        }
+
+        @Override
+        protected int defaultValue(){return 0;}
+    },
     WILL("Will", "will") {
         @Override
         public void addBonusTo(Attributes attributes, String bonus) {
@@ -285,8 +294,10 @@ public enum Attribute {
     }
 
     public Object value(Attributes attributes, Object bonus) {
-        return 10 + (int) bonus;
+        return defaultValue() + (int) bonus;
     }
+
+    protected int defaultValue(){return 10;}
 
     public abstract void addBonusTo(Attributes attributes, String bonus);
 }

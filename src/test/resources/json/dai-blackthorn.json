@@ -28,10 +28,10 @@
   "points": {
     "total": 258,
     "advantages": 78,
-    "disadvantages": -10,
+    "disadvantages": -25,
     "skills": 5,
     "spells": 3,
-    "unspent": 182
+    "unspent": 197
   },
   "attributes": {
     "strength": 10,
@@ -54,7 +54,7 @@
     "hitPoints": 10,
     "fatiguePoints": 10,
     "basicSpeed": 5.0,
-    "basicMove": 5,
+    "basicMove": 4,
     "damageSwinging": "1d",
     "damageThrusting": "1d-2",
     "frightCheck": 12
@@ -117,6 +117,12 @@
       "name": "Indecisive",
       "points": -10,
       "pageReference": "B140",
+      "modifiers": []
+    },
+    {
+      "name": "Dwarfism",
+      "points": -15,
+      "pageReference": "B19",
       "modifiers": []
     }
   ],

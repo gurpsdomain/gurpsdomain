@@ -28,6 +28,10 @@ public class Attributes {
         addIntBonus(INTELLIGENCE, bonus);
     }
 
+    void addSizeModifierBonus(int bonus) {
+        addIntBonus(SIZE_MODIFIER, bonus);
+    }
+
     void addWillBonus(int bonus) {
         addIntBonus(WILL, bonus);
     }
@@ -134,6 +138,10 @@ public class Attributes {
 
     int intelligence() {
         return (int) value(INTELLIGENCE);
+    }
+
+    int sizeModifier() {
+        return (int) value(SIZE_MODIFIER);
     }
 
     int will() {
