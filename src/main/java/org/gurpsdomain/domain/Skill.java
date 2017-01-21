@@ -1,5 +1,8 @@
 package org.gurpsdomain.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Skill {
     private final int cost;
     private final String name;
@@ -30,5 +33,17 @@ public class Skill {
 
     public void addBonus(String bonus) {
         this.bonus += Integer.parseInt(bonus);
+    }
+
+    public void updateFromAdvantages(List<Advantage> advantages) {
+        for (Advantage advantage : advantages) {
+            advantage.updateSkills(Arrays.asList(this));
+        }
+    }
+
+    public boolean hasName(String skillName) {
+        String thisUpperName = name.toUpperCase();
+        String searchedUpperName = skillName.toUpperCase();
+        return thisUpperName.equals(searchedUpperName);
     }
 }

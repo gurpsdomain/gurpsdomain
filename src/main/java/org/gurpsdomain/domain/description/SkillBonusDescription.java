@@ -21,6 +21,7 @@ public class SkillBonusDescription {
         /* needed by JAXB */
     }
 
+    //TODO take comparing and specialization into account
     public SkillBonusDescription(String name, String bonus) {
         this.name = name;
         this.amount = new AmountDescription(bonus);

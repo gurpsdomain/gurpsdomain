@@ -52,6 +52,8 @@ skills:
     points: 3
   - name: Stealth
     points: 2
+  - name: Singing
+    points: 1
 
 spells:
   - name: Gift of Letters

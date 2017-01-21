@@ -63,6 +63,7 @@ public class Sheet {
 
     private void addSkill(Skill skill) {
         skill.payCost(points);
+        skill.updateFromAdvantages(advantages);
         skills.add(skill);
     }
 

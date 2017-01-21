@@ -28,9 +28,9 @@
     "total": 258,
     "advantages": 78,
     "disadvantages": -35,
-    "skills": 5,
+    "skills": 6,
     "spells": 3,
-    "unspent": 207
+    "unspent": 206
   },
   "attributes": {
     "strength": 10,
@@ -148,6 +148,14 @@
       "pageReference": "B222",
       "controllingAttribute": "DX",
       "difficultyLevel": "A"
+    },
+    {
+      "name": "Singing",
+      "points": 1,
+      "level": 8,
+      "pageReference": "B220",
+      "controllingAttribute": "HT",
+      "difficultyLevel": "E"
     }
   ],
   "spells": [

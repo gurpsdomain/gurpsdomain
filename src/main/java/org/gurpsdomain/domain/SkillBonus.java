@@ -14,7 +14,9 @@ public class SkillBonus {
     }
 
     public void applyTo(Skill skill) {
-        skill.addBonus(bonus);
+        if (skill.hasName(skillName)) {
+            skill.addBonus(bonus);
+        }
     }
 
 }
