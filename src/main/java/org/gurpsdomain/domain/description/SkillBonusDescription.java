@@ -1,6 +1,5 @@
 package org.gurpsdomain.domain.description;
 
-import org.gurpsdomain.domain.Skill;
 import org.gurpsdomain.domain.SkillBonus;
 
 import javax.xml.bind.annotation.XmlAccessType;

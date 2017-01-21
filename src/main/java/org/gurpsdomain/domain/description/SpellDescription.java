@@ -1,6 +1,5 @@
 package org.gurpsdomain.domain.description;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.gurpsdomain.domain.DifficultyLevel;
 import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.Spell;

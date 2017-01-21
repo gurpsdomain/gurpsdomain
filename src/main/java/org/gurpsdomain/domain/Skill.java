@@ -1,6 +1,7 @@
 package org.gurpsdomain.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Skill {
@@ -37,7 +38,7 @@ public class Skill {
 
     public void updateFromAdvantages(List<Advantage> advantages) {
         for (Advantage advantage : advantages) {
-            advantage.updateSkills(Arrays.asList(this));
+            advantage.updateSkills(Collections.singletonList(this));
         }
     }
 

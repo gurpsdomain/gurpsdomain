@@ -1,7 +1,6 @@
 package org.gurpsdomain.domain.description.predicate;
 
 import org.gurpsdomain.domain.description.CostDescription;
-import org.gurpsdomain.domain.description.CostType;
 import org.gurpsdomain.domain.description.ModifierDescription;
 import org.junit.Test;
 

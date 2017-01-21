@@ -3,7 +3,6 @@ package org.gurpsdomain.domain;
 import org.gurpsdomain.domain.calc.AdvantageCostAccumulator;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Advantage {
