@@ -28,12 +28,14 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private List<ModifierDescription> modifiers;
     @XmlElement(name = "attribute_bonus")
     private List<AttributeBonusDescription> attributeBonusDescriptions;
+    @XmlElement(name = "skill_bonus")
+    private List<SkillBonusDescription> skillBonusDescriptions;
 
     private AdvantageDescription() {
         /* needed for JAXB */
     }
 
-    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonusDescriptions) {
+    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonusDescriptions, List<SkillBonusDescription> skillBonusDescriptions) {
         this.name = name;
         this.basePoints = basePoints;
         this.levels = levels;
@@ -41,6 +43,8 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.reference = pageReference;
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
         this.attributeBonusDescriptions = attributeBonusDescriptions != null ? attributeBonusDescriptions : Collections.emptyList();
+        this.skillBonusDescriptions = skillBonusDescriptions != null ? skillBonusDescriptions : Collections.emptyList();
+
     }
 
     public Advantage createAdvantage(List<ModifierDescriptionPredicate> modifierDescriptionPredicates, int levelAmount) {
@@ -55,10 +59,15 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
                 .map(AttributeBonusDescription::createAttributeBonus)
                 .collect(Collectors.toList());
 
+        List<SkillBonus> skillBonuses = skillBonusDescriptions()
+                .stream()
+                .map(SkillBonusDescription::createSkillBonus)
+                .collect(Collectors.toList());
+
         if (pointsPerLevel != null) {
-            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, levelAmount, pointsPerLevel);
+            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, levelAmount, pointsPerLevel);
         } else {
-            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses);
+            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses);
         }
     }
 
@@ -77,6 +86,14 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private List<AttributeBonusDescription> attributeBonusDescriptions() {
         if (attributeBonusDescriptions != null) {
             return attributeBonusDescriptions;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private List<SkillBonusDescription> skillBonusDescriptions() {
+        if (skillBonusDescriptions != null) {
+            return skillBonusDescriptions;
         } else {
             return Collections.emptyList();
         }

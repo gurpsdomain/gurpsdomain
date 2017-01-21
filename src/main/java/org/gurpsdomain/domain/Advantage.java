@@ -12,14 +12,17 @@ public class Advantage {
     private final int baseCost;
     private final List<Modifier> modifiers;
     private final List<AttributeBonus> attributeBonuses;
+    private final List<SkillBonus> skillBonuses;
 
-    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses) {
+    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses ) {
         this.name = name;
         this.baseCost = baseCost;
         this.pageReference = pageReference;
         this.modifiers = modifiers;
         this.attributeBonuses = attributeBonuses;
+        this.skillBonuses = skillBonuses;
     }
+
     void payCost(Points points) {
         points.addAdvantage(cost());
     }
@@ -44,12 +47,20 @@ public class Advantage {
     }
 
     protected void updateRegularAttributes(Attributes attributes, List<AttributeBonus> bonuses) {
-        for (AttributeBonus attributeBonus: bonuses) {
+        for (AttributeBonus attributeBonus : bonuses) {
             attributeBonus.applyTo(attributes);
         }
     }
 
     protected void updateLeveledAttributes(Attributes attributes, List<AttributeBonus> regularAttributeBonuses) {
-        /* should be overriden in LeveledAdvantage */
+        /* should be overridden in LeveledAdvantage */
+    }
+
+    void updateSkills(List<Skill> skills) {
+        for (Skill skill : skills) {
+            for (SkillBonus skillBonus : skillBonuses) {
+                skillBonus.applyTo(skill);
+            }
+        }
     }
 }

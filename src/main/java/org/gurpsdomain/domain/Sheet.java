@@ -57,6 +57,7 @@ public class Sheet {
     private void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
         advantage.updateAttributes(attributes);
+        advantage.updateSkills(skills);
         advantages.add(advantage);
     }
 

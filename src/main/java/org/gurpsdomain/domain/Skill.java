@@ -6,6 +6,7 @@ public class Skill {
     private final Attribute controllingAttribute;
     private final DifficultyLevel difficultyLevel;
     private final String pageReference;
+    private int bonus = 0;
 
     public Skill(String name, int cost, Attribute controllingAttribute, DifficultyLevel difficultyLevel, String pageReference) {
         this.cost = cost;
@@ -19,14 +20,15 @@ public class Skill {
         points.addSkill(cost);
     }
 
-
     private int delta() {
         return difficultyLevel.determineDelta(cost);
     }
 
-    //TODO add the skill bonuses
     public int level(Attributes attributes) {
-        return attributes.level(controllingAttribute) + delta();
+        return attributes.level(controllingAttribute) + delta() + bonus;
     }
 
+    public void addBonus(String bonus) {
+        this.bonus += Integer.parseInt(bonus);
+    }
 }
