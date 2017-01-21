@@ -18,7 +18,7 @@ import static org.gurpsdomain.domain.AttributeBonus.attributeBonus;
 
 @RunWith(Parameterized.class)
 public class AttributeBonusTest {
-    @Parameterized.Parameters(name = "A bonus {1} for {0} should give {3}")
+    @Parameterized.Parameters(name = "An attribute bonus {1} for {0} should give {3}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
         data.add(new Object[]{STRENGTH, "2", traverse(call("strength")), 12});
