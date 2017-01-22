@@ -5,7 +5,7 @@ public class DamageResistanceBonus {
         return new DamageResistanceBonus(damageResistance, bonus, false);
     }
 
-    public static DamageResistanceBonus LeveledDamageResistanceBonus(DamageResistance damageResistance, String bonus) {
+    public static DamageResistanceBonus leveledDamageResistanceBonus(DamageResistance damageResistance, String bonus) {
         return new DamageResistanceBonus(damageResistance, bonus, true);
     }
 
