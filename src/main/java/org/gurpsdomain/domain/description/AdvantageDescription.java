@@ -30,12 +30,14 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private List<AttributeBonusDescription> attributeBonusDescriptions;
     @XmlElement(name = "skill_bonus")
     private List<SkillBonusDescription> skillBonusDescriptions;
+    @XmlElement(name = "dr_bonus")
+    private List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions;
 
     private AdvantageDescription() {
         /* needed for JAXB */
     }
 
-    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonusDescriptions, List<SkillBonusDescription> skillBonusDescriptions) {
+    public AdvantageDescription(String name, int basePoints, Integer levels, Integer pointsPerLevel, String pageReference, List<ModifierDescription> modifiers, List<AttributeBonusDescription> attributeBonusDescriptions, List<SkillBonusDescription> skillBonusDescriptions, List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions) {
         this.name = name;
         this.basePoints = basePoints;
         this.levels = levels;
@@ -44,6 +46,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         this.modifiers = modifiers != null ? modifiers : Collections.emptyList();
         this.attributeBonusDescriptions = attributeBonusDescriptions != null ? attributeBonusDescriptions : Collections.emptyList();
         this.skillBonusDescriptions = skillBonusDescriptions != null ? skillBonusDescriptions : Collections.emptyList();
+        this.damageResistanceBonusDescriptions = damageResistanceBonusDescriptions != null ? damageResistanceBonusDescriptions : Collections.emptyList();
 
     }
 
@@ -64,10 +67,15 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
                 .map(SkillBonusDescription::createSkillBonus)
                 .collect(Collectors.toList());
 
+        List<DamageResistanceBonus> damageResistanceBonuses = damageResistanceBonusDescriptions()
+                .stream()
+                .map(DamageResistanceBonusDescription::createDamageResistanceBonus)
+                .collect(Collectors.toList());
+
         if (pointsPerLevel != null) {
-            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, levelAmount, pointsPerLevel);
+            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, levelAmount, pointsPerLevel);
         } else {
-            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses);
+            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
         }
     }
 
@@ -94,6 +102,14 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
     private List<SkillBonusDescription> skillBonusDescriptions() {
         if (skillBonusDescriptions != null) {
             return skillBonusDescriptions;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions() {
+        if (damageResistanceBonusDescriptions != null) {
+            return damageResistanceBonusDescriptions;
         } else {
             return Collections.emptyList();
         }

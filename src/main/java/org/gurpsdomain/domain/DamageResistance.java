@@ -66,7 +66,7 @@ public enum DamageResistance {
             damageResistances.addHandBonus(Integer.parseInt(bonus));
         }
     },
-    FOOT("Foot", "foot") {
+    FOOT("Foot", "foot", "Feet", "feet") {
         @Override
         public void addBonusTo(DamageResistances damageResistances, String bonus) {
             damageResistances.addFootBonus(Integer.parseInt(bonus));

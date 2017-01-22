@@ -68,6 +68,7 @@ class AdvantageCostTestCase {
     private List<Modifier> modifiers = new ArrayList<>();
     private List<AttributeBonus> attributeBonuses = new ArrayList<>();
     private List<SkillBonus> skillBonuses = new ArrayList<>();
+    private List<DamageResistanceBonus> damageResistanceBonuses = new ArrayList<>();
     private Integer level;
     public int expectedCost = 100;
 
@@ -108,9 +109,9 @@ class AdvantageCostTestCase {
 
     public Advantage create() {
         if (level != null) {
-            return new LeveledAdvantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, skillBonuses, level, pointsPerLevel);
+            return new LeveledAdvantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
         } else {
-            return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, skillBonuses);
+            return new Advantage(this.toString(), baseCost, ANY_PAGE_REFERENCE, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
         }
     }
 

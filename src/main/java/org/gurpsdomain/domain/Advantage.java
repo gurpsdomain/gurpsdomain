@@ -12,14 +12,16 @@ public class Advantage {
     private final List<Modifier> modifiers;
     private final List<AttributeBonus> attributeBonuses;
     private final List<SkillBonus> skillBonuses;
+    private final List<DamageResistanceBonus> damageResistanceBonuses;
 
-    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses ) {
+    public Advantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses) {
         this.name = name;
         this.baseCost = baseCost;
         this.pageReference = pageReference;
         this.modifiers = modifiers;
         this.attributeBonuses = attributeBonuses;
         this.skillBonuses = skillBonuses;
+        this.damageResistanceBonuses = damageResistanceBonuses;
     }
 
     void payCost(Points points) {
@@ -61,5 +63,22 @@ public class Advantage {
                 skillBonus.applyTo(skill);
             }
         }
+    }
+
+    protected void updateRegularDamageResistances(DamageResistances damageResistances, List<DamageResistanceBonus> bonuses) {
+        for (DamageResistanceBonus damageResistanceBonus : bonuses) {
+            damageResistanceBonus.applyTo(damageResistances);
+        }
+    }
+
+    protected void updateLeveledDamageResistances(DamageResistances damageResistances, List<DamageResistanceBonus> regularDamageResistanceBonuses) {
+        /* should be overridden in LeveledAdvantage */
+    }
+
+    void updateDamageResistances(DamageResistances damageResistances) {
+        List<DamageResistanceBonus> regularDamageResistanceBonuses = damageResistanceBonuses.stream().filter(b -> !b.isLeveled()).collect(Collectors.toList());
+        updateRegularDamageResistances(damageResistances, regularDamageResistanceBonuses);
+        List<DamageResistanceBonus> leveledDamageResistanceBonuses = damageResistanceBonuses.stream().filter(DamageResistanceBonus::isLeveled).collect(Collectors.toList());
+        updateLeveledDamageResistances(damageResistances, leveledDamageResistanceBonuses);
     }
 }

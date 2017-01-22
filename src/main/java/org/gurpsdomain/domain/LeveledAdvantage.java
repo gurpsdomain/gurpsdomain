@@ -8,8 +8,8 @@ public class LeveledAdvantage extends Advantage {
     private final int level;
     private final int pointsPerLevel;
 
-    public LeveledAdvantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, int level, int pointsPerLevel) {
-        super(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses);
+    public LeveledAdvantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, int level, int pointsPerLevel) {
+        super(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
         if (level < 1) {
             throw new IllegalArgumentException("Advantage level for " + name + " should be greater than 0 but was " + level);
         }
@@ -27,6 +27,13 @@ public class LeveledAdvantage extends Advantage {
     protected void updateLeveledAttributes(Attributes attributes, List<AttributeBonus> bonuses) {
         for (int index = 0; index < level; index++) {
             super.updateRegularAttributes(attributes, bonuses);
+        }
+    }
+
+    @Override
+    protected void updateLeveledDamageResistances(DamageResistances damageResistances, List<DamageResistanceBonus> bonuses) {
+        for (int index = 0; index < level; index++) {
+            super.updateRegularDamageResistances(damageResistances, bonuses);
         }
     }
 }

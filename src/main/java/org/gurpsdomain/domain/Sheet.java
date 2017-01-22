@@ -60,6 +60,7 @@ public class Sheet {
         advantage.payCost(points);
         advantage.updateAttributes(attributes);
         advantage.updateSkills(skills);
+        advantage.updateDamageResistances(damageResistances);
         advantages.add(advantage);
     }
 
