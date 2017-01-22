@@ -1,7 +1,6 @@
 package org.gurpsdomain.domain.description;
 
 import org.gurpsdomain.domain.*;
-import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
