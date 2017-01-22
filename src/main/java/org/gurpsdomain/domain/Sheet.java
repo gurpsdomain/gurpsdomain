@@ -13,6 +13,7 @@ public class Sheet {
     private final List<Spell> spells = new ArrayList<>();
     private final Map<String, Object> metaData = new HashMap<>();
     private final Attributes attributes;
+    private final DamageResistances damageResistances;
 
     public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Note> notes) {
         Sheet sheet = new Sheet();
@@ -40,6 +41,7 @@ public class Sheet {
     private Sheet() {
         this.points = new Points(0);
         this.attributes = new Attributes();
+        this.damageResistances = new DamageResistances();
     }
 
     public void setSizeModifier(int amount) {

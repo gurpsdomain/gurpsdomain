@@ -19,6 +19,8 @@ public class ReflectionConverter implements SheetConverter {
     private List<Advantage> domainAdvantages;
     private List<Skill> domainSkills;
     private List<Spell> domainSpells;
+    private Reflection attributes = traverse(read("attributes"));
+    private Reflection damageResistances = traverse(read("damageResistances"));
     private Reflection name = traverse(read("name"));
     private Reflection cost = traverse(read("cost"));
     private Reflection level = traverse(read("level"));
@@ -40,7 +42,6 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection metaData = traverse(read("metaData"));
     private Reflection note = traverse(read("note"));
     private Reflection notes = traverse(read("notes"));
-    private Reflection attributes = traverse(read("attributes"));
     private Reflection pointsTotal = traverse(read("points"), read("total"));
     private Reflection pointsAdvantages = traverse(read("points"), read("advantages"));
     private Reflection pointsDisadvantages = traverse(read("points"), read("disadvantages"));
@@ -69,11 +70,24 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection damageThrusting = traverse(call("damageThrustingAsString"));
     private Reflection damageSwinging = traverse(call("damageSwingingAsString"));
     private Reflection frightCheck = traverse(call("frightCheck"));
+    private Reflection eye = traverse(call("eye"));
+    private Reflection skull = traverse(call("skull"));
+    private Reflection face = traverse(call("face"));
+    private Reflection rightLeg = traverse(call("rightLeg"));
+    private Reflection rightArm = traverse(call("rightArm"));
+    private Reflection torso = traverse(call("torso"));
+    private Reflection groin = traverse(call("groin"));
+    private Reflection leftArm = traverse(call("leftArm"));
+    private Reflection leftLeg = traverse(call("leftLeg"));
+    private Reflection hand = traverse(call("hand"));
+    private Reflection foot = traverse(call("foot"));
+    private Reflection neck = traverse(call("neck"));
+    private Reflection vitals = traverse(call("vitals"));
 
     @Override
     public SheetSheet convert(Sheet sheet) {
         setDomainSheetData(sheet);
-        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), notes(), attributes(), secondaryCharacteristics());
+        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), notes(), attributes(), secondaryCharacteristics(), damageResistances());
     }
 
     private void setDomainSheetData(Sheet sheet) {
@@ -231,5 +245,23 @@ public class ReflectionConverter implements SheetConverter {
                 damageThrusting.from(attributes),
                 damageSwinging.from(attributes),
                 frightCheck.from(attributes));
+    }
+
+    private SheetDamageResistances damageResistances() {
+        DamageResistances damageResistances = this.damageResistances.from(domainSheet);
+        return new SheetDamageResistances(
+                eye.from(damageResistances),
+                skull.from(damageResistances),
+                face.from(damageResistances),
+                rightLeg.from(damageResistances),
+                rightArm.from(damageResistances),
+                torso.from(damageResistances),
+                groin.from(damageResistances),
+                leftArm.from(damageResistances),
+                leftLeg.from(damageResistances),
+                hand.from(damageResistances),
+                foot.from(damageResistances),
+                neck.from(damageResistances),
+                vitals.from(damageResistances));
     }
 }

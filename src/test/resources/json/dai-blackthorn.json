@@ -59,6 +59,21 @@
     "damageThrusting": "1d-2",
     "frightCheck": 12
   },
+  "damageResistances": {
+    "eye": 0,
+    "skull": 0,
+    "face": 0,
+    "rightLeg": 0,
+    "rightArm": 0,
+    "torso": 0,
+    "groin": 0,
+    "leftArm": 0,
+    "leftLeg": 0,
+    "hand": 0,
+    "foot": 0,
+    "neck": 0,
+    "vitals": 0
+  },
   "advantages": [
     {
       "name": "Absolute Direction",

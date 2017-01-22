@@ -102,7 +102,7 @@ public class DamageResistances {
         return (int) value(GROIN);
     }
 
-    int leftARm() {
+    int leftArm() {
         return (int) value(LEFT_ARM);
     }
 
