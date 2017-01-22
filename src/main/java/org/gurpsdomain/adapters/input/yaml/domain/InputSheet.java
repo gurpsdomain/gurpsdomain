@@ -55,7 +55,7 @@ public class InputSheet {
     public List<InputAdvantage> advantages;
     public List<InputAdvantage> disadvantages;
     public List<InputSkill> skills;
-    public List<InputSkill> spells;
+    public List<InputSpell> spells;
     public List<InputEquipment> equipments;
     public List<InputNote> notes;
 
