@@ -63,12 +63,12 @@
     "eye": 0,
     "skull": 0,
     "face": 0,
-    "rightLeg": 0,
+    "rightLeg": 1,
     "rightArm": 0,
     "torso": 0,
-    "groin": 0,
+    "groin": 1,
     "leftArm": 0,
-    "leftLeg": 0,
+    "leftLeg": 1,
     "hand": 0,
     "foot": 1,
     "neck": 0,
@@ -205,6 +205,11 @@
       "maintenanceCost": "4",
       "spellClasses": "Regular",
       "pageReference": "M47"
+    }
+  ],
+  "equipments": [
+    {
+      "name": "Leather Pants"
     }
   ],
   "notes": [

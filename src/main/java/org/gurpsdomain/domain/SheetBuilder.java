@@ -57,7 +57,7 @@ public class SheetBuilder {
     }
 
     public Sheet build() {
-        Sheet sheet = Sheet.from(metaData, awards, advantages, skills, spells, notes);
+        Sheet sheet = Sheet.from(metaData, awards, advantages, skills, spells, equipments, notes);
         int amount = Integer.parseInt(size);
         sheet.setSizeModifier(amount);
         return sheet;

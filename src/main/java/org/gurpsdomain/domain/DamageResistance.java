@@ -60,6 +60,20 @@ public enum DamageResistance {
             damageResistances.addLeftLegBonus(Integer.parseInt(bonus));
         }
     },
+    LEGS("legs", "Legs") {
+        @Override
+        public void addBonusTo(DamageResistances damageResistances, String bonus) {
+            damageResistances.addRightLegBonus(Integer.parseInt(bonus));
+            damageResistances.addLeftLegBonus(Integer.parseInt(bonus));
+        }
+    },
+    ARMS("arms", "Arms") {
+        @Override
+        public void addBonusTo(DamageResistances damageResistances, String bonus) {
+            damageResistances.addRightArmBonus(Integer.parseInt(bonus));
+            damageResistances.addLeftArmBonus(Integer.parseInt(bonus));
+        }
+    },
     HAND("Hand", "hand") {
         @Override
         public void addBonusTo(DamageResistances damageResistances, String bonus) {

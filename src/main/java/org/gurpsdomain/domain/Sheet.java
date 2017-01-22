@@ -11,11 +11,12 @@ public class Sheet {
     private final List<Advantage> advantages = new ArrayList<>();
     private final List<Skill> skills = new ArrayList<>();
     private final List<Spell> spells = new ArrayList<>();
+    private final List<Equipment> equipments = new ArrayList<>();
     private final Map<String, Object> metaData = new HashMap<>();
     private final Attributes attributes;
     private final DamageResistances damageResistances;
 
-    public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Note> notes) {
+    public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Equipment> equipments, List<Note> notes) {
         Sheet sheet = new Sheet();
         for (Map.Entry<String[], String> entry : metaData.entrySet()) {
             sheet.setMetaDataProperty(entry.getKey(), entry.getValue());
@@ -31,6 +32,9 @@ public class Sheet {
         }
         for (Spell spell : spells) {
             sheet.addSpell(spell);
+        }
+        for (Equipment equipment : equipments) {
+            sheet.addEquipment(equipment);
         }
         for (Note note : notes) {
             sheet.addNote(note);
@@ -73,6 +77,11 @@ public class Sheet {
     private void addSpell(Spell spell) {
         spell.payCost(points);
         spells.add(spell);
+    }
+
+    private void addEquipment(Equipment equipment) {
+        equipment.updateDamageResistances(damageResistances);
+        equipments.add(equipment);
     }
 
     private void setMetaDataProperty(String[] keys, String value) {

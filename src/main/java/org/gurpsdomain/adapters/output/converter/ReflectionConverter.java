@@ -19,6 +19,7 @@ public class ReflectionConverter implements SheetConverter {
     private List<Advantage> domainAdvantages;
     private List<Skill> domainSkills;
     private List<Spell> domainSpells;
+    private List<Equipment> domainEquipments;
     private Reflection attributes = traverse(read("attributes"));
     private Reflection damageResistances = traverse(read("damageResistances"));
     private Reflection name = traverse(read("name"));
@@ -39,6 +40,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection advantages = traverse(read("advantages"));
     private Reflection skills = traverse(read("skills"));
     private Reflection spells = traverse(read("spells"));
+    private Reflection equipments = traverse(read("equipments"));
     private Reflection metaData = traverse(read("metaData"));
     private Reflection note = traverse(read("note"));
     private Reflection notes = traverse(read("notes"));
@@ -87,7 +89,7 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         setDomainSheetData(sheet);
-        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), notes(), attributes(), secondaryCharacteristics(), damageResistances());
+        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), equipments(), notes(), attributes(), secondaryCharacteristics(), damageResistances());
     }
 
     private void setDomainSheetData(Sheet sheet) {
@@ -95,6 +97,7 @@ public class ReflectionConverter implements SheetConverter {
         this.domainAdvantages = advantages.from(domainSheet);
         this.domainSkills = skills.from(domainSheet);
         this.domainSpells = spells.from(domainSheet);
+        this.domainEquipments = equipments.from(domainSheet);
     }
 
     private Map<String, String> metaData() {
@@ -205,6 +208,19 @@ public class ReflectionConverter implements SheetConverter {
                 maintenanceCost.from(domainSpell),
                 castingTime.from(domainSpell),
                 duration.from(domainSpell));
+    }
+
+    private List<SheetEquipment> equipments() {
+        List<SheetEquipment> sheetEquipments = new ArrayList<>();
+        for (Equipment domainEquipment : domainEquipments) {
+            sheetEquipments.add(sheetEquipmentFromDomainEquipment(domainEquipment));
+        }
+        return sheetEquipments;
+    }
+
+    private SheetEquipment sheetEquipmentFromDomainEquipment(Equipment domainEquipment) {
+        return new SheetEquipment(
+                name.from(domainEquipment));
     }
 
     private List<SheetNote> notes() {

@@ -62,6 +62,9 @@ spells:
   - name: Mind-Sending
     points: 2
 
+equipments:
+    - name: Leather Pants
+
 notes:
 - name: general note
   note: This is a very important note that I would like to have on my sheet
