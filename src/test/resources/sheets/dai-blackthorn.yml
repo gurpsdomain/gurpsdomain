@@ -42,6 +42,8 @@ advantages:
   - name: Acute Hearing
     levels: 4
   - name: Claws, Hooves
+  - name: Damage Resistance
+    levels: 3
 
 disadvantages:
   - name: Indecisive

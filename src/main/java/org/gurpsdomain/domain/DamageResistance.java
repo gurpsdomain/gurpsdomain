@@ -97,6 +97,24 @@ public enum DamageResistance {
         public void addBonusTo(DamageResistances damageResistances, String bonus) {
             damageResistances.addVitalsBonus(Integer.parseInt(bonus));
         }
+    },
+    FULL_BODY("Full body", "full body") {
+        @Override
+        public void addBonusTo(DamageResistances damageResistances, String bonus) {
+            damageResistances.addVitalsBonus(Integer.parseInt(bonus));
+            damageResistances.addNeckBonus(Integer.parseInt(bonus));
+            damageResistances.addFootBonus(Integer.parseInt(bonus));
+            damageResistances.addHandBonus(Integer.parseInt(bonus));
+            damageResistances.addLeftArmBonus(Integer.parseInt(bonus));
+            damageResistances.addRightArmBonus(Integer.parseInt(bonus));
+            damageResistances.addLeftLegBonus(Integer.parseInt(bonus));
+            damageResistances.addRightLegBonus(Integer.parseInt(bonus));
+            damageResistances.addGroinBonus(Integer.parseInt(bonus));
+            damageResistances.addTorsoBonus(Integer.parseInt(bonus));
+            damageResistances.addFaceBonus(Integer.parseInt(bonus));
+            damageResistances.addSkullBonus(Integer.parseInt(bonus));
+            damageResistances.addEyeBonus(Integer.parseInt(bonus));
+        }
     };
 
     static final private Map<String, DamageResistance> descriptionToDamageResistance = new HashMap<>();

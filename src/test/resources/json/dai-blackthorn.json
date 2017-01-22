@@ -26,11 +26,11 @@
   },
   "points": {
     "total": 258,
-    "advantages": 81,
+    "advantages": 96,
     "disadvantages": -35,
     "skills": 6,
     "spells": 3,
-    "unspent": 203
+    "unspent": 188
   },
   "attributes": {
     "strength": 10,
@@ -60,19 +60,19 @@
     "frightCheck": 12
   },
   "damageResistances": {
-    "eye": 0,
-    "skull": 0,
-    "face": 0,
-    "rightLeg": 1,
-    "rightArm": 0,
-    "torso": 0,
-    "groin": 1,
-    "leftArm": 0,
-    "leftLeg": 1,
-    "hand": 0,
-    "foot": 1,
-    "neck": 0,
-    "vitals": 0
+    "eye": 3,
+    "skull": 3,
+    "face": 3,
+    "rightLeg": 4,
+    "rightArm": 3,
+    "torso": 3,
+    "groin": 4,
+    "leftArm": 3,
+    "leftLeg": 4,
+    "hand": 3,
+    "foot": 4,
+    "neck": 3,
+    "vitals": 3
   },
   "advantages": [
     {
@@ -130,6 +130,13 @@
       "name": "Claws, Hooves",
       "points": 3,
       "pageReference": "B42",
+      "modifiers": []
+    },
+    {
+      "name": "Damage Resistance",
+      "points": 15,
+      "level": 3,
+      "pageReference": "B47",
       "modifiers": []
     }
   ],
