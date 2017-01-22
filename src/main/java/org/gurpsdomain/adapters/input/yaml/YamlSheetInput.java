@@ -7,10 +7,12 @@ import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.Sheet;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
+import org.gurpsdomain.domain.description.EquipmentDescription;
 import org.gurpsdomain.domain.description.SkillDescription;
 import org.gurpsdomain.domain.description.SpellDescription;
 import org.gurpsdomain.domain.repositories.InMemoryRepository;
 import org.gurpsdomain.domain.repositories.xml.AdvantageDescriptions;
+import org.gurpsdomain.domain.repositories.xml.EquipmentDescriptions;
 import org.gurpsdomain.domain.repositories.xml.SkillDescriptions;
 import org.gurpsdomain.domain.repositories.xml.SpellDescriptions;
 import org.yaml.snakeyaml.Yaml;
@@ -28,11 +30,13 @@ public class YamlSheetInput implements SheetInput {
         Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
         Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, "src/main/resources/data/skills.basic-set.xml");
         Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, "src/main/resources/data/spells.magic-set.xml");
+        Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, "src/main/resources/data/equipments.basic-set.xml");
         YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
         yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
         yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));
         yamlSheetInput.addBuildStep(addAdvantagesStep(advantageRepository));
         yamlSheetInput.addBuildStep(addDisadvantagesStep(advantageRepository));
+        yamlSheetInput.addBuildStep(new AddEquipmentsStep(equipmentRepository));
         return yamlSheetInput;
     }
 

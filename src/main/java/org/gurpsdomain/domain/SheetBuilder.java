@@ -16,6 +16,7 @@ public class SheetBuilder {
     private List<Note> notes = new ArrayList<>();
     private List<Skill> skills = new ArrayList<>();
     private List<Spell> spells = new ArrayList<>();
+    private List<Equipment> equipments = new ArrayList<>();
     private List<Advantage> advantages = new ArrayList<>();
     private Map<String[], String> metaData = new HashMap<>();
     private String size = "0";
@@ -34,6 +35,10 @@ public class SheetBuilder {
 
     public void addSpell(Spell spell) {
         spells.add(spell);
+    }
+
+    public void addEquipment(Equipment equipment) {
+        equipments.add(equipment);
     }
 
     public void addAdvantage(Advantage advantage) {

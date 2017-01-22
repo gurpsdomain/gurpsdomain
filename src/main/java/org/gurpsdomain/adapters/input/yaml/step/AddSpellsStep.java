@@ -16,6 +16,7 @@ public class AddSpellsStep implements YamlBuildStep {
         this.repository = repository;
     }
 
+    //FIXME spells and skills are mixed?!
     @Override
     public void build(InputSheet data, SheetBuilder sheetBuilder) {
         List<InputSkill> inputSpells = data.spells;

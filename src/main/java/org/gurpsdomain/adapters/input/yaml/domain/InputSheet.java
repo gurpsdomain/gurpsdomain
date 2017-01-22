@@ -18,8 +18,9 @@ public class InputSheet {
         description.putListPropertyType("disadvantages", InputAdvantage.class);
         description.putListPropertyType("skills", InputSkill.class);
         description.putListPropertyType("spells", InputSkill.class);
+        description.putListPropertyType("equipments", InputEquipment.class);
         description.putListPropertyType("notes", InputNote.class);
-        constructor.setPropertyUtils(new PropertyUtils(){
+        constructor.setPropertyUtils(new PropertyUtils() {
             @Override
             public Property getProperty(Class<?> type, String name) throws IntrospectionException {
                 if (name.equals("created on")) {
@@ -55,6 +56,7 @@ public class InputSheet {
     public List<InputAdvantage> disadvantages;
     public List<InputSkill> skills;
     public List<InputSkill> spells;
+    public List<InputEquipment> equipments;
     public List<InputNote> notes;
 
     public String birthday() {
@@ -178,6 +180,7 @@ public class InputSheet {
         }
     }
 
+    //TODO what happens here and why not for spells and skills etc?
     public List<InputAdvantage> advantages() {
         if (advantages != null) {
             return advantages;
