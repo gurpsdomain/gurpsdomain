@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 
 public class YamlFromToMapTest {
     @Test
-    public void shouldReturnMap() throws FileNotFoundException {
+    public void shouldLoadYamlIntoMap() throws FileNotFoundException {
         FileInputStream input = new FileInputStream(new File("src/test/resources/tools/snake.yml"));
         Yaml yaml = new Yaml();
 
@@ -29,7 +29,7 @@ public class YamlFromToMapTest {
     }
 
     @Test
-    public void shouldProduceYamlFile() throws Throwable {
+    public void shouldProduceYamlFileFromMap() throws Throwable {
         StringWriter writer = new StringWriter();
         Yaml yaml = new Yaml();
 
