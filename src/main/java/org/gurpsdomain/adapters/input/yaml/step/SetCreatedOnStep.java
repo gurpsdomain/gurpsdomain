@@ -7,6 +7,6 @@ public class SetCreatedOnStep implements YamlBuildStep {
 
 	@Override
 	public void build(InputSheet data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "created on", data.createdOn());
+		sheetBuilder.addMetaData("playerInformation", "createdOn", data.createdOn());
 	}
 }

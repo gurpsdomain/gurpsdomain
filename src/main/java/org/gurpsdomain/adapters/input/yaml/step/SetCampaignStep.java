@@ -7,6 +7,6 @@ public class SetCampaignStep implements YamlBuildStep {
 
 	@Override
 	public void build(InputSheet data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "campaign", data.campaign());
+		sheetBuilder.addMetaData("playerInformation", "campaign", data.campaign());
 	}
 }

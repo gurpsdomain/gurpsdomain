@@ -7,6 +7,6 @@ public class SetPlayerStep implements YamlBuildStep {
 
 	@Override
 	public void build(InputSheet data, SheetBuilder sheetBuilder) {
-		sheetBuilder.addMetaData("player information", "player", data.player());
+		sheetBuilder.addMetaData("playerInformation", "player", data.player());
 	}
 }
