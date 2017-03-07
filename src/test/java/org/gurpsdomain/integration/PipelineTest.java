@@ -27,7 +27,8 @@ public class PipelineTest {
     public static Collection<Object[]> data() {
 
         Collection<Object[]> data = new ArrayList<>();
-        data.add(dataFor("dai-blackthorn.yml","dai-blackthorn.json" ));
+        data.add(dataFor("dai-blackthorn-input.yml","dai-blackthorn-output.json" ));
+        data.add(dataFor("dai-blackthorn-input.json","dai-blackthorn-output.json" ));
         return data;
     }
 

@@ -20,7 +20,7 @@ public class ReflectionConverterTest {
 
     @BeforeClass
     public static void readInSheet() throws FileNotFoundException {
-        Reader reader = new FileReader(new File("src/test/resources/sheets/dai-blackthorn.yml"));
+        Reader reader = new FileReader(new File("src/test/resources/sheets/dai-blackthorn-input.yml"));
         sheet = fromYaml(reader).produce();
     }
 

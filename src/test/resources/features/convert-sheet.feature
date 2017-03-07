@@ -2,13 +2,13 @@ Feature: Convert a sheet
 
   Scenario: dai-blackthorn from yml to json and check total points
 
-    Given a sheet file dai-blackthorn.yml
+    Given a sheet file dai-blackthorn-input.yml
     When I convert it to json
     Then I expect a point total of 258
 
   Scenario: dai-blackthorn from yml to json and check handedness
 
-    Given a sheet file dai-blackthorn.yml
+    Given a sheet file dai-blackthorn-input.yml
     When I convert it to json
     Then I expect a handedness that is "Right"
 

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class InputSheetTest {
     @Test
     public void shouldReadYamlIntoInputSheet() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream(new File("src/test/resources/sheets/dai-blackthorn.yml"));
+        FileInputStream input = new FileInputStream(new File("src/test/resources/sheets/dai-blackthorn-input.yml"));
         Constructor constructor = InputSheet.constructor();
         Yaml yaml = new Yaml(constructor);
         InputSheet inputSheet = (InputSheet) yaml.load(input);
