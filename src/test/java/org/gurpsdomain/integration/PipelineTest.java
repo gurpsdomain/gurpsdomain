@@ -23,17 +23,17 @@ import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 public class PipelineTest {
     private static final File RESOURCES = Paths.get("src", "test", "resources").toFile();
 
-    @Parameterized.Parameters(name = "{0}")
+    @Parameterized.Parameters(name = "{0} --> {1}")
     public static Collection<Object[]> data() {
 
         Collection<Object[]> data = new ArrayList<>();
-        data.add(dataFor("dai-blackthorn"));
+        data.add(dataFor("dai-blackthorn.yml","dai-blackthorn.json" ));
         return data;
     }
 
-    private static Object[] dataFor(String name) {
+    private static Object[] dataFor(String fileInput, String fileOutput) {
         return new Object[]{
-            name, new File(RESOURCES, "sheets/" + name + ".yml"), new File(RESOURCES,  "json/" + name + ".json")
+            new File(RESOURCES, "sheets/" + fileInput), new File(RESOURCES,  "json/" + fileOutput)
         };
     }
 
@@ -43,7 +43,7 @@ public class PipelineTest {
     private Writer writer;
     private String expectedJson;
 
-    public PipelineTest(String _, File input, File expected) {
+    public PipelineTest(File input, File expected) {
         this.input = input;
         this.expected = expected;
     }
