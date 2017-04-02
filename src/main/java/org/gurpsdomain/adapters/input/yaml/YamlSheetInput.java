@@ -89,10 +89,10 @@ public class YamlSheetInput implements SheetInput {
         }
 
         public YamlSheetInput fromYaml(Reader reader) {
-            Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, advantageLocations.toArray(new String[]{}));
-            Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, skillLocations.toArray(new String[]{}));
-            Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, spellLocations.toArray(new String[]{}));
-            Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, equipmentLocations.toArray(new String[]{}));
+            Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, advantageLocations);
+            Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, skillLocations);
+            Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, spellLocations);
+            Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, equipmentLocations);
             YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
             yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
             yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));

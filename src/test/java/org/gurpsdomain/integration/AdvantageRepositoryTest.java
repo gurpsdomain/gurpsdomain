@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.core.Is.is;
@@ -36,7 +37,7 @@ public class AdvantageRepositoryTest {
 
     @Before
     public void createRepository() {
-        repository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
+        repository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, Arrays.asList("src/main/resources/data/advantages.basic-set.xml"));
     }
 
     @Test

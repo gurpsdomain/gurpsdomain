@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InMemoryRepository<T> implements Repository<T> {
-    public static <U extends Registerable<U>, V extends Iterable<U>> InMemoryRepository<U> loadedWith(Class<V> containerClass, String... locations) {
+    public static <U extends Registerable<U>, V extends Iterable<U>> InMemoryRepository<U> loadedWith(Class<V> containerClass, Iterable<String> locations) {
         InMemoryRepository<U> repository = new InMemoryRepository<>();
         for (String location: locations) {
             loadWith(containerClass, repository, location);

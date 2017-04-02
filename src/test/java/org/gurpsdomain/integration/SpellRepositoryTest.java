@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.core.Is.is;
@@ -36,7 +37,7 @@ public class SpellRepositoryTest {
 
     @Before
     public void createRepository() {
-        repository = InMemoryRepository.loadedWith(SpellDescriptions.class, "src/main/resources/data/spells.magic-set.xml");
+        repository = InMemoryRepository.loadedWith(SpellDescriptions.class, Arrays.asList("src/main/resources/data/spells.magic-set.xml"));
     }
 
     @Test
