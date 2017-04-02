@@ -2,6 +2,7 @@ package org.gurpsdomain.integration;
 
 import org.gurpsdomain.Pipeline;
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.adapters.input.yaml.YamlSheetInput;
 import org.gurpsdomain.adapters.output.SheetOutput;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.fromYaml;
+import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.sheetInputBuilder;
 import static org.gurpsdomain.adapters.output.json.JsonSheetOutput.toJson;
 import static org.junit.Assert.assertThat;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
@@ -67,7 +68,13 @@ public class PipelineTest {
 
     @Test
     public void shouldProduceCorrectJson() throws FileNotFoundException {
-        SheetInput input = fromYaml(reader);
+        YamlSheetInput.Builder read = sheetInputBuilder();
+        read.advantagesFrom("src/main/resources/data/advantages.basic-set.xml");
+        read.skillsFrom("src/main/resources/data/skills.basic-set.xml");
+        read.spellsFrom("src/main/resources/data/spells.magic-set.xml");
+        read.equipmentFrom("src/main/resources/data/equipments.basic-set.xml");
+
+        SheetInput input = read.fromYaml(reader);
         SheetOutput output = toJson(writer);
 
         Pipeline.flow(input).into(output);

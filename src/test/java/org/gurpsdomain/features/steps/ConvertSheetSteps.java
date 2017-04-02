@@ -2,19 +2,20 @@ package org.gurpsdomain.features.steps;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.gurpsdomain.Pipeline;
 import org.gurpsdomain.adapters.input.SheetInput;
+import org.gurpsdomain.adapters.input.yaml.YamlSheetInput;
 import org.gurpsdomain.adapters.output.SheetOutput;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.fromYaml;
+import static org.gurpsdomain.adapters.input.yaml.YamlSheetInput.sheetInputBuilder;
 import static org.gurpsdomain.adapters.output.json.JsonSheetOutput.toJson;
 import static org.gurpsdomain.matchers.MapOfMapMatcher.hasPath;
 import static org.hamcrest.Matchers.is;
@@ -50,7 +51,13 @@ public class ConvertSheetSteps {
 
     @When("^I convert it to json$")
     public void i_convert_it_to_yaml() throws Throwable {
-        SheetInput input = fromYaml(reader);
+        YamlSheetInput.Builder read = sheetInputBuilder();
+        read.advantagesFrom("src/main/resources/data/advantages.basic-set.xml");
+        read.skillsFrom("src/main/resources/data/skills.basic-set.xml");
+        read.spellsFrom("src/main/resources/data/spells.magic-set.xml");
+        read.equipmentFrom("src/main/resources/data/equipments.basic-set.xml");
+
+        SheetInput input = read.fromYaml(reader);
         writer = new StringWriter();
         SheetOutput output = toJson(writer);
         Pipeline.flow(input).into(output);

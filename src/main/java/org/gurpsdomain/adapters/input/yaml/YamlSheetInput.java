@@ -27,13 +27,8 @@ import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addDisa
 import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
-    public static YamlSheetInput fromYaml(Reader reader) {
-        YamlSheetInputBuilder builder = new YamlSheetInputBuilder();
-        builder.addAdvantageLocation("src/main/resources/data/advantages.basic-set.xml");
-        builder.addSkillLocation("src/main/resources/data/skills.basic-set.xml");
-        builder.addSpellLocation("src/main/resources/data/spells.magic-set.xml");
-        builder.addEquipmentLocation("src/main/resources/data/equipments.basic-set.xml");
-        return builder.fromYaml(reader);
+    public static Builder sheetInputBuilder() {
+        return new Builder();
     }
 
     private Reader reader;
@@ -71,25 +66,25 @@ public class YamlSheetInput implements SheetInput {
         return sheetBuilder.build();
     }
 
-    private static class YamlSheetInputBuilder {
+    public static class Builder {
         private final List<String> advantageLocations = new ArrayList<>();
         private final List<String> skillLocations = new ArrayList<>();
         private final List<String> spellLocations = new ArrayList<>();
         private final List<String> equipmentLocations = new ArrayList<>();
 
-        public void addAdvantageLocation(String location) {
+        public void advantagesFrom(String location) {
             advantageLocations.add(location);
         }
 
-        public void addSkillLocation(String location) {
+        public void skillsFrom(String location) {
             skillLocations.add(location);
         }
 
-        public void addSpellLocation(String location) {
+        public void spellsFrom(String location) {
             spellLocations.add(location);
         }
 
-        public void addEquipmentLocation(String location) {
+        public void equipmentFrom(String location) {
             equipmentLocations.add(location);
         }
 
