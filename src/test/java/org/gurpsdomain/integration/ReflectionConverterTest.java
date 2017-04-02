@@ -22,12 +22,7 @@ public class ReflectionConverterTest {
 
     @BeforeClass
     public static void readInSheet() throws FileNotFoundException {
-        YamlSheetInput.Builder read = sheetInputBuilder();
-        read.advantagesFrom("src/main/resources/data/advantages.basic-set.xml");
-        read.skillsFrom("src/main/resources/data/skills.basic-set.xml");
-        read.spellsFrom("src/main/resources/data/spells.magic-set.xml");
-        read.equipmentFrom("src/main/resources/data/equipments.basic-set.xml");
-
+        YamlSheetInput.Builder read = sheetInputBuilder("src/main/resources/data");
         Reader reader = new FileReader(new File("src/test/resources/sheets/dai-blackthorn-input.yml"));
         sheet = read.fromYaml(reader).produce();
     }

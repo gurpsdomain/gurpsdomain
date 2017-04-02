@@ -51,12 +51,7 @@ public class ConvertSheetSteps {
 
     @When("^I convert it to json$")
     public void i_convert_it_to_yaml() throws Throwable {
-        YamlSheetInput.Builder read = sheetInputBuilder();
-        read.advantagesFrom("src/main/resources/data/advantages.basic-set.xml");
-        read.skillsFrom("src/main/resources/data/skills.basic-set.xml");
-        read.spellsFrom("src/main/resources/data/spells.magic-set.xml");
-        read.equipmentFrom("src/main/resources/data/equipments.basic-set.xml");
-
+        YamlSheetInput.Builder read = sheetInputBuilder("src/main/resources/data");
         SheetInput input = read.fromYaml(reader);
         writer = new StringWriter();
         SheetOutput output = toJson(writer);

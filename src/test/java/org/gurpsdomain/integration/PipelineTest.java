@@ -68,12 +68,7 @@ public class PipelineTest {
 
     @Test
     public void shouldProduceCorrectJson() throws FileNotFoundException {
-        YamlSheetInput.Builder read = sheetInputBuilder();
-        read.advantagesFrom("src/main/resources/data/advantages.basic-set.xml");
-        read.skillsFrom("src/main/resources/data/skills.basic-set.xml");
-        read.spellsFrom("src/main/resources/data/spells.magic-set.xml");
-        read.equipmentFrom("src/main/resources/data/equipments.basic-set.xml");
-
+        YamlSheetInput.Builder read = sheetInputBuilder("src/main/resources/data");
         SheetInput input = read.fromYaml(reader);
         SheetOutput output = toJson(writer);
 

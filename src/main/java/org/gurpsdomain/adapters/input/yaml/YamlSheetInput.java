@@ -22,13 +22,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static org.gurpsdomain.adapters.input.ResourceLocations.*;
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addAdvantagesStep;
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addDisadvantagesStep;
 import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
-    public static Builder sheetInputBuilder() {
-        return new Builder();
+    public static Builder sheetInputBuilder(String resourceDirectory) {
+        return new Builder("src/main/resources/data");
     }
 
     private Reader reader;
@@ -67,32 +68,17 @@ public class YamlSheetInput implements SheetInput {
     }
 
     public static class Builder {
-        private final List<String> advantageLocations = new ArrayList<>();
-        private final List<String> skillLocations = new ArrayList<>();
-        private final List<String> spellLocations = new ArrayList<>();
-        private final List<String> equipmentLocations = new ArrayList<>();
+        private final String resourceDirectory;
 
-        public void advantagesFrom(String location) {
-            advantageLocations.add(location);
-        }
-
-        public void skillsFrom(String location) {
-            skillLocations.add(location);
-        }
-
-        public void spellsFrom(String location) {
-            spellLocations.add(location);
-        }
-
-        public void equipmentFrom(String location) {
-            equipmentLocations.add(location);
+        private Builder(String resourceDirectory) {
+            this.resourceDirectory = resourceDirectory;
         }
 
         public YamlSheetInput fromYaml(Reader reader) {
-            Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, advantageLocations);
-            Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, skillLocations);
-            Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, spellLocations);
-            Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, equipmentLocations);
+            Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, advantagesIn(resourceDirectory));
+            Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, skillsIn(resourceDirectory));
+            Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, spellsIn(resourceDirectory));
+            Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, equipmentIn(resourceDirectory));
             YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
             yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
             yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));
