@@ -27,17 +27,8 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static YamlSheetInput fromYaml(Reader reader) {
-        Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
-        Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, "src/main/resources/data/skills.basic-set.xml");
-        Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, "src/main/resources/data/spells.magic-set.xml");
-        Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, "src/main/resources/data/equipments.basic-set.xml");
-        YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
-        yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
-        yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));
-        yamlSheetInput.addBuildStep(addAdvantagesStep(advantageRepository));
-        yamlSheetInput.addBuildStep(addDisadvantagesStep(advantageRepository));
-        yamlSheetInput.addBuildStep(new AddEquipmentsStep(equipmentRepository));
-        return yamlSheetInput;
+        YamlSheetInputBuilder builder = new YamlSheetInputBuilder();
+        return builder.fromYaml(reader);
     }
 
     private Reader reader;
@@ -73,5 +64,21 @@ public class YamlSheetInput implements SheetInput {
             }
         }
         return sheetBuilder.build();
+    }
+
+    private static class YamlSheetInputBuilder {
+        public YamlSheetInput fromYaml(Reader reader) {
+            Repository<AdvantageDescription> advantageRepository = InMemoryRepository.loadedWith(AdvantageDescriptions.class, "src/main/resources/data/advantages.basic-set.xml");
+            Repository<SkillDescription> skillRepository = InMemoryRepository.loadedWith(SkillDescriptions.class, "src/main/resources/data/skills.basic-set.xml");
+            Repository<SpellDescription> spellRepository = InMemoryRepository.loadedWith(SpellDescriptions.class, "src/main/resources/data/spells.magic-set.xml");
+            Repository<EquipmentDescription> equipmentRepository = InMemoryRepository.loadedWith(EquipmentDescriptions.class, "src/main/resources/data/equipments.basic-set.xml");
+            YamlSheetInput yamlSheetInput = new YamlSheetInput(reader);
+            yamlSheetInput.addBuildStep(new AddSkillsStep(skillRepository));
+            yamlSheetInput.addBuildStep(new AddSpellsStep(spellRepository));
+            yamlSheetInput.addBuildStep(addAdvantagesStep(advantageRepository));
+            yamlSheetInput.addBuildStep(addDisadvantagesStep(advantageRepository));
+            yamlSheetInput.addBuildStep(new AddEquipmentsStep(equipmentRepository));
+            return yamlSheetInput;
+        }
     }
 }
