@@ -19,10 +19,10 @@ public class ResourcesLocationsTest {
     @Parameterized.Parameters(name = "{1}")
     public static Collection<Object[]> data() {
         Collection<Object[]> data = new ArrayList<>();
-        data.add(new Object[]{ResourceLocations.advantagesIn("src/main/resources/data/"), Arrays.asList("src/main/resources/data/advantages.basic-set.xml")});
-        data.add(new Object[]{ResourceLocations.skillsIn("src/main/resources/data"), Arrays.asList("src/main/resources/data/skills.basic-set.xml")});
-        data.add(new Object[]{ResourceLocations.spellsIn("src/main/resources/data/"), Arrays.asList("src/main/resources/data/spells.magic-set.xml")});
-        data.add(new Object[]{ResourceLocations.equipmentIn("src/main/resources/data"), Arrays.asList("src/main/resources/data/equipments.basic-set.xml")});
+        data.add(new Object[]{ResourceLocations.advantagesIn("src/main/resources/data/"), Arrays.asList(String.join(File.separator, new String[]{"src", "main", "resources", "data", "advantages.basic-set.xml"}))});
+        data.add(new Object[]{ResourceLocations.skillsIn("src/main/resources/data"), Arrays.asList(String.join(File.separator, new String[]{"src", "main", "resources", "data", "skills.basic-set.xml"}))});
+        data.add(new Object[]{ResourceLocations.spellsIn("src/main/resources/data/"), Arrays.asList(String.join(File.separator, new String[]{"src", "main", "resources", "data", "spells.magic-set.xml"}))});
+        data.add(new Object[]{ResourceLocations.equipmentIn("src/main/resources/data"), Arrays.asList(String.join(File.separator, new String[]{"src", "main", "resources", "data", "equipments.basic-set.xml"}))});
         return data;
     }
 
