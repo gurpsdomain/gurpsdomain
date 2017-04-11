@@ -29,7 +29,7 @@ import static org.gurpsdomain.domain.SheetBuilder.builder;
 
 public class YamlSheetInput implements SheetInput {
     public static Builder sheetInputBuilder(String resourceDirectory) {
-        return new Builder("src/main/resources/data");
+        return new Builder(resourceDirectory);
     }
 
     private Reader reader;
@@ -60,7 +60,7 @@ public class YamlSheetInput implements SheetInput {
             Yaml yaml = new Yaml(InputSheet.constructor());
             InputSheet data = (InputSheet) yaml.load(reader);
             sheetBuilder = builder();
-            for (YamlBuildStep buildStep: buildSteps) {
+            for (YamlBuildStep buildStep : buildSteps) {
                 buildStep.build(data, sheetBuilder);
             }
         }
