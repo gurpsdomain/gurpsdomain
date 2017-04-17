@@ -66,6 +66,7 @@ public class AddAdvantagesStep implements YamlBuildStep {
                     Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
                     sheetBuilder.addAdvantage(advantage);
                 }
+                else {sheetBuilder.addMessageText("Advantage named '" + advantageName + "' not found.");}
             }
         }
     }

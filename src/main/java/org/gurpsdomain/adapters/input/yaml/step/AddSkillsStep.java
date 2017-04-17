@@ -28,6 +28,8 @@ public class AddSkillsStep implements YamlBuildStep {
 
                     Skill skill = skillDescription.createSkill(points);
                     sheetBuilder.addSkill(skill);
+                } else {
+                    sheetBuilder.addMessageText("Skill named '" + skillName + "' not found.");
                 }
             }
         }
