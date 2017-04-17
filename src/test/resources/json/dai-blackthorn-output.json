@@ -228,5 +228,10 @@
       "name": "combat",
       "note": "Do extra damage by going all out!"
     }
+  ],
+  "messages": [
+    {
+      "text": "Spell named 'Spell-with-a-typo' not found."
+    }
   ]
 }

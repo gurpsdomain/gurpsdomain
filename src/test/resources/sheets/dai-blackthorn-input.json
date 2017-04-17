@@ -98,6 +98,10 @@
     {
       "name": "Mind-Sending",
       "points": 2
+    },
+    {
+      "name": "Spell-with-a-typo",
+      "points": 2
     }
   ],
   "equipments": [

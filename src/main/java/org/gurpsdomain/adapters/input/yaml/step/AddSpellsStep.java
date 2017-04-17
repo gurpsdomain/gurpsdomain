@@ -25,10 +25,10 @@ public class AddSpellsStep implements YamlBuildStep {
                 int points = inputSpell.points;
                 if (repository.exists(spellName)) {
                     SpellDescription spellDescription = repository.getByName(spellName);
-
                     Spell spell = spellDescription.createSpell(points);
                     sheetBuilder.addSpell(spell);
                 }
+                else {sheetBuilder.addMessageText("Spell named '" + spellName + "' not found.");}
             }
         }
     }

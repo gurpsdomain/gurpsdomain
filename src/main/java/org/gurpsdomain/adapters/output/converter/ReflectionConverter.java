@@ -44,6 +44,8 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection metaData = traverse(read("metaData"));
     private Reflection note = traverse(read("note"));
     private Reflection notes = traverse(read("notes"));
+    private Reflection text = traverse(read("text"));
+    private Reflection messages = traverse(read("messages"));
     private Reflection pointsTotal = traverse(read("points"), read("total"));
     private Reflection pointsAdvantages = traverse(read("points"), read("advantages"));
     private Reflection pointsDisadvantages = traverse(read("points"), read("disadvantages"));
@@ -89,7 +91,7 @@ public class ReflectionConverter implements SheetConverter {
     @Override
     public SheetSheet convert(Sheet sheet) {
         setDomainSheetData(sheet);
-        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), equipments(), notes(), attributes(), secondaryCharacteristics(), damageResistances());
+        return new SheetSheet(metaData(), points(), advantages(), disadvantages(), skills(), spells(), equipments(), notes(), messages(), attributes(), secondaryCharacteristics(), damageResistances());
     }
 
     private void setDomainSheetData(Sheet sheet) {
@@ -231,6 +233,16 @@ public class ReflectionConverter implements SheetConverter {
             sheetNotes.add(sheetNote);
         }
         return sheetNotes;
+    }
+
+    private List<SheetMessage> messages() {
+        List<SheetMessage> sheetMessages = new ArrayList<>();
+        List<Message> domainMessages = messages.from(domainSheet);
+        for (Message domainMessage : domainMessages) {
+            SheetMessage sheetMessage = new SheetMessage(text.from(domainMessage));
+            sheetMessages.add(sheetMessage);
+        }
+        return sheetMessages;
     }
 
     private SheetAttributes attributes() {

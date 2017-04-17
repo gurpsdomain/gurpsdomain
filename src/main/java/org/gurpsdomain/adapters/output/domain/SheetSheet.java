@@ -13,11 +13,12 @@ public class SheetSheet {
     private final List<SheetEquipment> equipments = new ArrayList<>();
     private final Map<String, String> metaData;
     private final List<SheetNote> notes = new ArrayList<>();
+    private final List<SheetMessage> messages = new ArrayList<>();
     private final SheetAttributes attributes;
     private final SheetSecondaryCharacteristics secondaryCharacteristics;
     private final SheetDamageResistances damageResistances;
 
-    public SheetSheet(Map<String, String> metaData, SheetPoints sheetPoints, List<SheetAdvantage> sheetAdvantages, List<SheetAdvantage> sheetDisadvantages, List<SheetSkill> sheetSkills, List<SheetSpell> sheetSpells, List<SheetEquipment> sheetEquipments, List<SheetNote> sheetNotes, SheetAttributes sheetAttributes, SheetSecondaryCharacteristics sheetSecondaryCharacteristics, SheetDamageResistances sheetDamageResistances) {
+    public SheetSheet(Map<String, String> metaData, SheetPoints sheetPoints, List<SheetAdvantage> sheetAdvantages, List<SheetAdvantage> sheetDisadvantages, List<SheetSkill> sheetSkills, List<SheetSpell> sheetSpells, List<SheetEquipment> sheetEquipments, List<SheetNote> sheetNotes, List<SheetMessage> sheetMessages, SheetAttributes sheetAttributes, SheetSecondaryCharacteristics sheetSecondaryCharacteristics, SheetDamageResistances sheetDamageResistances) {
         this.metaData = metaData;
         this.points = sheetPoints;
         this.advantages.addAll(sheetAdvantages);
@@ -26,6 +27,7 @@ public class SheetSheet {
         this.spells.addAll(sheetSpells);
         this.equipments.addAll(sheetEquipments);
         this.notes.addAll(sheetNotes);
+        this.messages.addAll(sheetMessages);
         this.attributes = sheetAttributes;
         this.secondaryCharacteristics = sheetSecondaryCharacteristics;
         this.damageResistances = sheetDamageResistances;

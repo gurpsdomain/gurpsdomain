@@ -20,6 +20,7 @@ public class SheetBuilder {
     private List<Advantage> advantages = new ArrayList<>();
     private Map<String[], String> metaData = new HashMap<>();
     private String size = "0";
+    private List<Message> messages = new ArrayList<>();
 
     public void award(int amount) {
         awards.add(amount);
@@ -49,6 +50,8 @@ public class SheetBuilder {
         this.size = size;
     }
 
+    public void addMessageText(String text) {messages.add(new Message(text));}
+
 
     public void addMetaData(String... keys) {
         String value = keys[keys.length - 1];
@@ -57,7 +60,7 @@ public class SheetBuilder {
     }
 
     public Sheet build() {
-        Sheet sheet = Sheet.from(metaData, awards, advantages, skills, spells, equipments, notes);
+        Sheet sheet = Sheet.from(metaData, awards, advantages, skills, spells, equipments, notes, messages);
         int amount = Integer.parseInt(size);
         sheet.setSizeModifier(amount);
         return sheet;

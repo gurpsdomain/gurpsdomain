@@ -8,6 +8,7 @@ import java.util.Map;
 public class Sheet {
     private final Points points;
     private final List<Note> notes = new ArrayList<>();
+    private final List<Message> messages = new ArrayList<>();
     private final List<Advantage> advantages = new ArrayList<>();
     private final List<Skill> skills = new ArrayList<>();
     private final List<Spell> spells = new ArrayList<>();
@@ -16,7 +17,7 @@ public class Sheet {
     private final Attributes attributes;
     private final DamageResistances damageResistances;
 
-    public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Equipment> equipments, List<Note> notes) {
+    public static Sheet from(Map<String[], String> metaData, List<Integer> awards, List<Advantage> advantages, List<Skill> skills, List<Spell> spells, List<Equipment> equipments, List<Note> notes, List<Message> messages) {
         Sheet sheet = new Sheet();
         for (Map.Entry<String[], String> entry : metaData.entrySet()) {
             sheet.setMetaDataProperty(entry.getKey(), entry.getValue());
@@ -39,6 +40,9 @@ public class Sheet {
         for (Note note : notes) {
             sheet.addNote(note);
         }
+        for (Message message : messages) {
+            sheet.addMessage(message);
+        }
         return sheet;
     }
 
@@ -56,9 +60,9 @@ public class Sheet {
         points.award(amount);
     }
 
-    private void addNote(Note note) {
-        notes.add(note);
-    }
+    private void addNote(Note note) {notes.add(note);}
+
+    private void addMessage(Message message){messages.add(message);}
 
     private void addAdvantage(Advantage advantage) {
         advantage.payCost(points);
