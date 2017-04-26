@@ -65,15 +65,7 @@ public class AddAdvantagesStep implements YamlBuildStep {
                     List<InputModifier> modifiers = inputAdvantage.modifiers();
                     List<ModifierDescriptionPredicate> modifierDescriptionPredicates = new ArrayList<>();
                     for (InputModifier modifier: modifiers) {
-                        String modifierName = modifier.name;
-                        ModifierDescriptionPredicate predicate;
-                        if (modifier.variation != null && !modifier.variation.equals("")) {
-                            String modifierVariation = modifier.variation;
-                            predicate = and(Name.name(modifierName), note(modifierVariation));
-                        } else {
-                            predicate = Name.name(modifierName);
-                        }
-                        modifierDescriptionPredicates.add(predicate);
+                        modifierDescriptionPredicates.add(modifier.descriptionPredicate());
                     }
 
                     Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
