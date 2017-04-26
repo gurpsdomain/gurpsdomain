@@ -12,6 +12,7 @@ import org.gurpsdomain.domain.description.predicate.Name;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
@@ -61,12 +62,11 @@ public class AddAdvantagesStep implements YamlBuildStep {
 
                     Integer levels = inputAdvantage.levels();
 
-
-                    List<InputModifier> modifiers = inputAdvantage.modifiers();
-                    List<ModifierDescriptionPredicate> modifierDescriptionPredicates = new ArrayList<>();
-                    for (InputModifier modifier: modifiers) {
-                        modifierDescriptionPredicates.add(modifier.descriptionPredicate());
-                    }
+                    List<ModifierDescriptionPredicate> modifierDescriptionPredicates =
+                            inputAdvantage.modifiers()
+                                    .stream()
+                                    .map(m -> m.descriptionPredicate())
+                                    .collect(Collectors.toList());
 
                     Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
                     sheetBuilder.addAdvantage(advantage);
