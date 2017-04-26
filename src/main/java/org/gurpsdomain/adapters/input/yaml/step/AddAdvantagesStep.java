@@ -17,22 +17,23 @@ import static org.gurpsdomain.domain.description.predicate.And.and;
 import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 public class AddAdvantagesStep implements YamlBuildStep {
-
-    private static final String ADVANTAGES = "advantages";
-    private static final String DISADVANTAGES = "disadvantages";
+    enum Category {
+        ADVANTAGES,
+        DISADVANTAGES;
+    }
 
     public static AddAdvantagesStep addAdvantagesStep(Repository<AdvantageDescription> repository) {
-        return new AddAdvantagesStep(repository, ADVANTAGES);
+        return new AddAdvantagesStep(repository, Category.ADVANTAGES);
     }
 
     public static AddAdvantagesStep addDisadvantagesStep(Repository<AdvantageDescription> repository) {
-        return new AddAdvantagesStep(repository, DISADVANTAGES);
+        return new AddAdvantagesStep(repository, Category.DISADVANTAGES);
     }
 
     private final Repository<AdvantageDescription> repository;
-    private final String category;
+    private final Category category;
 
-    private AddAdvantagesStep(Repository<AdvantageDescription> repository, String category) {
+    private AddAdvantagesStep(Repository<AdvantageDescription> repository, Category category) {
         this.repository = repository;
         this.category = category;
     }
