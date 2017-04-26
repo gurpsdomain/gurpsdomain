@@ -18,8 +18,20 @@ import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 public class AddAdvantagesStep implements YamlBuildStep {
     enum Category {
-        ADVANTAGES,
-        DISADVANTAGES;
+        ADVANTAGES {
+            @Override
+            List<InputAdvantage> getInputAdvantagesFrom(InputSheet sheet) {
+                return sheet.advantages();
+            }
+        },
+        DISADVANTAGES {
+            @Override
+            List<InputAdvantage> getInputAdvantagesFrom(InputSheet sheet) {
+                return sheet.disadvantages;
+            }
+        };
+
+        abstract List<InputAdvantage> getInputAdvantagesFrom(InputSheet sheet);
     }
 
     public static AddAdvantagesStep addAdvantagesStep(Repository<AdvantageDescription> repository) {
@@ -40,7 +52,7 @@ public class AddAdvantagesStep implements YamlBuildStep {
 
     @Override
     public void build(InputSheet data, SheetBuilder sheetBuilder) {
-        List<InputAdvantage> inputAdvantages = get(data);
+        List<InputAdvantage> inputAdvantages = category.getInputAdvantagesFrom(data);
         if (!(inputAdvantages == null)) {
             for (InputAdvantage inputAdvantage : inputAdvantages) {
                 String advantageName = inputAdvantage.name;
@@ -69,17 +81,6 @@ public class AddAdvantagesStep implements YamlBuildStep {
                 }
                 else {sheetBuilder.addMessageText("Advantage named '" + advantageName + "' not found.");}
             }
-        }
-    }
-
-    private List<InputAdvantage> get(InputSheet data) {
-        switch (category) {
-            case ADVANTAGES:
-                return data.advantages();
-            case DISADVANTAGES:
-                return data.disadvantages();
-            default:
-                throw new IllegalStateException();
         }
     }
 }
