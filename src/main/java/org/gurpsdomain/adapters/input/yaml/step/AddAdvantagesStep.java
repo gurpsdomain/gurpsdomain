@@ -28,7 +28,7 @@ public class AddAdvantagesStep implements YamlBuildStep {
         DISADVANTAGES {
             @Override
             List<InputAdvantage> getInputAdvantagesFrom(InputSheet sheet) {
-                return sheet.disadvantages;
+                return sheet.disadvantages();
             }
         };
 
@@ -54,25 +54,23 @@ public class AddAdvantagesStep implements YamlBuildStep {
     @Override
     public void build(InputSheet data, SheetBuilder sheetBuilder) {
         List<InputAdvantage> inputAdvantages = category.getInputAdvantagesFrom(data);
-        if (!(inputAdvantages == null)) {
-            for (InputAdvantage inputAdvantage : inputAdvantages) {
-                String advantageName = inputAdvantage.name;
-                if (repository.exists(advantageName)) {
-                    AdvantageDescription advantageDescription = repository.getByName(advantageName);
+        for (InputAdvantage inputAdvantage : inputAdvantages) {
+            String advantageName = inputAdvantage.name;
+            if (repository.exists(advantageName)) {
+                AdvantageDescription advantageDescription = repository.getByName(advantageName);
 
-                    Integer levels = inputAdvantage.levels();
+                Integer levels = inputAdvantage.levels();
 
-                    List<ModifierDescriptionPredicate> modifierDescriptionPredicates =
-                            inputAdvantage.modifiers()
-                                    .stream()
-                                    .map(m -> m.descriptionPredicate())
-                                    .collect(Collectors.toList());
+                List<ModifierDescriptionPredicate> modifierDescriptionPredicates =
+                        inputAdvantage.modifiers()
+                                .stream()
+                                .map(m -> m.descriptionPredicate())
+                                .collect(Collectors.toList());
 
                     Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
                     sheetBuilder.addAdvantage(advantage);
-                }
-                else {sheetBuilder.addMessageText("Advantage named '" + advantageName + "' not found.");}
             }
+            else {sheetBuilder.addMessageText("Advantage named '" + advantageName + "' not found.");}
         }
     }
 }
