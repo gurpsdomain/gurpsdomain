@@ -7,9 +7,12 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.gurpsdomain.domain.description.CompoundAdvantageFactory.tryInSuccession;
 
 
 @XmlRootElement(name = "advantage")
@@ -72,11 +75,8 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
                 .map(DamageResistanceBonusDescription::createDamageResistanceBonus)
                 .collect(Collectors.toList());
 
-        if (pointsPerLevel != null) {
-            return new LeveledAdvantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, levelAmount, pointsPerLevel);
-        } else {
-            return new Advantage(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
-        }
+        AdvantageFactory factory = tryInSuccession(new LeveledAdvantageFactory(), new BasicAdvantageFactory());
+        return factory.create(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, levelAmount, pointsPerLevel);
     }
 
     public void registerIn(Repository<AdvantageDescription> repository) {
@@ -113,5 +113,63 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
         } else {
             return Collections.emptyList();
         }
+    }
+}
+
+interface AdvantageFactory {
+    boolean applies(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel);
+
+    Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel);
+}
+
+class CompoundAdvantageFactory implements AdvantageFactory {
+    public static CompoundAdvantageFactory tryInSuccession(AdvantageFactory... factories) {
+        return new CompoundAdvantageFactory(Arrays.asList(factories));
+    }
+
+    private final List<AdvantageFactory> factories;
+
+    private CompoundAdvantageFactory(List<AdvantageFactory> factories) {
+        this.factories = factories;
+    }
+
+    @Override
+    public boolean applies(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return true;
+    }
+
+    @Override
+    public Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        for (AdvantageFactory factory: factories) {
+            if (factory.applies(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel)) {
+                return factory.create(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
+            }
+        }
+        throw new IllegalStateException("incorrectly configured Advantage factories");
+    }
+}
+
+class LeveledAdvantageFactory implements AdvantageFactory {
+
+    @Override
+    public boolean applies(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return pointsPerLevel != null;
+    }
+
+    @Override
+    public Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return new LeveledAdvantage(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
+    }
+}
+
+class BasicAdvantageFactory implements AdvantageFactory {
+    @Override
+    public boolean applies(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return true;
+    }
+
+    @Override
+    public Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return new Advantage(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
     }
 }
