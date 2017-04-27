@@ -64,7 +64,7 @@ public class AddAdvantagesStep implements YamlBuildStep {
                 List<ModifierDescriptionPredicate> modifierDescriptionPredicates =
                         inputAdvantage.modifiers()
                                 .stream()
-                                .map(m -> m.descriptionPredicate())
+                                .map(InputModifier::descriptionPredicate)
                                 .collect(Collectors.toList());
 
                     Advantage advantage = advantageDescription.createAdvantage(modifierDescriptionPredicates, levels);
