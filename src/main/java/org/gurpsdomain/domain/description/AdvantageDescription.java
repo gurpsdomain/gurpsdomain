@@ -75,7 +75,7 @@ public class AdvantageDescription implements Registerable<AdvantageDescription> 
                 .map(DamageResistanceBonusDescription::createDamageResistanceBonus)
                 .collect(Collectors.toList());
 
-        AdvantageFactory factory = tryInSuccession(new LeveledAdvantageFactory(), new BasicAdvantageFactory());
+        AdvantageFactory factory = tryInSuccession(new MageryAdvantageFactory(), new LeveledAdvantageFactory(), new BasicAdvantageFactory());
         return factory.create(name, basePoints, reference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, levelAmount, pointsPerLevel);
     }
 
@@ -146,6 +146,18 @@ class CompoundAdvantageFactory implements AdvantageFactory {
             }
         }
         throw new IllegalStateException("incorrectly configured Advantage factories");
+    }
+}
+
+class MageryAdvantageFactory implements AdvantageFactory {
+    @Override
+    public boolean applies(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return "magery".equalsIgnoreCase(name);
+    }
+
+    @Override
+    public Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
+        return new LeveledAdvantage(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
     }
 }
 

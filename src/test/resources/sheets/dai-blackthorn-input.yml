@@ -44,6 +44,8 @@ advantages:
   - name: Claws, Hooves
   - name: Damage Resistance
     levels: 3
+  - name: Magery
+    levels: 3
 
 disadvantages:
   - name: Indecisive
