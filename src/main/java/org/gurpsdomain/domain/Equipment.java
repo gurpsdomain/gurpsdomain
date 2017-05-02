@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 public class Equipment {
     private final String name;
+    private final String pageReference;
     private final List<DamageResistanceBonus> damageResistanceBonuses;
 
-    public Equipment(String name, List<DamageResistanceBonus> damageResistanceBonuses) {
+    public Equipment(String name, String pageReference,List<DamageResistanceBonus> damageResistanceBonuses) {
         this.name = name;
+        this.pageReference = pageReference;
         this.damageResistanceBonuses = damageResistanceBonuses;
     }
 

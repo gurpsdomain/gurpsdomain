@@ -223,7 +223,8 @@
   ],
   "equipments": [
     {
-      "name": "Leather Pants"
+      "name": "Leather Pants",
+      "pageReference": "B283"
     }
   ],
   "notes": [

@@ -222,7 +222,8 @@ public class ReflectionConverter implements SheetConverter {
 
     private SheetEquipment sheetEquipmentFromDomainEquipment(Equipment domainEquipment) {
         return new SheetEquipment(
-                name.from(domainEquipment));
+                name.from(domainEquipment),
+                pageReference.from(domainEquipment));
     }
 
     private List<SheetNote> notes() {

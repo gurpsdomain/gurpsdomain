@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class EquipmentDescription implements Registerable<EquipmentDescription> {
     @XmlElement(name = "description", required = true)
     private String name;
+    private String reference;
     @XmlElement(name = "dr_bonus")
     private List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions;
 
@@ -23,8 +24,9 @@ public class EquipmentDescription implements Registerable<EquipmentDescription> 
         /* needed for JAXB */
     }
 
-    public EquipmentDescription(String name, List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions) {
+    public EquipmentDescription(String name, String pageReference, List<DamageResistanceBonusDescription> damageResistanceBonusDescriptions) {
         this.name = name;
+        this.reference = pageReference;
         this.damageResistanceBonusDescriptions = damageResistanceBonusDescriptions != null ? damageResistanceBonusDescriptions : Collections.emptyList();
 
     }
@@ -34,7 +36,7 @@ public class EquipmentDescription implements Registerable<EquipmentDescription> 
                 .stream()
                 .map(DamageResistanceBonusDescription::createDamageResistanceBonus)
                 .collect(Collectors.toList());
-        return new Equipment(name, damageResistanceBonuses);
+        return new Equipment(name, reference, damageResistanceBonuses);
     }
 
     public void registerIn(Repository<EquipmentDescription> repository) {
