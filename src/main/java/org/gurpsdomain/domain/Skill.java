@@ -42,8 +42,6 @@ public class Skill {
     }
 
     public boolean hasName(String skillName) {
-        String thisUpperName = name.toUpperCase();
-        String searchedUpperName = skillName.toUpperCase();
-        return thisUpperName.equals(searchedUpperName);
+        return name.equalsIgnoreCase(skillName);
     }
 }
