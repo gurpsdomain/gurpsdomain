@@ -157,7 +157,7 @@ class MageryAdvantageFactory implements AdvantageFactory {
 
     @Override
     public Advantage create(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, Integer level, Integer pointsPerLevel) {
-        return new LeveledAdvantage(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
+        return new Magery(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses, level, pointsPerLevel);
     }
 }
 
