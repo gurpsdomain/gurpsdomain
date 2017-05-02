@@ -11,7 +11,7 @@ public class LeveledAdvantage extends Advantage {
     public LeveledAdvantage(String name, int baseCost, String pageReference, List<Modifier> modifiers, List<AttributeBonus> attributeBonuses, List<SkillBonus> skillBonuses, List<DamageResistanceBonus> damageResistanceBonuses, int level, int pointsPerLevel) {
         super(name, baseCost, pageReference, modifiers, attributeBonuses, skillBonuses, damageResistanceBonuses);
         if (level < 1) {
-            throw new IllegalArgumentException("Advantage level for " + name + " should be greater than 0 but was " + level);
+            throw new IllegalArgumentException(String.format("Advantage level for %s should be greater than 0 but was %d", name, level));
         }
         this.level = level;
         this.pointsPerLevel = pointsPerLevel;
