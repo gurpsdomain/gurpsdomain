@@ -27,7 +27,7 @@ public class Spell {
         this.castingTime = castingTime;
         this.duration = duration;
         if (!(difficultyLevel.equals(HARD)) && !(difficultyLevel.equals(VERY_HARD))) {
-            throw new IllegalArgumentException("Unexpected difficultyLevel " + difficultyLevel + " for spell " + name);
+            throw new IllegalArgumentException(String.format("Unexpected difficultyLevel %s for spell %s", difficultyLevel, name));
         }
     }
 
