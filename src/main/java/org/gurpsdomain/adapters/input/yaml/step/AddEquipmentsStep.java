@@ -28,7 +28,7 @@ public class AddEquipmentsStep implements YamlBuildStep {
                     Equipment equipment = equipmentDescription.createEquipment();
                     sheetBuilder.addEquipment(equipment);
                 }
-                else {sheetBuilder.addMessageText("Equipment named '" + equipmentName + "' not found.");}
+                else {sheetBuilder.addMessageText(String.format("Equipment named '%s' not found.", equipmentName));}
             }
         }
     }

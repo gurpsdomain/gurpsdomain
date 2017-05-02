@@ -28,7 +28,7 @@ public class AddSpellsStep implements YamlBuildStep {
                     Spell spell = spellDescription.createSpell(points);
                     sheetBuilder.addSpell(spell);
                 }
-                else {sheetBuilder.addMessageText("Spell named '" + spellName + "' not found.");}
+                else {sheetBuilder.addMessageText(String.format("Spell named '%s' not found.", spellName));}
             }
         }
     }
