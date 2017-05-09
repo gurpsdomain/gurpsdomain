@@ -50,7 +50,7 @@ public class ResourceLocations implements Iterable<String> {
     private void populateFiles() {
         File directory = new File(this.directory);
         if (!directory.isDirectory()) {
-            throw new IllegalArgumentException(String.format("%s is not a directory"));
+            throw new IllegalArgumentException(String.format("%s is not a directory", this.directory));
         }
 
         for (String path: directory.list(filter)) {

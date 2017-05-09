@@ -8,14 +8,9 @@ import org.gurpsdomain.domain.Repository;
 import org.gurpsdomain.domain.SheetBuilder;
 import org.gurpsdomain.domain.description.AdvantageDescription;
 import org.gurpsdomain.domain.description.predicate.ModifierDescriptionPredicate;
-import org.gurpsdomain.domain.description.predicate.Name;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.gurpsdomain.domain.description.predicate.And.and;
-import static org.gurpsdomain.domain.description.predicate.Note.note;
 
 public class AddAdvantagesStep implements YamlBuildStep {
     enum Category {

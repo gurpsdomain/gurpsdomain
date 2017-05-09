@@ -20,7 +20,6 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static org.gurpsdomain.adapters.input.ResourceLocations.*;
 import static org.gurpsdomain.adapters.input.yaml.step.AddAdvantagesStep.addAdvantagesStep;
