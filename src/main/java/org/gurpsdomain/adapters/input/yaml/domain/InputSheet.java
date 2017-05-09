@@ -23,9 +23,6 @@ public class InputSheet {
         constructor.setPropertyUtils(new PropertyUtils() {
             @Override
             public Property getProperty(Class<?> type, String name) throws IntrospectionException {
-                if (name.equals("created on")) {
-                    return super.getProperty(type, "createdOn");
-                }
                 return super.getProperty(type, name);
             }
         });
