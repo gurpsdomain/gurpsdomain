@@ -71,6 +71,7 @@ public class ReflectionConverter implements SheetConverter {
     private Reflection fatiguePoints = traverse(call("fatiguePoints"));
     private Reflection basicSpeed = traverse(call("basicSpeed"));
     private Reflection basicMove = traverse(call("basicMove"));
+    private Reflection dodge = traverse(call("dodge"));
     private Reflection damageThrusting = traverse(call("damageThrustingAsString"));
     private Reflection damageSwinging = traverse(call("damageSwingingAsString"));
     private Reflection frightCheck = traverse(call("frightCheck"));
@@ -271,6 +272,7 @@ public class ReflectionConverter implements SheetConverter {
                 fatiguePoints.from(attributes),
                 basicSpeed.from(attributes),
                 basicMove.from(attributes),
+                dodge.from(attributes),
                 damageThrusting.from(attributes),
                 damageSwinging.from(attributes),
                 frightCheck.from(attributes));
